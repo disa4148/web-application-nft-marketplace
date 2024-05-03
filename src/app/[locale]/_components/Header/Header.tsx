@@ -1,9 +1,9 @@
-import css from './Header.module.scss';
+import css from './header.module.scss';
 import { cn } from '@/shared/lib/utils';
 import Image from 'next/image';
 
 import Logotype from '@/shared/ui/logotype';
-import SearchInput from '@/shared/ui/search-input/search-input';
+import SearchInput from '@/shared/ui/searchInput/search-input';
 import { Button } from '@/shared/ui/button';
 
 export default function Header(): JSX.Element {

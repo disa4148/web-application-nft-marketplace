@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import ThemeProvider from '@/shared/lib/Providers';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
-import Header from './_components/Header/Header';
+import Header from './_components/header/header';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {
