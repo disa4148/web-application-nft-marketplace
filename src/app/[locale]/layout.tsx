@@ -1,10 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans } from 'next/font/google';
 import ThemeProvider from '@/shared/lib/Providers';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import Header from './_components/Header/Header';
 
-const inter = Inter({ subsets: ['latin'] });
+const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Test title',
   description:
@@ -37,7 +38,7 @@ export default function LocaleLayout({
   const messages = useMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={noto_Sans.className}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -45,6 +46,7 @@ export default function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <Header />
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>

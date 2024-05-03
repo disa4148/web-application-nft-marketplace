@@ -1,4 +1,9 @@
 {
+  "header": {
+    "inputPlaceholder": "Название или описание",
+    "signUpBtn": "Регистрация",
+    "signInBtn": "Авторизация"
+  },
   "Index": {
     "title": "Привет мир!"
   }

@@ -1,4 +1,9 @@
 {
+  "header": {
+    "inputPlaceholder": "Title or description",
+    "signUpBtn": "Sign Up",
+    "signInBtn": "Sign In"
+  },
   "Index": {
     "title": "Hello world!"
   }
