@@ -1,0 +1,23 @@
+.wrapper {
+    max-width: 280px;
+    height: 454px;
+    width: 100%;
+    border-radius: 30px;
+    background-color: var(--text-90-b);
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    .title {
+        color: var(--text-100-w);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .content {
+        color: var(--text-100-w);
+        padding-top: 16px;
+        font-size: 12px;
+        font-weight: 300;
+    }
+    
+}
