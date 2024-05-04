@@ -2,13 +2,11 @@ import { Input } from '@/shared/ui/input';
 import css from './signUp.module.scss';
 import { useTranslations } from 'next-intl';
 import Page from '@/shared/containers/page';
-import Logotype from '@/shared/ui/logotype';
 import { Button } from '@/shared/ui/button';
 import SignImage from '@/shared/ui/signImage/signImage';
 
-interface Props {}
 
-export default function SignUp(props: Props) {
+export default function SignUp() {
   const t = useTranslations('signUp');
   return (
     <Page>

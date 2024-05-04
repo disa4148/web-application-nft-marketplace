@@ -30,7 +30,7 @@ export default function ManyNft (): JSX.Element {
             <CarouselNext className='w-[40px] h-[40px] bg-[#2d2d2d]'/>
           </div>
       </div>
-        <CarouselContent className="-ml-0 space-x-5">
+        <CarouselContent className="-ml-0 space-x-6">
           {newsItems.map((e, index: number) => (
             <CarouselItem
               key={index}

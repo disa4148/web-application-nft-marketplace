@@ -103,5 +103,19 @@
     "buttonSiUp": {
       "text": "Register"
     }
+  },
+  "signIn": {
+    "header": {
+    "title": "Entrance",
+    "description": "We missed you! Sign in to continue!"
+    },
+    "input": {
+      "login": "Login",
+      "password": "Password",
+      "rememberMe": "Remember me"
+    },
+    "buttonSiUp": {
+      "text": "Authorization"
+    }
   }
 }

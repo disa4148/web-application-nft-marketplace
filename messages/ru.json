@@ -103,5 +103,19 @@
     "buttonSiUp": {
       "text": "Зарегистрироваться"
     }
+  },
+  "signIn": {
+    "header": {
+    "title": "Вход",
+    "description": "Мы скучали! Войдите, чтобы продолжить!"
+    },
+    "input": {
+      "login": "Логин",
+      "password": "Пароль",
+      "rememberMe": "Запомнить меня"
+    },
+    "buttonSiUp": {
+      "text": "Авторизация"
+    }
   }
 }

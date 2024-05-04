@@ -1,0 +1,69 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 1280px;
+    width: 100%;
+    height: 496px;
+    
+  
+    p:fitst-child {
+      font-size: 24px;
+      font-weight: 500;
+    }
+    p:last-child {
+      font-size: 16;
+      font-weight: 300;
+    }
+  }
+  
+  .signIn {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 50px;
+    padding: 56px 0px 0 40px;
+    width: 100%;
+    max-width: 544px;
+    height: 496px;
+    background-color: var(--bg-100-b);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  
+  
+    div:first-child {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 400px;
+    }
+    div:last-child {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 17px;
+      max-width: 400px;
+  
+      div {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+      }
+  
+      .styleButton {
+        background: linear-gradient(
+          152.48deg,
+          rgb(137, 198, 255) -36.244%,
+          rgb(54, 51, 208) 71.781%
+        );
+      }
+    }
+  }
+  .signRight {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

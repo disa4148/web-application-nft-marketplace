@@ -8,6 +8,10 @@
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #1D1421;
+    background-image: url('/assets/backDetails/circle.svg'), url('/assets/backDetails/polyhedron.svg');
+    background-position: 100% 5%,  calc(100vh - 120vh) 110%;
+    background-repeat: no-repeat;
+
 
     div {
         display: flex;
