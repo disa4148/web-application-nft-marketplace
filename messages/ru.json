@@ -87,5 +87,21 @@
         "mail": "support@nftjet.io"
       }
     }
+  },
+  "signUp": {
+    "header": {
+    "title": "Регистрация",
+    "description": "Пройдите регистрацию и начните торговать вашими NFT прямо сейчас!"
+    },
+    "input": {
+      "login": "Логин",
+      "mail": "Почта",
+      "password": "Пароль",
+      "repeatPassword": "Повторите пароль",
+      "promocode": "Промокод"
+    },
+    "buttonSiUp": {
+      "text": "Зарегистрироваться"
+    }
   }
 }

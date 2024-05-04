@@ -1,4 +1,3 @@
-import React from 'react';
 import css from './newsNft.module.scss';
 
 type Props = {
@@ -7,6 +6,7 @@ type Props = {
 };
 
 const NewsNft = ({ title, description }: Props): JSX.Element => {
+
   return (
     <div className={css.wrapper}>
       <p>{title}</p>

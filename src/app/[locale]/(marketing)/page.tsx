@@ -16,7 +16,7 @@ export default function Home(): React.ReactElement {
       <section className={css.wrapper}>
         <Title title={t('topCollections.title')} />
         <TopCollections />
-        <Title title={t('moreAboutNft.title')} />
+
         <ManyNft />
         <Title title={t('aboutOurService.title')} />
         <AboutService />
