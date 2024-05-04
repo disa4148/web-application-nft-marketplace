@@ -62,7 +62,30 @@
       }
     },
     "aboutOurService": {
-      "title": "About our service"
+      "title": "About our service",
+      "description": "NFT JET is a trading platform for non-replaceable tokens (NFT). Buy, sell and discover exclusive digital items.",
+      "btn": "To the catologist"
+    }
+  },
+  "footer": {
+    "description": "NFT JET is a trading platform for non-fungible tokens (NFTs). Buy, sell, and discover exclusive digital items for yourself.",
+    "items": {
+      "project": {
+        "title": "Project",
+        "catalogue": "Catalogue",
+        "service": "About Service",
+        "privacyPolicy": "Privacy Policy"
+      },
+      "language": {
+        "title": "Language",
+        "rus": "Russian",
+        "eng": "English"
+      },
+      "contacts": {
+        "title": "Contacts",
+        "tg": "Telegram",
+        "mail": "support@nftjet.io"
+      }
     }
   }
 }

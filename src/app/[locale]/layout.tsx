@@ -4,6 +4,7 @@ import { Noto_Sans } from 'next/font/google';
 import ThemeProvider from '@/shared/lib/Providers';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import Header from './_components/header/header';
+import Footer from './_components/footer/footer';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function LocaleLayout({
           >
             <Header />
             {children}
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
