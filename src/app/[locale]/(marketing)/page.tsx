@@ -5,6 +5,7 @@ import Title from '@/shared/ui/title/title';
 
 import TopCollections from './_components/topCollections/top-collections';
 import ManyNft from './_components/manyNft/many-nft';
+import AboutService from './_components/aboutService/about-service';
 
 import { useTranslations } from 'next-intl';
 
@@ -18,6 +19,7 @@ export default function Home(): React.ReactElement {
         <Title title={t('moreAboutNft.title')} />
         <ManyNft />
         <Title title={t('aboutOurService.title')} />
+        <AboutService />
       </section>
     </Page>
   );
