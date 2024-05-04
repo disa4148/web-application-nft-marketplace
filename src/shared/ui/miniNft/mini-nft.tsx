@@ -1,7 +1,9 @@
 import css from './miniNft.module.scss';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 type Props = {
+  image: string;
   name: string;
   price: number;
   total: number;
@@ -13,12 +15,14 @@ export default function MiniNft({
   percentage,
   price,
   total,
+  image,
 }: Props): JSX.Element {
+  const t = useTranslations('home.topCollections.cards');
   return (
     <div className={css.wrapper}>
       <div className={css.leftItems}>
         <Image
-          src={'/assets/forTest/tgNft.png'}
+          src={`/assets/forTest/${image}`}
           alt="NFT"
           width={65}
           height={60}
@@ -35,15 +39,15 @@ export default function MiniNft({
           />
         </div>
         <div>
-          <h4>Цена</h4>
-          <h4>{price} ETH</h4>
+          <h4>{t('price')}</h4>
+          <h4 className={css.price}>{price}</h4>
+          <span>ETH</span>
         </div>
       </div>
       <div className={css.rightItems}>
         <div>
-          <h4>
-            {total} <span>ETH</span>
-          </h4>
+          <h4>{total}</h4>
+          <span>ETH</span>
         </div>
         <div>
           <p>+{percentage}%</p>

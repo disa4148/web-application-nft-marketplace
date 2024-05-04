@@ -1,19 +1,18 @@
-import React from 'react'
-import css from './newsNft.module.scss'
-
+import React from 'react';
+import css from './newsNft.module.scss';
 
 type Props = {
-    title: string,
-    content: string,
-}
+  title: string;
+  description: string;
+};
 
-const NewsNft = ({title, content}: Props): JSX.Element => {
-    return (
-        <div className={css.wrapper}>
-            <p>{title}</p>
-            <p>{content}</p>
-        </div>
-    )
-}
+const NewsNft = ({ title, description }: Props): JSX.Element => {
+  return (
+    <div className={css.wrapper}>
+      <p>{title}</p>
+      <p>{description}</p>
+    </div>
+  );
+};
 
-export default NewsNft
+export default NewsNft;

@@ -1,33 +1,33 @@
-'use client';
 import css from './topCollections.module.scss';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/ui/select';
+
 import SortingBar from '@/shared/ui/sortingBar/sorting-bar';
+import CustomSelect from '@/shared/ui/customSelect/custom-select';
 import MiniNft from '@/shared/ui/miniNft/mini-nft';
+import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
+
 import { nftItems } from './nftItems';
 
+import { useTranslations } from 'next-intl';
+
 export default function TopCollections(): JSX.Element {
+  const t = useTranslations('home.topCollections');
+  const keys: string[] = ['select.popular', 'select.inTime', 'select.alphabetically'];
+
+  interface SelectItem {
+    value: string;
+    title: string;
+  }
+
+  const selectItems: SelectItem[] = keys.map((key) => ({
+    value: t(`${key}.value`),
+    title: t(`${key}.title`),
+  }));
+
   return (
     <div className={css.wrapper}>
       <div className={css.header}>
         <div className={css.select}>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Популярное" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="light">In Progress</SelectItem>
-              <SelectItem value="dark">In Progress</SelectItem>
-              <SelectItem value="system">In Progress</SelectItem>
-            </SelectContent>
-          </Select>
+          <CustomSelect placeholder={t('select.popular.title')} items={selectItems} />
         </div>
         <div>
           <SortingBar />
@@ -41,8 +41,12 @@ export default function TopCollections(): JSX.Element {
             percentage={item.percentage}
             price={item.price}
             total={item.total}
+            image={item.image}
           />
         ))}
+      </div>
+      <div>
+        <ButtonLoadMore>{t('cards.btn')}</ButtonLoadMore>
       </div>
     </div>
   );
