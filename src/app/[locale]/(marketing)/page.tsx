@@ -10,9 +10,9 @@ export default function Home(): React.ReactElement {
       <section className={css.wrapper}>
         <Title title="Топ коллекций" />
         <TopCollections />
-        <Title title="Больше о NFT"/>
+        <Title title="Больше о NFT" />
         <ManyNft />
-        <Title title="О нашем сервисе"/>
+        <Title title="О нашем сервисе" />
       </section>
     </Page>
   );
