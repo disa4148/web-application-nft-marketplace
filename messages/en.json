@@ -100,7 +100,7 @@
       "repeatPassword": "Repeat password",
       "promocode": "Promo code"
     },
-    "buttonSiUp": {
+    "buttonSignUp": {
       "text": "Register"
     }
   },
@@ -114,7 +114,7 @@
       "password": "Password",
       "rememberMe": "Remember me"
     },
-    "buttonSiUp": {
+    "buttonSignIn": {
       "text": "Authorization"
     }
   }

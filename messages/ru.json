@@ -90,8 +90,8 @@
   },
   "signUp": {
     "header": {
-    "title": "Регистрация",
-    "description": "Пройдите регистрацию и начните торговать вашими NFT прямо сейчас!"
+      "title": "Регистрация",
+      "description": "Пройдите регистрацию и начните торговать вашими NFT прямо сейчас!"
     },
     "input": {
       "login": "Логин",
@@ -100,21 +100,21 @@
       "repeatPassword": "Повторите пароль",
       "promocode": "Промокод"
     },
-    "buttonSiUp": {
+    "buttonSignUp": {
       "text": "Зарегистрироваться"
     }
   },
   "signIn": {
     "header": {
-    "title": "Вход",
-    "description": "Мы скучали! Войдите, чтобы продолжить!"
+      "title": "Вход",
+      "description": "Мы скучали! Войдите, чтобы продолжить!"
     },
     "input": {
       "login": "Логин",
       "password": "Пароль",
       "rememberMe": "Запомнить меня"
     },
-    "buttonSiUp": {
+    "buttonSignIn": {
       "text": "Авторизация"
     }
   }

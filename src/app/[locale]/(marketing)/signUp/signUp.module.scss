@@ -1,17 +1,16 @@
 .wrapper {
   display: flex;
-  flex-direction: row;
   max-width: 1280px;
   width: 100%;
   height: 496px;
-   
+  margin: 70px 0 20px 0;
 
-  p:fitst-child {
+  p:first-child {
     font-size: 24px;
     font-weight: 500;
   }
   p:last-child {
-    font-size: 16;
+    font-size: 16px;
     font-weight: 300;
   }
 }
@@ -21,14 +20,11 @@
   align-items: flex-start;
   flex-direction: column;
   gap: 20px;
-  padding: 56px 0px 0 40px;
+  padding: 56px 0 0 40px;
   width: 100%;
   max-width: 544px;
-  height: 496px;
   background-color: var(--bg-100-b);
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-
+  border-radius: 30px 0 0 30px;
 
   div:first-child {
     display: flex;
