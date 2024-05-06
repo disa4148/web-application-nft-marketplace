@@ -18,24 +18,39 @@ export default function Footer(): JSX.Element {
             <p>{t('description')}</p>
           </div>
           <div>
-            <Link href={'/'}>
+            <Link
+              href={'https://www.youtube.com/watch?v=0qhRyAV8sL4'}
+              passHref
+              target="_blank"
+            >
               <Image
+                className={css.hoverImg}
                 src={'/assets/icons/socials/youtube.svg'}
                 alt="YouTube"
                 width={26}
                 height={18}
               />
             </Link>
-            <Link href={'/'}>
+            <Link
+              href={'https://web.telegram.org/a/#1234060895'}
+              passHref
+              target="_blank"
+            >
               <Image
+                className={css.hoverImg}
                 src={'/assets/icons/socials/telegram.svg'}
                 alt="Telegram"
                 width={21}
                 height={18}
               />
             </Link>
-            <Link href={'/'}>
+            <Link
+              href={'https://vk.com/public25014038'}
+              passHref
+              target="_blank"
+            >
               <Image
+                className={css.hoverImg}
                 src={'/assets/icons/socials/vk.svg'}
                 alt="VK"
                 width={27}

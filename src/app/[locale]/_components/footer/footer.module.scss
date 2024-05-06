@@ -5,7 +5,6 @@
   max-width: 100vw;
   width: 100%;
   margin: 30px 0;
-  padding: 0 40px;
 
   .footer {
     display: flex;
@@ -19,6 +18,15 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 30px;
+
+      .hoverImg {
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.3);
+        }
+      }
+
       div:last-child {
         display: flex;
         gap: 10px;
@@ -60,10 +68,9 @@
           font-weight: 500;
           line-height: 16px;
           transition: 0.2s;
-
         }
         a:hover {
-            opacity: 0.5;
+          opacity: 0.5;
         }
       }
     }
