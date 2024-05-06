@@ -1,7 +1,8 @@
+'use client'
 import css from './topCollections.module.scss';
 
+import Dropdown from '@/shared/ui/dropdown/dropdown';
 import SortingBar from '@/shared/ui/sortingBar/sorting-bar';
-import CustomSelect from '@/shared/ui/customSelect/custom-select';
 import MiniNft from '@/shared/ui/miniNft/mini-nft';
 import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
 
@@ -9,25 +10,29 @@ import { nftItems } from './nftItems';
 
 import { useTranslations } from 'next-intl';
 
+type Option = {
+  value: string;
+  label: string;
+};
+
 export default function TopCollections(): JSX.Element {
   const t = useTranslations('home.topCollections');
   const keys: string[] = ['select.popular', 'select.inTime', 'select.alphabetically'];
 
-  interface SelectItem {
-    value: string;
-    title: string;
-  }
-
-  const selectItems: SelectItem[] = keys.map((key) => ({
+  const selectItems: Option[] = keys.map((key) => ({
     value: t(`${key}.value`),
-    title: t(`${key}.title`),
+    label: t(`${key}.title`),
   }));
+  
+  const handleSelect = (option: Option) => {
+    console.log('Selected option:', option);
+  };
 
   return (
     <div className={css.wrapper}>
       <div className={css.header}>
         <div className={css.select}>
-          <CustomSelect placeholder={t('select.popular.title')} items={selectItems} />
+          <Dropdown options={selectItems} onSelect={handleSelect} />
         </div>
         <div>
           <SortingBar />

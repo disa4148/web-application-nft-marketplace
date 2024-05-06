@@ -44,7 +44,7 @@
     .rightItems {
       display: flex;
       align-items: flex-start;
-      gap: 40px;
+      gap: 60px;
 
       div {
         display: flex;
@@ -63,13 +63,19 @@
           line-height: 19px;
           color: var(--text-60-b);
         }
-        a {
+        a, button {
           font-size: 12px;
           font-weight: 500;
           line-height: 16px;
           transition: 0.2s;
         }
-        a:hover {
+
+        button {
+          padding: 0;
+          height: min-content;
+        }
+
+        a:hover, button:hover {
           opacity: 0.5;
         }
       }

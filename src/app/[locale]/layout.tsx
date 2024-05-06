@@ -4,11 +4,11 @@ import { Noto_Sans } from 'next/font/google';
 import ThemeProvider from '@/shared/lib/Providers';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import Footer from './_components/footer/footer';
-import Header from './_components/header/Header';
+import Header from './_components/header/header';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {
-  title: 'Test title',
+  title: 'NFT JET',
   description:
     'test description',
   keywords:

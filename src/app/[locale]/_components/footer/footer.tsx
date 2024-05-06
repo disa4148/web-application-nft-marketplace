@@ -1,6 +1,7 @@
 import css from './footer.module.scss';
 
 import Logotype from '@/shared/ui/logotype';
+import LocaleSwitcher from '@/shared/ui/locale-switcher';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -75,10 +76,7 @@ export default function Footer(): JSX.Element {
             <div>
               <h1>{t('items.language.title')}</h1>
             </div>
-            <div>
-              <Link href={'/'}>{t('items.language.rus')}</Link>
-              <Link href={'/'}>{t('items.language.eng')}</Link>
-            </div>
+            <LocaleSwitcher />
           </div>
 
           <div>
