@@ -2,7 +2,11 @@ import css from './searchInput.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-export default function SearchInput(): JSX.Element {
+type Props = {
+  placeholder: string
+}
+
+export default function SearchInput({placeholder}: Props): JSX.Element {
   const t = useTranslations('header');
   return (
     <div className={css.wrapper}>
@@ -12,7 +16,7 @@ export default function SearchInput(): JSX.Element {
         height={18}
         alt="Loupe"
       />
-      <input type="text" placeholder={t('inputPlaceholder')} />
+      <input type="text" placeholder={placeholder}  />
     </div>
   );
 }

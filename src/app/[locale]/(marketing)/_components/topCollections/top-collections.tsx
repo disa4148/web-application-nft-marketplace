@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import css from './topCollections.module.scss';
 
 import Dropdown from '@/shared/ui/dropdown/dropdown';
@@ -9,6 +9,7 @@ import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
 import { nftItems } from './nftItems';
 
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 type Option = {
   value: string;
@@ -17,13 +18,23 @@ type Option = {
 
 export default function TopCollections(): JSX.Element {
   const t = useTranslations('home.topCollections');
-  const keys: string[] = ['select.popular', 'select.inTime', 'select.alphabetically'];
+  const keys: string[] = [
+    'select.popular',
+    'select.inTime',
+    'select.alphabetically',
+  ];
+  const [selectedDateSort, setSelectedDateSort] = useState<string>('1day');
 
   const selectItems: Option[] = keys.map((key) => ({
     value: t(`${key}.value`),
     label: t(`${key}.title`),
   }));
-  
+
+  const handleSortDateClick = (selectedItem: string): void => {
+    setSelectedDateSort(selectedItem);
+    console.log('selectedDateSort:', selectedItem)
+  };
+
   const handleSelect = (option: Option) => {
     console.log('Selected option:', option);
   };
@@ -35,7 +46,7 @@ export default function TopCollections(): JSX.Element {
           <Dropdown options={selectItems} onSelect={handleSelect} />
         </div>
         <div>
-          <SortingBar />
+          <SortingBar activeItem={selectedDateSort} onItemClick={handleSortDateClick} />
         </div>
       </div>
       <div className={css.cards}>

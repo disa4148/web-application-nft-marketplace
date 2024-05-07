@@ -13,16 +13,126 @@
     width: 100%;
     max-width: 1280px;
 
+    .bottomItems, .hiddenBurger {
+      display: none;
+    }
+
     .rightItems {
       display: flex;
       align-items: center;
       gap: 20px;
       .coloredBtn {
-        background: linear-gradient(152.48deg,rgb(137, 198, 255) -36.244%,rgb(54, 51, 208) 71.781%);
+        background: linear-gradient(
+          152.48deg,
+          rgb(137, 198, 255) -36.244%,
+          rgb(54, 51, 208) 71.781%
+        );
       }
       img {
         cursor: pointer;
       }
     }
   }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    .header {
+      .rightItems {
+        .searchInput {
+          max-width: 280px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .wrapper {
+    .header {
+      .rightItems {
+        gap: 10px;
+        .searchInput {
+          max-width: 270px;
+        }
+        button {
+          padding: 8px 20px;
+        }
+        .burger {
+          width: 38px;
+          height: 38px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 864px) {
+  .wrapper {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 50px;
+      .leftItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        .hiddenBurger {
+          display: block;
+        }
+      }
+      .bottomItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        button, .searchInput {
+          max-width: 280px !important;
+          border-radius: 7px;
+        }
+        .searchInput {
+          max-width: 216px;
+          div {
+            border-radius: 7px;
+          }
+          width: auto;
+          input {
+            width: inherit;
+          }
+        }
+      }
+      .rightItems {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper {
+    .header {
+      .bottomItems {
+        button, .searchInput {
+          max-width: 140px;
+          font-size: 14px;
+          input {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+ .wrapper {
+  .header {
+    .bottomItems {
+      button, .searchInput {
+        padding: 8px 10px;
+      }
+    }
+  }
+ }
 }

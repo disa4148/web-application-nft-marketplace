@@ -10,7 +10,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    
+
     p {
       font-size: 16px;
       font-weight: 400;
@@ -21,4 +21,14 @@
 
 .active {
   background-color: var(--bg-active-b);
+  animation: appearance 1s forwards;
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

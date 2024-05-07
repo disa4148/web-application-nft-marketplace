@@ -7,10 +7,7 @@
   border-radius: 10px;
   background-color: var(--text-90-b);
   cursor: pointer;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 20px 20px 10px 10px;
 
   .leftItems {
     display: flex;
@@ -18,12 +15,7 @@
     justify-content: center;
     background-color: var(--text-100-b);
     padding: 14px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-
-    img {
-
-    }
+    border-radius: 20px 0 0 20px;
   }
 
   .middleItems {

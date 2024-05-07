@@ -1,6 +1,7 @@
 {
   "header": {
     "inputPlaceholder": "Название или описание",
+    "AbbreviatedPlaceholderName": "Название",
     "signUpBtn": "Регистрация",
     "signInBtn": "Авторизация"
   },

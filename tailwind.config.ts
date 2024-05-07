@@ -27,6 +27,8 @@ const config = {
             80: '#2d2d2d',
             70: '#9e9e9e',
           },
+          green: { 100: '#4BB34B'},
+          red: { 100: '#B62222'}
         },
         bg: {
           white: { 100: '#ffffff' },

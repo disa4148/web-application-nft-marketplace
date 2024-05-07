@@ -1,6 +1,7 @@
 {
   "header": {
     "inputPlaceholder": "Name or description",
+    "AbbreviatedPlaceholderName": "Name",
     "signUpBtn": "Sign Up",
     "signInBtn": "Sign In"
   },
