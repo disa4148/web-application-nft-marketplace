@@ -119,5 +119,20 @@
     "buttonSignIn": {
       "text": "Authorization"
     }
+  },
+  "catalogNft": {
+    "volume": "Market volume",
+    "minPrice": "Minimum price",
+    "offer": "Best offer",
+    "owners": "Owners",
+    "description": "Telegram Usernames - NFTs dedicated to telegram avatars. You can make your own unique avatar by purchasing it on NFTJET",
+    "items": "Items",
+    "dateCreated": "Date of creation",
+    "network": "Net",
+
+    "card": {
+      "lastSale": "Last sale: ",
+      "buy": "Buy"
+    }
   }
 }

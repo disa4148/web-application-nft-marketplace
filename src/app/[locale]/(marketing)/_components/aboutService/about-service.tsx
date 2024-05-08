@@ -2,10 +2,12 @@ import css from './aboutService.module.scss';
 import { Button } from '@/shared/ui/button';
 import Image from 'next/image';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
 
 export default function AboutService(): JSX.Element {
   const t = useTranslations('home.aboutOurService')
+  const locale = useLocale()
   return (
     <div className={css.wrapper}>
       <div className={css.content}>
@@ -13,7 +15,9 @@ export default function AboutService(): JSX.Element {
           <h3>
             {t('description')}
           </h3>
-          <Button>{t('btn')}</Button>
+          <Link href={`/${locale}/catalogNft`}>
+            <Button>{t('btn')}</Button>
+          </Link>
         </div>
         <div>
           <Image
