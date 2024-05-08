@@ -1,36 +1,40 @@
 .blockInfo {
-    max-width: 1280px;
-    width: 100%;
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  .infoUs {
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-    .infoUs {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .users {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-  
-      .users {
+      flex-direction: column;
+      gap: 40px;
+
+      div:first-child {
         display: flex;
         flex-direction: column;
         gap: 7px;
-  
+
         div:first-child {
           display: flex;
-          align-items: center;
+          flex-direction: row;
           gap: 10px;
-  
+
           p {
             font-size: 24px;
             font-weight: 500;
           }
         }
-  
+
         div:last-child {
           display: flex;
-          align-items: center;
+          flex-direction: row;
           gap: 10px;
-  
+
           p {
             font-size: 16px;
             font-weight: 400;
@@ -38,87 +42,29 @@
           }
         }
       }
-      .fullInfo {
-        display: flex;
-        gap: 30px;
-  
-        .volume {
-          display: flex;
-          flex-direction: column;
-          gap: 7px;
-          p:first-child {
-            font-size: 24px;
-            font-weight: 500;
-          }
-          p:last-child {
-            font-size: 16px;
-            font-weight: 400;
-            color: #979797;
-          }
-        }
-        .price {
-          display: flex;
-          flex-direction: column;
-          gap: 7px;
-          p:first-child {
-            font-size: 24px;
-            font-weight: 500;
-          }
-          p:last-child {
-            font-size: 16px;
-            font-weight: 400;
-            color: #979797;
-          }
-        }
-        .offer {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            p:first-child {
-              font-size: 24px;
-              font-weight: 500;
-            }
-            p:last-child {
-              font-size: 16px;
-              font-weight: 400;
-              color: #979797;
-            }
-          }
-          .owners {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            p:first-child {
-              font-size: 24px;
-              font-weight: 500;
-            }
-            p:last-child {
-              font-size: 16px;
-              font-weight: 400;
-              color: #979797;
-            }
-          }
-        }
-      }
-      .infoUss {
+
+      div:last-child {
         display: flex;
         flex-direction: column;
-        max-width: 610px;
+        max-width: 607px;
         gap: 10px;
-    
+
         p {
           font-size: 18px;
           font-weight: 400;
         }
-    
+
         .underInfo {
           display: flex;
+          flex-direction: row;
           gap: 20px;
+
           .items {
             display: flex;
+            flex-direction: row;
             gap: 6px;
             color: #979797;
-    
+
             p:first-child {
               font-size: 16px;
               font-weight: 400;
@@ -128,11 +74,13 @@
               font-weight: 500;
             }
           }
+
           .dateCreate {
             display: flex;
+            flex-direction: row;
             gap: 6px;
             color: #979797;
-    
+
             p:first-child {
               font-size: 16px;
               font-weight: 400;
@@ -142,11 +90,13 @@
               font-weight: 500;
             }
           }
+
           .network {
             display: flex;
+            flex-direction: row;
             gap: 6px;
             color: #979797;
-    
+
             p:first-child {
               font-size: 16px;
               font-weight: 400;
@@ -156,17 +106,81 @@
               font-weight: 500;
             }
           }
-        }
-      }
-      .blockNft {
-        padding: 50px 0px 0px 0px;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-    
-        .searchDrop {
-          display: flex;
-          justify-content: space-between;
         }
       }
     }
+    .fullInfo {
+      display: flex;
+      gap: 30px;
+
+      .volume {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        p:first-child {
+          font-size: 24px;
+          font-weight: 500;
+        }
+        p:last-child {
+          font-size: 16px;
+          font-weight: 400;
+          color: #979797;
+        }
+      }
+      .price {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        p:first-child {
+          font-size: 24px;
+          font-weight: 500;
+        }
+        p:last-child {
+          font-size: 16px;
+          font-weight: 400;
+          color: #979797;
+        }
+      }
+      .offer {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        p:first-child {
+          font-size: 24px;
+          font-weight: 500;
+        }
+        p:last-child {
+          font-size: 16px;
+          font-weight: 400;
+          color: #979797;
+        }
+      }
+      .owners {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        p:first-child {
+          font-size: 24px;
+          font-weight: 500;
+        }
+        p:last-child {
+          font-size: 16px;
+          font-weight: 400;
+          color: #979797;
+        }
+      }
+    }
+  }
+
+  .blockNft {
+    padding: 50px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    .searchDrop {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

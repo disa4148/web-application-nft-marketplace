@@ -37,22 +37,41 @@ export default function CatalogNft(): JSX.Element {
         <div className={css.infoUs}>
           <div className={css.users}>
             <div>
-              <p>Telegram Usernames</p>
-              <Image
-                src={'/assets/icons/verified.svg'}
-                alt="Verified"
-                width={16}
-                height={16}
-              />
+              <div>
+                <p>Telegram Usernames</p>
+                <Image
+                  src={'/assets/icons/verified.svg'}
+                  alt="Verified"
+                  width={16}
+                  height={16}
+                />
+              </div>
+              <div>
+                <p>Telegram</p>
+                <Image
+                  src={'/assets/icons/verified.svg'}
+                  alt="Verified"
+                  width={16}
+                  height={16}
+                />
+              </div>
             </div>
             <div>
-              <p>Telegram</p>
-              <Image
-                src={'/assets/icons/verified.svg'}
-                alt="Verified"
-                width={16}
-                height={16}
-              />
+              <p>{t('description')}</p>
+              <div className={css.underInfo}>
+                <div className={css.items}>
+                  <p>{t('items')}</p>
+                  <p>9 999</p>
+                </div>
+                <div className={css.dateCreate}>
+                  <p>{t('dateCreated')}</p>
+                  <p>30 июля 2023</p>
+                </div>
+                <div className={css.network}>
+                  <p>{t('network')}</p>
+                  <p>Ethereum</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className={css.fullInfo}>
@@ -74,23 +93,7 @@ export default function CatalogNft(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className={css.infoUss}>
-          <p>{t('description')}</p>
-          <div className={css.underInfo}>
-            <div className={css.items}>
-              <p>{t('items')}</p>
-              <p>9 999</p>
-            </div>
-            <div className={css.dateCreate}>
-              <p>{t('dateCreated')}</p>
-              <p>30 июля 2023</p>
-            </div>
-            <div className={css.network}>
-              <p>{t('network')}</p>
-              <p>Ethereum</p>
-            </div>
-          </div>
-        </div>
+
         <div className={css.blockNft}>
           <div className={css.searchDrop}>
             <SearchInputNft />
@@ -102,5 +105,5 @@ export default function CatalogNft(): JSX.Element {
         </div>
       </div>
     </Page>
-    );
+  );
 }
