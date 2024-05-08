@@ -8,7 +8,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import Logotype from '@/shared/ui/logotype';
 import SearchInput from '@/shared/ui/searchInput/search-input';
 import { Button } from '@/shared/ui/button';
-import IdentificationButton from '@/shared/ui/identificationButton/identificationButton';
 
 export default function Header(): JSX.Element {
   const t = useTranslations('header');
@@ -45,12 +44,6 @@ export default function Header(): JSX.Element {
             width={40}
             height={40}
           />
-        </div>
-        <div className={css.bottomItems}>
-          <IdentificationButton>Вход и регистрация</IdentificationButton>
-          <div className={css.searchInput}>
-            <SearchInput placeholder={t('AbbreviatedPlaceholderName')} />
-          </div>
         </div>
       </div>
     </header>

@@ -2,6 +2,7 @@
   "header": {
     "inputPlaceholder": "Name or description",
     "AbbreviatedPlaceholderName": "Name",
+    "IdentificationButton": "Login and registration",
     "signUpBtn": "Sign Up",
     "signInBtn": "Sign In"
   },

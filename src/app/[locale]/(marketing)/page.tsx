@@ -6,7 +6,7 @@ import Title from '@/shared/ui/title/title';
 import TopCollections from './_components/topCollections/top-collections';
 import ManyNft from './_components/manyNft/many-nft';
 import AboutService from './_components/aboutService/about-service';
-
+import UnderHeader from './_components/underHeader/under-header';
 import { useTranslations } from 'next-intl';
 
 export default function Home(): React.ReactElement {
@@ -14,6 +14,7 @@ export default function Home(): React.ReactElement {
   return (
     <Page>
       <section className={css.wrapper}>
+        <UnderHeader />
         <Title title={t('topCollections.title')} />
         <TopCollections />
 
