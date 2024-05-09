@@ -14,7 +14,7 @@ export default function Footer(): JSX.Element {
     <footer className={css.wrapper}>
       <div className={css.footer}>
         <div>
-          <div>
+          <div className={css.logotypeContainer}>
             <Logotype style="light" />
             <p>{t('description')}</p>
           </div>

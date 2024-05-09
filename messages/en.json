@@ -29,6 +29,20 @@
         "30days": "30 days",
         "allTime": "All time"
       },
+      "mobileSelect": {
+        "sold": {
+          "title": "Sold",
+          "value": "sold"
+        },
+        "active": {
+          "title": "Active",
+          "value": "active"
+        },
+        "public": {
+          "title": "Public",
+          "value": "public"
+        }
+      },
       "cards": {
         "price": "Price",
         "btn": "Download more"
@@ -92,8 +106,8 @@
   },
   "signUp": {
     "header": {
-    "title": "Registration",
-    "description": "Sign up and start trading your NFTs now!"
+      "title": "Registration",
+      "description": "Sign up and start trading your NFTs now!"
     },
     "input": {
       "login": "Login",
@@ -108,8 +122,8 @@
   },
   "signIn": {
     "header": {
-    "title": "Entrance",
-    "description": "We missed you! Sign in to continue!"
+      "title": "Entrance",
+      "description": "We missed you! Sign in to continue!"
     },
     "input": {
       "login": "Login",

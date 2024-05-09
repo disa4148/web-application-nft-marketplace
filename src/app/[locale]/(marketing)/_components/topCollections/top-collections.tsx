@@ -18,17 +18,19 @@ type Option = {
 
 export default function TopCollections(): JSX.Element {
   const t = useTranslations('home.topCollections');
-  const keys: string[] = [
-    'select.popular',
-    'select.inTime',
-    'select.alphabetically',
-  ];
+  const keys: string[] = ['select.popular','select.inTime','select.alphabetically'];
+  const mobileKeys: string[] = ['mobileSelect.sold', 'mobileSelect.active', 'mobileSelect.public'];
   const [selectedDateSort, setSelectedDateSort] = useState<string>('1day');
 
   const selectItems: Option[] = keys.map((key) => ({
     value: t(`${key}.value`),
     label: t(`${key}.title`),
   }));
+
+  const mobileSelectItems: Option[] = mobileKeys.map((key) => ({
+    value: t(`${key}.value`),
+    label: t(`${key}.title`),
+  }))
 
   const handleSortDateClick = (selectedItem: string): void => {
     setSelectedDateSort(selectedItem);
@@ -39,14 +41,21 @@ export default function TopCollections(): JSX.Element {
     console.log('Selected option:', option);
   };
 
+  const handleMobileSelect = (option: Option) => {
+    console.log('Selected option:', option);
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.header}>
         <div className={css.select}>
           <Dropdown options={selectItems} onSelect={handleSelect} />
         </div>
-        <div>
+        <div className={css.sortingBar}>
           <SortingBar activeItem={selectedDateSort} onItemClick={handleSortDateClick} />
+        </div>
+        <div className={css.mobileSelect}>
+          <Dropdown options={mobileSelectItems} onSelect={handleMobileSelect} />
         </div>
       </div>
       <div className={css.cards}>
@@ -61,7 +70,7 @@ export default function TopCollections(): JSX.Element {
           />
         ))}
       </div>
-      <div>
+      <div className={css.btnMore}>
         <ButtonLoadMore>{t('cards.btn')}</ButtonLoadMore>
       </div>
     </div>
