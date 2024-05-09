@@ -62,8 +62,54 @@ export default function CardNft() {
               </div>
               <div className={css.offers}>
                 <div className={css.slid}>
-                    <p>Предложения</p>
-                    <p>История цены</p>
+                  <p>Предложения</p>
+                  <p>История цены</p>
+                </div>
+                <div className={css.ownerColl}>
+                  <div className={css.collections}>
+                    <div>
+                    <Image
+                      src={'/assets/forTest/cardNft.png'}
+                      width={39}
+                      height={39}
+                      alt=""
+                    />
+                    </div>
+                    <div>
+                      <p>Коллекция</p>
+                      <div>
+                        <p>Telegram Usernames</p>
+                        <Image
+                          src={'/assets/icons/verified.svg'}
+                          alt="Verified"
+                          width={9}
+                          height={9}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className={css.owner}>
+                    <div>
+                    <Image
+                      src={'/assets/forTest/owner.png'}
+                      width={39}
+                      height={39}
+                      alt=""
+                    />
+                    </div>
+                    <div>
+                      <p>Владелец</p>
+                      <div>
+                        <p>BunnyMP3</p>
+                        <Image
+                          src={'/assets/icons/verified.svg'}
+                          alt="Verified"
+                          width={9}
+                          height={9}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
