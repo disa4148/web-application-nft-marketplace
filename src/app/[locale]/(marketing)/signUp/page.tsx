@@ -1,13 +1,13 @@
 import css from './signUp.module.scss';
 
 import Page from '@/shared/containers/page';
-import SignImage from '@/shared/ui/signImage/signImage';
+import SignImage from '@/shared/ui/signImage/SignImage';
 
 import { useTranslations } from 'next-intl';
 
 import dynamic from 'next/dynamic';
 
-const SignInForm = dynamic(() => import('./_components/form/sign-up-form'), {
+const SignInForm = dynamic(() => import('./_components/form/signUpForm'), {
   ssr: false,
 });
 

@@ -2,7 +2,7 @@ import css from './signIn.module.scss';
 import { useTranslations } from 'next-intl';
 import Page from '@/shared/containers/page';
 
-import SignImage from '@/shared/ui/signImage/signImage';
+import SignImage from '@/shared/ui/signImage/SignImage';
 
 import dynamic from 'next/dynamic';
 
