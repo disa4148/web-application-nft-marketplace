@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 import dynamic from 'next/dynamic';
 
-const SignInForm = dynamic(() => import('./_components/form/signUpForm'), {
+const SignInForm = dynamic(() => import('./_components/form/SignUpForm'), {
   ssr: false,
 });
 

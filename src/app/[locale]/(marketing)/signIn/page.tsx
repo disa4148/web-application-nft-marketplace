@@ -6,7 +6,7 @@ import SignImage from '@/shared/ui/signImage/SignImage';
 
 import dynamic from 'next/dynamic';
 
-const SignInForm = dynamic(() => import('./_components/form/sign-in-form'), {
+const SignInForm = dynamic(() => import('./_components/form/SignInForm'), {
   ssr: false,
 });
 
