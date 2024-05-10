@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import NftForm from './_components/nftForm/nft-form';
 import SearchInputNft from '@/shared/ui/searchInputNft/search-input-nft';
 import Dropdown from '@/shared/ui/dropdown/dropdown';
-
+import ModalTrigger from '../../_components/modalNFtPurchase/_components/ModalNftPurchaseTrigger';
 type Option = {
   value: string;
   label: string;
@@ -95,6 +95,10 @@ export default function CatalogNft(): JSX.Element {
         </div>
 
         <div className={css.blockNft}>
+         {/* 
+          // @dev only for a dev
+         */}
+          <ModalTrigger />
           <div className={css.searchDrop}>
             <SearchInputNft />
             <div className="w-[203px]">

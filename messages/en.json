@@ -147,6 +147,20 @@
     "card": {
       "lastSale": "Last sale: ",
       "buy": "Buy"
+    },
+
+    "modal": {
+      "title": "Purchase NFT",
+      "price": {
+        "title": "NFT Price",
+        "description": "Service fee"
+      },
+      "networkCommission": {
+        "title": "Network Commission",
+        "description": "Most of it will be returned to your wallet"
+      },
+      "total": "Total:",
+      "button": "Buy"
     }
   }
 }
