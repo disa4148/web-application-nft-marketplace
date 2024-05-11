@@ -74,6 +74,7 @@ export default function CatalogNft(): JSX.Element {
               </div>
             </div>
           </div>
+          <div className={css.line}></div>
           <div className={css.fullInfo}>
             <div className={css.volume}>
               <p>961 ETH</p>
@@ -97,7 +98,7 @@ export default function CatalogNft(): JSX.Element {
         <div className={css.blockNft}>
           <div className={css.searchDrop}>
             <SearchInputNft />
-            <div className="w-[203px]">
+            <div className={css.dropDown}>
               <Dropdown options={selectItems} onSelect={handleSelect} />
             </div>
           </div>

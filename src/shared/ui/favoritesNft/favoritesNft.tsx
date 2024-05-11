@@ -1,7 +1,6 @@
-import css from './maxNft.module.scss';
+import css from './favoritesNft.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
 type Props = {
   imageCatalog: string;
@@ -10,17 +9,16 @@ type Props = {
   total: number;
 };
 
-export default function MaxNft({
+export default function FavoritesNft({
   name,
   price,
   total,
   imageCatalog,
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.card');
-  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className={css.wrapper} onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}>
+    <div className={css.wrapper}>
       <div>
         <Image
           src={`/assets/forTest/${imageCatalog}`}
@@ -28,6 +26,14 @@ export default function MaxNft({
           width={237}
           height={154}
         />
+        <div className={css.heartBlock}>
+          <Image
+            src={`/assets/icons/blueHeart.svg`}
+            alt="NFT"
+            width={17}
+            height={15}
+          />
+        </div>
       </div>
       <div className={css.fullBlock}>
         <div className={css.namePrice}>
@@ -39,14 +45,11 @@ export default function MaxNft({
             <span>ETH</span>
           </div>
         </div>
-        {isHovered ? (<div className={css.lastSaleButton}> <button className={css.buyButton}>{t('buy')}</button> </div>
-        ) : (
         <div className={css.lastSale}>
           <span>{t('lastSale')}</span>
           <h4>{total}</h4>
           <span>ETH</span>
         </div>
-        )}
       </div>
     </div>
   );

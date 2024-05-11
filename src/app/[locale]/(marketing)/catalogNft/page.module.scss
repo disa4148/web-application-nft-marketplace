@@ -109,6 +109,7 @@
         }
       }
     }
+
     .fullInfo {
       display: flex;
       gap: 30px;
@@ -181,6 +182,202 @@
     .searchDrop {
       display: flex;
       justify-content: space-between;
+
+      .dropDown {
+        width: 203px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1314px) {
+  .blockInfo {
+    .infoUs {
+      .users {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        max-width: 500px;
+
+        div:last-child {
+          .underInfo {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+          }
+        }
+      }
+      .fullInfo {
+        display: flex;
+        gap: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1165px) {
+  .blockInfo {
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .infoUs {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 37px;
+      .users {
+        max-width: 800px;
+      }
+    }
+    .blockNft {
+      .searchDrop {
+        .dropDown {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 665px) {
+  .blockInfo {
+    .infoUs {
+      .fullInfo {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        margin: 0 auto;
+        column-gap: 150px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .blockInfo {
+    .infoUs {
+      .line {
+        width: 100%;
+        border-bottom: 1px solid #979797;
+      }
+      .users {
+        div:last-child {
+          .underInfo {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .blockInfo {
+    .infoUs {
+      .users {
+        gap: 10px;
+        div:first-child {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+
+          div:first-child {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+
+            p {
+              font-size: 18px;
+              font-weight: 500;
+            }
+          }
+
+          div:last-child {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+
+            p {
+              font-size: 14px;
+              font-weight: 400;
+              color: #979797;
+            }
+          }
+        }
+
+        div:last-child {
+          display: flex;
+          flex-direction: column;
+          max-width: 310px;
+          gap: 10px;
+
+          p {
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+      }
+      .fullInfo {
+        column-gap: 43px;
+
+        .volume {
+          gap: 5px;
+          p:first-child {
+            font-size: 16px;
+            font-weight: 500;
+          }
+          p:last-child {
+            font-size: 16px;
+            font-weight: 400;
+            color: #979797;
+          }
+        }
+        .price {
+          gap: 5px;
+          p:first-child {
+            font-size: 16px;
+            font-weight: 500;
+          }
+          p:last-child {
+            font-size: 16px;
+            font-weight: 400;
+            color: #979797;
+          }
+        }
+        .offer {
+          gap: 5px;
+          p:first-child {
+            font-size: 16px;
+            font-weight: 500;
+          }
+          p:last-child {
+            font-size: 16px;
+            font-weight: 400;
+            color: #979797;
+          }
+        }
+        .owners {
+          gap: 5px;
+          p:first-child {
+            font-size: 16px;
+            font-weight: 500;
+          }
+          p:last-child {
+            font-size: 16px;
+            font-weight: 400;
+            color: #979797;
+          }
+        }
+      }
+    }
+
+    .blockNft {
+      padding: 0px 0px 0px 0px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
     }
   }
 }

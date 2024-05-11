@@ -22,3 +22,45 @@
       line-height: 22px;
     }
   }
+
+  @media (max-width: 1314px) {
+    .wrapper {
+      max-width: 980px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1290px) {
+    .wrapper {
+      max-width: 960px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1250px) {
+    .wrapper {
+      max-width: 930px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1220px) {
+    .wrapper {
+      max-width: 900px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1190px) {
+    .wrapper {
+      max-width: 870px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1165px) {
+    .wrapper {
+      max-width: 1080px;
+      width: 100%;
+    }
+  }
