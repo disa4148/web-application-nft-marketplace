@@ -147,6 +147,20 @@
     "card": {
       "lastSale": "Последняя продажа: ",
       "buy": "Купить"
+    },
+
+    "modal": {
+      "title": "Покупка NFT",
+      "price": {
+        "title": "Стоимость NFT",
+        "description": "Сервисный сбор"
+      },
+      "networkCommission": {
+        "title": "Коммиссия сети",
+        "description": "Основная часть вернется на ваш кошелек"
+      },
+      "total": "Вы заплатите:",
+      "button": "Купить"
     }
   }
 }

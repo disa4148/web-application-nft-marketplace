@@ -14,12 +14,12 @@ export default function SignUpForm(): JSX.Element {
       <Input type="email" placeholder={t('input.mail')} />
       <div>
         <Input
-          className="w-[190px]"
+          className={css.passwordInput}
           type="password"
           placeholder={t('input.password')}
         />
         <Input
-          className="w-[190px]"
+          className={css.repeatPassword}
           type="password"
           placeholder={t('input.repeatPassword')}
         />

@@ -1,4 +1,4 @@
-import MaxNft from '@/shared/ui/nft/nft';
+import Nft from '@/shared/ui/nft/nft';
 import { nftItems } from '../../../_components/topCollections/nftItems';
 import css from './nftForm.module.scss';
 
@@ -8,7 +8,7 @@ export default function NftForm() {
   return (
     <div className={css.cards}>
       {nftItems.map((item, index) => (
-        <MaxNft
+        <Nft
           key={index}
           name={item.name}
           price={item.price}

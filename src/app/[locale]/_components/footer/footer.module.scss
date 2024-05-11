@@ -86,17 +86,6 @@
 @media screen and (max-width: 900px) {
   .wrapper {
     .footer {
-      .rightItems {
-        gap: 50px;
-      }
-    }
-    
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .wrapper {
-    .footer {
       div:first-child {
         p {
           max-width: 300px;
@@ -138,6 +127,13 @@
     }
   }
 }
+
+@media screen and (max-width: 440px) {
+  .wrapper {
+    padding: 20px;
+  }
+}
+
 
 @media screen and (max-width: 400px) {
   .wrapper {
