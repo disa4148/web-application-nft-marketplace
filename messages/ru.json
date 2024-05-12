@@ -4,7 +4,29 @@
     "AbbreviatedPlaceholderName": "Название",
     "IdentificationButton": "Вход и регистрация",
     "signUpBtn": "Регистрация",
-    "signInBtn": "Авторизация"
+    "signInBtn": "Авторизация",
+
+    "dropdown": {
+      "burgerMenu": {
+        "favorites": {
+          "title": "Избранное"
+        },
+        "support": {
+          "title": "Поддержка"
+        },
+        "language": {
+          "title": "Язык"
+        }
+      },
+      "profileMenu": {
+        "myCollection": {
+          "title": "Моя коллекция"
+        },
+        "exit": {
+          "title": "Выйти из профиля"
+        }
+      }
+    }
   },
   "home": {
     "topCollections": {

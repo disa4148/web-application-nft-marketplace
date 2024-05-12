@@ -4,7 +4,29 @@
     "AbbreviatedPlaceholderName": "Name",
     "IdentificationButton": "Login and registration",
     "signUpBtn": "Sign Up",
-    "signInBtn": "Sign In"
+    "signInBtn": "Sign In",
+
+    "dropdown": {
+      "burgerMenu": {
+        "favorites": {
+          "title": "Favorites"
+        },
+        "support": {
+          "title": "Support"
+        },
+        "language": {
+          "title": "Language"
+        }
+      },
+      "profileMenu": {
+        "myCollection": {
+          "title": "My Collection"
+        },
+        "exit": {
+          "title": "Exit Profile"
+        }
+      }
+    }
   },
   "home": {
     "topCollections": {

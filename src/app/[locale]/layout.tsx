@@ -4,7 +4,7 @@ import { Noto_Sans } from 'next/font/google';
 import ThemeProvider from '@/shared/lib/Providers';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import Footer from './_components/footer/footer';
-import Header from './_components/header/header';
+import Header from './_components/header/Header';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {

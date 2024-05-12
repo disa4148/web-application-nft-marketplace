@@ -6,7 +6,9 @@ import { useTranslations, useLocale } from 'next-intl';
 
 import Logotype from '@/shared/ui/logotype';
 import SearchInput from '@/shared/ui/searchInput/search-input';
+
 import HeaderLayout from './HeaderLayout';
+import BurgerDropdown from './_components/Dropdowns/BurgerDropdown';
 
 export default function Header(): JSX.Element {
   const t = useTranslations('header');
@@ -16,26 +18,13 @@ export default function Header(): JSX.Element {
       <div className={css.header}>
         <div className={css.leftItems}>
           <Logotype style="light" />
-          <Image
-            src={'/assets/icons/BurgerMenu.svg'}
-            className={css.hiddenBurger}
-            alt="Burger Menu"
-            width={38}
-            height={38}
-          />
         </div>
         <div className={css.rightItems}>
           <div className={css.searchInput}>
             <SearchInput placeholder={t('inputPlaceholder')} />
           </div>
           <HeaderLayout />
-          <Image
-            src={'/assets/icons/BurgerMenu.svg'}
-            className={css.burger}
-            alt="Burger Menu"
-            width={40}
-            height={40}
-          />
+          <BurgerDropdown />
         </div>
       </div>
     </header>

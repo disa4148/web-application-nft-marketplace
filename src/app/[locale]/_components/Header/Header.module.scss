@@ -70,7 +70,6 @@
       background-color: var(--bg-80-b);
       cursor: pointer;
       transition: all 0.2s ease;
-
     }
     div:hover {
       opacity: 0.7;
@@ -108,6 +107,11 @@
       }
     }
   }
+  .authorizedWrapper {
+    .leftItems {
+      gap: 10px;
+    }
+  }
 }
 
 @media screen and (max-width: 864px) {
@@ -118,12 +122,24 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        .hiddenBurger {
-          display: block;
-        }
       }
       .rightItems {
+        .searchInput, .btnLink, .coloredBtnLink {
+          display: none;
+        }
+      }
+    }
+  }
+  .authorizedWrapper {
+    gap: 10px;
+    .leftItems {
+      .favorite, .wallet {
         display: none;
+      }
+      .message {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
       }
     }
   }

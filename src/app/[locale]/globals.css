@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+  --text-colored: #5763D0;
+
   --text-100-w: #ffffff;
   --text-100-b: #000000;
   --text-90-b: #0c0c0c;
@@ -18,6 +20,9 @@
   --text-100-r: #B62222;
 
   --bg-main-gradient: linear-gradient(152.48deg,rgb(137, 198, 255) -36.244%,rgb(54, 51, 208) 71.781%);
+ 
+  --bg-colored: #5763D0;
+  
   --bg-100-w: #ffffff;
   --bg-100-b: #000000;
   --bg-90-b: #0c0c0c;
