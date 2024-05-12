@@ -75,6 +75,29 @@
   justify-content: center;
 }
 
+.skeleton {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 17px;
+  max-width: 400px;
+  width: 100%;
+  
+  div {
+    max-width: 400px;
+    width: 100%;
+  }
+  .passwords {
+    display: flex;
+    justify-content: space-between;
+    gap: 17px;
+    width: 100%;
+  }
+  .skeletonButton {
+    max-width: 221px !important;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .wrapper {
     flex-direction: column-reverse;

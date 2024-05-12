@@ -74,6 +74,23 @@
   justify-content: center;
 }
 
+.skeleton {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 17px;
+  max-width: 400px;
+  width: 100%;
+  div {
+    max-width: 400px;
+    width: 100%;
+  }
+  .skeletonButton,
+  .skeletonLabel {
+    max-width: 165px !important;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .wrapper {
     flex-direction: column-reverse;

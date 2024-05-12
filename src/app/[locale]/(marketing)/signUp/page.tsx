@@ -2,6 +2,7 @@ import css from './signUp.module.scss';
 
 import Page from '@/shared/containers/page';
 import SignImage from '@/shared/ui/signImage/SignImage';
+import SignUpSkeleton from './_components/skeleton';
 
 import { useTranslations } from 'next-intl';
 
@@ -9,6 +10,7 @@ import dynamic from 'next/dynamic';
 
 const SignInForm = dynamic(() => import('./_components/form/SignUpForm'), {
   ssr: false,
+  loading: () => <SignUpSkeleton />
 });
 
 export default function SignUp(): JSX.Element {
