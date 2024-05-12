@@ -43,3 +43,7 @@
     transform: rotate(180deg);
   }
 }
+
+.dropdown.active {
+  border-radius: 10px 10px 0 0;
+}

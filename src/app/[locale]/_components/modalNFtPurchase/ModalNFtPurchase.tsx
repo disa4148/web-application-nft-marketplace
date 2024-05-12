@@ -7,9 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/ui/dialog';
-import { Separator } from '@/shared/ui/separator';
 import { useTranslations } from 'next-intl';
 import ModalNftCard from './_components/ModalNftCard';
+import ModalNftStats from './_components/ModalNftStats';
 import { Button } from '@/shared/ui/button';
 
 type Props = {
@@ -34,33 +34,7 @@ export default function ModalNFtPurchase({
           </DialogTitle>
         </DialogHeader>
         <ModalNftCard />
-        <div className={css.stats}>
-          <div className={css.statsItem}>
-            <div>
-              <h2>{t('price.title')}</h2>
-              <h2>1000 ETH</h2>
-            </div>
-            <div>
-              <h4>{t('price.description')}</h4>
-            </div>
-          </div>
-          <div className={css.statsItem}>
-            <div>
-              <h2>{t('networkCommission.title')}</h2>
-              <h2>0,02 ETH</h2>
-            </div>
-            <div>
-              <h4>{t('networkCommission.description')}</h4>
-            </div>
-          </div>
-        </div>
-        <div className={css.separator}>
-          <Separator orientation="horizontal" decorative />
-        </div>
-        <div className={css.total}>
-          <h2>{t('total')}</h2>
-          <h2>1000,02 ETH</h2>
-        </div>
+        <ModalNftStats price={1000} networkCommission={0.2} />
         <DialogFooter className={css.footer}>
           <Button className={css.button}>{t('button')}</Button>
         </DialogFooter>

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import css from './dropdown.module.scss';
@@ -25,7 +25,10 @@ export default function Dropdown({ options, onSelect }: DropdownProps) {
   };
 
   return (
-    <div className={css.dropdown} onClick={() => setIsOpen(!isOpen)}>
+    <div
+      className={`${css.dropdown} ${isOpen ? css.active : ''}`}
+      onClick={() => setIsOpen(!isOpen)}
+    >
       <div>
         <button className={css.dropdownToggle}>
           {selectedOption ? selectedOption.label : 'Select an option'}

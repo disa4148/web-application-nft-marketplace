@@ -23,7 +23,7 @@ export default function Home(): React.ReactElement {
         <ManyNft />
         <div className={css.aboutOurService}>
           <Title title={t('aboutOurService.title')} />
-        <AboutService />
+          <AboutService />
         </div>
         <div className={css.aboutOurServiceMobile}>
           <AboutServiceMobile />

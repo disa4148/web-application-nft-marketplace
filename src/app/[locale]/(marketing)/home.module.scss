@@ -4,7 +4,7 @@
   gap: 40px;
   max-width: 1280px;
   width: 100%;
-  .topCollections {
+  .topCollections, .aboutOurService {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -12,6 +12,7 @@
   .aboutOurServiceMobile {
     display: none;
   }
+
 }
 
 @media screen and (max-width: 864px) {
