@@ -1,17 +1,15 @@
-import css from "./page.module.scss"
-import NftForm from './_components/nftForm/nft-form'
-import Page from '@/shared/containers/page'
+import css from './page.module.scss';
+import NftForm from './_components/nftForm/nft-form';
+import Page from '@/shared/containers/page';
 
-
-export default function MyCollections  ()  {
-    return (
-        <Page>
-        <div className={css.blockInfo}>
-          <div className={css.blockNft}>
-            <NftForm />
-          </div>
+export default function MyCollections() {
+  return (
+    <Page>
+      <div className={css.blockInfo}>
+        <div className={css.blockNft}>
+          <NftForm />
         </div>
-      </Page>
-    )
+      </div>
+    </Page>
+  );
 }
-

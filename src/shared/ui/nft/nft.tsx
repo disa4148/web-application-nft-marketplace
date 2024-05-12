@@ -45,7 +45,12 @@ export default function Nft({
         {isHovered ? (
           <div className={css.lastSaleButton}>
             {' '}
-            <button onClick={() => console.log('сука саня не кликается нехуя')} className={css.buyButton}>{t('buy')}</button>{' '}
+            <button
+              onClick={() => console.log('сука саня не кликается нехуя')}
+              className={css.buyButton}
+            >
+              {t('buy')}
+            </button>{' '}
           </div>
         ) : (
           <div className={css.lastSale}>

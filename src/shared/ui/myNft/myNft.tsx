@@ -6,13 +6,11 @@ type Props = {
   imageCatalog: string;
   name: string;
   price: number;
-  total: number;
 };
 
 export default function MyCollections({
   name,
   price,
-  total,
   imageCatalog,
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.card');
@@ -36,11 +34,6 @@ export default function MyCollections({
             <h4>{price}</h4>
             <span>ETH</span>
           </div>
-        </div>
-        <div className={css.lastSale}>
-          <span>{t('lastSale')}</span>
-          <h4>{total}</h4>
-          <span>ETH</span>
         </div>
       </div>
     </div>

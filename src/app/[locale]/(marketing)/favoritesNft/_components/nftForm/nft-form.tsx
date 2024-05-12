@@ -2,8 +2,6 @@ import { nftItems } from '../../../_components/topCollections/nftItems';
 import css from './nftForm.module.scss';
 import FavoritesNft from '@/shared/ui/favoritesNft/favoritesNft';
 
-interface Props {}
-
 export default function NftForm() {
   return (
     <div className={css.cards}>

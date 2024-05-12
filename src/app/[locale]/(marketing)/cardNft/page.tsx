@@ -17,7 +17,6 @@ export default function CardNft() {
             />
           </div>
           <div className={css.blockText}>
-            {/* blockText firstchild */}
             <div>
               <Button className={css.buttonSale}>На продаже</Button>
               <Image
@@ -27,7 +26,6 @@ export default function CardNft() {
                 alt=""
               />
             </div>
-            {/* blockText lastchild */}
             <div>
               <div>
                 <p>Telegram Username</p>
@@ -44,7 +42,6 @@ export default function CardNft() {
                     <p>5 680$ (527 010 Р)</p>
                   </div>
                 </div>
-                {/* priceblock lastchild */}
                 <div>
                   <Button className={css.buy}>Купить</Button>
 
