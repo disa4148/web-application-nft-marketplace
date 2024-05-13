@@ -1,14 +1,17 @@
 'use client';
 import css from './nft.module.scss';
+
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+
 import Page from '@/shared/containers/page';
 import Image from 'next/image';
 
 import PriceContainer from './_components/priceContainer/priceContainer';
 import InfoContainer from './_components/infoContainer/infoContainer';
 import OwnerCard from './_components/ownerCard/OwnerCard';
-import { Offers } from './_components/tabs/offers/Offers';
-import { PriceHistory } from './_components/tabs/priceHistory/PriceHistory';
+import Offers from './_components/tabs/offers/Offers';
+import PriceHistory from './_components/tabs/priceHistory/PriceHistory';
 
 interface Tab {
   label: string;
@@ -20,6 +23,7 @@ export default function NftCard({
 }: {
   params: { product: string };
 }): JSX.Element {
+  const t = useTranslations('nftCard');
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const changeTab = (index: number) => {
@@ -27,8 +31,8 @@ export default function NftCard({
   };
 
   const tabs: Tab[] = [
-    { label: 'Предложения', content: <Offers /> },
-    { label: 'История цены', content: <PriceHistory /> },
+    { label: t('tabs.offers.title'), content: <Offers /> },
+    { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
   ];
 
   return (
@@ -67,13 +71,13 @@ export default function NftCard({
             <div className={css.ownerWrapper}>
               <OwnerCard
                 img="tgNft.png"
-                title="Коллекция"
+                title={t('ownerBlock.collection')}
                 content="Telegram Usernames"
                 verified
               />
               <OwnerCard
                 img="owner.png"
-                title="Владелец"
+                title={t('ownerBlock.owner')}
                 content="PidorasMP3"
                 verified={false}
               />

@@ -184,5 +184,33 @@
       "total": "Вы заплатите:",
       "button": "Купить"
     }
+  },
+  "nftCard": {
+    "infoBlock": {
+      "status": "На продаже"
+    },
+    "priceBlock": {
+      "title": "Цена",
+      "buyBtn": "Купить",
+      "offerBtn": "Свое предложениие"
+    },
+    "tabs": {
+      "offers": {
+        "title": "Предложения",
+        "price": "Цена",
+        "inRub": "В рублях",
+        "expirationDate": "Срок действия",
+        "by": "От кого"
+      },
+      "historyPrice": {
+        "title": "История цены",
+        "volume": "Объём",
+        "avgCost": "Средняя стоимость"
+      }
+    },
+    "ownerBlock": {
+      "collection": "Коллекция",
+      "owner": "Владелец"
+    }
   }
 }

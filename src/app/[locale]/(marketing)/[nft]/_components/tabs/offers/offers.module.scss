@@ -22,34 +22,37 @@
 }
 
 .scroll {
-    width: 100%;
-    max-width: 1280px;
-    max-height: 220px;
-    overflow-y: auto;
+  width: 100%;
+  max-width: 1280px;
+  max-height: 220px;
+  overflow-y: auto;
 
-    &::-webkit-scrollbar {
-      max-width: 8px; // Устанавливает ширину скроллбара
-    }
-  
-    &::-webkit-scrollbar-track {
-      background: white; // Устанавливает цвет фона скроллбара
-    }
-  
-    &::-webkit-scrollbar-thumb {
-      max-height: 18px;
-      background: var(--bg-main-gradient); // Устанавливает градиент для ползунка скроллбара
-      border-radius: 2px; // Устанавливает радиус скругления для ползунка скроллбара
-    }
+  &::-webkit-scrollbar {
+    max-width: 8px;
+  }
 
-    .gridContainer {
+  &::-webkit-scrollbar-track {
+    background: white; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    max-height: 18px;
+    background: var(
+      --bg-main-gradient
+    ); 
+    border-radius: 2px;
+  }
+
+  .gridContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     width: 100%;
     max-width: 700px;
-    }
+  }
 }
-.textInfo, .textData {
+.textInfo,
+.textData {
   display: contents;
 }
 

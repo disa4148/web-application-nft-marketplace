@@ -184,5 +184,33 @@
       "total": "Total:",
       "button": "Buy"
     }
+  },
+  "nftCard": {
+    "infoBlock": {
+      "status": "For Sale"
+    },
+    "priceBlock": {
+      "title": "Price",
+      "buyBtn": "Buy",
+      "offerBtn": "Make Offer"
+    },
+    "tabs": {
+      "offers": {
+        "title": "Offers",
+        "price": "Price",
+        "inRub": "In Rubles",
+        "expirationDate": "Expiration Date",
+        "by": "By"
+      },
+      "historyPrice": {
+        "title": "Price History",
+        "volume": "Volume",
+        "avgCost": "Average Cost"
+      }
+    },
+    "ownerBlock": {
+      "collection": "Collection",
+      "owner": "Owner"
+    }
   }
 }
