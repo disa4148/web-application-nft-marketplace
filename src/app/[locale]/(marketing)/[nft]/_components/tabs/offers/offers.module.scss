@@ -1,0 +1,63 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1280px;
+  gap: 20px;
+  width: 100%;
+  background-color: var(--bg-90-b);
+  border-radius: 15px;
+  padding: 20px;
+  animation: appearance 1s forwards;
+  h3,
+  h5,
+  h4 {
+    text-align: left;
+  }
+  .colorBy {
+    background: var(--bg-main-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.scroll {
+    width: 100%;
+    max-width: 1280px;
+    max-height: 220px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      max-width: 8px; // Устанавливает ширину скроллбара
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: white; // Устанавливает цвет фона скроллбара
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      max-height: 18px;
+      background: var(--bg-main-gradient); // Устанавливает градиент для ползунка скроллбара
+      border-radius: 2px; // Устанавливает радиус скругления для ползунка скроллбара
+    }
+
+    .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 700px;
+    }
+}
+.textInfo, .textData {
+  display: contents;
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

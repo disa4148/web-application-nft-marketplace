@@ -1,0 +1,48 @@
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .topItems {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    svg {
+      cursor: pointer;
+    }
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h4 {
+      max-width: 550px;
+    }
+  }
+  .gradientText {
+    position: relative;
+    padding: 8px 20px;
+
+    p {
+      background: var(--bg-main-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .gradientText::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: var(--bg-main-gradient) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+}

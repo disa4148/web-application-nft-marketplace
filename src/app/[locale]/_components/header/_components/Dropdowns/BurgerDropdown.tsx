@@ -1,7 +1,7 @@
 'use client';
 import css from './Dropdowns.module.scss'
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Globe, Headset, Menu, X, Heart } from 'lucide-react';
 
 export default function BurgerDropdown(): JSX.Element {
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations('header.dropdown.burgerMenu');
 
@@ -33,7 +34,7 @@ export default function BurgerDropdown(): JSX.Element {
               <div className={css.icon}>
                 <Heart width={20} height={20} className="invert" />
               </div>
-              <Link href={'/'}>{t('favorites.title')}</Link>
+              <Link href={`/${locale}/favoritesNft`}>{t('favorites.title')}</Link>
             </div>
           </div>
           <div className={css.item}>

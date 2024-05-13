@@ -96,7 +96,6 @@ export default function CatalogNft(): JSX.Element {
         </div>
 
         <div className={css.blockNft}>
-          <ModalTrigger />
           <div className={css.searchDrop}>
             <SearchInputNft />
             <div className={css.dropDown}>

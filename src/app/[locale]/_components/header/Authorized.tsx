@@ -1,9 +1,13 @@
-import ProfileDropdown from './_components/Dropdowns/ProfileDropdown';
 import css from './header.module.scss';
 
+import Link from 'next/link';
+
+import ProfileDropdown from './_components/Dropdowns/ProfileDropdown';
 import { Heart, MessageCircleMore, Wallet } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
 export default function Authorized(): JSX.Element {
+  const locale = useLocale();
   return (
     <div className={css.authorizedWrapper}>
       <div className={css.leftItems}>
@@ -11,7 +15,9 @@ export default function Authorized(): JSX.Element {
           <MessageCircleMore width={24} height={24} />
         </div>
         <div className={css.favorite}>
-          <Heart width={22} height={22} />
+          <Link href={`/${locale}/favoritesNft`}>
+            <Heart width={22} height={22} />
+          </Link>
         </div>
         <div className={css.wallet}>
           <Wallet width={22} height={20} />
@@ -20,7 +26,7 @@ export default function Authorized(): JSX.Element {
           </p>
         </div>
       </div>
-        <ProfileDropdown />
+      <ProfileDropdown />
     </div>
   );
 }
