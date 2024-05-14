@@ -23,6 +23,10 @@ export default function PriceHistory(): JSX.Element {
       <Separator orientation="horizontal" decorative />
       <div className={css.chart}>
         <p className={css.volume}>{t('volume')}</p>
+        <div className={css.values}>
+          <p>{t('volume')}</p>
+          <p>{t('avgCost')} (ETH)</p>
+        </div>
         <div className={css.chartItem}>
           <ResponsiveContainer>
             <BarChart data={historyData}>

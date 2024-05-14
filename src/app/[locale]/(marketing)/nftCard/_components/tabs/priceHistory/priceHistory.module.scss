@@ -8,13 +8,16 @@
   background-color: var(--bg-90-b);
   border-radius: 15px;
   padding: 20px;
-  animation: appearance 1s forwards;
+  animation: appearance 0.5s forwards;
   .chart {
     display: flex;
     align-items: center;
     justify-content: center;
     max-width: 1280px;
     width: 100%;
+    .values {
+      display: none;
+    }
     .chartItem {
       width: 100%;
       height: 300px;
@@ -42,5 +45,28 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    .chart {
+      flex-direction: column;
+      gap: 20px;
+      .values {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .volume, .avgCost {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper {
+    padding: 10px;
   }
 }

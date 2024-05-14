@@ -101,7 +101,7 @@ export default function CatalogNft(): JSX.Element {
             <div className={css.dropDown}>
               <Dropdown options={selectItems} onSelect={handleSelect} />
             </div>
-          </div>
+          </div> 
           <NftForm />
         </div>
       </div>

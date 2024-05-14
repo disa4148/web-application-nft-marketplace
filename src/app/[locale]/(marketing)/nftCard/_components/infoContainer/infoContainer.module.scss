@@ -46,3 +46,72 @@
     mask-composite: exclude;
   }
 }
+
+@media (max-width: 1080px) {
+  .infoContainer {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 920px) {
+  .infoContainer {
+    gap: 10px;
+    .topItems {
+      .gradientText {
+        padding: 6px 15px;
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    .title {
+      h1 {
+        font-size: 22px;
+      }
+      h4 {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width:800px) {
+  .infoContainer {
+    .topItems {
+      .gradientText {
+        padding: 8px 20px;
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+    .title {
+      h1 {
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .infoContainer {
+    .topItems {
+      .gradientText {
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+    .title {
+      h1 {
+        font-size: 18px;
+      }
+      h4 {
+        font-size: 14px;
+      }
+    }
+  }
+}

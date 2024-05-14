@@ -18,11 +18,7 @@ interface Tab {
   content: React.ReactNode;
 }
 
-export default function NftCard({
-  params,
-}: {
-  params: { product: string };
-}): JSX.Element {
+export default function NftCard(): JSX.Element {
   const t = useTranslations('nftCard');
   const [activeTab, setActiveTab] = useState<number>(0);
 

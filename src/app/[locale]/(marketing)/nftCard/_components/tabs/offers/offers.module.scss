@@ -29,6 +29,7 @@
 
   &::-webkit-scrollbar {
     max-width: 8px;
+    max-height: 8px;
   }
 
   &::-webkit-scrollbar-track {
@@ -62,5 +63,34 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .wrapper {
+    gap: 16px;
+    div {
+      h3 {
+        font-size: 16px;
+      }
+    }
+
+    .scroll {
+      .gridContainer {
+        gap: 7px;
+        .textInfo {
+          h5 {
+            width: 80px;
+            font-size: 11px;
+          }
+        }
+        .textData {
+          h4 {
+            font-size: 12px;
+          }
+        }
+      }
+    }
   }
 }

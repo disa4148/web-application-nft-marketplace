@@ -20,7 +20,7 @@ export default function PriceContainer({ price }: Props): JSX.Element {
           <h5>5 680 $ (527 010 ₽)</h5>
         </div>
       </div>
-      <div>
+      <div className={css.btns}>
         <ModalTrigger />
         <Button>
           <Image
