@@ -212,5 +212,15 @@
       "collection": "Collection",
       "owner": "Owner"
     }
+  },
+  "messenger": {
+    "support": {
+      "name": "Support NFT JET",
+      "message": "Contact us for help, we're on call 24/7"
+    },
+    "welcome": "Select a chat to start messaging!",
+    "chat": {
+      "inputPlaceholder": "Write a message..."
+    }
   }
 }

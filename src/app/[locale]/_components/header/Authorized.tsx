@@ -12,7 +12,9 @@ export default function Authorized(): JSX.Element {
     <div className={css.authorizedWrapper}>
       <div className={css.leftItems}>
         <div className={css.message}>
-          <MessageCircleMore width={24} height={24} />
+          <Link href={`/${locale}/messenger`}>
+            <MessageCircleMore width={24} height={24} />
+          </Link>
         </div>
         <div className={css.favorite}>
           <Link href={`/${locale}/favoritesNft`}>

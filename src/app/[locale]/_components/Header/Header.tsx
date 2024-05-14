@@ -1,7 +1,6 @@
 import css from './header.module.scss';
 import { cn } from '@/shared/lib/utils';
 
-import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 
 import Logotype from '@/shared/ui/logotype';

@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 800px;
+    height: 680px;
+    background-color: var(--text-100-b);
+    border-radius: 20px;
+    padding: 20px 15px;
+    .messages {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .inputMessage {
+        width: 100%;
+    }
+}
