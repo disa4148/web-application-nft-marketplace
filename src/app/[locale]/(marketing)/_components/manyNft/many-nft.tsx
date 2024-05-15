@@ -33,6 +33,7 @@ export default function ManyNft(): JSX.Element {
 
   return (
     <div className={css.wrapper}>
+      <div className={css.backgroundImage}></div> 
       <Carousel className="w-full " orientation="horizontal">
         <div className={css.carouselTitle}>
           <Title title={t('title')} />

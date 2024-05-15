@@ -3,6 +3,23 @@
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  position: relative;
+
+  .backgroundImage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 130px;
+    right: -270px;
+    max-width: 610px;
+    max-height: 610px;
+    z-index: -1;
+    background-image: url('/assets/backDetails/backgroundImage1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .header {
     display: flex;
     align-items: center;
@@ -29,10 +46,23 @@
   }
 }
 
+@media (max-width: 1355px) {
+  .wrapper {
+    .backgroundImage {
+      right: -100px;
+      bottom: 300px;
+    }
+  }
+}
+
 @media screen and (max-width: 920px) {
   .wrapper {
     .cards {
       row-gap: 10px;
+    }
+    .backgroundImage {
+      right: -150px;
+      top: -180px;
     }
   }
 }

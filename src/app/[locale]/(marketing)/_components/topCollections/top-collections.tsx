@@ -47,6 +47,7 @@ export default function TopCollections(): JSX.Element {
 
   return (
     <div className={css.wrapper}>
+      <div className={css.backgroundImage}></div> 
       <div className={css.header}>
         <div className={css.select}>
           <Dropdown options={selectItems} onSelect={handleSelect} />
