@@ -12,6 +12,12 @@ export default function Chat(): JSX.Element {
       <div className={css.messages}>
         <Message isMine={true} />
         <Message isMine={false} />
+        <Message isMine={true} />
+        <Message isMine={false} />
+        <Message isMine={true} />
+        <Message isMine={false} />
+        <Message isMine={true} />
+        <Message isMine={false} />
       </div>
       <Input className={css.inputMessage} placeholder={t('inputPlaceholder')} />
     </div>

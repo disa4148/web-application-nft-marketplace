@@ -55,6 +55,9 @@ body {
 body {
   background: var(--bg-main);
   color: var(--fg-main-100);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 button,
