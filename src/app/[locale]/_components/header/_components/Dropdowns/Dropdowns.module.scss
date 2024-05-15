@@ -16,11 +16,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 95%;
   }
   .switcher {
     font-size: 14px;
     font-weight: 400;
+    padding: 0;
     line-height: 16px;
     color: var(--text-60-b);
     text-decoration: underline;

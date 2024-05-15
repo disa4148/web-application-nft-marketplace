@@ -1,35 +1,40 @@
-"use client";
+'use client';
 import css from './Dropdowns.module.scss'
 
-import { Button } from "@/shared/ui/button";
+import { Button } from '@/shared/ui/button';
 
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
-export default function LanguageSwitcher() {
-   const [isPending, startTransition] = useTransition();
-   const router = useRouter();
-   const localActive = useLocale();
+export default function LanguageSwitcher(): JSX.Element {
+   const t = useTranslations('footer');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+  const currentLocale = Cookies.get('selectedLocale') || locale || 'ru';
 
-   const Switcher = (nextLocale: string) => {
-      if (!isPending) {
-         startTransition(() => {
-            router.replace(`/${nextLocale}`);
-            Cookies.set("selectedLocale", nextLocale);
-         })
-      }
-   }
-   return (
-      <Button
-         size='icon'
-         variant='ghost'
-         onClick={() => Switcher(localActive === "en" ? "ru" : "en")}
-         className={css.switcher}
-      >
-        {localActive === "ru" ? "Русский" : "English"}
-      </Button>
-   )
+  const switchLocale = () => {
+    if (!isPending) {
+      startTransition(() => {
+        const newLocale = currentLocale === 'ru' ? 'en' : 'ru';
+        const newPath = pathname.startsWith(`/${currentLocale}`)
+          ? pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+          : `/${newLocale}${pathname}`;
+        router.replace(newPath);
+        Cookies.set('selectedLocale', newLocale);
+      });
+    }
+  };
+
+  return (
+    <Button onClick={switchLocale} variant={'ghost'} className={css.switcher}>
+      {currentLocale === 'ru'
+        ? t('items.language.eng')
+        : t('items.language.rus')}
+    </Button>
+  );
 }

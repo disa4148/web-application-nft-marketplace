@@ -1,15 +1,15 @@
 'use client';
 import { useTranslations, useLocale } from 'next-intl';
-import { useTransition } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 import { Button } from './button';
+import { useTransition } from 'react';
 
 export default function LocaleSwitcher(): JSX.Element {
   const locale = useLocale();
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
-
+  const pathname = usePathname();
+  const router = useRouter();
   let currentLocale = Cookies.get('selectedLocale') || locale || 'ru';
 
   if (locale && locale !== currentLocale) {
@@ -22,8 +22,14 @@ export default function LocaleSwitcher(): JSX.Element {
       startTransition(() => {
         const newLocale =
           nextLocale === currentLocale ? currentLocale : nextLocale;
-        router.replace(`/${newLocale}`);
         Cookies.set('selectedLocale', newLocale);
+        let newPath = '';
+        if (pathname === '/') {
+          newPath = `/${newLocale}`;
+        } else {
+          newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+        }
+        router.replace(newPath);
       });
     }
   };
