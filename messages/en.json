@@ -140,6 +140,10 @@
     },
     "buttonSignUp": {
       "text": "Register"
+    },
+    "linkSignIn": {
+      "text": "Do you have an account?",
+      "button": "Sign in"
     }
   },
   "signIn": {
@@ -154,6 +158,10 @@
     },
     "buttonSignIn": {
       "text": "Authorization"
+    },
+    "linkSignUp": {
+      "text": "Don't have an account?",
+      "button": "Sign up"
     }
   },
   "catalogNft": {

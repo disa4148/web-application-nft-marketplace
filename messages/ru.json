@@ -140,6 +140,10 @@
     },
     "buttonSignUp": {
       "text": "Зарегистрироваться"
+    },
+    "linkSignIn": {
+      "text": "Есть аккаунт?",
+      "button": "Войдите"
     }
   },
   "signIn": {
@@ -154,6 +158,10 @@
     },
     "buttonSignIn": {
       "text": "Авторизация"
+    },
+    "linkSignUp": {
+      "text": "Нет аккаунта?",
+      "button": "Зарегистрируйтесь"
     }
   },
   "catalogNft": {

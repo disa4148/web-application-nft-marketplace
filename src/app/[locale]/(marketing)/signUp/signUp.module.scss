@@ -63,6 +63,23 @@
         rgb(54, 51, 208) 71.781%
       );
     }
+
+    .linkSignIn {
+      display: none;
+      gap: 5px;
+
+      h1 {
+        font-size: 14px;
+        font-weight: 300;
+      }
+      .link {
+        font-size: 14px;
+        font-weight: 300;
+        background: var(--bg-main-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
   }
 }
 .signRight {
@@ -124,6 +141,30 @@
     }
     .signRight {
       height: 350px;
+    }
+  }
+}
+
+@media (max-width: 865px) {
+  .signUp {
+    div:last-child {
+      .linkSignIn {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 5px;
+        h1 {
+          font-size: 14px;
+          font-weight: 300;
+        }
+        .link {
+          font-size: 14px;
+          font-weight: 300;
+          background: var(--bg-main-gradient);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
     }
   }
 }

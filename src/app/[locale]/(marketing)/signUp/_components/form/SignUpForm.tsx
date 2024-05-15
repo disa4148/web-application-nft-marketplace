@@ -4,10 +4,12 @@ import css from '../../signUp.module.scss';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
 
 export default function SignUpForm(): JSX.Element {
   const t = useTranslations('signUp');
+  const locale = useLocale();
   return (
     <div>
       <Input type="text" placeholder={t('input.login')} />
@@ -28,6 +30,10 @@ export default function SignUpForm(): JSX.Element {
       <Button className={css.styleButton} variant={'default'}>
         {t('buttonSignUp.text')}{' '}
       </Button>
+      <div className={css.linkSignIn}>
+        <h1>{t('linkSignIn.text')}</h1>
+        <Link className={css.link} href={`/${locale}/signIn`}>{t('linkSignIn.button')}</Link>
+      </div>
     </div>
   );
 }

@@ -62,6 +62,23 @@
         rgb(54, 51, 208) 71.781%
       );
     }
+
+    .linkSignUp {
+      display: none;
+      gap: 5px;
+
+      h1 {
+        font-size: 14px;
+        font-weight: 300;
+      }
+      .link {
+        font-size: 14px;
+        font-weight: 300;
+        background: var(--bg-main-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
   }
 }
 .signRight {
@@ -123,6 +140,18 @@
     }
   }
 }
+
+@media (max-width: 865px) {
+  .signIn {
+    div:last-child {
+      .linkSignUp {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   .wrapper {
