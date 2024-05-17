@@ -8,9 +8,10 @@ import { nftItems } from './nftItems';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import SkeletonDropDown from './_components/skeletonDropDown';
-import SkeletonSortingBar from './_components/skeletonSortingBar';
-import SkeletonMiniNft from './_components/skeletonMiniNft';
+
+import SkeletonDropDown from '@/shared/ui/dropdown/skeleton';
+import SkeletonSortingBar from '@/shared/ui/sortingBar/skeleton';
+import SkeletonMiniNft from '@/shared/ui/miniNft/skeleton';
 
 type Option = {
   value: string;
