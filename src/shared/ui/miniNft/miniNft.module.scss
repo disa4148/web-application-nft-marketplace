@@ -99,6 +99,41 @@
   }
 }
 
+.wrapperSkeleton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  max-width: 400px;
+  height: 88px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 20px 20px 10px 10px;
+
+  .leftItems {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    border-radius: 20px 0 0 20px;
+  }
+
+  .middleItems {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .rightItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 14px;
+    gap: 5px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .wrapper {
     gap: 10px;
