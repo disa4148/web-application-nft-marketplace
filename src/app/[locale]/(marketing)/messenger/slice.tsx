@@ -19,7 +19,7 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     setActiveChatId(chatId);
   };
   return (
-    <Page>
+    <Page padding>
       <div className={css.wrapper}>
         <div className={css.chats}>
           {dialoguesItems.map((item, index) => (

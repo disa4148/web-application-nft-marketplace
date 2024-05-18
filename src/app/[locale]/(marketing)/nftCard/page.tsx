@@ -32,7 +32,7 @@ export default function NftCard(): JSX.Element {
   ];
 
   return (
-    <Page>
+    <Page padding>
       <div className={css.wrapper}>
         <div className={css.top}>
           <div className={css.leftItems}>

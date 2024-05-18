@@ -13,7 +13,7 @@ import { useTranslations } from 'next-intl';
 export default function Home(): React.ReactElement {
   const t = useTranslations('home');
   return (
-    <Page>
+    <Page padding>
       <section className={css.wrapper}>
         <UnderHeader />
         <div className={css.topCollections}>

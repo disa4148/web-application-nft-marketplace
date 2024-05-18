@@ -4,7 +4,7 @@ import Page from '@/shared/containers/page';
 
 export default function FavoritesNft() {
   return (
-    <Page>
+    <Page padding>
       <div className={css.blockInfo}>
         <div className={css.blockNft}>
           <NftForm />

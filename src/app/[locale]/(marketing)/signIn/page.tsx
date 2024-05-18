@@ -15,7 +15,7 @@ const SignInForm = dynamic(() => import('./_components/form/SignInForm'), {
 export default function SignUp(): JSX.Element {
   const t = useTranslations('signIn');
   return (
-    <Page>
+    <Page padding>
       <div className={css.wrapper}>
         <div className={css.signIn}>
           <div>

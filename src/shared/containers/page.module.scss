@@ -1,12 +1,9 @@
-.wrapper {
-    padding: 40px;
-    display: flex;
-    justify-content: center;
+.padding {
+  padding: 40px;
 }
 
 @media screen and (max-width: 440px) {
-    .wrapper {
-      padding: 20px;
-    }
+  .padding {
+    padding: 20px;
   }
-  
+}
