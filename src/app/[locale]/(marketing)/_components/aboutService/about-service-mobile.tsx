@@ -20,7 +20,7 @@ export default function AboutServiceMobile(): JSX.Element {
       <div>
         <h4>{t('title')}</h4>
         <h5>{t('description')}</h5>
-        <Link href={`/${locale}/catalogNft`}>
+        <Link href={`/${locale}/catalog`}>
           <Button>{t('btn')}</Button>
         </Link>
       </div>

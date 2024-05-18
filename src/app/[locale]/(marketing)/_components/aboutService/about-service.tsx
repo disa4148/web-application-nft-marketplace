@@ -15,7 +15,7 @@ export default function AboutService(): JSX.Element {
           <h3>
             {t('description')}
           </h3>
-          <Link href={`/${locale}/catalogNft`}>
+          <Link href={`/${locale}/catalog`}>
             <Button>{t('btn')}</Button>
           </Link>
         </div>

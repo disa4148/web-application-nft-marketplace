@@ -32,7 +32,7 @@ export default function SignUpForm(): JSX.Element {
       </Button>
       <div className={css.linkSignIn}>
         <h1>{t('linkSignIn.text')}</h1>
-        <Link className={css.link} href={`/${locale}/signIn`}>{t('linkSignIn.button')}</Link>
+        <Link className={css.link} href={`/${locale}/signin`}>{t('linkSignIn.button')}</Link>
       </div>
     </div>
   );

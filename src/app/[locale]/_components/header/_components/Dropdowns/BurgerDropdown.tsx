@@ -55,7 +55,7 @@ export default function BurgerDropdown(): JSX.Element {
               <div className={css.icon}>
                 <Heart width={20} height={20} className="invert" />
               </div>
-              <Link href={`/${locale}/favoritesNft`}>
+              <Link href={`/${locale}/favorites`}>
                 {t('favorites.title')}
               </Link>
             </div>

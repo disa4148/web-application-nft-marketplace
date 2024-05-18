@@ -11,7 +11,7 @@ export default function UnderHeader() {
   const locale = useLocale();
   return (
     <div className={css.wrapper}>
-      <Link href={`/${locale}/signIn`}>
+      <Link href={`/${locale}/signin`}>
         <IdentificationButton>{t('IdentificationButton')}</IdentificationButton>
       </Link>
       <div className={css.searchInput}>
