@@ -53,9 +53,13 @@ body {
 }
 
 body {
-  background: var(--bg-main);
+  background-image: url('/assets/backgrounds/mainbackground.svg');
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
   color: var(--fg-main-100);
   display: flex;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
 }
