@@ -10,10 +10,10 @@ export default function Unauthorized(): JSX.Element {
   const locale = useLocale();
   return (
     <>
-      <Link className={css.btnLink} href={`/${locale}/signUp`}>
+      <Link className={css.btnLink} href={`/${locale}/signup`}>
         <Button variant={'ghost'}>{t('signUpBtn')}</Button>
       </Link>
-      <Link className={css.coloredBtnLink} href={`/${locale}/signIn`}>
+      <Link className={css.coloredBtnLink} href={`/${locale}/signin`}>
         <Button className={css.coloredBtn} variant={'default'}>
           {t('signInBtn')}
         </Button>
