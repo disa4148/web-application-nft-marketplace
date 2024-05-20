@@ -37,7 +37,7 @@
     max-width: 400px;
     width: 100%;
   }
-  div:last-child {
+  .form {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -45,16 +45,18 @@
     max-width: 400px;
     width: 100%;
 
-    div {
+    .checkbox {
       display: flex;
       align-items: center;
       flex-direction: row;
       gap: 17px;
     }
+
     input {
       max-width: 400px;
       width: 100%;
     }
+
     .styleButton {
       background: linear-gradient(
         152.48deg,
@@ -123,7 +125,7 @@
       div:first-child {
         gap: 20px;
       }
-      div:last-child {
+      .form {
         gap: 20px;
         div {
           gap: 10px;
@@ -143,7 +145,7 @@
 
 @media (max-width: 865px) {
   .signIn {
-    div:last-child {
+    .form {
       .linkSignUp {
         display: flex;
         gap: 5px;
@@ -151,7 +153,6 @@
     }
   }
 }
-
 
 @media screen and (max-width: 600px) {
   .wrapper {

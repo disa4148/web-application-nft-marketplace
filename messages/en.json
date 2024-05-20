@@ -162,6 +162,12 @@
     "linkSignUp": {
       "text": "Don't have an account?",
       "button": "Sign up"
+    },
+    "messages": {
+      "login": "The login field is required!",
+      "password": "The password field is required!",
+      "success": "You have successfully authorized!"
+
     }
   },
   "catalogNft": {
