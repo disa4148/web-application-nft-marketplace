@@ -4,11 +4,12 @@ import { Button } from '../button';
 
 type Props = {
   children: React.ReactNode;
+  onClick?: () => void;
 };
 
-export default function ButtonLoadMore({ children }: Props): JSX.Element {
+export default function ButtonLoadMore({ children, onClick}: Props): JSX.Element {
   return (
-    <Button variant={'outline'} className={css.wrapper}>
+    <Button onClick={onClick} variant={'outline'} className={css.wrapper}>
       {children}
       <Image
         src={'/assets/arrows/top-right-arrow.svg'}

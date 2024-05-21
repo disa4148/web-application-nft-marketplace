@@ -4,11 +4,11 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 type Props = {
-  image: string;
+  image?: string;
   name: string;
-  price: number;
-  total: number;
-  percentage: number;
+  price?: number;
+  total?: number;
+  percentage?: number;
 };
 
 export default function MiniNft({
@@ -23,7 +23,7 @@ export default function MiniNft({
     <div className={css.wrapper}>
       <div className={css.leftItems}>
         <Image
-          src={`/assets/forTest/${image}`}
+          src={`${image}`}
           alt="NFT"
           width={65}
           height={60}
