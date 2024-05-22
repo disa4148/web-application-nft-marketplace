@@ -34,7 +34,7 @@
     gap: 20px;
     max-width: 400px;
   }
-  div:last-child {
+  .form {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -127,7 +127,7 @@
       div:first-child {
         gap: 30px;
       }
-      div:last-child {
+      .form {
         gap: 20px;
         div {
           gap: 10px;
@@ -147,7 +147,7 @@
 
 @media (max-width: 865px) {
   .signUp {
-    div:last-child {
+    .form {
       .linkSignIn {
         display: flex;
         flex-direction: row;

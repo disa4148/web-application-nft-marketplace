@@ -144,6 +144,24 @@
     "linkSignIn": {
       "text": "Do you have an account?",
       "button": "Sign in"
+    },
+    "messages": {
+      "success": "You have successfully registered!",
+      "login": {
+        "min": "Login must be at least 4 characters long!",
+        "max": "Login must be no more than 30 characters long!",
+        "valid": "Login must not contain numbers or special characters!"
+      },
+      "email": {
+        "required": "Email is required!",
+        "valid": "Please enter a valid email address!"
+      },
+      "password": {
+        "min": "Password must be at least 4 characters long!",
+        "max": "Password must not exceed 20 characters!",
+        "valid": "Password must contain at least one letter and one number!",
+        "dontMatch": "Passwords do not match!"
+      }
     }
   },
   "signIn": {

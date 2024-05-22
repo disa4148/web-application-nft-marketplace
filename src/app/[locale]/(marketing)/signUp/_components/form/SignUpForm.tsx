@@ -3,37 +3,174 @@ import css from '../../signUp.module.scss';
 
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
+import { Form, FormControl, FormField, FormItem } from '@/shared/ui/form';
 
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+
+type FieldErrors = {
+  [key: string]: any | undefined;
+};
+
 export default function SignUpForm(): JSX.Element {
   const t = useTranslations('signUp');
   const locale = useLocale();
+
+  const formSchema = z.object({
+    login: z
+      .string()
+      .min(4, {
+        message: t('messages.login.min'),
+      })
+      .max(30, t('messages.login.max'))
+      .refine((value) => !/[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(value), {
+        message:  t('messages.login.valid'),
+      }),
+    email: z
+      .string()
+      .min(1, {
+        message: t('messages.email.required'),
+      })
+      .email({ message: t('messages.email.valid') }),
+      password: z
+      .string()
+      .min(4, {
+        message: t('messages.password.min'),
+      })
+      .max(20, t('messages.password.max'))
+      .refine((value) => /[a-zA-Z]/.test(value) && /\d/.test(value), {
+        message: t('messages.password.valid'),
+      }),
+    confirmation: z
+      .string(),
+    promoCode: z.string().optional(),
+
+  }).refine(({ password, confirmation }) => password === confirmation, {
+    message: t('messages.password.dontMatch'),
+    path: ['confirmation'],
+  });
+
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      login: '',
+      email: '',
+      password: '',
+      confirmation: '',
+      promoCode: '',
+    },
+  });
+
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    const payload = {
+      login: data.login,
+      email: data.email,
+      password: data.password,
+      promoCode: data.promoCode,
+    };
+    console.log('Payload:', payload);
+    toast.success(t('messages.success'));
+  };
+
+  const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
+  const errors: FieldErrors = form.formState.errors;
+
+  useEffect(() => {
+    if (!isErrorsShown) return;
+    for (const field in errors) {
+      const errorMessage = errors[field]?.message;
+      if (errorMessage) {
+        toast.error(errorMessage, { position: 'bottom-right' });
+      }
+    }
+    setIsErrorsShown(false);
+  }, [isErrorsShown]);
+
   return (
-    <div>
-      <Input type="text" placeholder={t('input.login')} />
-      <Input type="email" placeholder={t('input.mail')} />
-      <div>
-        <Input
-          className={css.passwordInput}
-          type="password"
-          placeholder={t('input.password')}
+    <Form {...form}>
+      <form className={css.form} onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name="login"
+          render={({ field }) => {
+            return (
+              <FormControl>
+                <Input placeholder={t('input.login')} {...field} />
+              </FormControl>
+            );
+          }}
         />
-        <Input
-          className={css.repeatPassword}
-          type="password"
-          placeholder={t('input.repeatPassword')}
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => {
+            return (
+              <FormControl>
+                <Input type="email" placeholder={t('input.mail')} {...field} />
+              </FormControl>
+            );
+          }}
         />
-      </div>
-      <Input type="text" placeholder={t('input.promocode')} />
-      <Button className={css.styleButton} variant={'default'}>
-        {t('buttonSignUp.text')}{' '}
-      </Button>
-      <div className={css.linkSignIn}>
-        <h1>{t('linkSignIn.text')}</h1>
-        <Link className={css.link} href={`/${locale}/signin`}>{t('linkSignIn.button')}</Link>
-      </div>
-    </div>
+        <div>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => {
+              return (
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder={t('input.password')}
+                    {...field}
+                  />
+                </FormControl>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="confirmation"
+            render={({ field }) => {
+              return (
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder={t('input.repeatPassword')}
+                    {...field}
+                  />
+                </FormControl>
+              );
+            }}
+          />
+        </div>
+        <FormField
+          control={form.control}
+          name="promoCode"
+          render={({ field }) => {
+            return (
+              <FormControl>
+                <Input placeholder={t('input.promocode')} {...field} />
+              </FormControl>
+            );
+          }}
+        />
+        <Button onClick={() => setIsErrorsShown(true)} className={css.styleButton} variant={'default'}>
+          {t('buttonSignUp.text')}{' '}
+        </Button>
+        <div className={css.linkSignIn}>
+          <h1>{t('linkSignIn.text')}</h1>
+          <Link className={css.link} href={`/${locale}/signin`}>
+            {t('linkSignIn.button')}
+          </Link>
+        </div>
+      </form>
+    </Form>
   );
 }

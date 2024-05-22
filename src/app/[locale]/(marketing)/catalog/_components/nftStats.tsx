@@ -11,7 +11,7 @@ type Props = {
     minPrice: number
     owners: Owners
 }
-
+ 
 export default function NftStats({ volume, minPrice, owners }: Props): JSX.Element {
   const t = useTranslations('catalogNft');
   return (

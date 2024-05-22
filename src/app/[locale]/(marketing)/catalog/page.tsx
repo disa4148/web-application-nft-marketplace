@@ -18,6 +18,8 @@ type Option = {
   label: string;
 };
 
+
+
 export default function CatalogNft(): JSX.Element {
   const t = useTranslations('home.topCollections');
   const keys: string[] = [
