@@ -147,6 +147,7 @@
     },
     "messages": {
       "success": "You have successfully registered!",
+      "loading": "Creating an account...",
       "login": {
         "min": "Login must be at least 4 characters long!",
         "max": "Login must be no more than 30 characters long!",

@@ -5,7 +5,7 @@ const HeaderLayout = () => {
   /**
    * @dev temporary option for development only
    */
-  const isSignedIn = true;
+  const isSignedIn = false;
 
   return <>{isSignedIn ? <Authorized /> : <Unauthorized />}</>;
 };

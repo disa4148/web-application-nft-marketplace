@@ -1,36 +1,21 @@
-interface EmailData {
-  id: string;
-  email: string;
-  verified: boolean;
-  token: string;
-}
-
-export interface AvatarData {
-  id: string;
-  icon: string | null;
-  cover: string | null;
-}
-
-interface NotificationData {
-  id: string;
-  news: boolean;
-}
-
-interface MetaData {
-  id: string;
+interface PayoutMethod {
+  _id: string;
   name: string;
-  description: string | null;
+  description: string;
 }
 
 export interface UserData {
+  _id: string;
+  login: string;
+  balance: number;
+  password: string;
+  payout_method: PayoutMethod;
+  block_payout: boolean;
+  verification: boolean;
+  emoji: string;
   id: string;
-  fullname: string;
-  createdAt: string;
-  email: EmailData;
-  avatar: AvatarData;
-  meta: MetaData;
-  notification: NotificationData;
 }
+
 
 export const setUserData = (userData: UserData) => {
   localStorage.setItem('userData', JSON.stringify(userData));

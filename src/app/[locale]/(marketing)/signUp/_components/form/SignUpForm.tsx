@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import { useSignUpMutation } from '@/shared/redux/features/authApi';
+import { useRouter } from 'next/navigation';
 
 type FieldErrors = {
   [key: string]: any | undefined;
@@ -73,26 +74,26 @@ export default function SignUpForm(): JSX.Element {
   const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
   const errors: FieldErrors = form.formState.errors;
 
+  const router = useRouter();
   const [register, { isLoading }] = useSignUpMutation();
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const payload = {
       login: data.login,
-      // email: data.email,
+      email: data.email,
       password: data.password,
       promocode: data.promocode,
     };
-    toast.loading("Создание аккаунта...");
+    toast.loading(t('messages.loading'));
     try {
       const response = await register(payload).unwrap();
-      toast.success("Аккаунт успешно создан!");
-      form.reset();
-      console.log("Access:", response.accessToken)
-      console.log("Refresh:", response.refreshToken)
-      console.log('Payload:', payload);
-
-    } catch (e) {
-      toast.error("Ошибки при создании аккаунта");
+      toast.success(t('messages.success'));
+      form.reset()
+      router.push('/');
+    } catch (e: any) {
+      if (e.data && e.data.message) {
+        toast.error(e.data.message);
+      }
       console.log(e);
     } finally {
       toast.dismiss();
@@ -108,7 +109,7 @@ export default function SignUpForm(): JSX.Element {
       }
     }
     setIsErrorsShown(false);
-  }, [isErrorsShown]);
+  }, [isErrorsShown, errors]);
 
   return (
     <Form {...form}>

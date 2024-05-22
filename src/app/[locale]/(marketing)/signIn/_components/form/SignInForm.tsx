@@ -15,10 +15,19 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
+import { useSignInMutation } from '@/shared/redux/features/authApi';
+import { useRouter } from 'next/navigation';
+import { setToken } from '@/shared/lib/cookie';
+import { setUserData } from '@/shared/lib/localstorage';
 
 type FieldErrors = {
   [key: string]: any | undefined;
 };
+
+interface AccessToken {
+  accessToken: string;
+  refreshToken: string;
+}
 
 export default function SignInForm(): JSX.Element {
   const t = useTranslations('signIn');
@@ -43,19 +52,35 @@ export default function SignInForm(): JSX.Element {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const router = useRouter();
+  const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
+  const errors: FieldErrors = form.formState.errors;
+  const [auth, { isLoading }] = useSignInMutation();
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const payload = {
       login: data.login,
       password: data.password,
       remember: data.remember,
     };
     console.log('Payload:', payload);
-    toast.success(t('messages.success'));
+    try {
+      const response = (await auth(payload).unwrap()) as AccessToken;
+      toast.success('Вы успешно авторизовались!');
+      setToken(response.accessToken, response.refreshToken);
+      setUserData
+      form.reset();
+      router.push(`/`);
+      console.log(response.accessToken);
+    } catch (e: any) {
+      if (e.data && e.data.message) {
+        toast.error(e.data.message);
+      }
+      console.log(e);
+    } finally {
+      toast.dismiss();
+    }
   };
-
-  const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
-  const errors: FieldErrors = form.formState.errors;
-
   useEffect(() => {
     if (!isErrorsShown) return;
     for (const field in errors) {
