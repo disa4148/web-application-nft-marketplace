@@ -21,7 +21,7 @@ const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://nft.levpidoor.ru/',
-  credentials: 'include',
+  // credentials: 'include',
   prepareHeaders: (headers) => {
     const token = getAccessToken();
     if (token) {
