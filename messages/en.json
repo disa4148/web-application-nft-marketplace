@@ -31,6 +31,13 @@
   "home": {
     "topCollections": {
       "title": "Top Collections",
+      "unauthenticated": {
+        "title": "You must be logged in to display the list of collections!",
+        "btn": "Sign In"
+      },
+      "messages": {
+        "over": "You have displayed the entire list of available collections"
+      },
       "select": {
         "popular": {
           "title": "Popular",

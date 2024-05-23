@@ -1,14 +1,23 @@
 'use client';
 import css from './topCollections.module.scss';
 import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
-import { useTranslations } from 'next-intl';
+
+import { useTranslations, useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
+
 import dynamic from 'next/dynamic';
+
 import SkeletonDropDown from '@/shared/ui/dropdown/skeleton';
 import SkeletonSortingBar from '@/shared/ui/sortingBar/skeleton';
 import SkeletonMiniNft from '@/shared/ui/miniNft/skeleton';
+
 import { toast } from 'sonner';
+
 import { Collection, CollectionResponse } from '@/shared/interfaces/Collection';
+import { useGetCollectionsQuery } from '@/shared/redux/features/collectionsApi';
+import { getAccessToken } from '@/shared/lib/cookie';
+import { Button } from '@/shared/ui/button';
+import Link from 'next/link';
 
 type Option = {
   value: string;
@@ -32,45 +41,42 @@ const MiniNft = dynamic(() => import('@/shared/ui/miniNft/mini-nft'), {
 
 export default function TopCollections(): JSX.Element {
   const t = useTranslations('home.topCollections');
-  const [data, setData] = useState<Collection[] | null>(null);
-  const [total, setTotal] = useState<number>(0); 
+  const locale = useLocale();
+
+  const [total, setTotal] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
+
   const [count, setCount] = useState<number>(12);
+  const [offset, setOffset] = useState<number>(0);
+  const [sort, setSort] = useState<string>('one_day_change');
+
+  const [hasToken, setHasToken] = useState<boolean>(false);
+  const { data, isError } = useGetCollectionsQuery({ offset, count, sort });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`https://nft.levpidoor.ru/api/collection?offset=1&count=${count}&sort=one_day_change`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result: CollectionResponse = await response.json();
-        setData(result.data);
-        setTotal(result.total);
-      } catch (error) {
-        setError(error as Error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    const token = getAccessToken();
+    setHasToken(!!token);
+  }, []);
 
-    fetchData();
-  }, [count]);
+  useEffect(() => {
+    if (data) {
+      setTotal(data.total);
+      setIsLoading(false);
+      console.log('Fetched data:', data);
+    }
+    if (isError) {
+      setError(new Error('Failed to fetch collections'));
+      setIsLoading(false);
+    }
+  }, [data, isError]);
 
   if (error) {
     console.error('Failed to fetch collections:', error);
-    toast.error('Failed to fetch collections');
   }
 
-  if (data) {
-    console.log('Fetched data:', data);
-  } else {
-    console.log('No data fetched');
-  }
-
-  const keys: string[] = ['select.popular','select.inTime','select.alphabetically'];
-  const mobileKeys: string[] = ['mobileSelect.sold','mobileSelect.active','mobileSelect.public'];
+  const keys: string[] = [ 'select.popular', 'select.inTime', 'select.alphabetically' ];
+  const mobileKeys: string[] = [ 'mobileSelect.sold', 'mobileSelect.active', 'mobileSelect.public' ];
   const [selectedDateSort, setSelectedDateSort] = useState<string>('1day');
 
   const selectItems: Option[] = keys.map((key) => ({
@@ -98,13 +104,13 @@ export default function TopCollections(): JSX.Element {
 
   const handleLoadMore = () => {
     if (data && count >= total) {
-      toast.info("Вы отобразили все доступные коллекции");
+      toast.info(t('messages.over'));
     } else {
       setCount((prevCount) => prevCount + 12);
     }
   };
 
-  return (
+  return hasToken ? (
     <div className={css.wrapper}>
       <div className={css.backgroundImage}></div>
       <div className={css.header}>
@@ -122,20 +128,31 @@ export default function TopCollections(): JSX.Element {
         </div>
       </div>
       <div className={css.cards}>
-        {data?.map((item: Collection, index: number) => (
+        {data?.data.map((item: Collection, index: number) => (
           <MiniNft
             key={index}
             name={item.name}
-            percentage={0} 
-            price={0} 
-            total={0} 
+            percentage={0}
+            price={0}
+            total={0}
             image={item.image_url}
           />
         ))}
       </div>
       <div className={css.btnMore}>
-        <ButtonLoadMore onClick={handleLoadMore}>{t('cards.btn')}</ButtonLoadMore>
+        <ButtonLoadMore onClick={handleLoadMore}>
+          {t('cards.btn')}
+        </ButtonLoadMore>
       </div>
+    </div>
+  ) : (
+    <div className={css.message}>
+      <p>{t("unauthenticated.title")}</p>
+      <Link href={`/${locale}/signin`}>
+        <Button className={css.coloredBtn} variant={'default'}>
+          {t('unauthenticated.btn')}
+        </Button>
+      </Link>
     </div>
   );
 }
