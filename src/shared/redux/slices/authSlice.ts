@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { UserData } from '@/shared/lib/localstorage';
 
-interface AuthState {
+export interface AuthState {
   user: UserData | null;
   isSignedIn: boolean;
 }
@@ -18,7 +18,7 @@ export const authSlice = createSlice({
   reducers: {
     setAuthInfo: (
       state,
-      action: PayloadAction<{ user: UserData | null; isSignedIn: boolean }>,
+      action: PayloadAction<AuthState>,
     ) => {
       state.user = action.payload.user;
       state.isSignedIn = action.payload.isSignedIn;

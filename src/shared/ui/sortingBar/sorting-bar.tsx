@@ -1,7 +1,5 @@
-'use client'
 import css from './sortingBar.module.scss';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
 interface SortingBarProps {
   activeItem: string;
@@ -17,8 +15,6 @@ export default function SortingBar({
   const handleClick = (item: string) => {
     onItemClick(item);
   };
-
-const [aaa, setAaa] = useState()
 
   return (
     <div className={css.wrapper}>

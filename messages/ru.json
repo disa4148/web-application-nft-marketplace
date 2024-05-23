@@ -39,17 +39,13 @@
         "over": "Вы отобразили весь список доступных коллекций"
       },
       "select": {
-        "popular": {
-          "title": "Популярные",
-          "value": "Popular"
+        "marketCap": {
+          "title": "Капитализация",
+          "value": "market_cap"
         },
-        "inTime": {
-          "title": "По времени",
-          "value": "intime"
-        },
-        "alphabetically": {
-          "title": "По алфавиту",
-          "value": "alphabetically"
+        "numOwners": {
+          "title": "Кол-во владельцев",
+          "value": "num_owners"
         }
       },
       "sortingBar": {

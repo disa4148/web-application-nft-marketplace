@@ -1,10 +1,11 @@
 'use client';
+import { RootState } from '@/shared/redux/store';
 import Authorized from './Authorized';
 import Unauthorized from './Unauthorized';
-import { useAuth } from '@/shared/lib/hooks/useAuth';
+import { useSelector } from 'react-redux';
 
 const HeaderLayout = () => {
-  const { isSignedIn } = useAuth();
+  const isSignedIn = useSelector((state: RootState) => state.auth.isSignedIn);
   return <>{isSignedIn ? <Authorized /> : <Unauthorized />}</>;
 };
 

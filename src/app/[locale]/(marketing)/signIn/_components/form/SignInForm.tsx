@@ -18,8 +18,10 @@ import { useEffect, useState } from 'react';
 import { useSignInMutation } from '@/shared/redux/features/authApi';
 import { useRouter } from 'next/navigation';
 import { setToken } from '@/shared/lib/cookie';
-import { UserData, setUserData } from '@/shared/lib/localstorage';
-import { useAuth } from '@/shared/lib/hooks/useAuth';
+
+import { UserData } from '@/shared/lib/localstorage';
+import { useDispatch } from 'react-redux';
+import { setAuthInfo } from '@/shared/redux/slices/authSlice';
 
 type FieldErrors = {
   [key: string]: any | undefined;
@@ -38,7 +40,7 @@ interface ResponseData {
 export default function SignInForm(): JSX.Element {
   const t = useTranslations('signIn');
   const locale = useLocale();
-
+  const dispatch = useDispatch();
   const formSchema = z.object({
     login: z.string().min(1, {
       message: t('messages.login'),
@@ -62,7 +64,6 @@ export default function SignInForm(): JSX.Element {
   const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
   const errors: FieldErrors = form.formState.errors;
   const [auth, { isLoading }] = useSignInMutation();
-  const { updateAuthInfo } = useAuth();
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const payload = {
@@ -75,8 +76,7 @@ export default function SignInForm(): JSX.Element {
       const response = (await auth(payload).unwrap()) as ResponseData;
       toast.success('Вы успешно авторизовались!');
       setToken(response.tokens.accessToken, response.tokens.refreshToken);
-      setUserData(response.user);
-      updateAuthInfo(response.user, true);
+      dispatch(setAuthInfo({user: response.user, isSignedIn:true}))
       form.reset();
       router.push(`/`);
       console.log(response.tokens.accessToken);

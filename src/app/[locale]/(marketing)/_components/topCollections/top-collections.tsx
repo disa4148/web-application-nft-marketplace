@@ -4,7 +4,8 @@ import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
 
 import { useTranslations, useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/shared/lib/hooks/useAuth';
+import { useSelector } from 'react-redux';
+import { useGetCollectionsQuery } from '@/shared/redux/features/collectionsApi';
 
 import dynamic from 'next/dynamic';
 
@@ -15,8 +16,8 @@ import SkeletonMiniNft from '@/shared/ui/miniNft/skeleton';
 import { toast } from 'sonner';
 
 import { Collection } from '@/shared/interfaces/Collection';
-import { useGetCollectionsQuery } from '@/shared/redux/features/collectionsApi';
 import { Button } from '@/shared/ui/button';
+import { RootState } from '@/shared/redux/store';
 import Link from 'next/link';
 
 type Option = {
@@ -49,10 +50,10 @@ export default function TopCollections(): JSX.Element {
 
   const [count, setCount] = useState<number>(12);
   const [offset, setOffset] = useState<number>(0);
-  const [sort, setSort] = useState<string>('one_day_change');
+  const [sort, setSort] = useState<string>('market_cap');
 
   const { data, isError } = useGetCollectionsQuery({ offset, count, sort });
-  const { isSignedIn } = useAuth();
+  const isSignedIn = useSelector((state: RootState) => state.auth.isSignedIn);
 
   useEffect(() => {
     if (data) {
@@ -70,7 +71,7 @@ export default function TopCollections(): JSX.Element {
     console.error('Failed to fetch collections:', error);
   }
 
-  const keys: string[] = ['select.popular','select.inTime','select.alphabetically'];
+  const keys: string[] = ['select.marketCap','select.numOwners'];
   const mobileKeys: string[] = ['mobileSelect.sold','mobileSelect.active','mobileSelect.public'];
   const [selectedDateSort, setSelectedDateSort] = useState<string>('1day');
 
@@ -90,6 +91,7 @@ export default function TopCollections(): JSX.Element {
   };
 
   const handleSelect = (option: Option) => {
+    setSort(option.value);
     console.log('Selected option:', option);
   };
 
