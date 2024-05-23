@@ -1,26 +1,31 @@
 'use client';
 import css from './miniNft.module.scss';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import useFormatNumber from '@/shared/lib/hooks/useFormatNumber';
+import Link from 'next/link';
 
 type Props = {
-  image?: string;
+  id: string;
+  image: string;
   name: string;
-  price?: number;
-  total?: number;
-  percentage?: number;
+  totalPrice: number;
+  lowestPrice: number;
 };
 
 export default function MiniNft({
+  id,
   name,
-  percentage,
-  price,
-  total,
+  totalPrice = 0,
+  lowestPrice = 0,
   image,
 }: Props): JSX.Element {
   const t = useTranslations('home.topCollections.cards');
+  const locale = useLocale();
+  const formatTotalPrice = useFormatNumber(totalPrice);
+  const formatLowestPrice = useFormatNumber(lowestPrice);
   return (
-    <div className={css.wrapper}>
+    <Link href={`/${locale}/${id}`} className={css.wrapper}>
       <div className={css.image}>
         <Image src={`${image}`} alt="NFT" width={65} height={60} />
       </div>
@@ -36,32 +41,14 @@ export default function MiniNft({
             />
           </div>
           <div className={css.price}>
-            <h4>{t('price')}</h4>
-            <h4>{price} ETH</h4>
+            <h4 className='text-light-text-black-70'>{t('price')}</h4>
+            <h4 className='text-light-text-black-70'>{formatTotalPrice} ETH</h4>
           </div>
         </div>
         <div className={css.priceInfo}>
-          <h4>{total} ETH</h4>
-          <p>+{percentage}%</p>
+          <h4>{formatLowestPrice} ETH</h4>
         </div>
       </div>
-      {/* <div className={css.middleItems}>
-        <div>
-          <h3>{name}</h3>
-         
-        </div>
-        <div>
-          
-        </div>
-      </div>
-      <div className={css.rightItems}>
-        <div>
-          <h4>{total}</h4>
-          <span></span>
-        </div>
-        <div>
-        </div>
-      </div> */}
-    </div>
+    </Link>
   );
 }

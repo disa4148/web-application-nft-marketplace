@@ -1,12 +1,10 @@
+'use client';
 import Authorized from './Authorized';
 import Unauthorized from './Unauthorized';
+import { useAuth } from '@/shared/lib/hooks/useAuth';
 
 const HeaderLayout = () => {
-  /**
-   * @dev temporary option for development only
-   */
-  const isSignedIn = false;
-
+  const { isSignedIn } = useAuth();
   return <>{isSignedIn ? <Authorized /> : <Unauthorized />}</>;
 };
 

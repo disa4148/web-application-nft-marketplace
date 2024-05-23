@@ -8,7 +8,10 @@ export interface Collection {
   sort: string;
   createdAt: Date;
   updatedAt: Date;
-  id: string;
+  __v: number;
+  totalNftCount: number;
+  totalNftPrice: number;
+  lowestNftPrice: number;
 }
 
 export interface CollectionResponse {

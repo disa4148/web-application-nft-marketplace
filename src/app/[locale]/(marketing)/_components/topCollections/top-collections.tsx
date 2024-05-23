@@ -4,6 +4,7 @@ import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
 
 import { useTranslations, useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/shared/lib/hooks/useAuth';
 
 import dynamic from 'next/dynamic';
 
@@ -13,9 +14,8 @@ import SkeletonMiniNft from '@/shared/ui/miniNft/skeleton';
 
 import { toast } from 'sonner';
 
-import { Collection, CollectionResponse } from '@/shared/interfaces/Collection';
+import { Collection } from '@/shared/interfaces/Collection';
 import { useGetCollectionsQuery } from '@/shared/redux/features/collectionsApi';
-import { getAccessToken } from '@/shared/lib/cookie';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
 
@@ -51,13 +51,8 @@ export default function TopCollections(): JSX.Element {
   const [offset, setOffset] = useState<number>(0);
   const [sort, setSort] = useState<string>('one_day_change');
 
-  const [hasToken, setHasToken] = useState<boolean>(false);
   const { data, isError } = useGetCollectionsQuery({ offset, count, sort });
-
-  useEffect(() => {
-    const token = getAccessToken();
-    setHasToken(!!token);
-  }, []);
+  const { isSignedIn } = useAuth();
 
   useEffect(() => {
     if (data) {
@@ -75,8 +70,8 @@ export default function TopCollections(): JSX.Element {
     console.error('Failed to fetch collections:', error);
   }
 
-  const keys: string[] = [ 'select.popular', 'select.inTime', 'select.alphabetically' ];
-  const mobileKeys: string[] = [ 'mobileSelect.sold', 'mobileSelect.active', 'mobileSelect.public' ];
+  const keys: string[] = ['select.popular','select.inTime','select.alphabetically'];
+  const mobileKeys: string[] = ['mobileSelect.sold','mobileSelect.active','mobileSelect.public'];
   const [selectedDateSort, setSelectedDateSort] = useState<string>('1day');
 
   const selectItems: Option[] = keys.map((key) => ({
@@ -110,7 +105,7 @@ export default function TopCollections(): JSX.Element {
     }
   };
 
-  return hasToken ? (
+  return isSignedIn ? (
     <div className={css.wrapper}>
       <div className={css.backgroundImage}></div>
       <div className={css.header}>
@@ -130,11 +125,11 @@ export default function TopCollections(): JSX.Element {
       <div className={css.cards}>
         {data?.data.map((item: Collection, index: number) => (
           <MiniNft
+            id={item._id}
             key={index}
             name={item.name}
-            percentage={0}
-            price={0}
-            total={0}
+            totalPrice={item.totalNftPrice}
+            lowestPrice={item.lowestNftPrice}
             image={item.image_url}
           />
         ))}
@@ -147,7 +142,7 @@ export default function TopCollections(): JSX.Element {
     </div>
   ) : (
     <div className={css.message}>
-      <p>{t("unauthenticated.title")}</p>
+      <p>{t('unauthenticated.title')}</p>
       <Link href={`/${locale}/signin`}>
         <Button className={css.coloredBtn} variant={'default'}>
           {t('unauthenticated.btn')}
