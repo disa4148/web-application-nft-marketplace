@@ -2,7 +2,7 @@
 import css from './miniNft.module.scss';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
-import useFormatNumber from '@/shared/lib/hooks/useFormatNumber';
+import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
 import Link from 'next/link';
 
 type Props = {
@@ -25,7 +25,7 @@ export default function MiniNft({
   const formatTotalPrice = useFormatNumber(totalPrice);
   const formatLowestPrice = useFormatNumber(lowestPrice);
   return (
-    <Link href={`/${locale}/${id}`} className={css.wrapper}>
+    <Link href={`/${locale}/collections/${id}`} className={css.wrapper}>
       <div className={css.image}>
         <Image src={`${image}`} alt="NFT" width={65} height={60} />
       </div>

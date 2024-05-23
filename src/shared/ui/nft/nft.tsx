@@ -2,9 +2,10 @@ import css from './nft.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import {useFormatNumber} from '@/shared/lib/hooks/useFormatNumber';
 
 type Props = {
-  imageCatalog: string;
+  image: string;
   name: string;
   price: number;
   total: number;
@@ -14,10 +15,12 @@ export default function Nft({
   name,
   price,
   total,
-  imageCatalog,
+  image,
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.card');
   const [isHovered, setIsHovered] = useState(false);
+
+  const formatPrice = useFormatNumber(price)
   return (
     <div
       className={css.wrapper}
@@ -26,7 +29,7 @@ export default function Nft({
     >
       <div>
         <Image
-          src={`/assets/forTest/${imageCatalog}`}
+          src={image}
           alt="NFT"
           width={237}
           height={154}
@@ -38,7 +41,7 @@ export default function Nft({
             <h3 className={css.nameNft}>{name}</h3>
           </div>
           <div className={css.priceBlock}>
-            <h4>{price}</h4>
+            <h4>{formatPrice}</h4>
             <span>ETH</span>
           </div>
         </div>
@@ -55,7 +58,7 @@ export default function Nft({
         ) : (
           <div className={css.lastSale}>
             <span>{t('lastSale')}</span>
-            <h4>{total}</h4>
+            <h4>{formatPrice}</h4>
             <span>ETH</span>
           </div>
         )}

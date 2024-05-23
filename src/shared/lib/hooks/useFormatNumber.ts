@@ -1,24 +1,13 @@
-import { useState, useEffect } from 'react';
+export function useFormatNumber(value: number | string | undefined): number {
+  if (value === null || value === undefined) {
+    return 0;
+  }
 
-function useFormatNumber(value: number | string ): string {
-  const [formattedValue, setFormattedValue] = useState<string>('');
+  const num = typeof value === 'string' ? parseFloat(value) : value;
 
-  useEffect(() => {
-    if (value === null || value === undefined) {
-      setFormattedValue('0');  
-      return;
-    }
-
-    const num = typeof value === 'string' ? parseFloat(value) : value;
-
-    if (!isNaN(num)) {
-      setFormattedValue(num.toFixed(4));  
-    } else {
-      setFormattedValue('0'); 
-    }
-  }, [value]);
-
-  return formattedValue;
+  if (!isNaN(num)) {
+    return parseFloat(num.toFixed(4));
+  } else {
+    return 0;
+  }
 }
-
-export default useFormatNumber;

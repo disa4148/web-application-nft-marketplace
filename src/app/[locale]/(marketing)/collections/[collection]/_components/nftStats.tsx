@@ -9,10 +9,11 @@ type Owners = {
 type Props = {
     volume: number
     minPrice: number
+    bestOffer: number
     owners: Owners
 }
  
-export default function NftStats({ volume, minPrice, owners }: Props): JSX.Element {
+export default function NftStats({ volume, minPrice, owners, bestOffer }: Props): JSX.Element {
   const t = useTranslations('catalogNft');
   return (
     <div className={css.fullInfo}>
@@ -25,7 +26,7 @@ export default function NftStats({ volume, minPrice, owners }: Props): JSX.Eleme
         <p>{t('minPrice')}</p>
       </div>
       <div className={css.offer}>
-        <p>0.0236 ETH</p>
+        <p>{bestOffer} ETH</p>
         <p>{t('offer')}</p>
       </div>
       <div className={css.owners}>

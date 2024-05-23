@@ -14,7 +14,25 @@ export interface Collection {
   lowestNftPrice: number;
 }
 
-export interface CollectionResponse {
+export interface NftItems {
+  _id: string;
+  name: string;
+  description: string | null;
+  image_url: string;
+  collectionId: string;
+  price: number;
+  owner: string;
+  id: string;
+}
+
+export interface CollectionsResponse {
   data: Collection[];
   total: number;
 }
+
+export interface CollectionResponse {
+  collection: Collection;
+  data: NftItems[];
+  total: number;
+}
+

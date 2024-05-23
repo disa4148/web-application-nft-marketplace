@@ -39,17 +39,13 @@
         "over": "You have displayed the entire list of available collections"
       },
       "select": {
-        "popular": {
-          "title": "Popular",
-          "value": "Popular"
+        "marketCap": {
+          "title": "Capitalization",
+          "value": "market_cap"
         },
-        "inTime": {
-          "title": "In Time",
-          "value": "inTime"
-        },
-        "alphabetically": {
-          "title": "Alphabetically",
-          "value": "alphabetically"
+        "numOwners": {
+          "title": "Number of owners",
+          "value": "num_owners"
         }
       },
       "sortingBar": {
