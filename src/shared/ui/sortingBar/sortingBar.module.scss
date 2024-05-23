@@ -21,7 +21,7 @@
 
 .active {
   background-color: var(--bg-active-b);
-  animation: appearance 1s forwards;
+  animation: appearance 2s forwards;
 }
 
 .skeletonPc {
@@ -31,7 +31,7 @@
 }
 
 @keyframes appearance {
-  0% {
+  100% {
     opacity: 0;
   }
   100% {
