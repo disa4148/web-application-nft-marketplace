@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import css from './miniNft.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -21,39 +21,47 @@ export default function MiniNft({
   const t = useTranslations('home.topCollections.cards');
   return (
     <div className={css.wrapper}>
-      <div className={css.leftItems}>
-        <Image
-          src={`${image}`}
-          alt="NFT"
-          width={65}
-          height={60}
-        />
+      <div className={css.image}>
+        <Image src={`${image}`} alt="NFT" width={65} height={60} />
       </div>
-      <div className={css.middleItems}>
+      <div className={css.content}>
+        <div className={css.info}>
+          <div className={css.name}>
+            <h3>{name}</h3>
+            <Image
+              src={'/assets/icons/verified.svg'}
+              alt="Verified"
+              width={11}
+              height={11}
+            />
+          </div>
+          <div className={css.price}>
+            <h4>{t('price')}</h4>
+            <h4>{price} ETH</h4>
+          </div>
+        </div>
+        <div className={css.priceInfo}>
+          <h4>{total} ETH</h4>
+          <p>+{percentage}%</p>
+        </div>
+      </div>
+      {/* <div className={css.middleItems}>
         <div>
           <h3>{name}</h3>
-          <Image
-            src={'/assets/icons/verified.svg'}
-            alt="Verified"
-            width={11}
-            height={11}
-          />
+         
         </div>
         <div>
-          <h4>{t('price')}</h4>
-          <h4 className={css.price}>{price}</h4>
-          <span>ETH</span>
+          
         </div>
       </div>
       <div className={css.rightItems}>
         <div>
           <h4>{total}</h4>
-          <span>ETH</span>
+          <span></span>
         </div>
         <div>
-          <p>+{percentage}%</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

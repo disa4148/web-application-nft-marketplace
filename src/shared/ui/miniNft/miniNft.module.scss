@@ -1,102 +1,155 @@
 .wrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 25px;
   max-width: 400px;
   width: 100%;
   background-color: var(--text-90-b);
   cursor: pointer;
+  height: 90px;
   border-radius: 20px 20px 10px 10px;
 
-  .leftItems {
+  .image {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--text-100-b);
     padding: 14px;
-    border-radius: 20px 0 0 20px;
+    border-radius: 20px 0px 0px 10px;
+    height: 100%;
   }
 
-  .middleItems {
+  .content {
+    height: 100%;
+    color: white;
+    padding: 10px 15px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: 5px;
-
-    div {
+    .info {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 5px;
-
-      h3 {
-        color: var(--text-100-w);
-        font-size: 15px;
-        font-weight: 400;
-        line-height: 20px;
-
+      .name {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        // max-width: 150px;
         overflow: hidden;
-        max-width: 150px;
+        gap: 12px;
+        text-wrap: nowrap;
         text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
       }
-      h4,
-      span {
-        color: var(--text-70-b);
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 20px;
-      }
-    }
+      .price {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
 
-    div:last-child {
-      .price,
-      span {
-        overflow: hidden;
-        max-width: 60px;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
+        h4 {
+          font-size: 12px;
+          font-weight: 400;
+        }
       }
     }
-  }
-
-  .rightItems {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 14px;
-    gap: 5px;
-    div {
-      h4,
-      p,
-      span {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 20px;
-      }
-      p {
-        color: var(--text-100-g);
-      }
-    }
-    div:first-child {
+    .priceInfo {
       display: flex;
-      align-items: center;
-      gap: 3px;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
 
       h4 {
-        overflow: hidden;
-        max-width: 38px;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
+        font-size: 12px;
+        font-weight: 400;
+      }
+      
+      p {
+        font-size: 12px;
+        font-weight: 400;
       }
     }
   }
+  // .middleItems {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 5px;
+
+  //   div {
+  //     display: flex;
+  //     align-items: center;
+  //     gap: 5px;
+
+  //     h3 {
+  //       color: var(--text-100-w);
+  //       font-size: 15px;
+  //       font-weight: 400;
+  //       line-height: 20px;
+
+  //       overflow: hidden;
+  //       max-width: 150px;
+  //       text-overflow: ellipsis;
+  //       display: -webkit-box;
+  //       -webkit-box-orient: vertical;
+  //       -webkit-line-clamp: 1;
+  //     }
+  //     h4,
+  //     span {
+  //       color: var(--text-70-b);
+  //       font-size: 12px;
+  //       font-weight: 400;
+  //       line-height: 20px;
+  //     }
+  //   }
+
+  //   div:last-child {
+  //     .price,
+  //     span {
+  //       overflow: hidden;
+  //       max-width: 60px;
+  //       text-overflow: ellipsis;
+  //       display: -webkit-box;
+  //       -webkit-box-orient: vertical;
+  //       -webkit-line-clamp: 1;
+  //     }
+  //   }
+  // }
+
+  // .rightItems {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: flex-end;
+  //   align-items: flex-end;
+  //   padding: 14px;
+  //   gap: 5px;
+  //   div {
+  //     h4,
+  //     p,
+  //     span {
+  //       font-size: 12px;
+  //       font-weight: 400;
+  //       line-height: 20px;
+  //     }
+  //     p {
+  //       color: var(--text-100-g);
+  //     }
+  //   }
+  //   div:first-child {
+  //     display: flex;
+  //     align-items: center;
+  //     gap: 3px;
+
+  //     h4 {
+  //       overflow: hidden;
+  //       max-width: 38px;
+  //       text-overflow: ellipsis;
+  //       display: -webkit-box;
+  //       -webkit-box-orient: vertical;
+  //       -webkit-line-clamp: 1;
+  //     }
+  //   }
+  // }
 }
 
 .wrapperSkeleton {
