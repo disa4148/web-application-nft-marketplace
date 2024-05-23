@@ -5,17 +5,18 @@ interface PayoutMethod {
 }
 
 export interface UserData {
+  email: string;
   _id: string;
   login: string;
   balance: number;
   password: string;
+  referal: string;
   payout_method: PayoutMethod;
   block_payout: boolean;
   verification: boolean;
   emoji: string;
   id: string;
 }
-
 
 export const setUserData = (userData: UserData) => {
   localStorage.setItem('userData', JSON.stringify(userData));

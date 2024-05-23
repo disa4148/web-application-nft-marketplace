@@ -18,15 +18,21 @@ import { useEffect, useState } from 'react';
 import { useSignInMutation } from '@/shared/redux/features/authApi';
 import { useRouter } from 'next/navigation';
 import { setToken } from '@/shared/lib/cookie';
-import { setUserData } from '@/shared/lib/localstorage';
+import { UserData, setUserData } from '@/shared/lib/localstorage';
+import { useAuth } from '@/shared/lib/hooks/useAuth';
 
 type FieldErrors = {
   [key: string]: any | undefined;
 };
 
-interface AccessToken {
-  accessToken: string;
-  refreshToken: string;
+type Tokens = {
+  accessToken: string,
+  refreshToken: string
+}
+
+interface ResponseData {
+  tokens: Tokens;
+  user: UserData;
 }
 
 export default function SignInForm(): JSX.Element {
@@ -56,6 +62,7 @@ export default function SignInForm(): JSX.Element {
   const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
   const errors: FieldErrors = form.formState.errors;
   const [auth, { isLoading }] = useSignInMutation();
+  const { updateAuthInfo } = useAuth();
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const payload = {
@@ -65,13 +72,14 @@ export default function SignInForm(): JSX.Element {
     };
     console.log('Payload:', payload);
     try {
-      const response = (await auth(payload).unwrap()) as AccessToken;
+      const response = (await auth(payload).unwrap()) as ResponseData;
       toast.success('Вы успешно авторизовались!');
-      setToken(response.accessToken, response.refreshToken);
-      setUserData
+      setToken(response.tokens.accessToken, response.tokens.refreshToken);
+      setUserData(response.user);
+      updateAuthInfo(response.user, true);
       form.reset();
       router.push(`/`);
-      console.log(response.accessToken);
+      console.log(response.tokens.accessToken);
     } catch (e: any) {
       if (e.data && e.data.message) {
         toast.error(e.data.message);
