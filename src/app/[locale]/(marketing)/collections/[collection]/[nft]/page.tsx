@@ -3,6 +3,7 @@ import css from './nft.module.scss';
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useGetNftQuery } from '@/shared/redux/features/nftApi';
 
 import Page from '@/shared/containers/page';
 import Image from 'next/image';
@@ -18,8 +19,16 @@ interface Tab {
   content: React.ReactNode;
 }
 
-export default function NftCard(): JSX.Element {
+export default function NftCard({ params }: { params: { collection: string } }) {
   const t = useTranslations('nftCard');
+
+  const { data: nftData, isSuccess } = useGetNftQuery({
+    nftId : params.collection
+  });
+  if (isSuccess) {
+    console.log("НФТ Дата: ", nftData)
+
+  }
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const changeTab = (index: number) => {

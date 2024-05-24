@@ -26,11 +26,7 @@ type Option = {
   label: string;
 };
 
-export default function CatalogNft({
-  params,
-}: {
-  params: { collection: string };
-}) {
+export default function CatalogNft({ params }: { params: { collection: string } }) {
   const t = useTranslations('home.topCollections');
   const [count, setCount] = useState<number>(10);
 
@@ -94,7 +90,7 @@ export default function CatalogNft({
                   <Dropdown options={selectItems} onSelect={handleSelect} />
                 </div>
               </div>
-              <NftForm data={collectionData?.data} />
+              <NftForm idCollection={collection._id} data={collectionData?.data} />
             </div>
             <div className={css.btnMore}>
               <ButtonLoadMore onClick={handleLoadMore}>

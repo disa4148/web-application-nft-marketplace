@@ -7,14 +7,15 @@ import { NftItems } from '@/shared/interfaces/Collection';
 
 type Props = {
   data: NftItems[];
+  idCollection: string;
 };
 
-export default function NftForm({ data }: Props): JSX.Element {
+export default function NftForm({ data, idCollection }: Props): JSX.Element {
   const locale = useLocale();
   return (
     <div className={css.cards}>
       {data.map((item: NftItems, index) => (
-        <Link key={index} href={`/${locale}/nftCard`}>
+        <Link key={index} href={`/${locale}/collections/${idCollection}/${item._id}`}>
           <Nft
             name={item.name}
             price={item.price}
