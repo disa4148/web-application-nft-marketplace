@@ -56,6 +56,8 @@ export default function CatalogNft({ params }: { params: { collection: string } 
   const collection = collectionData?.collection;
   const formatLowestPrice = useFormatNumber(collection?.lowestNftPrice);
   const formatOffers = useFormatNumber(collection?.totalNftPrice);
+  const formatCount = useFormatNumber(collection?.totalNftCount)
+
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
 
@@ -77,8 +79,8 @@ export default function CatalogNft({ params }: { params: { collection: string } 
               />
               <div className={css.line}></div>
               <NftStats
-                owners={{ owners: 1828, percentage: 18 }}
-                volume={961}
+                owners={formatCount}
+                volume={formatOffers}
                 minPrice={formatLowestPrice}
                 bestOffer={formatOffers}
               />

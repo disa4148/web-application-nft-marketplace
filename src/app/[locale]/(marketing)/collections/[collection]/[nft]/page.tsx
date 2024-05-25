@@ -14,6 +14,8 @@ import OwnerCard from './_components/ownerCard/OwnerCard';
 import Offers from './_components/tabs/offers/Offers';
 import PriceHistory from './_components/tabs/priceHistory/PriceHistory';
 
+import { NftItem } from '@/shared/interfaces/Nft';
+
 interface Tab {
   label: string;
   content: React.ReactNode;
@@ -27,8 +29,8 @@ export default function NftCard({ params }: { params: { collection: string } }) 
   });
   if (isSuccess) {
     console.log("НФТ Дата: ", nftData)
-
   }
+  
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const changeTab = (index: number) => {
@@ -40,13 +42,18 @@ export default function NftCard({ params }: { params: { collection: string } }) 
     { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
   ];
 
+
+  // const data = nftData?.data
+  // const data = nftData?.data.map((item: NftItem, index: number) => ())
+
   return (
     <Page padding>
       <div className={css.wrapper}>
-        <div className={css.top}>
+     { nftData?.data.map((item: NftItem, index: number) => (
+        <div className={css.top} key={index}>
           <div className={css.leftItems}>
             <Image
-              src={'/assets/forTest/cardNft.png'}
+              src={item.image_url}
               alt="nft"
               width={442}
               height={442}
@@ -54,10 +61,10 @@ export default function NftCard({ params }: { params: { collection: string } }) 
           </div>
           <div className={css.rightItems}>
             <InfoContainer
-              title="Telegram Username"
-              description="NFT, который посвящен аватару в вашем телеграмм аккаунте. Приобрести можно на этой странице"
+              title={item.name}
+              description={item.description}
             />
-            <PriceContainer price={1000} />
+            <PriceContainer price={item.price} />
             <div className={css.tabsContainer}>
               <div className={css.tabs}>
                 {tabs.map((tab, index) => (
@@ -81,14 +88,15 @@ export default function NftCard({ params }: { params: { collection: string } }) 
                 verified
               />
               <OwnerCard
-                img="owner.png"
+                img={item.owner.emoji}
                 title={t('ownerBlock.owner')}
-                content="PidorasMP3"
+                content={item.owner.name}
                 verified={false}
               />
             </div>
           </div>
         </div>
+))}
         <div className={css.tabsContent}>{tabs[activeTab].content}</div>
       </div>
     </Page>
