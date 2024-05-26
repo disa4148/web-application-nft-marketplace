@@ -19,16 +19,11 @@ interface Tab {
   content: React.ReactNode;
 }
 
-export default function NftCard({ params }: { params: { collection: string } }) {
+export default function NftCard({ params }: { params: { nft: string } }) {
   const t = useTranslations('nftCard');
 
-  const { data: nftData, isSuccess } = useGetNftQuery({
-    nftId : params.collection
-  });
-  if (isSuccess) {
-    console.log("НФТ Дата: ", nftData)
+  const { data: nftData, isSuccess } = useGetNftQuery({ nftId: params.nft });
 
-  }
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const changeTab = (index: number) => {
@@ -39,58 +34,62 @@ export default function NftCard({ params }: { params: { collection: string } }) 
     { label: t('tabs.offers.title'), content: <Offers /> },
     { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
   ];
-
-  return (
-    <Page padding>
-      <div className={css.wrapper}>
-        <div className={css.top}>
-          <div className={css.leftItems}>
-            <Image
-              src={'/assets/forTest/cardNft.png'}
-              alt="nft"
-              width={442}
-              height={442}
-            />
-          </div>
-          <div className={css.rightItems}>
-            <InfoContainer
-              title="Telegram Username"
-              description="NFT, который посвящен аватару в вашем телеграмм аккаунте. Приобрести можно на этой странице"
-            />
-            <PriceContainer price={1000} />
-            <div className={css.tabsContainer}>
-              <div className={css.tabs}>
-                {tabs.map((tab, index) => (
-                  <div
-                    key={index}
-                    className={`${css.tabLabel} ${
-                      index === activeTab ? css.activeTab : ''
-                    }`}
-                    onClick={() => changeTab(index)}
-                  >
-                    <h4>{tab.label}</h4>
-                  </div>
-                ))}
+  if (isSuccess && nftData) {
+    return (
+      <Page padding>
+        <div className={css.wrapper}>
+          <div className={css.top}>
+            <div className={css.leftItems}>
+              <Image
+                src={nftData.image_url}
+                alt="nft"
+                width={442}
+                height={442}
+              />
+            </div>
+            <div className={css.rightItems}>
+              <InfoContainer
+                title={nftData.name}
+                description={nftData.description}
+              />
+              <PriceContainer price={nftData.price} />
+              <div className={css.tabsContainer}>
+                <div className={css.tabs}>
+                  {tabs.map((tab, index) => (
+                    <div
+                      key={index}
+                      className={`${css.tabLabel} ${
+                        index === activeTab ? css.activeTab : ''
+                      }`}
+                      onClick={() => changeTab(index)}
+                    >
+                      <h4>{tab.label}</h4>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={css.ownerWrapper}>
+                <OwnerCard
+                  img={nftData.collectionId.image_url}
+                  title={t('ownerBlock.collection')}
+                  content={nftData.collectionId.name}
+                  verified
+                />
+                <OwnerCard
+                  // img="owner.png"
+                  title={t('ownerBlock.owner')}
+                  content={nftData.owner.name}
+                  verified={false}
+                />
               </div>
             </div>
-            <div className={css.ownerWrapper}>
-              <OwnerCard
-                img="tgNft.png"
-                title={t('ownerBlock.collection')}
-                content="Telegram Usernames"
-                verified
-              />
-              <OwnerCard
-                img="owner.png"
-                title={t('ownerBlock.owner')}
-                content="PidorasMP3"
-                verified={false}
-              />
-            </div>
           </div>
+          <div className={css.tabsContent}>{tabs[activeTab].content}</div>
         </div>
-        <div className={css.tabsContent}>{tabs[activeTab].content}</div>
-      </div>
-    </Page>
-  );
+      </Page>
+    );
+  }
+  else {
+    <p>сука</p>
+  }
 }

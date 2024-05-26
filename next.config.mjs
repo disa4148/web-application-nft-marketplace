@@ -13,7 +13,8 @@ const nextConfig = {
       'api.memeland.com',
       'www.larvalabs.com',
       'metadata.degods.com',
-      'api.pudgypenguins.io'
+      'api.pudgypenguins.io',
+      'captainz-api.memeland.com'
     ],
   },
 };

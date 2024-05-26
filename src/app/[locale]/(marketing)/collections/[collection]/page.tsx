@@ -35,6 +35,7 @@ export default function CatalogNft({ params }: { params: { collection: string } 
     count: count,
     offset: 1,
   });
+  console.log("НФТ Коллекция:",collectionData);
   const keys: string[] = ['select.marketCap', 'select.numOwners'];
   const selectItems: Option[] = keys.map((key) => ({
     value: t(`${key}.value`),
@@ -58,7 +59,7 @@ export default function CatalogNft({ params }: { params: { collection: string } 
   const formatOffers = useFormatNumber(collection?.totalNftPrice);
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
-
+  
   if (isSuccess && collection) {
     return (
       <Page>

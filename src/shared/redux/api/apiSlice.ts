@@ -21,7 +21,6 @@ const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://nft.levpidoor.ru/',
-  // credentials: 'include',
   prepareHeaders: (headers) => {
     const token = getAccessToken();
     if (token) {
@@ -36,15 +35,24 @@ const baseQueryWithReauth: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
+  console.log('BaseQuery args:', args); // Add this for debugging
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
+
   if (result.error && result.error.status === 401) {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
       try {
         const refreshToken = getRefreshToken();
+        if (!refreshToken) {
+          console.error('No refresh token found');
+          removeToken();
+          return result;
+        }
+
+        console.log('Refreshing token with refreshToken:', refreshToken); // Add this for debugging
         const refreshResult = await baseQuery(
-          { url: 'auth/refresh', method: 'GET', body: { refreshToken } },
+          { url: 'auth/refresh', method: 'GET', headers: { refreshToken } },
           api,
           extraOptions,
         );
@@ -53,7 +61,7 @@ const baseQueryWithReauth: BaseQueryFn<
           const data: RefreshResultData =
             refreshResult.data as RefreshResultData;
 
-          setToken(data.accessToken, '');
+          setToken(data.accessToken, refreshToken); // Ensure both tokens are set correctly
           result = await baseQuery(args, api, extraOptions);
         } else {
           console.error('ERROR REFRESH TOKEN');

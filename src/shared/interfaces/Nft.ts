@@ -1,29 +1,4 @@
-export interface Owner {
-  _id: string;
-  name: string;
-  emoji: string;
-  __v: number;
-}
-
-export interface PriceHistory {
-  _id: string;
-  nftId: string;
-  price: number;
-  date: string;
-  expires: string;
-  __v: number;
-}
-
-export interface Offer {
-  _id: string;
-  nftId: string;
-  owner: Owner;
-  price: number;
-  expires: string;
-  __v: number;
-}
-
-export interface Collection {
+export interface CollectionId {
   _id: string;
   name: string;
   description: string;
@@ -33,27 +8,84 @@ export interface Collection {
   sort: string;
   createdAt: string;
   updatedAt: string;
-  __v: number;
-  totalNftCount: number;
-  totalNftPrice: number;
-  lowestNftPrice: number;
+  id: string;
 }
 
-export interface NftItem {
+export interface Owner {
   _id: string;
   name: string;
-  description: string | null;
-  image_url: string;
-  collectionId: Collection;
-  price: number;
-  owner: Owner;
-  pricehistory: PriceHistory[];
+  emoji: string;
   __v: number;
 }
 
-export interface NftResponse {
-  collection: Collection;
-  data: NftItem[];
+export interface PriceHistory {
+  price: number;
+  date: string;
+}
+
+export interface Offer {
+  owner: Owner;
+  price: number;
+  expires: string;
+}
+
+export interface NftResponse  {
+  _id: string;
+  name: string;
+  description: string;
+  image_url: string;
+  collectionId: CollectionId;
+  price: number;
+  __v: number;
+  owner: Owner;
+  pricehistory: PriceHistory[];
   offers: Offer[];
   isFavorite: boolean;
 }
+
+// from schema
+
+// export interface Owner {
+//   _id: string;
+//   name: string;
+//   emoji: string;
+//   __v: number;
+// }
+
+// export interface Collection {
+//   _id: string;
+//   name: string;
+//   description: string;
+//   image_url: string;
+//   banner_image_url: string;
+//   collection: string;
+//   sort: string;
+//   createdAt: string;
+//   updatedAt: string;
+//   id: string;
+// }
+
+// export interface PriceHistory {
+//   price: number;
+//   date: string;
+// }
+
+// export interface Offer {
+//   owner: Owner;
+//   price: number;
+//   expires: string;
+// }
+
+// export interface NftResponse {
+//   _id: string;
+//   name: string;
+//   description: string;
+//   image_url: string;
+//   collectionId: Collection;
+//   price: number;
+//   __v: number;
+//   owner: Owner;
+//   pricehistory: PriceHistory[];
+//   offers: Offer[];
+//   isFavorite: boolean;
+// }

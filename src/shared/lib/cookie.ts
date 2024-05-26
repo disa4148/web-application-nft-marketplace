@@ -26,7 +26,9 @@ export const setToken = (accessToken: string, refreshToken: string) => {
 
 export const getAccessToken = () => cookies.get('accessToken');
 
-export const getRefreshToken = () => cookies.get('refreshToken');
+export const getRefreshToken = (): string | null => {
+  return cookies.get('refreshToken') || null;
+};
 
 export const removeToken = () => {
   cookies.remove('accessToken', { path: '/', secure: true, sameSite: 'none' });
@@ -37,5 +39,6 @@ export const removeToken = () => {
     httpOnly: true,
   });
 };
+
 export const removeUserData = () =>
   cookies.remove('UserData', { path: '/', secure: true, sameSite: 'none' });

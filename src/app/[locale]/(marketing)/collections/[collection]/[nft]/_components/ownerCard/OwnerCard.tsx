@@ -2,7 +2,7 @@ import css from './OwnerCard.module.scss';
 import Image from 'next/image';
 
 type Props = {
-  img: string;
+  img?: string;
   title: string;
   content: string;
   verified: boolean;
@@ -18,7 +18,7 @@ export default function OwnerCard({
     <div className={css.wrapper}>
       <div className={css.item}>
         <Image
-          src={`/assets/forTest/${img}`}
+          src={`${img || '/assets/forTest/owner.png'}  `}
           width={45}
           height={45}
           alt="NFT"
