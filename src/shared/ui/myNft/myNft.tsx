@@ -8,6 +8,7 @@ type Props = {
   price: number;
 };
 
+
 export default function MyCollections({
   name,
   price,
