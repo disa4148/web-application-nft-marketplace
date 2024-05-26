@@ -5,7 +5,7 @@ import { Heart } from 'lucide-react';
 
 type Props = {
   title: string;
-  description: string;
+  description: string | null;
 };
 
 export default function InfoContainer({

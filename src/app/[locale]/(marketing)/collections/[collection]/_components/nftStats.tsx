@@ -1,16 +1,12 @@
 import css from '../page.module.scss';
 import { useTranslations } from 'next-intl';
 
-type Owners = {
-    owners: number;
-    percentage: number
-}
 
 type Props = {
     volume: number
     minPrice: number
     bestOffer: number
-    owners: Owners
+    owners: number;
 }
  
 export default function NftStats({ volume, minPrice, owners, bestOffer }: Props): JSX.Element {
@@ -30,7 +26,7 @@ export default function NftStats({ volume, minPrice, owners, bestOffer }: Props)
         <p>{t('offer')}</p>
       </div>
       <div className={css.owners}>
-        <p>{owners.owners} ({owners.percentage}%)</p>
+        <p>{owners}</p>
         <p>{t('owners')}</p>
       </div>
     </div>
