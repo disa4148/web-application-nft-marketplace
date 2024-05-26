@@ -1,4 +1,4 @@
-import css from './MyNft.module.scss';
+import css from './myNft.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
