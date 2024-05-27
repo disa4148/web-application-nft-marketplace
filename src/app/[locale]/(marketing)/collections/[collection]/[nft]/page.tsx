@@ -51,6 +51,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
               <InfoContainer
                 title={nftData.name}
                 description={nftData.description}
+                nftId={nftData._id}
               />
               <PriceContainer price={nftData.price} />
               <div className={css.tabsContainer}>
