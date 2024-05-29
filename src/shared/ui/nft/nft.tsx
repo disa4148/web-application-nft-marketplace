@@ -37,13 +37,12 @@ export default function Nft({ name, price, total, image }: Props): JSX.Element {
         </div>
         {isHovered ? (
           <div className={css.lastSaleButton}>
-            {' '}
             <button
               onClick={() => console.log('сука саня не кликается нехуя')}
               className={css.buyButton}
             >
               {t('buy')}
-            </button>{' '}
+            </button>
           </div>
         ) : (
           <div className={css.lastSale}>

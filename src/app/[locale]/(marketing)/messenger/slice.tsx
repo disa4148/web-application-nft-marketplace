@@ -6,7 +6,9 @@ import SenderCard from './_components/senderCard/senderCard';
 import Support from './_components/support/Support';
 
 import Page from '@/shared/containers/page';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useGetChatsQuery } from '@/shared/redux/features/messangerApi';
+import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 type Props = {
   children: React.ReactNode;
@@ -14,6 +16,7 @@ type Props = {
 
 export default function MessengerSlice({ children }: Props): JSX.Element {
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
+  const { data, isLoading } = useGetChatsQuery();
 
   const handleSetActiveChat = (chatId: string) => {
     setActiveChatId(chatId);
@@ -22,18 +25,25 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     <Page padding>
       <div className={css.wrapper}>
         <div className={css.chats}>
-          {dialoguesItems.map((item, index) => (
-            <SenderCard
-              key={index}
-              name={item.name}
-              avatar={item.avatar}
-              lastMessage={item.message}
-              idChat={item.chatId}
-              isActive={item.chatId === activeChatId}
-              onClick={() => handleSetActiveChat(item.chatId)}
-            />
-          ))}
           <Support />
+          {!isLoading ? (
+            data &&
+            data.map((item: any, index: number) => (
+              <SenderCard
+                key={index}
+                name={item.name}
+                avatar={item.avatar}
+                lastMessage={item.message}
+                idChat={item.chatId}
+                isActive={item.chatId === activeChatId}
+                onClick={() => handleSetActiveChat(item.chatId)}
+              />
+            ))
+          ) : (
+            <div className="h-full w-full flex justify-center items-center">
+              <LoadingSpinner />
+            </div>
+          )}
         </div>
         <div className={css.dialogues}>{children}</div>
       </div>
