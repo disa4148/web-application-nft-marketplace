@@ -60,12 +60,22 @@
 @media (max-width: 680px) {
   .wrapper {
     justify-content: center;
-  .dialogues,
-  .welcome {
-    display: none;
-  }
-  .chats {
-    max-width: max-content;
+    .dialogues,
+    .welcome {
+      display: none;
+    }
+    .chats {
+      max-width: max-content;
+    }
   }
 }
+
+.welcomeWrapper {
+  background: #000;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
 }
