@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux';
 
 const HeaderLayout = () => {
   const isSignedIn = useSelector((state: RootState) => state.auth.isSignedIn);
-  return <>{isSignedIn ? <Authorized /> : <Unauthorized />}</>;
+  const user = useSelector((state: RootState) => state.auth.user);
+
+  return <>{isSignedIn && user ? <Authorized user={user}/> : <Unauthorized />}</>;
 };
 
 export default HeaderLayout;
