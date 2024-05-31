@@ -2,6 +2,7 @@
 import css from './Dropdowns.module.scss';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import useLogout from '@/shared/lib/hooks/useLogout';
 
 import { cn } from '@/shared/lib/utils';
 
@@ -13,6 +14,7 @@ import { Button } from '@/shared/ui/button';
 
 export default function ProfileDropdown(): JSX.Element {
   const t = useTranslations('header.dropdown.profileMenu');
+  const logout = useLogout();
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -59,7 +61,7 @@ export default function ProfileDropdown(): JSX.Element {
               {t('myCollection.title')}
             </Link>
           </div>
-          <div className={css.item}>
+          <div onClick={logout} className={css.item}>
             <div className={css.icon}>
               <LogOut color="#5763D0" width={20} height={20} />
             </div>

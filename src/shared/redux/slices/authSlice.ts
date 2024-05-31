@@ -23,10 +23,14 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.isSignedIn = action.payload.isSignedIn;
     },
+    logout: (state) => {
+      state.user = null;
+      state.isSignedIn = false;
+    },
   },
 });
 
-export const { setAuthInfo } = authSlice.actions;
+export const { setAuthInfo, logout } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 

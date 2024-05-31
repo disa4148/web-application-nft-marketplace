@@ -26,6 +26,9 @@
           "title": "Exit Profile"
         }
       }
+    },
+    "messages": {
+      "logout": "You have successfully logged out of your account!"
     }
   },
   "home": {
