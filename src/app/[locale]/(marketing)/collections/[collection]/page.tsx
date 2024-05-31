@@ -26,7 +26,11 @@ type Option = {
   label: string;
 };
 
-export default function CatalogNft({ params }: { params: { collection: string } }) {
+export default function CatalogNft({
+  params,
+}: {
+  params: { collection: string };
+}) {
   const t = useTranslations('home.topCollections');
   const [count, setCount] = useState<number>(10);
 
@@ -35,7 +39,7 @@ export default function CatalogNft({ params }: { params: { collection: string } 
     count: count,
     offset: 1,
   });
-  console.log("НФТ Коллекция:",collectionData);
+  console.log('НФТ Коллекция:', collectionData);
   const keys: string[] = ['select.marketCap', 'select.numOwners'];
   const selectItems: Option[] = keys.map((key) => ({
     value: t(`${key}.value`),
@@ -53,56 +57,56 @@ export default function CatalogNft({ params }: { params: { collection: string } 
       setCount((prevCount) => prevCount + 10);
     }
   };
-  
+
   const collection = collectionData?.collection;
   const formatLowestPrice = useFormatNumber(collection?.lowestNftPrice);
   const formatOffers = useFormatNumber(collection?.totalNftPrice);
-  const formatCount = useFormatNumber(collection?.totalNftCount)
-
+  const formatCount = useFormatNumber(collection?.totalNftCount);
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
-  
-  if (isSuccess && collection) {
-    return (
-      <Page>
-        <div className={css.wrapper}>
-          <Banner bannerUrl={collection?.banner_image_url} />
-          <div className={css.blockInfo}>
-            <Avatar AvatarUrl={collection?.image_url} />
-            <div className={css.infoUs}>
-              <NftInfo
-                collectionName={collection?.name}
-                owner={collection?.collection}
-                description={collection?.description}
-                items={collection?.totalNftCount}
-                dateOfCreation={formatDateCreate}
-                network="Ethereum"
-              />
-              <div className={css.line}></div>
-              <NftStats
-                owners={formatCount}
-                volume={formatOffers}
-                minPrice={formatLowestPrice}
-                bestOffer={formatOffers}
-              />
-            </div>
-            <div className={css.blockNft}>
-              <div className={css.searchDrop}>
-                <SearchInputNft />
-                <div className={css.dropDown}>
-                  <Dropdown options={selectItems} onSelect={handleSelect} />
-                </div>
+
+  return (
+    <Page>
+      <div className={css.wrapper}>
+        <Banner bannerUrl={collection?.banner_image_url} />
+        <div className={css.blockInfo}>
+          <Avatar AvatarUrl={collection?.image_url} />
+          <div className={css.infoUs}>
+            <NftInfo
+              collectionName={collection?.name}
+              owner={collection?.collection}
+              description={collection?.description}
+              items={collection?.totalNftCount}
+              dateOfCreation={formatDateCreate}
+              network="Ethereum"
+            />
+            <div className={css.line}></div>
+            <NftStats
+              owners={formatCount}
+              volume={formatOffers}
+              minPrice={formatLowestPrice}
+              bestOffer={formatOffers}
+            />
+          </div>
+          <div className={css.blockNft}>
+            <div className={css.searchDrop}>
+              <SearchInputNft />
+              <div className={css.dropDown}>
+                <Dropdown options={selectItems} onSelect={handleSelect} />
               </div>
-              <NftForm idCollection={collection._id} data={collectionData?.data} />
             </div>
-            <div className={css.btnMore}>
-              <ButtonLoadMore onClick={handleLoadMore}>
-                {t('cards.btn')}
-              </ButtonLoadMore>
-            </div>
+            <NftForm
+              idCollection={collection._id}
+              data={collectionData?.data}
+            />
+          </div>
+          <div className={css.btnMore}>
+            <ButtonLoadMore onClick={handleLoadMore}>
+              {t('cards.btn')}
+            </ButtonLoadMore>
           </div>
         </div>
-      </Page>
-    );
-  }
+      </div>
+    </Page>
+  );
 }

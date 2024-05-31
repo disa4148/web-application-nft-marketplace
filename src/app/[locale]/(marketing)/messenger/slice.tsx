@@ -17,7 +17,7 @@ type Props = {
 export default function MessengerSlice({ children }: Props): JSX.Element {
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const { data, isLoading } = useGetChatsQuery();
-
+  console.log(data);
   const handleSetActiveChat = (chatId: string) => {
     setActiveChatId(chatId);
   };
@@ -31,10 +31,11 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
             data.map((item: any, index: number) => (
               <SenderCard
                 key={index}
-                name={item.name}
-                avatar={item.avatar}
-                lastMessage={item.message}
+                name={item.owner.name}
+                // avatar={item.avatar}
+                lastMessage={item.lastMessage.text}
                 idChat={item.chatId}
+                emoji={item.owner.emoji}
                 isActive={item.chatId === activeChatId}
                 onClick={() => handleSetActiveChat(item.chatId)}
               />

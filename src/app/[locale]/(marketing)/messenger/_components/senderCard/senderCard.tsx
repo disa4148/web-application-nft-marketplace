@@ -4,12 +4,13 @@ import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
 type Props = {
-  avatar: string;
+  avatar?: string;
   name: string;
   lastMessage: string;
   idChat: string;
   isActive?: boolean;
   onClick?: () => void;
+  emoji: string;
 };
 
 export default function SenderCard({
@@ -19,6 +20,7 @@ export default function SenderCard({
   isActive,
   idChat,
   onClick,
+  emoji,
 }: Props): JSX.Element {
   const locale = useLocale();
   return (
@@ -27,6 +29,7 @@ export default function SenderCard({
       className={`${css.wrapper} ${isActive ? css.active : ''}`}
       onClick={onClick}
     >
+      {avatar}
       <Image
         src={`/assets/forTest/${avatar}`}
         width={52}
