@@ -8,8 +8,13 @@ import { Heart, MessageCircleMore, Wallet } from 'lucide-react';
 
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { UserData } from '@/shared/lib/localstorage';
 
-export default function Authorized(): JSX.Element {
+type Props = {
+  user: UserData;
+};
+
+export default function Authorized({ user }: Props): JSX.Element {
   const locale = useLocale();
   const pathname = usePathname();
 
@@ -39,7 +44,7 @@ export default function Authorized(): JSX.Element {
         <div className={css.wallet}>
           <Wallet width={22} height={20} />
           <p>
-            123 <span>ETH</span>
+            {user.balance} <span>ETH</span>
           </p>
         </div>
       </div>
