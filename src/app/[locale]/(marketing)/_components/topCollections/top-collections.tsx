@@ -137,7 +137,7 @@ export default function TopCollections(): JSX.Element {
         ))}
       </div>
       <div className={css.btnMore}>
-        <ButtonLoadMore onClick={handleLoadMore}>
+        <ButtonLoadMore onClick={handleLoadMore} disabled={count >= total}>
           {t('cards.btn')}
         </ButtonLoadMore>
       </div>

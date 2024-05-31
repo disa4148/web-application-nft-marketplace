@@ -16,12 +16,20 @@ type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
   children: React.ReactNode;
+  image: string;
+  title: string;
+  description: string;
+  price: number;
 };
 
 export default function ModalNFtPurchase({
   open,
   setIsOpen,
   children,
+  title,
+  description,
+  image,
+  price
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.modal');
   return (
@@ -33,8 +41,8 @@ export default function ModalNFtPurchase({
             <h1>{t('title')}</h1>
           </DialogTitle>
         </DialogHeader>
-        <ModalNftCard />
-        <ModalNftStats price={1000} networkCommission={0.2} />
+        <ModalNftCard image={image} title={title} description={description} />
+        <ModalNftStats price={price} networkCommission={0.2} />
         <DialogFooter className={css.footer}>
           <Button className={css.button}>{t('button')}</Button>
         </DialogFooter>

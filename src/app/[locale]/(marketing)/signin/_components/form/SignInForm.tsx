@@ -98,8 +98,13 @@ export default function SignInForm(): JSX.Element {
       }
     }
     setIsErrorsShown(false);
-  }, [isErrorsShown]);
+  }, [isErrorsShown, errors]);
 
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={css.form}>
@@ -110,7 +115,7 @@ export default function SignInForm(): JSX.Element {
             return (
               <FormItem>
                 <FormControl>
-                  <Input placeholder={t('input.login')} {...field} />
+                  <Input placeholder={t('input.login')} {...field} onKeyDown={handleKeyPress} />
                 </FormControl>
               </FormItem>
             );
@@ -127,6 +132,7 @@ export default function SignInForm(): JSX.Element {
                   className={css.password}
                   placeholder={t('input.password')}
                   {...field}
+                  onKeyDown={handleKeyPress}
                 />
               </FormControl>
             );

@@ -13,7 +13,7 @@ export default function Authorized(): JSX.Element {
   const locale = useLocale();
   const pathname = usePathname();
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => pathname.startsWith(path);
 
   return (
     <div className={css.authorizedWrapper}>

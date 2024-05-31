@@ -8,6 +8,16 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'nftmedia.parallelnft.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'miladymaker.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'i.seadn.io',
         pathname: '/**',
       },

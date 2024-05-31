@@ -111,6 +111,12 @@ export default function SignUpForm(): JSX.Element {
     setIsErrorsShown(false);
   }, [isErrorsShown, errors]);
 
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  }
+
   return (
     <Form {...form}>
       <form className={css.form} onSubmit={form.handleSubmit(onSubmit)}>
@@ -120,7 +126,7 @@ export default function SignUpForm(): JSX.Element {
           render={({ field }) => {
             return (
               <FormControl>
-                <Input placeholder={t('input.login')} {...field} />
+                <Input placeholder={t('input.login')} {...field} onKeyDown={handleKeyPress} />
               </FormControl>
             );
           }}
@@ -131,7 +137,7 @@ export default function SignUpForm(): JSX.Element {
           render={({ field }) => {
             return (
               <FormControl>
-                <Input type="email" placeholder={t('input.mail')} {...field} />
+                <Input type="email" placeholder={t('input.mail')} {...field} onKeyDown={handleKeyPress} />
               </FormControl>
             );
           }}
@@ -148,6 +154,7 @@ export default function SignUpForm(): JSX.Element {
                     type="password"
                     placeholder={t('input.password')}
                     {...field}
+                    onKeyDown={handleKeyPress}
                   />
                 </FormControl>
               );
@@ -164,6 +171,7 @@ export default function SignUpForm(): JSX.Element {
                     type="password"
                     placeholder={t('input.repeatPassword')}
                     {...field}
+                    onKeyDown={handleKeyPress}
                   />
                 </FormControl>
               );
@@ -176,7 +184,7 @@ export default function SignUpForm(): JSX.Element {
           render={({ field }) => {
             return (
               <FormControl>
-                <Input placeholder={t('input.promocode')} {...field} />
+                <Input placeholder={t('input.promocode')} {...field} onKeyDown={handleKeyPress}/>
               </FormControl>
             );
           }}

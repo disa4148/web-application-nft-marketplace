@@ -88,5 +88,13 @@
     align-items: flex-start;
     justify-content: center;
     gap: 10px;
+    h4 {
+      overflow: hidden;
+      max-width: 280px;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
   }
 }

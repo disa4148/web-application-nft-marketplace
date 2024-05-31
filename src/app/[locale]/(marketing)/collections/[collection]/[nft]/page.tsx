@@ -22,7 +22,11 @@ interface Tab {
 export default function NftCard({ params }: { params: { nft: string } }) {
   const t = useTranslations('nftCard');
 
-  const { data: nftData, isSuccess, isLoading } = useGetNftQuery({ nftId: params.nft });
+  const {
+    data: nftData,
+    isSuccess,
+    isLoading,
+  } = useGetNftQuery({ nftId: params.nft });
 
   const [activeTab, setActiveTab] = useState<number>(0);
 
@@ -53,7 +57,12 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                 description={nftData.description}
                 nftId={nftData._id}
               />
-              <PriceContainer price={nftData.price} />
+              <PriceContainer
+                modalTitle={nftData.name}
+                modalDescription={nftData.description}
+                modalImage={nftData.image_url}
+                price={nftData.price}
+              />
               <div className={css.tabsContainer}>
                 <div className={css.tabs}>
                   {tabs.map((tab, index) => (
@@ -89,8 +98,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
         </div>
       </Page>
     );
-  }
-  else {
-    <p>сука</p>
+  } else {
+    <p>сука</p>;
   }
 }

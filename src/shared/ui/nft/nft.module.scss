@@ -9,7 +9,11 @@
   border-radius: 16.4px;
   background-color: var(--text-90-b);
   cursor: pointer;
-
+  div {
+    img {
+      border-radius: 15px 15px 0 0;
+    }
+  }
   .lastSaleButton {
     display: flex;
     border-radius: 0px 0px 16.4px 16.4px;

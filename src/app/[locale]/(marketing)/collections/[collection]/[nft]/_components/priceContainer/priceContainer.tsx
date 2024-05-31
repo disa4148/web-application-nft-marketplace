@@ -7,9 +7,12 @@ import { useTranslations } from 'next-intl';
 
 type Props = {
   price: number;
+  modalTitle: string;
+  modalDescription: string;
+  modalImage: string;
 };
 
-export default function PriceContainer({ price }: Props): JSX.Element {
+export default function PriceContainer({ modalImage, modalTitle, modalDescription, price }: Props): JSX.Element {
   const t = useTranslations('nftCard.priceBlock');
   return (
     <div className={css.priceContainer}>
@@ -21,7 +24,12 @@ export default function PriceContainer({ price }: Props): JSX.Element {
         </div>
       </div>
       <div className={css.btns}>
-        <ModalTrigger />
+        <ModalTrigger
+          image={modalImage}
+          title={modalTitle}
+          description={modalDescription}
+          price={price}
+        />
         <Button>
           <Image
             src={'/assets/icons/label.svg'}
