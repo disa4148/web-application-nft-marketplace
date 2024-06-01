@@ -132,6 +132,9 @@
       }
     }
   },
+  "favorite": {
+    "empty": "You haven't added NFT to your favorites list yet!"
+  },
   "signUp": {
     "header": {
       "title": "Registration",

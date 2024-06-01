@@ -16,7 +16,6 @@ const HeaderLayout = dynamic(() => import('./HeaderLayout'), {
   loading: () => <LoadingSpinner/>,
 });
 
-
 export default function Header(): JSX.Element {
   const t = useTranslations('header');
   return (

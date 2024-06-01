@@ -46,8 +46,8 @@ export default function FavoritesNft({
 
   const removeNft = async (id:string) => {
     setNfts(nfts.filter(nft => nft.id !== id));
-    const deleteS = await deleteFavorite({nftId:id})
-    console.log(deleteS)
+    const deleteS = await deleteFavorite({nftId:id}).unwrap();
+    console.log("Deletes:",deleteS)
   };
 
 

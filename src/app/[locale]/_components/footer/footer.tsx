@@ -25,8 +25,8 @@ export default function Footer(): JSX.Element {
               target="_blank"
             >
               <Image
-                className={css.hoverImg}
-                src={'/assets/icons/socials/youtube.svg'}
+                className={css.hoverImg} 
+                src={'/assets/icons/socials/youTube.svg'}
                 alt="YouTube"
                 width={26}
                 height={18}

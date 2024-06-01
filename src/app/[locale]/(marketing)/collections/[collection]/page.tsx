@@ -2,8 +2,6 @@
 import css from './page.module.scss';
 import Page from '@/shared/containers/page';
 import { useTranslations } from 'next-intl';
-import SearchInputNft from '@/shared/ui/searchInputNft/search-input-nft';
-import Dropdown from '@/shared/ui/dropdown/dropdown';
 import { useGetCollectionQuery } from '@/shared/redux/features/collectionsApi';
 import { useState } from 'react';
 import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
@@ -11,6 +9,9 @@ import { useFormatDate } from '@/shared/lib/hooks/useFormatDate';
 import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
+import SkeletonAvatar from '@/shared/ui/avatar/skeleton';
+import SkeletonBanner from '@/shared/ui/banner/skeleton';
+import NftInfoSkeleton from './_components/skeletons/nftInfoSkeleton';
 type Option = {
   value: string;
   label: string;
@@ -23,6 +24,7 @@ export default function CatalogNft({
 }) {
   const Banner = dynamic(() => import('@/shared/ui/banner/Banner'), {
     ssr: false,
+    loading: () => <SkeletonBanner/>
   });
   const NftForm = dynamic(() => import('./_components/nftForm/nft-form'), {
     ssr: false,
@@ -32,19 +34,28 @@ export default function CatalogNft({
   });
   const Avatar = dynamic(() => import('@/shared/ui/avatar/Avatar'), {
     ssr: false,
+    loading: () => <SkeletonAvatar/>
   });
   const NftStats = dynamic(() => import('./_components/nftStats'), {
     ssr: false,
   });
+  const SearchInputNft = dynamic(() => import('@/shared/ui/searchInputNft/search-input-nft'), {
+    ssr: false,
+  });
+  const Dropdown = dynamic(() => import('@/shared/ui/dropdown/dropdown'), {
+    ssr: false,
+  });
   const t = useTranslations('home.topCollections');
   const [count, setCount] = useState<number>(10);
+  const [sort, setSort] = useState<string>('market_cap');
 
-  const { data: collectionData, isLoading } = useGetCollectionQuery({
+  const { data, isLoading } = useGetCollectionQuery({
     collectionId: params.collection,
     count: count,
     offset: 1,
   });
-  console.log('НФТ Коллекция:', collectionData);
+
+  console.log('НФТ Коллекция:', data);
   const keys: string[] = ['select.marketCap', 'select.numOwners'];
   const selectItems: Option[] = keys.map((key) => ({
     value: t(`${key}.value`),
@@ -52,29 +63,29 @@ export default function CatalogNft({
   }));
 
   const handleSelect = (option: Option) => {
+    setSort(option.value)
     console.log('Selected option:', option);
   };
 
   const handleLoadMore = () => {
-    if (collectionData && count >= collectionData.total) {
+    if (data && count >= data.total) {
       toast.info(t('messages.over'));
     } else {
       setCount((prevCount) => prevCount + 10);
     }
   };
 
-  const collection = collectionData?.collection;
+  const collection = data?.collection;
   const formatLowestPrice = useFormatNumber(collection?.lowestNftPrice);
   const formatOffers = useFormatNumber(collection?.totalNftPrice);
   const formatCount = useFormatNumber(collection?.totalNftCount);
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
-  const total = collectionData?.total;
+  const total = data?.total;
   return (
     <Page>
       <div className={css.wrapper}>
         <Banner bannerUrl={collection?.banner_image_url} />
-
         <div className={css.blockInfo}>
           <Avatar AvatarUrl={collection?.image_url} />
           <div className={css.infoUs}>
@@ -103,7 +114,7 @@ export default function CatalogNft({
             </div>
             <NftForm
               idCollection={collection?._id}
-              data={collectionData?.data}
+              data={data?.data}
             />
           </div>
           <div className={css.btnMore}>

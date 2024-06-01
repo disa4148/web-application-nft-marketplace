@@ -18,7 +18,6 @@ const TopCollections = dynamic(() => import ('./_components/topCollections/top-c
 
 const UnderHeader = dynamic(() => import ('./_components/underHeader/under-header'), {
   ssr: false,
-  loading: () => <TopCollectionsSkeleton />
 })
 
 export default function Home(): React.ReactElement {

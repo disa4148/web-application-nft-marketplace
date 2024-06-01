@@ -20,8 +20,8 @@ export default async function middleware(req: NextRequest) {
 
   let isSignedIn = false;
 
-    const accessToken = req.cookies.get('accessToken');
-    isSignedIn = accessToken ? true : false;
+  const accessToken = req.cookies.get('accessToken');
+  isSignedIn = accessToken ? true : false;
 
   if (isPublicPage || isSignedIn) {
     return await intlMiddleware(req);

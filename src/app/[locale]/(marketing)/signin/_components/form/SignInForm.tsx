@@ -74,7 +74,7 @@ export default function SignInForm(): JSX.Element {
     console.log('Payload:', payload);
     try {
       const response = (await auth(payload).unwrap()) as ResponseData;
-      toast.success('Вы успешно авторизовались!');
+      toast.success(t('messages.success'));
       setToken(response.tokens.accessToken, response.tokens.refreshToken);
       dispatch(setAuthInfo({user: response.user, isSignedIn:true}))
       form.reset();

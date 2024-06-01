@@ -6,6 +6,17 @@
   row-gap: 15px;
   column-gap: 20px;
   max-width: 1280px;
+
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
 }
 
 @media screen and (max-width: 827px) {

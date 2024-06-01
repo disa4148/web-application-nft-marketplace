@@ -96,6 +96,7 @@ export default function TopCollections(): JSX.Element {
   };
 
   const handleMobileSelect = (option: Option) => {
+    setSort(option.value);
     console.log('Selected option:', option);
   };
 
