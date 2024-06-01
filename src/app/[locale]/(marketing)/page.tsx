@@ -6,16 +6,19 @@ import Title from '@/shared/ui/title/title';
 import ManyNft from './_components/manyNft/many-nft';
 import AboutService from './_components/aboutService/about-service';
 import AboutServiceMobile from './_components/aboutService/about-service-mobile';
-import UnderHeader from './_components/underHeader/under-header';
-import TopCollectionsS from './_components/topCollections/skeleton';
+import TopCollectionsSkeleton from './_components/topCollections/skeleton';
 
 import { useTranslations } from 'next-intl';
-import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import dynamic from 'next/dynamic';
 
 const TopCollections = dynamic(() => import ('./_components/topCollections/top-collections'), {
-ssr: false,
-loading: () => <TopCollectionsS />
+  ssr: false,
+  loading: () => <TopCollectionsSkeleton />
+})
+
+const UnderHeader = dynamic(() => import ('./_components/underHeader/under-header'), {
+  ssr: false,
+  loading: () => <TopCollectionsSkeleton />
 })
 
 export default function Home(): React.ReactElement {
