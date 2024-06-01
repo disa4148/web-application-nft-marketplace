@@ -8,11 +8,16 @@ import { useGetNftQuery } from '@/shared/redux/features/nftApi';
 import Page from '@/shared/containers/page';
 import Image from 'next/image';
 
-import PriceContainer from './_components/priceContainer/priceContainer';
-import InfoContainer from './_components/infoContainer/infoContainer';
-import OwnerCard from './_components/ownerCard/OwnerCard';
-import Offers from './_components/tabs/offers/Offers';
+// import PriceContainer from './_components/priceContainer/priceContainer';
+// import InfoContainer from './_components/infoContainer/infoContainer';
+// import OwnerCard from './_components/ownerCard/OwnerCard';
+// import Offers from './_components/tabs/offers/Offers';
 import PriceHistory from './_components/tabs/priceHistory/PriceHistory';
+import dynamic from 'next/dynamic';
+import SkeletonInfo from './_components/infoContainer/sekeletonInfo';
+import SkeletonPrice from './_components/priceContainer/skeletonPrice';
+import SkeletonOwner from './_components/ownerCard/skeletonOwner';
+import SkeletonOffers from './_components/tabs/offers/skeletonOffers';
 
 interface Tab {
   label: string;
@@ -34,10 +39,31 @@ export default function NftCard({ params }: { params: { nft: string } }) {
     setActiveTab(index);
   };
 
+  const Offers = dynamic(() => import ('./_components/tabs/offers/Offers'), {
+    ssr: false,
+    loading: () => <SkeletonOffers />
+  })
+
   const tabs: Tab[] = [
     { label: t('tabs.offers.title'), content: <Offers /> },
     { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
   ];
+
+  const InfoContainer = dynamic(() => import ('./_components/infoContainer/infoContainer'), {
+    ssr: false,
+    loading: () => <SkeletonInfo />
+  })
+
+  const PriceContainer = dynamic(() => import ('./_components/priceContainer/priceContainer'), {
+    ssr: false,
+    loading: () => <SkeletonPrice />
+  })
+
+  const OwnerCard = dynamic(() => import ('./_components/ownerCard/OwnerCard'), {
+    ssr: false,
+    loading: () => <SkeletonOwner />
+  })
+
   if (isSuccess && nftData) {
     return (
       <Page padding>
@@ -99,7 +125,5 @@ export default function NftCard({ params }: { params: { nft: string } }) {
         </div>
       </Page>
     );
-  } else {
-    <p>сука</p>;
-  }
+  } 
 }
