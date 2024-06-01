@@ -3,15 +3,22 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 type Props = {
-    collectionName: string;
-    owner: string;
-    description: string;
-    items: number;
-    dateOfCreation: string;
-    network: string;
-}
+  collectionName?: string;
+  owner?: string;
+  description?: string;
+  items?: number;
+  dateOfCreation?: string;
+  network?: string;
+};
 
-export default function NftInfo({collectionName, owner, description, items, dateOfCreation, network}: Props): JSX.Element {
+export default function NftInfo({
+  collectionName,
+  owner,
+  description,
+  items,
+  dateOfCreation,
+  network,
+}: Props): JSX.Element {
   const t = useTranslations('catalogNft');
   return (
     <div className={css.users}>

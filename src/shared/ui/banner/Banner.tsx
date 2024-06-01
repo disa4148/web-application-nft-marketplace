@@ -2,14 +2,14 @@ import css from './Banner.module.scss';
 import Image from 'next/image';
 
 type BannerProps = {
-  bannerUrl: string;
+  bannerUrl?: string;
 };
 
 export default function Banner({ bannerUrl }: BannerProps): JSX.Element {
   return (
     <div className={css.banner}>
       <Image
-        src={bannerUrl}
+        src={bannerUrl ? bannerUrl : ''}
         alt={'Banner'}
         layout="fill"
         objectFit="cover"
