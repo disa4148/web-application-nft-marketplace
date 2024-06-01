@@ -22,8 +22,8 @@ export default function Nft({ name, price, total, image }: Props): JSX.Element {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div>
-        <Image src={image} alt="NFT" width={237} height={154} />
+      <div >
+        <Image className='max-w-[236px] h-[236px]' src={image} alt="NFT" width={236} height={236} />
       </div>
       <div className={css.fullBlock}>
         <div className={css.namePrice}>
