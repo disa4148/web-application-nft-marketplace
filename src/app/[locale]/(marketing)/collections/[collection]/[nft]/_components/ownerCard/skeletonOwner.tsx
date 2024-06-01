@@ -11,15 +11,9 @@ export default function SkeletonOwner(): JSX.Element {
           <LoadingSpinner className="max-w-[45px] h-[45px]" />
         </Skeleton>
         <div>
-          <Skeleton style={{
-            width: '55px',
-            height: '15px',
-          }}/>
+          <Skeleton className={css.skeletonTitle}/>
           <div>
-            <Skeleton  style={{
-            width: '150px',
-            height: '20px'
-          }}/>
+            <Skeleton className={css.skeletonContent}/>
           </div>
         </div>
       </div>

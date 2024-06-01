@@ -12,6 +12,9 @@ import dynamic from 'next/dynamic';
 import SkeletonAvatar from '@/shared/ui/avatar/skeleton';
 import SkeletonBanner from '@/shared/ui/banner/skeleton';
 import NftInfoSkeleton from './_components/skeletons/nftInfoSkeleton';
+import NftStatsSkeleton from './_components/skeletons/nftStatsSkeleton';
+import SkeletonSearchInputNft from '@/shared/ui/searchInputNft/skeleton-seatch-input-nft';
+import SkeletonDropDown from '@/shared/ui/dropdown/skeleton';
 type Option = {
   value: string;
   label: string;
@@ -31,6 +34,7 @@ export default function CatalogNft({
   });
   const NftInfo = dynamic(() => import('./_components/nftInfo'), {
     ssr: false,
+    loading: () => <NftInfoSkeleton />
   });
   const Avatar = dynamic(() => import('@/shared/ui/avatar/Avatar'), {
     ssr: false,
@@ -38,12 +42,15 @@ export default function CatalogNft({
   });
   const NftStats = dynamic(() => import('./_components/nftStats'), {
     ssr: false,
+    loading: () => <NftStatsSkeleton />
   });
   const SearchInputNft = dynamic(() => import('@/shared/ui/searchInputNft/search-input-nft'), {
     ssr: false,
+    loading: () => <SkeletonSearchInputNft />
   });
   const Dropdown = dynamic(() => import('@/shared/ui/dropdown/dropdown'), {
     ssr: false,
+    loading: () => <SkeletonDropDown />
   });
   const t = useTranslations('home.topCollections');
   const [count, setCount] = useState<number>(10);
