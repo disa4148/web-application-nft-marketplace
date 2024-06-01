@@ -3,8 +3,8 @@
   flex-direction: column;
   gap: 16.45px;
   max-width: 236px;
-  height: 280px;
-  max-height: 280px;
+  height: 100%;
+  height: 356px;
   width: 100%;
   border-radius: 16.4px;
   background-color: var(--text-90-b);
@@ -12,6 +12,9 @@
 
   div {
     position: relative;
+    .imgNft {
+      border-radius: 15px;
+    }
     .heartBlock {
       max-width: 33px;
       max-height: 33px;
@@ -27,7 +30,7 @@
   .fullBlock {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 10px;
   }
 
   .namePrice {
@@ -38,7 +41,7 @@
   }
 
   .nameNft {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
   }
 
@@ -47,11 +50,11 @@
     gap: 5px;
 
     span {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
     }
     h4 {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
     }
   }
@@ -73,13 +76,13 @@
 @media (max-width: 563px) {
   .wrapper {
     max-width: 200px;
-    height: 244px;
-    max-height: 244px;
+    height: 100%;
 
     .fullBlock {
       gap: 13px;
     }
     .lastSale {
+      padding-bottom: 10px;
       span {
         font-size: 10px;
         font-weight: 300;
@@ -96,8 +99,7 @@
   .wrapper {
     gap: 10px;
     max-width: 160px;
-    height: 183px;
-    max-height: 183px;
+    height: 100%;
 
     .fullBlock {
       gap: 12px;
@@ -114,21 +116,21 @@
 
     .priceBlock {
       span {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 500;
       }
       h4 {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 500;
       }
     }
     .lastSale {
       span {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 300;
       }
       h4 {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 300;
       }
     }
@@ -139,8 +141,7 @@
   .wrapper {
     gap: 10px;
     max-width: 160px;
-    height: 183px;
-    max-height: 183px;
+    height: 100%;
 
     .fullBlock {
       .namePrice {

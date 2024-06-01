@@ -4,38 +4,44 @@ import { useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAddFavoriteMutation, useFetchFavoriteQuery, useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
+import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 type Props = {
   title: string;
   description: string | null;
   nftId: string
+  isFavorite: boolean
 };
 
 export default function InfoContainer({
   title,
   description,
-  nftId
+  nftId,
+  isFavorite
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.infoBlock');
 
-  const [favorite, setFavorite] = useState(false);
-  const [addFavorite, { isLoading: isAdding }] = useAddFavoriteMutation();
-  const { data: favoriteData } = useFetchFavoriteQuery({ nftId });
 
-  useEffect(() => {
-    setFavorite(!!favoriteData); 
-  }, [favoriteData]);
+
+  const [favorite, setFavorite] = useState(isFavorite);
+  const [addFavorite] = useAddFavoriteMutation();
+  const [deleteFavorite] = useDeleteFavoriteMutation()
+  const [loading, setLoading] = useState(false)
+
+
 
   const handleFavoriteClick = async () => {
-    if (isAdding) return; 
-
-    setFavorite(!favorite);
-
-    if (!favorite) {
-      await addFavorite({ nftId });
-      console.log(favoriteData)
-    } else {
-
+    if (favorite) {
+      setLoading(true)
+      setFavorite(false)
+      await deleteFavorite({nftId})
+      setLoading(false)
+    }
+    else {
+      setLoading(true)
+      setFavorite(true)
+      await addFavorite({nftId})
+      setLoading(false)
     }
   };
 
@@ -46,12 +52,14 @@ export default function InfoContainer({
         <div className={css.gradientText}>
           <p>{t('status')}</p>
         </div>
+        {loading ? <LoadingSpinner/> : 
         <Heart
           onClick={handleFavoriteClick}
           color={favorite ? 'red' : 'blue'}
           width={22}
           height={22}
         />
+}
       </div>
       <div className={css.title}>
         <h1>{title}</h1>

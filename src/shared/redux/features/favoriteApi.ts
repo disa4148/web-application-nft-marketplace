@@ -10,7 +10,7 @@ export const favoriteApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    fetchFavorite: builder.query<FavoriteNft, { nftId: string }>({
+    fetchFavorite: builder.query<FavoriteNft[], any>({
       query: () => ({
         url: `api/users/favorite`,
         method: 'GET',
@@ -18,9 +18,8 @@ export const favoriteApi = apiSlice.injectEndpoints({
     }),
     deleteFavorite: builder.mutation<FavoriteNft, {nftId: string}>({
       query: (data) => ({
-        url: `api/users/favorite/${data}`,
+        url: `api/users/favorite/${data.nftId}`,
         method: 'DELETE',
-        body: data
       })
     })
   }),

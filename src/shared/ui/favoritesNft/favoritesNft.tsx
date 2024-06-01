@@ -1,12 +1,34 @@
 import css from './favoritesNft.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { Dispatch, SetStateAction } from 'react';
+import { useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
+
+export interface NftData {
+  _id: string;
+  name: string;
+  description: string | null;
+  image_url: string;
+  collectionId: string;
+  price: number;
+  owner: {
+      _id: string;
+      name: string;
+      emoji: string;
+      __v: number;
+  };
+  id: string;
+}
+
 
 type Props = {
+  id: string;
   imageCatalog: string;
   name: string;
   price: number;
   total: number;
+  setNfts: Dispatch<SetStateAction<NftData[]>>,
+  nfts: NftData[]
 };
 
 export default function FavoritesNft({
@@ -14,14 +36,27 @@ export default function FavoritesNft({
   price,
   total,
   imageCatalog,
+  setNfts,
+  nfts,
+  id
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.card');
+
+  const [deleteFavorite] = useDeleteFavoriteMutation()
+
+  const removeNft = async (id:string) => {
+    setNfts(nfts.filter(nft => nft.id !== id));
+    const deleteS = await deleteFavorite({nftId:id})
+    console.log(deleteS)
+  };
+
 
   return (
     <div className={css.wrapper}>
       <div>
         <Image
-          src={`/assets/forTest/${imageCatalog}`}
+        className={css.imgNft}
+          src={imageCatalog}
           alt="NFT"
           width={237}
           height={154}
@@ -32,6 +67,7 @@ export default function FavoritesNft({
             alt="NFT"
             width={17}
             height={15}
+            onClick={() => removeNft(id)}
           />
         </div>
       </div>
