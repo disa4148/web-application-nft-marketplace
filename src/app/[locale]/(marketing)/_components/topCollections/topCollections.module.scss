@@ -76,6 +76,14 @@
   width: 100%;
 }
 
+@media (max-width: 1360px) {
+  .wrapper {
+    .cards {
+      justify-content: center;
+    }
+  }
+}
+
 @media (max-width: 1355px) {
   .wrapper {
     .backgroundImage {
