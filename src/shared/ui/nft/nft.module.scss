@@ -7,11 +7,12 @@
   width: 100%;
   border-radius: 16.4px;
   background-color: var(--text-90-b);
-  cursor: pointer;
-
-  div {
+  animation: appearance 1s forwards;
+  
+  a {
     img {
       border-radius: 15px 15px 0 0;
+      cursor: pointer;
     }
   }
 
@@ -196,4 +197,13 @@
 }
 .skeleton {
   opacity: 0.6;
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

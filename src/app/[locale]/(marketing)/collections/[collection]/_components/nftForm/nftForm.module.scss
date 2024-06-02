@@ -8,6 +8,54 @@
   max-width: 1280px;
 }
 
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  height: 400px;
+  animation: appearance 1s ease-in-out;
+  h1,
+  h2 {
+    text-align: center;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 18px;
+    color: #979797;
+  }
+}
+
+.blockNft {
+  padding: 50px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  .searchDrop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .dropDown {
+      width: 203px;
+    }
+  }
+}
+
+@media screen and (max-width: 1165px) {
+  .blockNft {
+    .searchDrop {
+      .dropDown {
+        display: none;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 827px) {
   .cards {
     column-gap: 15px;
@@ -45,5 +93,14 @@
     grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
     row-gap: 15px;
     column-gap: 6px;
+  }
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

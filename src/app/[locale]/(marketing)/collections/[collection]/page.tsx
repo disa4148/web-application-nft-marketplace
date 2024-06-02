@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import css from './page.module.scss';
 import Page from '@/shared/containers/page';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useGetCollectionQuery } from '@/shared/redux/features/collectionsApi';
 import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
 import { useFormatDate } from '@/shared/lib/hooks/useFormatDate';
@@ -15,13 +15,8 @@ import SkeletonAvatar from '@/shared/ui/avatar/skeleton';
 import SkeletonBanner from '@/shared/ui/banner/skeleton';
 import NftInfoSkeleton from './_components/skeletons/nftInfoSkeleton';
 import NftStatsSkeleton from './_components/skeletons/nftStatsSkeleton';
-import SkeletonSearchInputNft from '@/shared/ui/searchInputNft/skeleton-seatch-input-nft';
-import SkeletonDropDown from '@/shared/ui/dropdown/skeleton';
-// import NftForm from './_components/nftForm/nft-form';
-import TopCollectionsSkeleton from '../../_components/topCollections/skeleton';
-import NftCardSkeleton from '@/shared/ui/nft/skeleton';
-import { NftItems } from '@/shared/interfaces/Collection';
-import Nft from '@/shared/ui/nft/nft';
+import NftForm from './_components/nftForm/nft-form';
+
 type Option = {
   value: string;
   label: string;
@@ -36,10 +31,7 @@ export default function CatalogNft({
     ssr: false,
     loading: () => <SkeletonBanner />,
   });
-  // const NftForm = dynamic(() => import('./_components/nftForm/nft-form'), {
-  //   ssr: false,
-  //   loading: () => <TopCollectionsSkeleton />
-  // });
+
   const NftInfo = dynamic(() => import('./_components/nftInfo'), {
     ssr: false,
     loading: () => <NftInfoSkeleton />,
@@ -52,36 +44,18 @@ export default function CatalogNft({
     ssr: false,
     loading: () => <NftStatsSkeleton />,
   });
-  const SearchInputNft = dynamic(() => import('@/shared/ui/searchInputNft/search-input-nft'), {
-      ssr: false,
-      loading: () => <SkeletonSearchInputNft />,
-    });
-  const Dropdown = dynamic(() => import('@/shared/ui/dropdown/dropdown'), {
-    ssr: false,
-    loading: () => <SkeletonDropDown />,
-  });
-
-  // const Nft = dynamic(() => import('@/shared/ui/nft/nft'), {
-  //   ssr: false,
-  //   loading: () => <NftCardSkeleton />,
-  // });
 
   const t = useTranslations('home.topCollections');
   const [count, setCount] = useState<number>(10);
   const [sort, setSort] = useState<string>('market_cap');
 
-  const { data, isLoading } = useGetCollectionQuery({
+  const { data } = useGetCollectionQuery({
     collectionId: params.collection,
     count: count,
     offset: 1,
   });
 
   console.log('НФТ Коллекция:', data);
-  const keys: string[] = ['select.marketCap', 'select.numOwners'];
-  const selectItems: Option[] = keys.map((key) => ({
-    value: t(`${key}.value`),
-    label: t(`${key}.title`),
-  }));
 
   const handleSelect = (option: Option) => {
     setSort(option.value);
@@ -102,7 +76,6 @@ export default function CatalogNft({
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
   const total = data?.total;
-  const locale = useLocale();
 
   return (
     <Page>
@@ -127,38 +100,19 @@ export default function CatalogNft({
               bestOffer={formatOffers}
             />
           </div>
-          <div className={css.blockNft}>
-            <div className={css.searchDrop}>
-              <SearchInputNft />
-              <div className={css.dropDown}>
-                <Dropdown options={selectItems} onSelect={handleSelect} />
-              </div>
-            </div>
-            {/* <NftForm
-              idCollection={collection?._id}
-              data={data?.data}
-            /> */}
-            <div className={css.cards}>
-              {data?.data.map((item: NftItems, index: number) => (
-                <Nft
-                  key={index}
-                  href={`/${locale}/collections/${collection?._id}/${item._id}`}
-                  name={item.name}
-                  price={item.price}
-                  total={item.price}
-                  image={item.image_url}
-                />
-              ))}
-            </div>
-          </div>
-          <div className={css.btnMore}>
-            <ButtonLoadMore
-              onClick={handleLoadMore}
-              disabled={count >= (total as number)}
-            >
-              {t('cards.btn')}
-            </ButtonLoadMore>
-          </div>
+          <NftForm
+            handleSelect={handleSelect}
+            idCollection={collection?._id}
+            data={data?.data}
+          />
+        </div>
+        <div className={css.btnMore}>
+          <ButtonLoadMore
+            onClick={handleLoadMore}
+            disabled={count >= (total as number)}
+          >
+            {t('cards.btn')}
+          </ButtonLoadMore>
         </div>
       </div>
     </Page>

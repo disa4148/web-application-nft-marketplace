@@ -74,7 +74,9 @@
       "cards": {
         "price": "Price",
         "btn": "Show more"
-      }
+      },
+      "notFound": "Nothing found for your request!",
+      "more": "Try clicking the 'Show More' button for more NFT cards"
     },
     "moreAboutNft": {
       "title": "More About NFT",

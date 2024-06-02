@@ -23,8 +23,8 @@ export default function Nft({
   const t = useTranslations('catalogNft.card');
   const formatPrice = useFormatNumber(price);
   return (
-    <Link href={href} className={css.wrapper}>
-      <div>
+    <div  className={css.wrapper}>
+      <Link href={href}>
         <Image
           className={cn(css.img, 'max-w-[236px] h-[236px]')}
           src={image}
@@ -32,7 +32,7 @@ export default function Nft({
           width={236}
           height={236}
         />
-      </div>
+      </Link>
       <div className={css.fullBlock}>
         <div className={css.namePrice}>
           <div>
@@ -48,15 +48,15 @@ export default function Nft({
           <h4>{formatPrice}</h4>
           <span>ETH</span>
         </div>
-        <div className={css.lastSaleButton}>
+        <Link href={href} className={css.lastSaleButton}>
           <button
             onClick={() => console.log('Button clicked')}
             className={css.buyButton}
           >
             {t('buy')}
           </button>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
