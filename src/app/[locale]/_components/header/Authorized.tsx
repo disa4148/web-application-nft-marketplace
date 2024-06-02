@@ -48,7 +48,7 @@ export default function Authorized({ user }: Props): JSX.Element {
           </p>
         </div>
       </div>
-      <ProfileDropdown />
+      <ProfileDropdown emoji={user.emoji} />
     </div>
   );
 }

@@ -12,7 +12,12 @@ import { Grid3X3, LogOut } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
 import { Button } from '@/shared/ui/button';
 
-export default function ProfileDropdown(): JSX.Element {
+type Props = {
+  emoji: string;
+}
+
+
+export default function ProfileDropdown({emoji}: Props): JSX.Element {
   const t = useTranslations('header.dropdown.profileMenu');
   const logout = useLogout();
   const locale = useLocale();
@@ -46,9 +51,9 @@ export default function ProfileDropdown(): JSX.Element {
         <Avatar>
           <AvatarImage
             className={isOpen ? 'opacity-50 transition-all' : ''}
-            src="/assets/forTest/cardNft.png"
+            src=""
           />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback style={{fontSize: '25px'}}>{emoji}</AvatarFallback>
         </Avatar>
       </div>
       {isOpen && (

@@ -111,6 +111,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                 />
                 <OwnerCard
                   // img="owner.png"
+                  emoji={nftData.owner.emoji}
                   title={t('ownerBlock.owner')}
                   content={nftData.owner.name}
                   verified={false}

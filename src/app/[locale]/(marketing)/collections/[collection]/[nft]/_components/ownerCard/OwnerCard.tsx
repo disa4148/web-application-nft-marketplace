@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 type Props = {
   img?: string;
+  emoji?: string;
   title: string;
   content: string;
   verified: boolean;
@@ -13,22 +14,33 @@ type Props = {
 
 export default function OwnerCard({
   img,
+  emoji,
   title,
   content,
   verified,
-  idCollection
+  idCollection,
 }: Props): JSX.Element {
   const locale = useLocale();
   return (
-    <Link href={`/${locale}/collections/${idCollection}`} className={css.wrapper}>
+    <Link
+      href={`/${locale}/collections/${idCollection}`}
+      className={css.wrapper}
+    >
       <div className={css.item}>
-        <Image
-          src={`${img || '/assets/forTest/owner.png'}  `}
-          width={45}
-          height={45}
-          alt="NFT"
-          className={css.collectionImg}
-        />
+        {img ? (
+          <Image
+            src={`${img || emoji}`}
+            width={45}
+            height={45}
+            alt="NFT"
+            className={css.collectionImg}
+          />
+        ) : emoji ? (
+          <div className="w-[45px] h-[45px]  rounded-[10px] border-[1px] border-[white] flex justify-center items-center">
+            <p style={{ fontSize: '30px' }}>{emoji}</p>
+          </div>
+        ) : null}
+
         <div>
           <h6>{title}</h6>
           <div>
