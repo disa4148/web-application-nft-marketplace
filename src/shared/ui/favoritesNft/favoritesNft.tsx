@@ -1,8 +1,9 @@
 import css from './favoritesNft.module.scss';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Dispatch, SetStateAction } from 'react';
 import { useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
+import Link from 'next/link';
 
 export interface NftData {
   _id: string;
@@ -12,23 +13,23 @@ export interface NftData {
   collectionId: string;
   price: number;
   owner: {
-      _id: string;
-      name: string;
-      emoji: string;
-      __v: number;
+    _id: string;
+    name: string;
+    emoji: string;
+    __v: number;
   };
   id: string;
 }
 
-
 type Props = {
   id: string;
+  collectionId: string;
   imageCatalog: string;
   name: string;
   price: number;
   total: number;
-  setNfts: Dispatch<SetStateAction<NftData[]>>,
-  nfts: NftData[]
+  setNfts: Dispatch<SetStateAction<NftData[]>>;
+  nfts: NftData[];
 };
 
 export default function FavoritesNft({
@@ -38,29 +39,31 @@ export default function FavoritesNft({
   imageCatalog,
   setNfts,
   nfts,
-  id
+  id,
+  collectionId,
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.card');
+  const locale = useLocale();
+  const [deleteFavorite] = useDeleteFavoriteMutation();
 
-  const [deleteFavorite] = useDeleteFavoriteMutation()
-
-  const removeNft = async (id:string) => {
-    setNfts(nfts.filter(nft => nft.id !== id));
-    const deleteS = await deleteFavorite({nftId:id}).unwrap();
-    console.log("Deletes:",deleteS)
+  const removeNft = async (id: string) => {
+    setNfts(nfts.filter((nft) => nft.id !== id));
+    const deleteS = await deleteFavorite({ nftId: id }).unwrap();
+    console.log('Deletes:', deleteS);
   };
-
 
   return (
     <div className={css.wrapper}>
       <div>
+        <Link href={`/${locale}/collections/${collectionId}/${id}`}>
         <Image
-        className={css.imgNft}
+          className={css.imgNft}
           src={imageCatalog}
           alt="NFT"
           width={237}
           height={154}
         />
+        </Link>
         <div className={css.heartBlock}>
           <Image
             src={`/assets/icons/blueHeart.svg`}
@@ -71,7 +74,7 @@ export default function FavoritesNft({
           />
         </div>
       </div>
-      <div className={css.fullBlock}>
+      <Link href={`/${locale}/collections/${collectionId}/${id}`} className={css.fullBlock}>
         <div className={css.namePrice}>
           <div>
             <h3 className={css.nameNft}>{name}</h3>
@@ -86,7 +89,7 @@ export default function FavoritesNft({
           <h4>{total}</h4>
           <span>ETH</span>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

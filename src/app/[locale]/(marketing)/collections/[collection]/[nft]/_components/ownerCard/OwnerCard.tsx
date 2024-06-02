@@ -1,11 +1,14 @@
+import { useLocale } from 'next-intl';
 import css from './OwnerCard.module.scss';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   img?: string;
   title: string;
   content: string;
   verified: boolean;
+  idCollection?: string;
 };
 
 export default function OwnerCard({
@@ -13,9 +16,11 @@ export default function OwnerCard({
   title,
   content,
   verified,
+  idCollection
 }: Props): JSX.Element {
+  const locale = useLocale();
   return (
-    <div className={css.wrapper}>
+    <Link href={`/${locale}/collections/${idCollection}`} className={css.wrapper}>
       <div className={css.item}>
         <Image
           src={`${img || '/assets/forTest/owner.png'}  `}
@@ -39,6 +44,6 @@ export default function OwnerCard({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

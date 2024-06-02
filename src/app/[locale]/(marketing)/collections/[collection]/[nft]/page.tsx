@@ -107,6 +107,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                   title={t('ownerBlock.collection')}
                   content={nftData.collectionId.name}
                   verified
+                  idCollection={nftData.collectionId._id}
                 />
                 <OwnerCard
                   // img="owner.png"

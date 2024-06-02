@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { getAccessToken } from '@/shared/lib/cookie';
 import { cn } from '@/shared/lib/utils';
 
-export default function NftForm() {
+export default function NftForm(): JSX.Element {
   const t = useTranslations('favorite');
   const [nfts, setNfts] = useState<NftData[]>([]);
   const [isLoadingS, setIsLoading] = useState<boolean>(true);
@@ -46,6 +46,7 @@ export default function NftForm() {
         nfts.map((item: any, index: any) => (
           <FavoritesNft
             id={item._id}
+            collectionId={item.collectionId}
             nfts={nfts}
             setNfts={setNfts}
             key={index}
