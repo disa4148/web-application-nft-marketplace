@@ -1,20 +1,27 @@
 'use client';
+import { useState } from 'react';
 import css from './page.module.scss';
 import Page from '@/shared/containers/page';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useGetCollectionQuery } from '@/shared/redux/features/collectionsApi';
-import { useState } from 'react';
 import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
 import { useFormatDate } from '@/shared/lib/hooks/useFormatDate';
+
 import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
+
 import SkeletonAvatar from '@/shared/ui/avatar/skeleton';
 import SkeletonBanner from '@/shared/ui/banner/skeleton';
 import NftInfoSkeleton from './_components/skeletons/nftInfoSkeleton';
 import NftStatsSkeleton from './_components/skeletons/nftStatsSkeleton';
 import SkeletonSearchInputNft from '@/shared/ui/searchInputNft/skeleton-seatch-input-nft';
 import SkeletonDropDown from '@/shared/ui/dropdown/skeleton';
+// import NftForm from './_components/nftForm/nft-form';
+import TopCollectionsSkeleton from '../../_components/topCollections/skeleton';
+import NftCardSkeleton from '@/shared/ui/nft/skeleton';
+import { NftItems } from '@/shared/interfaces/Collection';
+import Nft from '@/shared/ui/nft/nft';
 type Option = {
   value: string;
   label: string;
@@ -27,31 +34,38 @@ export default function CatalogNft({
 }) {
   const Banner = dynamic(() => import('@/shared/ui/banner/Banner'), {
     ssr: false,
-    loading: () => <SkeletonBanner/>
+    loading: () => <SkeletonBanner />,
   });
-  const NftForm = dynamic(() => import('./_components/nftForm/nft-form'), {
-    ssr: false,
-  });
+  // const NftForm = dynamic(() => import('./_components/nftForm/nft-form'), {
+  //   ssr: false,
+  //   loading: () => <TopCollectionsSkeleton />
+  // });
   const NftInfo = dynamic(() => import('./_components/nftInfo'), {
     ssr: false,
-    loading: () => <NftInfoSkeleton />
+    loading: () => <NftInfoSkeleton />,
   });
   const Avatar = dynamic(() => import('@/shared/ui/avatar/Avatar'), {
     ssr: false,
-    loading: () => <SkeletonAvatar/>
+    loading: () => <SkeletonAvatar />,
   });
   const NftStats = dynamic(() => import('./_components/nftStats'), {
     ssr: false,
-    loading: () => <NftStatsSkeleton />
+    loading: () => <NftStatsSkeleton />,
   });
   const SearchInputNft = dynamic(() => import('@/shared/ui/searchInputNft/search-input-nft'), {
-    ssr: false,
-    loading: () => <SkeletonSearchInputNft />
-  });
+      ssr: false,
+      loading: () => <SkeletonSearchInputNft />,
+    });
   const Dropdown = dynamic(() => import('@/shared/ui/dropdown/dropdown'), {
     ssr: false,
-    loading: () => <SkeletonDropDown />
+    loading: () => <SkeletonDropDown />,
   });
+
+  // const Nft = dynamic(() => import('@/shared/ui/nft/nft'), {
+  //   ssr: false,
+  //   loading: () => <NftCardSkeleton />,
+  // });
+
   const t = useTranslations('home.topCollections');
   const [count, setCount] = useState<number>(10);
   const [sort, setSort] = useState<string>('market_cap');
@@ -70,8 +84,7 @@ export default function CatalogNft({
   }));
 
   const handleSelect = (option: Option) => {
-    setSort(option.value)
-    console.log('Selected option:', option);
+    setSort(option.value);
   };
 
   const handleLoadMore = () => {
@@ -89,6 +102,8 @@ export default function CatalogNft({
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
   const total = data?.total;
+  const locale = useLocale();
+
   return (
     <Page>
       <div className={css.wrapper}>
@@ -119,10 +134,22 @@ export default function CatalogNft({
                 <Dropdown options={selectItems} onSelect={handleSelect} />
               </div>
             </div>
-            <NftForm
+            {/* <NftForm
               idCollection={collection?._id}
               data={data?.data}
-            />
+            /> */}
+            <div className={css.cards}>
+              {data?.data.map((item: NftItems, index: number) => (
+                <Nft
+                  key={index}
+                  href={`/${locale}/collections/${collection?._id}/${item._id}`}
+                  name={item.name}
+                  price={item.price}
+                  total={item.price}
+                  image={item.image_url}
+                />
+              ))}
+            </div>
           </div>
           <div className={css.btnMore}>
             <ButtonLoadMore

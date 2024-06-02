@@ -24,18 +24,11 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
 }
 
-@media (max-width: 1440px) {
-  .skeleton {
-    top: -200px !important;
-  }
-}
-
 @media (max-width: 768px) {
   .banner {
     max-height: 260px;
   }
   .skeleton {
-    top: -130px !important;
     max-height: 260px;
   }
 }
@@ -45,9 +38,6 @@
   .skeleton {
     max-height: 220px;
   }
-  .skeleton {
-    top: -150px !important;
-  }
 }
 
 .skeleton {
@@ -55,5 +45,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  top: -245px;
 }

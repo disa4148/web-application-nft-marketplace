@@ -82,6 +82,12 @@
   border: 1px solid var(--bg-50-b);
   border-radius: 15px;
 
+  div {
+    img {
+      border-radius: 10px;
+    }
+  }
+
   div:last-child {
     display: flex;
     flex-direction: column;

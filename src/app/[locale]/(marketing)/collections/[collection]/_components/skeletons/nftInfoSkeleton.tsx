@@ -1,6 +1,7 @@
 import { Skeleton } from '@/shared/ui/skeleton';
 import css from '../../page.module.scss';
 import { useTranslations } from 'next-intl';
+import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 export default function NftInfoSkeleton(): JSX.Element {
   const t = useTranslations('catalogNft');
@@ -15,7 +16,9 @@ export default function NftInfoSkeleton(): JSX.Element {
         </div>
       </div>
       <div>
-        <Skeleton className={css.skeletonDescription}/>
+        <Skeleton className={css.skeletonDescription}>
+          <LoadingSpinner />
+        </Skeleton>
         <div className={css.underInfo}>
           <div className={css.items}>
             <p>{t('items')}</p>

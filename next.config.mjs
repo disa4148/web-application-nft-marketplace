@@ -8,6 +8,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'files.meebits.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'opepenai.nyc3.digitaloceanspaces.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pixelmon-training-rewards.s3-accelerate.amazonaws.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'nftmedia.parallelnft.com',
         pathname: '/**',
       },
