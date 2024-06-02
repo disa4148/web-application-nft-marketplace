@@ -2,7 +2,10 @@ import { nftItems } from '../../../_components/topCollections/nftItems';
 import css from './nftForm.module.scss';
 import MyCollections from '@/shared/ui/myNft/myNft';
 
-export default function NftForm() {
+// import { useGetMyCollectionQuery } from '@/shared/redux/features/nftApi';
+
+export default function NftForm(): JSX.Element {
+  // const { data: myCollection, error, isLoading } = useGetMyCollectionQuery();
   return (
     <div className={css.cards}>
       {nftItems.map((item, index) => (

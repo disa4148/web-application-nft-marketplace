@@ -226,7 +226,11 @@
         "description": "Most of it will be returned to your wallet"
       },
       "total": "Total:",
-      "button": "Buy"
+      "button": "Buy",
+      "messages": {
+        "success": "You have successfully purchased an NFT",
+        "loading": "Buying NFT..."
+      }
     }
   },
   "nftCard": {

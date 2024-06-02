@@ -81,6 +81,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                 isFavorite={nftData.isFavorite}
               />
               <PriceContainer
+                nftId={nftData._id}
                 modalTitle={nftData.name}
                 modalDescription={nftData.description}
                 modalImage={nftData.image_url}

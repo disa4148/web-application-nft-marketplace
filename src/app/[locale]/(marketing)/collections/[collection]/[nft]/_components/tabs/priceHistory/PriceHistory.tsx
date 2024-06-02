@@ -51,14 +51,7 @@ export default function PriceHistory(): JSX.Element {
                 maxBarSize={24}
                 yAxisId="left"
                 radius={[5, 5, 0, 0]}
-                dataKey="volume"
-                fill="#ffffff"
-              />
-              <Bar
-                maxBarSize={24}
-                yAxisId="right"
-                radius={[5, 5, 0, 0]}
-                dataKey="avgCost"
+                dataKey="price"
                 fill="#ffffff"
               />
             </BarChart>

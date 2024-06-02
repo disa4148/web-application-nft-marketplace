@@ -6,6 +6,7 @@ import Page from '@/shared/containers/page';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import css from './messenger.module.scss';
 import { getAccessToken } from '@/shared/lib/cookie';
+import { useGetChatsQuery } from '@/shared/redux/features/messangerApi';
 
 type Props = {
   children: React.ReactNode;
@@ -13,34 +14,39 @@ type Props = {
 
 export default function MessengerSlice({ children }: Props): JSX.Element {
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
-  const [data, setData] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  // const [data, setData] = useState<any[]>([]);
+  // const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { data, isLoading } = useGetChatsQuery();
 
-  const accessToken = getAccessToken()
-  console.log(accessToken)
+  console.log(data)
+
+
+
+  // const accessToken = getAccessToken()
+  // console.log(accessToken)
  
-  useEffect(() => {
-    fetch('https://nft.levpidoor.ru/api/chat', {
-      headers: {
-        "Content-Type": `application/json`,
-        "Authorization": `Bearer ${accessToken}`
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        setData(data);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        setIsLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://nft.levpidoor.ru/api/chat', {
+  //     headers: {
+  //       "Content-Type": `application/json`,
+  //       "Authorization": `Bearer ${accessToken}`
+  //     },
+  //   })
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       setData(data);
+  //       setIsLoading(false);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //       setIsLoading(false);
+  //     });
+  // }, []);
 
   const handleSetActiveChat = (chatId: string) => {
     setActiveChatId(chatId);
@@ -52,14 +58,14 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
         <div className={css.chats}>
           <Support />
           {!isLoading ? (
+            data &&
             data.map((item: any, index: number) => (
               <SenderCard
                 key={index}
                 name={item.owner.name}
-                // avatar={item.avatar}
+                emoji={item.owner.emoji}
                 lastMessage={item.lastMessage.text}
                 idChat={item.chatId}
-                emoji={item.owner.emoji}
                 isActive={item.chatId === activeChatId}
                 onClick={() => handleSetActiveChat(item.chatId)}
               />
@@ -69,7 +75,7 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
               <LoadingSpinner />
             </div>
           )}
-        </div>
+          </div>
         <div className={css.dialogues}>{children}</div>
       </div>
     </Page>

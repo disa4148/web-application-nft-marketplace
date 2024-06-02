@@ -8,13 +8,14 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 type Props = {
+  nftId: string;
   price: number;
   modalTitle: string;
   modalDescription: string;
   modalImage: string;
 };
 
-export default function PriceContainer({ modalImage, modalTitle, modalDescription, price }: Props): JSX.Element {
+export default function PriceContainer({ modalImage, modalTitle, modalDescription, price, nftId }: Props): JSX.Element {
   const t = useTranslations('nftCard.priceBlock');
   
   const [usdPrice, setUsdPrice] = useState<number | null>(null);
@@ -65,6 +66,7 @@ export default function PriceContainer({ modalImage, modalTitle, modalDescriptio
       </div>
       <div className={css.btns}>
         <ModalTrigger
+          nftId={nftId}
           image={modalImage}
           title={modalTitle}
           description={modalDescription}

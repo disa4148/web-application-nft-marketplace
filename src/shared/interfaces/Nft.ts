@@ -43,6 +43,14 @@ export interface NftResponse  {
   isFavorite: boolean;
 }
 
+export interface MyCollectionResponse {
+  _id: string;
+  userId: string;
+  nft: string;
+  on_sale: boolean;
+  __v: number;
+}
+
 // from schema
 
 // export interface Owner {

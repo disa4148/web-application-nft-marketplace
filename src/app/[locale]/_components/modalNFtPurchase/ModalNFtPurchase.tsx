@@ -1,3 +1,4 @@
+'use client';
 import css from './ModalNFtPurchase.module.scss';
 import {
   Dialog,
@@ -13,7 +14,14 @@ import dynamic from 'next/dynamic';
 import SkeletonNftCard from './_components/skeletons/skeletonNftCard';
 import SkeletonNftStats from './_components/skeletons/skeletonNftStats';
 
+import { useBuyNftMutation } from '@/shared/redux/features/nftApi';
+import { toast } from 'sonner';
+import { useCallback } from 'react';
+import ModalNftStats from './_components/ModalNftStats';
+import { LoadingSpinner } from '@/shared/ui/loading-spinner';
+
 type Props = {
+  nftId: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
   children: React.ReactNode;
@@ -30,19 +38,31 @@ export default function ModalNFtPurchase({
   title,
   description,
   image,
-  price
+  price,
+  nftId,
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.modal');
 
   const ModalNftCard = dynamic(() => import('./_components/ModalNftCard'), {
     ssr: false,
-    loading: () => <SkeletonNftCard />
-  })
+    loading: () => <SkeletonNftCard />,
+  });
 
-  const ModalNftStats = dynamic(() => import('./_components/ModalNftStats'), {
-    ssr: false,
-    loading: () => <SkeletonNftStats />
-  })
+  const [buyNft, { isLoading }] = useBuyNftMutation();
+
+  const handleBuyNft = async () => {
+    toast.loading(t('messages.loading'));
+    try {
+      await buyNft({ nftId }).unwrap();
+      toast.success(t('messages.success'));
+    } catch (e: any) {
+      if (e.data && e.data.message) {
+        toast.error(e.data.message);
+      }
+    } finally {
+      toast.dismiss();
+    }
+  };
 
   return (
     <Dialog modal={true} open={open} onOpenChange={setIsOpen}>
@@ -56,7 +76,9 @@ export default function ModalNFtPurchase({
         <ModalNftCard image={image} title={title} description={description} />
         <ModalNftStats price={price} networkCommission={0.2} />
         <DialogFooter className={css.footer}>
-          <Button className={css.button}>{t('button')}</Button>
+          <Button onClick={handleBuyNft} className={css.button}>
+            {isLoading ? <LoadingSpinner /> : t('button')}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
