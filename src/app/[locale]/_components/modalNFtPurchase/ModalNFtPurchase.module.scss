@@ -96,5 +96,15 @@
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
     }
+
+    .skeletonTitle {
+      width: 150px;
+      height: 20px;
+    }
+
+    .skeletonDescription {
+      width: 120px;
+      height: 16px;
+    }
   }
 }

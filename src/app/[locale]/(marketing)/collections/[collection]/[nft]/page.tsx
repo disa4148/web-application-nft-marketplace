@@ -8,10 +8,6 @@ import { useGetNftQuery } from '@/shared/redux/features/nftApi';
 import Page from '@/shared/containers/page';
 import Image from 'next/image';
 
-// import PriceContainer from './_components/priceContainer/priceContainer';
-// import InfoContainer from './_components/infoContainer/infoContainer';
-// import OwnerCard from './_components/ownerCard/OwnerCard';
-// import Offers from './_components/tabs/offers/Offers';
 import PriceHistory from './_components/tabs/priceHistory/PriceHistory';
 import dynamic from 'next/dynamic';
 import SkeletonInfo from './_components/infoContainer/sekeletonInfo';

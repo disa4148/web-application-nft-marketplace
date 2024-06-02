@@ -8,9 +8,10 @@ import {
   DialogTrigger,
 } from '@/shared/ui/dialog';
 import { useTranslations } from 'next-intl';
-import ModalNftCard from './_components/ModalNftCard';
-import ModalNftStats from './_components/ModalNftStats';
 import { Button } from '@/shared/ui/button';
+import dynamic from 'next/dynamic';
+import SkeletonNftCard from './_components/skeletons/skeletonNftCard';
+import SkeletonNftStats from './_components/skeletons/skeletonNftStats';
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,6 +33,17 @@ export default function ModalNFtPurchase({
   price
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.modal');
+
+  const ModalNftCard = dynamic(() => import('./_components/ModalNftCard'), {
+    ssr: false,
+    loading: () => <SkeletonNftCard />
+  })
+
+  const ModalNftStats = dynamic(() => import('./_components/ModalNftStats'), {
+    ssr: false,
+    loading: () => <SkeletonNftStats />
+  })
+
   return (
     <Dialog modal={true} open={open} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
