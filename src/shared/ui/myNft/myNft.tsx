@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 type Props = {
-  imageCatalog: string;
+  image: string;
   name: string;
   price: number;
 };
@@ -12,7 +12,7 @@ type Props = {
 export default function MyCollections({
   name,
   price,
-  imageCatalog,
+  image,
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.card');
 
@@ -20,7 +20,7 @@ export default function MyCollections({
     <div className={css.wrapper}>
       <div>
         <Image
-          src={`/assets/forTest/${imageCatalog}`}
+          src={`${image}`}
           alt="NFT"
           width={237}
           height={154}

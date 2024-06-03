@@ -2,7 +2,7 @@ import css from './page.module.scss';
 import NftForm from './_components/nftForm/nft-form';
 import Page from '@/shared/containers/page';
 
-export default function MyCollections() {
+export default function MyCollections(): JSX.Element {
   return (
     <Page padding>
       <div className={css.blockInfo}>

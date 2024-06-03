@@ -1,5 +1,6 @@
 import { apiSlice } from '../api/apiSlice';
-import { MyCollectionResponse, NftResponse } from '@/shared/interfaces/Nft';
+import { NftResponse } from '@/shared/interfaces/Nft';
+import { MyCollectionResponse } from '@/shared/interfaces/Marketplace';
 
 export const nftApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
