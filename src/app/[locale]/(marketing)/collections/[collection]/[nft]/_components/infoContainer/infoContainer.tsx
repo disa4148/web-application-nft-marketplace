@@ -3,10 +3,7 @@ import css from './infoContainer.module.scss';
 import { useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
-import {
-  useAddFavoriteMutation,
-  useDeleteFavoriteMutation,
-} from '@/shared/redux/features/favoriteApi';
+import { useAddFavoriteMutation, useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 type Props = {

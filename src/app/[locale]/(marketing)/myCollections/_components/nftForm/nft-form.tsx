@@ -11,6 +11,8 @@ export default function NftForm(): JSX.Element {
       {myCollection?.map((item, index) => (
         <MyCollections
           key={index}
+          nftId={item.nft._id}
+          collectionId={item.nft.collectionId}
           name={item.nft.name}
           price={item.nft.price}
           image={item.nft.image_url}
