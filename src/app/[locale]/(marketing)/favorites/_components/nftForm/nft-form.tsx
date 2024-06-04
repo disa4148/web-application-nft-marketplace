@@ -3,12 +3,15 @@ import css from './nftForm.module.scss';
 import FavoritesNft, { NftData } from '@/shared/ui/favoritesNft/favoritesNft';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { getAccessToken } from '@/shared/lib/cookie';
 import { cn } from '@/shared/lib/utils';
+import { Button } from '@/shared/ui/button';
+import Link from 'next/link';
 
 export default function NftForm(): JSX.Element {
   const t = useTranslations('favorite');
+  const locale = useLocale();
   const [nfts, setNfts] = useState<NftData[]>([]);
   const [isLoadingS, setIsLoading] = useState<boolean>(true);
 
@@ -59,6 +62,11 @@ export default function NftForm(): JSX.Element {
       ) : (
         <div className={cn(css.empty, "absolute w-[100%] grid place-items-center")}>
           <h1>{t('empty')}</h1>
+          <Link href={`/${locale}`}>
+            <Button className={css.coloredBtn} variant={'default'}>
+              {t('button')}
+            </Button>
+          </Link>
         </div>
       )}
     </div>

@@ -9,12 +9,22 @@
 
   .empty {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 15px;
     justify-content: center;
     width: 100%;
     h1 {
-      font-size: 24px;
-      font-weight: 500;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .coloredBtn {
+      background: linear-gradient(
+        152.48deg,
+        rgb(137, 198, 255) -36.244%,
+        rgb(54, 51, 208) 71.781%
+      );
+      padding: 6px 20px;
     }
   }
 }

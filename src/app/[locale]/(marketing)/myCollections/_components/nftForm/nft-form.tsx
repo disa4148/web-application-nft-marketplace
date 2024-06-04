@@ -1,23 +1,40 @@
-'use client'
+'use client';
 import css from './nftForm.module.scss';
 import MyCollections from '@/shared/ui/myNft/myNft';
 
 import { useGetMyCollectionQuery } from '@/shared/redux/features/nftApi';
+import Link from 'next/link';
+import { Button } from '@/shared/ui/button';
+import { useLocale, useTranslations } from 'next-intl';
+import { cn } from '@/shared/lib/utils';
 
 export default function NftForm(): JSX.Element {
-  const { data: myCollection, error, isLoading } = useGetMyCollectionQuery();
+  const { data: myCollection } = useGetMyCollectionQuery();
+  const t = useTranslations('myCollection');
+  const locale = useLocale();
   return (
     <div className={css.cards}>
-      {myCollection?.map((item, index) => (
-        <MyCollections
-          key={index}
-          nftId={item.nft._id}
-          collectionId={item.nft.collectionId}
-          name={item.nft.name}
-          price={item.nft.price}
-          image={item.nft.image_url}
-        />
-      ))}
+      {myCollection && myCollection.length > 0 ? (
+        myCollection.map((item, index) => (
+          <MyCollections
+            key={index}
+            nftId={item.nft._id}
+            collectionId={item.nft.collectionId}
+            name={item.nft.name}
+            price={item.nft.price}
+            image={item.nft.image_url}
+          />
+        ))
+      ) : (
+        <div className={cn(css.empty, "absolute w-[100%] grid place-items-center")}>
+          <h1>{t('empty')}</h1>
+          <Link href={`/${locale}`}>
+            <Button className={css.coloredBtn} variant={'default'}>
+              {t('button')}
+            </Button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

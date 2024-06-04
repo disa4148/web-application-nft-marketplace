@@ -135,7 +135,12 @@
     }
   },
   "favorite": {
-    "empty": "You haven't added NFT to your favorites list yet!"
+    "empty": "You haven't added NFT to your favorites list yet!",
+    "button": "Go to the catalog"
+  },
+  "myCollection": {
+    "empty": "You have not purchased any NFTs yet",
+    "button": "Go to the catalog"
   },
   "signUp": {
     "header": {
