@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import css from './priceContainer.module.scss';
 
 import { Button } from '@/shared/ui/button';
@@ -15,33 +15,41 @@ type Props = {
   modalImage: string;
 };
 
-export default function PriceContainer({ modalImage, modalTitle, modalDescription, price, nftId }: Props): JSX.Element {
+export default function PriceContainer({
+  modalImage,
+  modalTitle,
+  modalDescription,
+  price,
+  nftId,
+}: Props): JSX.Element {
   const t = useTranslations('nftCard.priceBlock');
-  
+
   const [usdPrice, setUsdPrice] = useState<number | null>(null);
   const [rubPrice, setRubPrice] = useState<number | null>(null);
+  const [priceInUsd, setPriceInUsd] = useState<number | null>(null);
+  const [priceInRub, setPriceInRub] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchExchangeRates() {
       try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const response = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,rub',
+        );
         const data = await response.json();
 
-        console.log(data)
-        
-        const usdToEthRate = data.rates.USD; //1 доллар
+        const rates = data['ethereum'];
 
-        console.log(usdToEthRate) 
+        const usdToEthRate = rates.usd; // доллар
+        const usdToRubRate = rates.rub; // курс рубля
 
-        const usdToRubRate = data.rates.RUB; //курс рубля
+        setUsdPrice(usdToEthRate);
+        setRubPrice(usdToRubRate);
 
-        console.log(usdToRubRate)
+        const calculatedPriceInUsd = price * usdToEthRate;
+        const calculatedPriceInRub = price * usdToRubRate;
 
-        const priceInUsd = price / usdToEthRate;
-        const priceInRub = priceInUsd * usdToRubRate;
-
-        setUsdPrice(priceInUsd);
-        setRubPrice(priceInRub);
+        setPriceInUsd(calculatedPriceInUsd);
+        setPriceInRub(calculatedPriceInRub);
       } catch (error) {
         console.error('Error fetching exchange rates:', error);
       }
@@ -50,15 +58,16 @@ export default function PriceContainer({ modalImage, modalTitle, modalDescriptio
     fetchExchangeRates();
   }, [price]);
 
-
   return (
     <div className={css.priceContainer}>
       <div>
         <h5>{t('title')}</h5>
         <div className={css.price}>
           <h2>{price} ETH</h2>
-          {usdPrice !== null && rubPrice !== null ? (
-            <h5>{usdPrice.toFixed(2)} $ ({rubPrice.toFixed(0)} ₽)</h5>
+          {priceInUsd !== null && priceInRub !== null ? (
+            <h5>
+              {priceInUsd.toFixed(2)} $ ({priceInRub.toFixed(0)} ₽)
+            </h5>
           ) : (
             <h5>Loading...</h5>
           )}

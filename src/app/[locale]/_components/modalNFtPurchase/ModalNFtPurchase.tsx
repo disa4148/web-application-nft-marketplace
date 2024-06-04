@@ -55,6 +55,7 @@ export default function ModalNFtPurchase({
     try {
       await buyNft({ nftId }).unwrap();
       toast.success(t('messages.success'));
+      setIsOpen(false)
     } catch (e: any) {
       if (e.data && e.data.message) {
         toast.error(e.data.message);
