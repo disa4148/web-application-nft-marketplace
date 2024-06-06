@@ -202,7 +202,6 @@
       "login": "The login field is required!",
       "password": "The password field is required!",
       "success": "You have successfully authorized!"
-
     }
   },
   "catalogNft": {
@@ -241,15 +240,18 @@
   "nftCard": {
     "infoBlock": {
       "status": {
-        "onSale" : "For sale",
+        "onSale": "On Sale",
         "sold": "Sold",
-        "your": "From your collection"
+        "your": "From Your Collection"
       }
     },
     "priceBlock": {
-      "title": "Market price",
+      "title": "Market Price",
       "buyBtn": "Buy",
-      "offerBtn": "Make Offer"
+      "offerBtn": "Make an Offer",
+      "changePriceBtn": "Change Price",
+      "listForSaleBtn": "List for Sale",
+      "removeBtn": "Remove from Sale"
     },
     "tabs": {
       "offers": {
@@ -268,23 +270,47 @@
     "ownerBlock": {
       "collection": "Collection",
       "owner": "Owner"
-    }
-  },
-  "modals": {
-    "sale": {
-      "title": "Put up for sale",
-      "btn": "Expose",
-      "placeholders": {
-        "inRub": "Price in rubles",
-        "inETH": "Price in ETH"
+    },
+    "modals": {
+      "sale": {
+        "title": "Put Up for Sale",
+        "btn": "List",
+        "placeholders": {
+          "inRub": "Price in Rubles",
+          "inETH": "Price in ETH"
+        },
+        "messages": {
+          "invalidPrice": "The NFT price entered is incorrect",
+          "loading": "Listing the NFT for sale..",
+          "success": "You have successfully listed the NFT for sale!"
+        }
       },
-      "messages": {
-        "invalidPrice": "NFT cost is not entered correctly",
-        "loading": "Putting the NFT on the market...",
-        "success": "You have successfully put NFT up for sale!"
+      "changePrice": {
+        "title": "Change Price",
+        "currentPrice": "Current Price: ",
+        "placeholders": {
+          "inRub": "Price in Rubles",
+          "inETH": "Price in ETH"
+        },
+        "messages": {
+          "invalidPrice": "The NFT price entered is incorrect",
+          "loading": "Changing NFT price..",
+          "success": "You have successfully changed the NFT price!"
+        },
+        "btn": "Change Price"
+      },
+      "deregister": {
+        "title": "Are you sure you want to delist the NFT?",
+        "yes": "Yes, proceed",
+        "no": "No",
+        "messages": {
+          "loading": "Delisting the NFT..",
+          "success": "You have successfully delisted the NFT!"
+        }
       }
     }
   },
+
   "messenger": {
     "support": {
       "name": "Support NFT JET",

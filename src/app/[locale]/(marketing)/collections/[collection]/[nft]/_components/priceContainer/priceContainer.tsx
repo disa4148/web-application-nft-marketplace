@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import SaleModalTrigger from '../saleModal/SaleModalTrigger';
 import ChangePriceModalTrigger from '../changePriceModal/ChangePriceModalTrigger';
+import DeregisterModalTrigger from '../../deregisterModal/DeregisterModalTrigger';
 
 type Props = {
   nftId: string;
@@ -79,9 +80,7 @@ export default function PriceContainer({
           onSale ? (
             <>
             <ChangePriceModalTrigger price={price} nftId={nftId}/>
-            <Button className={css.removeBtn}>
-              {t('removeBtn')}
-            </Button>
+            <DeregisterModalTrigger nftId={nftId}/>
             </>
           ) : (
             <SaleModalTrigger nftId={nftId}/>

@@ -1,0 +1,46 @@
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 580px !important;
+  width: 100%;
+  gap: 30px;
+  overflow: hidden;
+  padding: 40px;
+  .spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .coloredBtn {
+      width: 100%;
+      background: linear-gradient(
+        152.48deg,
+        rgb(137, 198, 255) -36.244%,
+        rgb(54, 51, 208) 71.781%
+      );
+    }
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 33px;
+  }
+}
+
+.removeBtn {
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgb(106, 106, 106) 31.037%,
+      rgb(78, 78, 78) 80.824%
+    );
+  }

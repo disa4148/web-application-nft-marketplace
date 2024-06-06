@@ -11,17 +11,7 @@
     flex-direction: column;
     gap: 5px;
   }
-  .btns {
-    .removeBtn {
-      width: 100%;
-      background: linear-gradient(
-        90deg,
-        rgb(106, 106, 106) 31.037%,
-        rgb(78, 78, 78) 80.824%
-      );
-    }
-    
-  }
+
   div:last-child {
     display: flex;
     align-items: center;
