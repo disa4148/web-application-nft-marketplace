@@ -10,6 +10,7 @@ type Props = {
   content: string;
   verified: boolean;
   idCollection?: string;
+  cursor: boolean;
 };
 
 export default function OwnerCard({
@@ -19,43 +20,54 @@ export default function OwnerCard({
   content,
   verified,
   idCollection,
+  cursor,
 }: Props): JSX.Element {
   const locale = useLocale();
-  return (
+
+  const cardContent = (
+    <div className={css.item}>
+      {img ? (
+        <Image
+          src={`${img || emoji}`}
+          width={45}
+          height={45}
+          alt="NFT"
+          className={css.collectionImg}
+        />
+      ) : emoji ? (
+        <div className="w-[45px] h-[45px] rounded-[10px] border-[1px] border-[white] flex justify-center items-center">
+          <p style={{ fontSize: '30px' }}>{emoji}</p>
+        </div>
+      ) : null}
+
+      <div>
+        <h6>{title}</h6>
+        <div>
+          <h5>{content}</h5>
+          {verified && (
+            <Image
+              alt="Verified"
+              src={'/assets/icons/verified.svg'}
+              width={12}
+              height={12}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  return cursor ? (
     <Link
       href={`/${locale}/collections/${idCollection}`}
       className={css.wrapper}
+      style={{ cursor: 'pointer' }}
     >
-      <div className={css.item}>
-        {img ? (
-          <Image
-            src={`${img || emoji}`}
-            width={45}
-            height={45}
-            alt="NFT"
-            className={css.collectionImg}
-          />
-        ) : emoji ? (
-          <div className="w-[45px] h-[45px]  rounded-[10px] border-[1px] border-[white] flex justify-center items-center">
-            <p style={{ fontSize: '30px' }}>{emoji}</p>
-          </div>
-        ) : null}
-
-        <div>
-          <h6>{title}</h6>
-          <div>
-            <h5>{content}</h5>
-            {verified && (
-              <Image
-                alt="Verified"
-                src={'/assets/icons/verified.svg'}
-                width={12}
-                height={12}
-              />
-            )}
-          </div>
-        </div>
-      </div>
+      {cardContent}
     </Link>
+  ) : (
+    <div className={css.wrapper} style={{ cursor: 'default' }}>
+      {cardContent}
+    </div>
   );
 }

@@ -20,14 +20,19 @@ interface Tab {
   content: React.ReactNode;
 }
 
+
 export default function NftCard({ params }: { params: { nft: string } }) {
+  /**
+   * @dev Only for development!
+   * Later, server data is needed
+   */
+  const isMine = true;
+  const onSale = false;
+
   const t = useTranslations('nftCard');
 
   const {
-    data: nftData,
-    isSuccess,
-    isLoading,
-  } = useGetNftQuery({ nftId: params.nft });
+    data: nftData, isSuccess } = useGetNftQuery({ nftId: params.nft });
 
   const [activeTab, setActiveTab] = useState<number>(0);
 
@@ -75,12 +80,16 @@ export default function NftCard({ params }: { params: { nft: string } }) {
             </div>
             <div className={css.rightItems}>
               <InfoContainer
+                isMine={isMine}
+                onSale={onSale}
                 title={nftData.name}
                 description={nftData.description}
                 nftId={nftData._id}
                 isFavorite={nftData.isFavorite}
               />
               <PriceContainer
+                isMine={isMine}
+                onSale={onSale}
                 nftId={nftData._id}
                 modalTitle={nftData.name}
                 modalDescription={nftData.description}
@@ -109,13 +118,14 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                   content={nftData.collectionId.name}
                   verified
                   idCollection={nftData.collectionId._id}
+                  cursor={true}
                 />
                 <OwnerCard
-                  // img="owner.png"
                   emoji={nftData.owner.emoji}
                   title={t('ownerBlock.owner')}
                   content={nftData.owner.name}
                   verified={false}
+                  cursor={false}
                 />
               </div>
             </div>

@@ -3,7 +3,10 @@ import css from './infoContainer.module.scss';
 import { useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
-import { useAddFavoriteMutation, useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
+import {
+  useAddFavoriteMutation,
+  useDeleteFavoriteMutation,
+} from '@/shared/redux/features/favoriteApi';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 type Props = {
@@ -11,6 +14,8 @@ type Props = {
   description: string | null;
   nftId: string;
   isFavorite: boolean;
+  onSale: boolean;
+  isMine: boolean;
 };
 
 export default function InfoContainer({
@@ -18,6 +23,8 @@ export default function InfoContainer({
   description,
   nftId,
   isFavorite,
+  onSale,
+  isMine,
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.infoBlock');
 
@@ -40,18 +47,20 @@ export default function InfoContainer({
     }
   };
 
+  const status = isMine ? t('status.your') : onSale ? t('status.onSale') : t('status.sold');
+
   return (
     <div className={css.infoContainer}>
       <div className={css.topItems}>
         <div className={css.gradientText}>
-          <p>{t('status')}</p>
+          <p>{status}</p>
         </div>
-        {loading ? (
+        {isMine ? ('') : loading ? (
           <LoadingSpinner />
         ) : (
           <Heart
             onClick={handleFavoriteClick}
-            color={favorite ? 'red' : 'blue'}
+            color={favorite ? 'red' : 'white'}
             width={22}
             height={22}
           />

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import ModalTrigger from '@/app/[locale]/_components/modalNFtPurchase/_components/ModalNftPurchaseTrigger';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
+import SaleModalTrigger from '../saleModal/SaleModalTrigger';
 
 type Props = {
   nftId: string;
@@ -13,6 +14,8 @@ type Props = {
   modalTitle: string;
   modalDescription: string;
   modalImage: string;
+  isMine: boolean;
+  onSale: boolean;
 };
 
 export default function PriceContainer({
@@ -21,11 +24,11 @@ export default function PriceContainer({
   modalDescription,
   price,
   nftId,
+  isMine,
+  onSale
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.priceBlock');
 
-  const [usdPrice, setUsdPrice] = useState<number | null>(null);
-  const [rubPrice, setRubPrice] = useState<number | null>(null);
   const [priceInUsd, setPriceInUsd] = useState<number | null>(null);
   const [priceInRub, setPriceInRub] = useState<number | null>(null);
 
@@ -39,11 +42,8 @@ export default function PriceContainer({
 
         const rates = data['ethereum'];
 
-        const usdToEthRate = rates.usd; // доллар
-        const usdToRubRate = rates.rub; // курс рубля
-
-        setUsdPrice(usdToEthRate);
-        setRubPrice(usdToRubRate);
+        const usdToEthRate = rates.usd;
+        const usdToRubRate = rates.rub;
 
         const calculatedPriceInUsd = price * usdToEthRate;
         const calculatedPriceInRub = price * usdToRubRate;
@@ -74,22 +74,41 @@ export default function PriceContainer({
         </div>
       </div>
       <div className={css.btns}>
-        <ModalTrigger
-          nftId={nftId}
-          image={modalImage}
-          title={modalTitle}
-          description={modalDescription}
-          price={price}
-        />
-        <Button>
-          <Image
-            src={'/assets/icons/label.svg'}
-            alt=""
-            width={15}
-            height={15}
-          />
-          {t('offerBtn')}
-        </Button>
+        {isMine ? (
+          onSale ? (
+            <>
+            <Button>
+              {t('changePriceBtn')}
+            </Button>
+            <Button className={css.removeBtn}>
+              {t('removeBtn')}
+            </Button>
+            </>
+          ) : (
+            <SaleModalTrigger nftId={nftId}/>
+          )
+        ) : (
+          onSale && (
+            <>
+              <ModalTrigger
+                nftId={nftId}
+                image={modalImage}
+                title={modalTitle}
+                description={modalDescription}
+                price={price}
+              />
+              <Button className={css.offerBtn}>
+                <Image
+                  src={'/assets/icons/label.svg'}
+                  alt=""
+                  width={15}
+                  height={15}
+                />
+                {t('offerBtn')}
+              </Button>
+            </>
+          )
+        )}
       </div>
     </div>
   );

@@ -240,10 +240,14 @@
   },
   "nftCard": {
     "infoBlock": {
-      "status": "For Sale"
+      "status": {
+        "onSale" : "For sale",
+        "sold": "Sold",
+        "your": "From your collection"
+      }
     },
     "priceBlock": {
-      "title": "Price",
+      "title": "Market price",
       "buyBtn": "Buy",
       "offerBtn": "Make Offer"
     },
@@ -264,6 +268,21 @@
     "ownerBlock": {
       "collection": "Collection",
       "owner": "Owner"
+    }
+  },
+  "modals": {
+    "sale": {
+      "title": "Put up for sale",
+      "btn": "Expose",
+      "placeholders": {
+        "inRub": "Price in rubles",
+        "inETH": "Price in ETH"
+      },
+      "messages": {
+        "invalidPrice": "NFT cost is not entered correctly",
+        "loading": "Putting the NFT on the market...",
+        "success": "You have successfully put NFT up for sale!"
+      }
     }
   },
   "messenger": {

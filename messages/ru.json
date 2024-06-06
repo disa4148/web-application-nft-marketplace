@@ -239,12 +239,19 @@
   },
   "nftCard": {
     "infoBlock": {
-      "status": "На продаже"
+      "status": {
+        "onSale" : "На продаже",
+        "sold": "Продана",
+        "your": "Из вашей коллекции"
+      }
     },
     "priceBlock": {
-      "title": "Цена",
+      "title": "Цена на рынке",
       "buyBtn": "Купить",
-      "offerBtn": "Свое предложениие"
+      "offerBtn": "Свое предложениие",
+      "changePriceBtn": "Изменить цену",
+      "listForSaleBtn": "Выставить на продажу",
+      "removeBtn": "Убрать с продажи"
     },
     "tabs": {
       "offers": {
@@ -263,6 +270,21 @@
     "ownerBlock": {
       "collection": "Коллекция",
       "owner": "Владелец"
+    },
+    "modals": {
+      "sale": {
+        "title": "Выставить на продажу",
+        "btn": "Выставить",
+        "placeholders": {
+          "inRub": "Цена в рублях",
+          "inETH": "Цена в ETH"
+        },
+        "messages": {
+          "invalidPrice": "Стоимость NFT введена не корректно",
+          "loading": "Выставляем NFT на продажу..",
+          "success": "Вы успешно выставили NFT на продажу!"
+        }
+      }
     }
   },
   "messenger": {
