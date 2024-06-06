@@ -27,7 +27,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
    * Later, server data is needed
    */
   const isMine = true;
-  const onSale = false;
+  const onSale = true;
 
   const t = useTranslations('nftCard');
 

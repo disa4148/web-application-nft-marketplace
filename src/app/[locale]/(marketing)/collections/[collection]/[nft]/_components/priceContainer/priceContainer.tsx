@@ -7,6 +7,7 @@ import ModalTrigger from '@/app/[locale]/_components/modalNFtPurchase/_component
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import SaleModalTrigger from '../saleModal/SaleModalTrigger';
+import ChangePriceModalTrigger from '../changePriceModal/ChangePriceModalTrigger';
 
 type Props = {
   nftId: string;
@@ -77,9 +78,7 @@ export default function PriceContainer({
         {isMine ? (
           onSale ? (
             <>
-            <Button>
-              {t('changePriceBtn')}
-            </Button>
+            <ChangePriceModalTrigger price={price} nftId={nftId}/>
             <Button className={css.removeBtn}>
               {t('removeBtn')}
             </Button>

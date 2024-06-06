@@ -24,6 +24,13 @@ export const nftApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    changeNftPrice: builder.mutation<void, { nftId: string, price: number }>({
+      query: (data) => ({
+        url: `api/marketplace/update-price`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
     getMyCollection: builder.query<MyCollectionResponse[], void>({
       query: () => ({
         url: `api/users/collection`,
@@ -33,4 +40,4 @@ export const nftApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetNftQuery, useBuyNftMutation, useGetMyCollectionQuery, useSaleNftMutation } = nftApi;
+export const { useGetNftQuery, useBuyNftMutation, useGetMyCollectionQuery, useSaleNftMutation, useChangeNftPriceMutation } = nftApi;

@@ -284,6 +284,20 @@
           "loading": "Выставляем NFT на продажу..",
           "success": "Вы успешно выставили NFT на продажу!"
         }
+      },
+      "changePrice": {
+        "title": "Изменить цену",
+        "currentPrice": "Текущая цена: ",
+        "placeholders": {
+          "inRub": "Цена в рублях",
+          "inETH": "Цена в ETH"
+        },
+        "messages": {
+          "invalidPrice": "Стоимость NFT введена не корректно",
+          "loading": "Изменяем цену NFT..",
+          "success": "Вы успешно изменили цену NFT!"
+        },
+        "btn": "Изменить цену"
       }
     }
   },

@@ -1,5 +1,5 @@
 'use client';
-import css from './saleModal.module.scss';
+import css from './changePriceModal.module.scss';
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/ui/button';
 
-import { useSaleNftMutation } from '@/shared/redux/features/nftApi';
+import { useChangeNftPriceMutation } from '@/shared/redux/features/nftApi';
 import { toast } from 'sonner';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import { cn } from '@/shared/lib/utils';
@@ -22,21 +22,23 @@ type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
   children: React.ReactNode;
+  price: number;
 };
 
-export default function SaleModal({
+export default function ChangePriceModal({
   open,
   setIsOpen,
   children,
   nftId,
+  price
 }: Props): JSX.Element {
-  const t = useTranslations('nftCard.modals.sale');
+  const t = useTranslations('nftCard.modals.changePrice');
   const [rubPrice, setRubPrice] = useState<string>('');
   const [ethPrice, setEthPrice] = useState<string>('');
   const [ethToRubRate, setEthToRubRate] = useState<number>(0);
   const [isLoadingRates, setIsLoadingRates] = useState<boolean>(true);
 
-  const [saleNft, { isLoading }] = useSaleNftMutation();
+  const [changePrice, { isLoading }] = useChangeNftPriceMutation();
 
   useEffect(() => {
     async function fetchExchangeRates() {
@@ -58,7 +60,7 @@ export default function SaleModal({
     fetchExchangeRates();
   }, []);
 
-  const handleSaleNft = async () => {
+  const handleChangePrice = async () => {
     const ethPriceNumber = parseFloat(ethPrice);
     if (isNaN(ethPriceNumber)) {
       toast.error(t('messages.invalidPrice'));
@@ -66,7 +68,7 @@ export default function SaleModal({
     }
     toast.loading(t('messages.loading'));
     try {
-      await saleNft({ nftId, price: ethPriceNumber }).unwrap();
+      await changePrice({ nftId, price: ethPriceNumber }).unwrap();
       toast.success(t('messages.success'));
       setIsOpen(false);
     } catch (e: any) {
@@ -115,6 +117,7 @@ export default function SaleModal({
           </div>
         ) : (
           <div className={css.content}>
+            <h2>{t('currentPrice')} {price} ETH</h2>
             <div className={css.inputs}>
               <Input
                 type="number"
@@ -130,7 +133,7 @@ export default function SaleModal({
                 onChange={handleEthChange}
               />
             </div>
-            <Button onClick={handleSaleNft} className={css.btn}>
+            <Button onClick={handleChangePrice} className={css.btn}>
               {isLoading ? <LoadingSpinner /> : t('btn')}
             </Button>
           </div>
