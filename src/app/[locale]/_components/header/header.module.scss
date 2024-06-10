@@ -46,6 +46,8 @@
     gap: 20px;
     .wallet {
       gap: 10px;
+      display: flex;
+      
       p {
         display: flex;
         align-items: center;
@@ -58,7 +60,7 @@
         line-height: 19px;
       }
     }
-    div {
+    .message, .favorite {
       display: flex;
       align-items: center;
       justify-content: center;

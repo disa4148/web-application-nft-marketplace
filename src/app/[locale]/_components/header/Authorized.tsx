@@ -42,7 +42,9 @@ export default function Authorized({ user }: Props): JSX.Element {
             <Heart width={22} height={22} />
           </Link>
         </div>
-          <WalletDropdown balance={user.balance}/>
+        <div className={css.wallet}> 
+          <WalletDropdown  balance={user.balance}/>
+          </div>
         {/* <div className={css.wallet}>
           <Wallet width={22} height={20} />
           <p>

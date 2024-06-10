@@ -7,14 +7,13 @@
   
   .bankItem {
     max-width: 154px;
-    height: 75px;
+    height: 80px;
     background-color: #000;
     border-radius: 20px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     transition: background-color 0.3s;
   }
   
@@ -34,11 +33,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 10px;
   }
   
   .selected {
-    border: 2px solid #4a4aff;
+    border-bottom: 1px solid #4a4aff;
+    border-left: 1px solid #4a4aff;
+    border-right: 1px solid #4a4aff;
   }
 
   

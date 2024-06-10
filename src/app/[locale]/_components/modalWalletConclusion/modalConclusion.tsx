@@ -25,14 +25,14 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export default function ModalReplenish({ open, setIsOpen, children }: Props) {
+export default function ModalConclusion({ open, setIsOpen, children }: Props) {
   return (
     <Dialog modal={true} open={open} onOpenChange={setIsOpen} >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className='max-w-[581px]'>
         <DialogHeader>
           <DialogTitle >
-            <h1>Пополнить</h1>
+            <h1>Вывести</h1>
           </DialogTitle>
         </DialogHeader>
         <SelectBank />

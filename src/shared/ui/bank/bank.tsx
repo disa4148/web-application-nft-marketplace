@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import css from './bank.module.scss'; 
 import Image from 'next/image';
 
@@ -12,12 +12,19 @@ const banks = [
   { title: 'Bitcoin', name: "Bitcoin", img: '/assets/forTest/Btc.svg', value: 'btc' }
 ];
 
-export default function Bank() {
-  const [selectedBank, setSelectedBank] = useState(null);
+interface Props {
+  selectedBank: string;
+  setSelectedBank: any;
+}
 
-  const handleBankClick = (value: any) => {
+export default function Bank({ selectedBank, setSelectedBank }: Props) {
+  const handleBankClick = (value: String) => {
     setSelectedBank(value);
   };
+
+  useEffect(() => {
+    console.log("Банк:", selectedBank);
+  }, [selectedBank]);
 
   return (
     <div className={css.bankSelector}>
@@ -28,11 +35,11 @@ export default function Bank() {
           onClick={() => handleBankClick(bank.value)}
         >
           <div className={css.bankHeader}>
-            <span className='text-[14px]'>{bank.title}</span>
+            <span className='text-sm'>{bank.title}</span>
           </div>
           <div className={css.bankBody}>
             <Image src={bank.img} width={25} height={25} alt='bnk'/>
-            <span className='text-[14px]'>{bank.name}</span>
+            <span className='text-sm'>{bank.name}</span>
           </div>
         </div>
       ))}
