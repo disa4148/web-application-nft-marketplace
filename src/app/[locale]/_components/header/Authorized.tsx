@@ -9,6 +9,7 @@ import { Heart, MessageCircleMore, Wallet } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { UserData } from '@/shared/lib/localstorage';
+import WalletDropdown from './_components/Dropdowns/WalletDropdown';
 
 type Props = {
   user: UserData;
@@ -41,12 +42,13 @@ export default function Authorized({ user }: Props): JSX.Element {
             <Heart width={22} height={22} />
           </Link>
         </div>
-        <div className={css.wallet}>
+          <WalletDropdown balance={user.balance}/>
+        {/* <div className={css.wallet}>
           <Wallet width={22} height={20} />
           <p>
             {user.balance} <span>ETH</span>
           </p>
-        </div>
+        </div> */}
       </div>
       <ProfileDropdown emoji={user.emoji} />
     </div>

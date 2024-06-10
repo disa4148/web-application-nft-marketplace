@@ -71,7 +71,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    div:hover {
+    .message:hover, .favorite:hover {
       opacity: 0.7;
     }
     .message, .favorite {
