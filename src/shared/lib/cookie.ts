@@ -19,7 +19,7 @@ export const setToken = (accessToken: string, refreshToken: string) => {
       path: '/',
       secure: true,
       sameSite: 'none',
-      httpOnly: true,
+      // httpOnly: true,
     });
   }
 };

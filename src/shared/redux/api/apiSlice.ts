@@ -14,7 +14,10 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 
 interface RefreshResultData {
-  accessToken: string;
+  tokens: {
+  accessToken: string,
+  refreshToken:string  
+  };
 }
 
 const mutex = new Mutex();
@@ -52,16 +55,17 @@ const baseQueryWithReauth: BaseQueryFn<
 
         console.log('Refreshing token with refreshToken:', refreshToken); // Add this for debugging
         const refreshResult = await baseQuery(
-          { url: 'auth/refresh', method: 'GET', headers: { refreshToken } },
+          { url: 'api/auth/refresh', method: 'GET', headers: {
+            'refresh-token': `Bearer ${refreshToken}`
+          } },
           api,
           extraOptions,
         );
-
         if (refreshResult.data) {
           const data: RefreshResultData =
             refreshResult.data as RefreshResultData;
 
-          setToken(data.accessToken, refreshToken); // Ensure both tokens are set correctly
+          setToken(data.tokens.accessToken, data.tokens.refreshToken); // Ensure both tokens are set correctly
           result = await baseQuery(args, api, extraOptions);
         } else {
           console.error('ERROR REFRESH TOKEN');
