@@ -28,8 +28,6 @@ export default function SelectBank({
   const handleSubmit = async () => {
     const amountNumber = parseFloat(amount);
 
-    changeTab('examination');
-
     if (isNaN(amountNumber)) {
       console.error('Сумма должна быть числом');
       return;
@@ -44,6 +42,8 @@ export default function SelectBank({
       amount: amountNumber,
       type: selectedBank.value,
     };
+
+    changeTab('examination');
 
     try {
       await createReplenishment(data).unwrap();

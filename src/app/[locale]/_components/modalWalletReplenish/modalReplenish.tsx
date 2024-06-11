@@ -8,12 +8,7 @@ import {
 import { useState } from 'react';
 import SelectBank from './_components/selectBank';
 import Examination from './_components/examination';
-
-interface BankDetails {
-  value: string;
-  name: string;
-  nameExamUp?: string
-}
+import { BankDetails } from '@/shared/ui/bank/bank';
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,7 +32,7 @@ export default function ModalReplenish({ open, setIsOpen, children }: Props) {
   return (
     <Dialog modal={true} open={open} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={activeTab === 'main' ? 'max-w-[583px]' : 'max-w-[383px]'}>
+      <DialogContent className={activeTab === 'main' ? 'max-w-[583px]' : ''}>
         {tabComponents[activeTab]}
       </DialogContent>
     </Dialog>
