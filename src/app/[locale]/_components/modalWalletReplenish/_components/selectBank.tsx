@@ -1,9 +1,9 @@
 import React, { useState, ChangeEvent } from 'react';
 import css from './selectBank.module.scss';
-import Bank, { BankDetails } from "@/shared/ui/bank/bank";
-import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
-import { useCreateReplenishmentMutation } from '@/shared/redux/payment/replenishment'; 
+import Bank, { BankDetails } from '@/shared/ui/bank/bank';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
+import { useCreateReplenishmentMutation } from '@/shared/redux/payment/replenishment';
 import { cn } from '@/shared/lib/utils';
 
 interface Props {
@@ -39,7 +39,6 @@ export default function SelectBank({
       console.error('Банк не выбран');
       return;
     }
-    
 
     const data = {
       amount: amountNumber,
@@ -80,4 +79,3 @@ export default function SelectBank({
     </div>
   );
 }
-``;
