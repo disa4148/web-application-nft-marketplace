@@ -15,39 +15,9 @@ type Props = {
 
 export default function MessengerSlice({ children }: Props): JSX.Element {
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
-  // const [data, setData] = useState<any[]>([]);
-  // const [isLoading, setIsLoading] = useState<boolean>(true);
   const { data, isLoading } = useGetChatsQuery();
 
   console.log(data)
-
-
-
-  // const accessToken = getAccessToken()
-  // console.log(accessToken)
- 
-  // useEffect(() => {
-  //   fetch('https://nft.levpidoor.ru/api/chat', {
-  //     headers: {
-  //       "Content-Type": `application/json`,
-  //       "Authorization": `Bearer ${accessToken}`
-  //     },
-  //   })
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       setData(data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error:', error);
-  //       setIsLoading(false);
-  //     });
-  // }, []);
 
   const handleSetActiveChat = (chatId: string) => {
     setActiveChatId(chatId);
@@ -66,9 +36,9 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
                 name={item.owner.name}
                 emoji={item.owner.emoji}
                 lastMessage={item.lastMessage.text}
-                idChat={item.chatId}
-                isActive={item.chatId === activeChatId}
-                onClick={() => handleSetActiveChat(item.chatId)}
+                idChat={item.lastMessage.chatId}
+                isActive={item.lastMessage.chatId === activeChatId}
+                onClick={() => handleSetActiveChat(item.lastMessage.chatId)}
               />
             ))
           ) : (
