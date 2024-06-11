@@ -5,22 +5,29 @@ import Image from 'next/image';
 import { cn } from '@/shared/lib/utils';
 
 const banks = [
-  { title: 'Bank(Russia)', name: "Интернет-банк оплата", img: '/assets/forTest/Bank.svg', value: 'card' },
-  { title: 'Bank(Ukraine)', name: "Интернет-банк оплата", img: '/assets/forTest/Bank.svg', value: 'card_ua' },
-  { title: 'Bank(Kazakhstan)', name: "Интернет-банк оплата", img: '/assets/forTest/Bank.svg', value: 'card_kz' },
-  { title: 'Ethereum', name: "Ethereum", img: '/assets/forTest/Eth.svg', value: 'eth' },
-  { title: 'USDT', name: "USDT", img: '/assets/forTest/Usdt.svg', value: 'usdt' },
-  { title: 'Bitcoin', name: "Bitcoin", img: '/assets/forTest/Btc.svg', value: 'btc' }
+  { title: 'Bank(Russia)', name: "Интернет-банк\nОплата", nameExamUp: "Интернет-банк", nameExamDw: "Оплата(Russia)", img: '/assets/forTest/Bank.svg', value: 'card' },
+  { title: 'Bank(Ukraine)', name: "Интернет-банк\nОплата", nameExamUp: "Интернет-банк", nameExamDw: "Оплата(Ukraine)", img: '/assets/forTest/Bank.svg', value: 'card_ua' },
+  { title: 'Bank(Kazakhstan)', name: "Интернет-банк\nОплата", nameExamUp: "Интернет-банк", nameExamDw: "Оплата(Kazakhstan)", img: '/assets/forTest/Bank.svg', value: 'card_kz' },
+  { title: 'Ethereum', name: "Ethereum", nameExamUp: "Ethereum", nameExamDw: "",  img: '/assets/forTest/Eth.svg', value: 'eth' },
+  { title: 'USDT', name: "USDT", nameExamUp: "USDT", nameExamDw: "", img: '/assets/forTest/Usdt.svg', value: 'usdt' },
+  { title: 'Bitcoin', name: "Bitcoin", nameExamUp: "Bitcoin", nameExamDw: "", img: '/assets/forTest/Btc.svg', value: 'btc' }
 ];
+          
+export interface BankDetails {
+  value: string;
+  name: string;
+  nameExamUp?: string;
+  nameExamDw?: string
+}
 
 interface Props {
-  selectedBank: string;
-  setSelectedBank: any;
+  selectedBank: BankDetails | null;
+  setSelectedBank: React.Dispatch<React.SetStateAction<BankDetails | null>>;
 }
 
 export default function Bank({ selectedBank, setSelectedBank }: Props) {
-  const handleBankClick = (value: String) => {
-    setSelectedBank(value);
+  const handleBankClick = (value: string, name: string, nameExamUp: string, nameExamDw: string) => {
+    setSelectedBank({ value, name, nameExamUp, nameExamDw });
   };
 
   useEffect(() => {
@@ -32,8 +39,8 @@ export default function Bank({ selectedBank, setSelectedBank }: Props) {
       {banks.map((bank) => (
         <div
           key={bank.value}
-          className={`${cn(css.bankItem, 'bg-1-bg-black-100 hover:bg-1-bg-black-80 transition-all')} ${selectedBank === bank.value ? css.selected : ''}`}
-          onClick={() => handleBankClick(bank.value)}
+          className={`${cn(css.bankItem, 'bg-1-bg-black-100 hover:bg-1-bg-black-80 transition-all')} ${selectedBank?.value === bank.value ? css.selected : ''}`}
+          onClick={() => handleBankClick(bank.value, bank.name, bank.nameExamUp, bank.nameExamDw)}
         >
           <div className={cn(css.bankHeader, 'bg-1-gradient')}>
             <span className='text-sm text-1-text-white-100'>{bank.title}</span>

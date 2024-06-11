@@ -1,41 +1,53 @@
-.wrapper {
-  display: flex;
-  gap: 10px;
-
-  .sending {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-
-    .input {
-      max-width: 186px;
-      border: 1px solid white;
-    }
-
-    .button {
-      width: 100%;
-      max-width: 186px;
-    }
+.page {
+  h1 {
+    font-size: 24px;
   }
-}
 
-
-@media (max-width: 585px) {
   .wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    padding-top: 25px;
+    display: flex;
+    gap: 10px;
 
     .sending {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
 
       .input {
-        max-width: 324px;
+        max-width: 186px;
+        border: 1px solid white;
       }
 
       .button {
         width: 100%;
-        max-width: 324px;
+        max-width: 186px;
+        background: linear-gradient(
+          152.48deg,
+          rgb(137, 198, 255) -36.244%,
+          rgb(54, 51, 208) 71.781%
+        );
+      }
+    }
+  }
+}
+
+@media (max-width: 585px) {
+  .page {
+    .wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+
+      .sending {
+        .input {
+          max-width: 324px;
+        }
+
+        .button {
+          width: 100%;
+          max-width: 324px;
+        }
       }
     }
   }

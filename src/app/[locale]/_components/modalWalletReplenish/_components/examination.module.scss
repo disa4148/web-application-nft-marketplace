@@ -1,0 +1,71 @@
+.page {
+  h1 {
+    font-size: 24px;
+  }
+
+  .wrapper {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+
+    .bank {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        span {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+
+      .inputForm {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        p {
+          font-size: 16px;
+        }
+
+        .infoBlock {
+            display: flex;
+            align-items: center;
+            padding: 7px 0px 7px 15px;
+          background-color: #454545;
+          border-radius: 15px;
+          max-width: 325px;
+          height: 35px;
+        }
+      }
+
+      .button {
+        background: linear-gradient(
+          152.48deg,
+          rgb(137, 198, 255) -36.244%,
+          rgb(54, 51, 208) 71.781%
+        );
+        width: 100%;
+      }
+
+      .message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      
+    }
+  }
+}

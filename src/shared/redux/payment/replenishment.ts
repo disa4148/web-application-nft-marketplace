@@ -1,5 +1,5 @@
 import { apiSlice } from '../api/apiSlice';
-import { Payment } from '@/shared/interfaces/payment';
+import { Payment, PaymentResponse } from '@/shared/interfaces/payment';
 
 export const Replenishment = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,8 +17,14 @@ export const Replenishment = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    queryPaymentId: builder.query<PaymentResponse, {paymentId: string}>({
+      query: ({paymentId}) => ({
+        url: `api/payment/${paymentId}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useCreateReplenishmentMutation, useQueryConclusionMutation } =
+export const { useCreateReplenishmentMutation, useQueryConclusionMutation, useQueryPaymentIdQuery } =
   Replenishment;
