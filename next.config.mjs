@@ -8,6 +8,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'media.levpidoor.ru',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'files.meebits.app',
         pathname: '/**',
       },

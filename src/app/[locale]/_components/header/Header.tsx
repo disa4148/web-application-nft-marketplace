@@ -5,7 +5,8 @@ import dynamic from 'next/dynamic';
 
 import { useTranslations } from 'next-intl';
 
-import Logotype from '@/shared/ui/logotype';
+// import Logotype from '@/shared/ui/logotype';
+import ServerLogotype from '@/shared/ui/serverLogotype';
 import SearchInput from '@/shared/ui/searchInput/search-input';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
@@ -22,7 +23,7 @@ export default function Header(): JSX.Element {
     <header className={cn(css.wrapper)}>
       <div className={css.header}>
         <div className={css.leftItems}>
-          <Logotype style="light" />
+          <ServerLogotype />
         </div>
         <div className={css.rightItems}>
           <div className={css.searchInput}>
