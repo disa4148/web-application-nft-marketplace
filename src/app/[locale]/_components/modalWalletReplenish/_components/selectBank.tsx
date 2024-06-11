@@ -39,6 +39,7 @@ export default function SelectBank({
       console.error('Банк не выбран');
       return;
     }
+    
 
     const data = {
       amount: amountNumber,
