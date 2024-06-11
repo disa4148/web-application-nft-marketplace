@@ -5,7 +5,6 @@
   gap: 20px;
   padding: 20px;
   border-radius: 16px;
-  background-color: var(--text-90-b);
   div:first-child {
     display: flex;
     flex-direction: column;
@@ -19,11 +18,6 @@
     gap: 15px;
     width: 100%;
     button:first-child {
-      background: linear-gradient(
-        152.48deg,
-        rgb(137, 198, 255) -36.244%,
-        rgb(54, 51, 208) 71.781%
-      );
       width: 100%;
     }
     .offerBtn {
@@ -33,7 +27,6 @@
       width: 100%;
 
       border-radius: 15px;
-      background-image: var(--bg-main-gradient);
       background-origin: border-box;
       box-shadow: inset 0 100vw var(--bg-100-b);
       border: 2px solid transparent;

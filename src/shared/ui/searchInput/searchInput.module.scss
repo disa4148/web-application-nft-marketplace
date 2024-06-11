@@ -3,7 +3,6 @@
   align-items: center;
   max-width: 335px;
   width: 100%;
-  background-color: var(--bg-80-b);
   gap: 15px;
   padding: 8px 25px;
   border-radius: 15px;
@@ -15,15 +14,9 @@
 
   input {
     width: 250px;
-    background-color: var(--bg-80-b);
-    color: var(--text-100-w);
     font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     transition: color 0.3s ease;
-  }
-
-  &:hover input::placeholder {
-    color: var(--text-100-w);
   }
 }

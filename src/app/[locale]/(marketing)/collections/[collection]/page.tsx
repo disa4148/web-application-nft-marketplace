@@ -55,8 +55,6 @@ export default function CatalogNft({
     offset: 1,
   });
 
-  console.log('НФТ Коллекция:', data);
-
   const handleSelect = (option: Option) => {
     setSort(option.value);
   };

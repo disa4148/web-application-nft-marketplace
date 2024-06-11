@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import SaleModalTrigger from '../saleModal/SaleModalTrigger';
 import ChangePriceModalTrigger from '../changePriceModal/ChangePriceModalTrigger';
 import DeregisterModalTrigger from '../../deregisterModal/DeregisterModalTrigger';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   nftId: string;
@@ -61,17 +62,17 @@ export default function PriceContainer({
   }, [price]);
 
   return (
-    <div className={css.priceContainer}>
+    <div className={cn(css.priceContainer, 'bg-1-bg-black-90')}>
       <div>
-        <h5>{t('title')}</h5>
+        <h5 className='text-1-text-black-60'>{t('title')}</h5>
         <div className={css.price}>
-          <h2>{price} ETH</h2>
+          <h2 className='text-1-text-white-100'>{price} ETH</h2>
           {priceInUsd !== null && priceInRub !== null ? (
-            <h5>
+            <h5 className='text-1-text-black-60'>
               {priceInUsd.toFixed(2)} $ ({priceInRub.toFixed(0)} ₽)
             </h5>
           ) : (
-            <h5>Loading...</h5>
+            <h5 className='text-1-text-black-60'>Loading...</h5>
           )}
         </div>
       </div>
@@ -95,7 +96,7 @@ export default function PriceContainer({
                 description={modalDescription}
                 price={price}
               />
-              <Button className={css.offerBtn}>
+              <Button className={cn(css.offerBtn, 'text-1-text-white-100 bg-1-gradient')}>
                 <Image
                   src={'/assets/icons/label.svg'}
                   alt=""

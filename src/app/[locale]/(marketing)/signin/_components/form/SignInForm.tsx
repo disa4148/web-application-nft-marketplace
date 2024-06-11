@@ -22,6 +22,7 @@ import { setToken } from '@/shared/lib/cookie';
 import { UserData } from '@/shared/lib/localstorage';
 import { useDispatch } from 'react-redux';
 import { setAuthInfo } from '@/shared/redux/slices/authSlice';
+import { cn } from '@/shared/lib/utils';
 
 type FieldErrors = {
   [key: string]: any | undefined;
@@ -153,7 +154,7 @@ export default function SignInForm(): JSX.Element {
                     />
                     <label
                       htmlFor="terms"
-                      className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-1-text-white-100 text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       {t('input.rememberMe')}
                     </label>
@@ -166,14 +167,14 @@ export default function SignInForm(): JSX.Element {
         <Button
           onClick={() => setIsErrorsShown(true)}
           type="submit"
-          className={css.styleButton}
+          className={'bg-1-gradient'}
           variant={'default'}
         >
           {t('buttonSignIn.text')}{' '}
         </Button>
         <div className={css.linkSignUp}>
-          <h1>{t('linkSignUp.text')}</h1>
-          <Link className={css.link} href={`/${locale}/signup`}>
+          <h1 className='text-1-text-white-100'>{t('linkSignUp.text')}</h1>
+          <Link className={cn(css.link, 'bg-1-gradient')} href={`/${locale}/signup`}>
             {t('linkSignUp.button')}
           </Link>
         </div>

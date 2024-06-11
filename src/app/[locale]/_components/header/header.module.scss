@@ -22,13 +22,7 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      .coloredBtn {
-        background: linear-gradient(
-          152.48deg,
-          rgb(137, 198, 255) -36.244%,
-          rgb(54, 51, 208) 71.781%
-        );
-      }
+  
       img {
         cursor: pointer;
       }
@@ -69,17 +63,11 @@
       padding: 8px 15px;
 
       border-radius: 15px;
-      background-color: var(--bg-80-b);
       cursor: pointer;
       transition: all 0.2s ease;
     }
     .message:hover, .favorite:hover {
       opacity: 0.7;
-    }
-    .message, .favorite {
-      &.active {
-        background: var(--bg-main-gradient);
-      }
     }
   }
 }

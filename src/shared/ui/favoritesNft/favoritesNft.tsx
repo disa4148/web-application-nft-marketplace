@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Dispatch, SetStateAction } from 'react';
 import { useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
 import Link from 'next/link';
+import { cn } from '@/shared/lib/utils';
 
 export interface NftData {
   _id: string;
@@ -53,7 +54,7 @@ export default function FavoritesNft({
   };
 
   return (
-    <div className={css.wrapper}>
+    <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
       <div>
         <Link href={`/${locale}/collections/${collectionId}/${id}`}>
         <Image
@@ -64,7 +65,7 @@ export default function FavoritesNft({
           height={154}
         />
         </Link>
-        <div className={css.heartBlock}>
+        <div className={cn(css.heartBlock, 'bg-1-bg-black-100')}>
           <Image
             src={`/assets/icons/blueHeart.svg`}
             alt="NFT"
@@ -77,17 +78,17 @@ export default function FavoritesNft({
       <Link href={`/${locale}/collections/${collectionId}/${id}`} className={css.fullBlock}>
         <div className={css.namePrice}>
           <div>
-            <h3 className={css.nameNft}>{name}</h3>
+            <h3 className={cn(css.nameNft, 'text-1-text-white-100')}>{name}</h3>
           </div>
           <div className={css.priceBlock}>
-            <h4>{price}</h4>
-            <span>ETH</span>
+            <h4 className='text-1-text-white-100'>{price}</h4>
+            <span className='text-1-text-white-100'>ETH</span>
           </div>
         </div>
         <div className={css.lastSale}>
-          <span>{t('lastSale')}</span>
-          <h4>{total}</h4>
-          <span>ETH</span>
+          <span className='text-1-text-white-100'>{t('lastSale')}</span>
+          <h4 className='text-1-text-white-100'>{total}</h4>
+          <span className='text-1-text-white-100'>ETH</span>
         </div>
       </Link>
     </div>

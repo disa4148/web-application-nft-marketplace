@@ -1,14 +1,13 @@
 'use client';
 import css from './Wallet.module.scss';
 import { useState, useEffect, useRef } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 import { cn } from '@/shared/lib/utils';
 
-import Link from 'next/link';
-
 import { Wallet } from 'lucide-react';
 import Image from 'next/image';
+
 import ModalReplenish from '../../../modalWalletReplenish/modalReplenish';
 import ModalConclusion from '../../../modalWalletConclusion/modalConclusion';
 
@@ -18,7 +17,6 @@ type Props = {
 
 export default function WalletDropdown({ balance }: Props): JSX.Element {
   const t = useTranslations('header.dropdown.profileMenu');
-  const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalReplenish, setIsModalReplenish] = useState<boolean>(false);
@@ -48,17 +46,17 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
   return (
     <div className={css.dropdown} ref={dropdownRef}>
       <div className={css.wallet} onClick={toggleMenu}>
-        <div className={css.wallet}>
+        <div className={cn(css.wallet, 'bg-1-bg-black-80') }>
           <Wallet width={22} height={20} />
           <p>
-            <span>{balance} ETH</span>
+            <span className='text-1-text-white-100'>{balance} ETH</span>
           </p>
         </div>
       </div>
       {isOpen && (
-        <div className={cn(css.content)}>
+        <div className={cn(css.content, 'bg-1-bg-black-80')}>
           <div className={css.replenish} onClick={() => setIsModalReplenish(true)}>
-            <div className={css.backImg}>
+            <div className={cn(css.backImg, 'bg-1-bg-white-100')}>
               <Image
                 alt="wallet"
                 src={'/assets/forTest/plWallet.svg'}
@@ -66,10 +64,10 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
                 height={24}
               />
             </div>
-            <span>Пополнить</span>
+            <span className='text-1-text-white-100 cursor-pointer'>Пополнить</span>
           </div>
           <div className={css.conclusion} onClick={() => setIsModalConclusion(true)}>
-            <div className={css.backImg}>
+            <div className={cn(css.backImg, 'bg-1-bg-white-100')}>
               <Image
                 alt="wallet"
                 src={'/assets/forTest/mnWallet.svg'}
@@ -77,7 +75,7 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
                 height={20}
               />
             </div>
-            <span>Вывести</span>
+            <span className='text-1-text-white-100 cursor-pointer'>Вывести</span>
           </div>
         </div>
       )}
@@ -85,7 +83,6 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
         open={isModalReplenish}
         setIsOpen={setIsModalReplenish}
       ></ModalReplenish>
-
       <ModalConclusion
         open={isModalConclusion}
         setIsOpen={setIsModalConclusion}

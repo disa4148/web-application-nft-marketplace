@@ -15,7 +15,7 @@ export default function SignImage({ style }: Props) {
           width={367}
           height={56}
         />
-        <p>NFT Marketplace</p>
+        <p className='text-1-text-white-100'>NFT Marketplace</p>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import css from './messenger.module.scss';
 import { getAccessToken } from '@/shared/lib/cookie';
 import { useGetChatsQuery } from '@/shared/redux/features/messangerApi';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   children: React.ReactNode;
@@ -54,7 +55,7 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
 
   return (
     <Page padding>
-      <div className={css.wrapper}>
+      <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
         <div className={css.chats}>
           <Support />
           {!isLoading ? (

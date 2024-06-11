@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import css from './dropdown.module.scss';
 import Image from 'next/image';
+import { cn } from '@/shared/lib/utils';
 
 interface Option {
   value: string;
@@ -15,7 +16,9 @@ interface DropdownProps {
 }
 
 export default function Dropdown({ options, onSelect }: DropdownProps) {
-  const [selectedOption, setSelectedOption] = useState<Option | null>(options[0]);
+  const [selectedOption, setSelectedOption] = useState<Option | null>(
+    options[0],
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectOption = (option: Option) => {
@@ -26,18 +29,24 @@ export default function Dropdown({ options, onSelect }: DropdownProps) {
 
   return (
     <div
-      className={`${css.dropdown} ${isOpen ? css.active : ''}`}
+      className={`${cn(css.dropdown, 'bg-1-bg-black-80')} ${
+        isOpen ? css.active : ''
+      }`}
       onClick={() => setIsOpen(!isOpen)}
     >
       <div>
         <button className={css.dropdownToggle}>
           {selectedOption ? selectedOption.label : 'Select an option'}
         </button>
-        <div className={`${css.dropdownMenu} ${isOpen ? css.active : ''}`}>
+        <div
+          className={`${cn(css.dropdownMenu, 'bg-1-text-black-100')} ${
+            isOpen ? css.active : ''
+          }`}
+        >
           {options.map((option) => (
             <div
               key={option.value}
-              className={css.dropdownItem}
+              className={cn(css.dropdownItem, 'hover:bg-1-bg-black-80 text-1-text-white-100')}
               onClick={() => handleSelectOption(option)}
             >
               {option.label}

@@ -1,6 +1,7 @@
 import css from '../page.module.scss';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   collectionName?: string;
@@ -24,7 +25,7 @@ export default function NftInfo({
     <div className={css.users}>
       <div>
         <div>
-          <p>{collectionName}</p>
+          <p className='text-1-text-white-100'>{collectionName}</p>
           <Image
             src={'/assets/icons/verified.svg'}
             alt="Verified"
@@ -33,7 +34,7 @@ export default function NftInfo({
           />
         </div>
         <div>
-          <p>{owner}</p>
+          <p className='text-1-text-black-60'>{owner}</p>
           <Image
             src={'/assets/icons/verified.svg'}
             alt="Verified"
@@ -43,17 +44,17 @@ export default function NftInfo({
         </div>
       </div>
       <div>
-        <p>{description}</p>
+        <p className='text-1-text-white-100'>{description}</p>
         <div className={css.underInfo}>
-          <div className={css.items}>
+          <div className={cn(css.items, 'text-1-text-black-60')}>
             <p>{t('items')}</p>
             <p>{items}</p>
           </div>
-          <div className={css.dateCreate}>
+          <div className={cn(css.dateCreate, 'text-1-text-black-60')}>
             <p>{t('dateCreated')}</p>
             <p>{dateOfCreation}</p>
           </div>
-          <div className={css.network}>
+          <div className={cn(css.network, 'text-1-text-black-60')}>
             <p>{t('network')}</p>
             <p>{network}</p>
           </div>

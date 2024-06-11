@@ -1,5 +1,6 @@
 import css from './sortingBar.module.scss';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/shared/lib/utils';
 
 interface SortingBarProps {
   activeItem: string;
@@ -17,30 +18,30 @@ export default function SortingBar({
   };
 
   return (
-    <div className={css.wrapper}>
+    <div className={cn(css.wrapper, 'bg-1-bg-black-80')}>
       <div
-        className={activeItem === '1day' ? css.active : ''}
+        className={activeItem === '1day' ? 'bg-1-bg-active_b-100 transition-all' : ''}
         onClick={() => handleClick('1day')}
       >
-        <p>{t('1day')}</p>
+        <p className='text-1-text-white-100'>{t('1day')}</p>
       </div>
       <div
-        className={activeItem === '7days' ? css.active : ''}
+        className={activeItem === '7days' ? 'bg-1-bg-active_b-100 transition-all' : ''}
         onClick={() => handleClick('7days')}
       >
-        <p>{t('7days')}</p>
+        <p className='text-1-text-white-100'>{t('7days')}</p>
       </div>
       <div
-        className={activeItem === '30days' ? css.active : ''}
+        className={activeItem === '30days' ? 'bg-1-bg-active_b-100 transition-all' : ''}
         onClick={() => handleClick('30days')}
       >
-        <p>{t('30days')}</p>
+        <p className='text-1-text-white-100'>{t('30days')}</p>
       </div>
       <div
-        className={activeItem === 'allTime' ? css.active : ''}
+        className={activeItem === 'allTime' ? 'bg-1-bg-active_b-100 transition-all' : ''}
         onClick={() => handleClick('allTime')}
       >
-        <p>{t('allTime')}</p>
+        <p className='text-1-text-white-100'>{t('allTime')}</p>
       </div>
     </div>
   );

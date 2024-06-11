@@ -10,29 +10,30 @@ import Image from 'next/image';
 
 import PriceHistory from './_components/tabs/priceHistory/PriceHistory';
 import dynamic from 'next/dynamic';
+
 import SkeletonInfo from './_components/infoContainer/sekeletonInfo';
 import SkeletonPrice from './_components/priceContainer/skeletonPrice';
 import SkeletonOwner from './_components/ownerCard/skeletonOwner';
 import SkeletonOffers from './_components/tabs/offers/skeletonOffers';
+
+import { cn } from '@/shared/lib/utils';
 
 interface Tab {
   label: string;
   content: React.ReactNode;
 }
 
-
 export default function NftCard({ params }: { params: { nft: string } }) {
   /**
    * @dev Only for development!
    * Later, server data is needed
    */
-  const isMine = true;
+  const isMine = false;
   const onSale = true;
 
   const t = useTranslations('nftCard');
 
-  const {
-    data: nftData, isSuccess } = useGetNftQuery({ nftId: params.nft });
+  const { data: nftData, isSuccess } = useGetNftQuery({ nftId: params.nft });
 
   const [activeTab, setActiveTab] = useState<number>(0);
 
@@ -40,30 +41,32 @@ export default function NftCard({ params }: { params: { nft: string } }) {
     setActiveTab(index);
   };
 
-  const Offers = dynamic(() => import ('./_components/tabs/offers/Offers'), {
+  const Offers = dynamic(() => import('./_components/tabs/offers/Offers'), {
     ssr: false,
-    loading: () => <SkeletonOffers />
-  })
+    loading: () => <SkeletonOffers />,
+  });
 
   const tabs: Tab[] = [
     { label: t('tabs.offers.title'), content: <Offers /> },
     { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
   ];
 
-  const InfoContainer = dynamic(() => import ('./_components/infoContainer/infoContainer'), {
-    ssr: false,
-    loading: () => <SkeletonInfo />
-  })
+  const InfoContainer = dynamic(() => import('./_components/infoContainer/infoContainer'), {
+      ssr: false,
+      loading: () => <SkeletonInfo />,
+    },
+  );
 
-  const PriceContainer = dynamic(() => import ('./_components/priceContainer/priceContainer'), {
-    ssr: false,
-    loading: () => <SkeletonPrice />
-  })
+  const PriceContainer = dynamic(() => import('./_components/priceContainer/priceContainer'), {
+      ssr: false,
+      loading: () => <SkeletonPrice />,
+    },
+  );
 
-  const OwnerCard = dynamic(() => import ('./_components/ownerCard/OwnerCard'), {
+  const OwnerCard = dynamic(() => import('./_components/ownerCard/OwnerCard'), {
     ssr: false,
-    loading: () => <SkeletonOwner />
-  })
+    loading: () => <SkeletonOwner />,
+  });
 
   if (isSuccess && nftData) {
     return (
@@ -101,12 +104,22 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                   {tabs.map((tab, index) => (
                     <div
                       key={index}
-                      className={`${css.tabLabel} ${
-                        index === activeTab ? css.activeTab : ''
+                      className={`${cn(css.tabLabel, 'border-b-2 border-solid')} ${
+                        index === activeTab
+                          ? 'border-1-text-white-100'
+                          : 'border-1-text-black-60'
                       }`}
                       onClick={() => changeTab(index)}
                     >
-                      <h4>{tab.label}</h4>
+                      <h4
+                        className={`${' hover:text-1-text-black-70 transition-all'} ${
+                          index === activeTab
+                            ? 'text-1-text-white-100'
+                            : 'text-1-text-black-60'
+                        }`}
+                      >
+                        {tab.label}
+                      </h4>
                     </div>
                   ))}
                 </div>
@@ -134,5 +147,5 @@ export default function NftCard({ params }: { params: { nft: string } }) {
         </div>
       </Page>
     );
-  } 
+  }
 }

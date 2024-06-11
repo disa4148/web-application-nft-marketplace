@@ -4,12 +4,13 @@ import css from './header.module.scss';
 import Link from 'next/link';
 
 import ProfileDropdown from './_components/Dropdowns/ProfileDropdown';
-import { Heart, MessageCircleMore, Wallet } from 'lucide-react';
+import { Heart, MessageCircleMore } from 'lucide-react';
 
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { UserData } from '@/shared/lib/localstorage';
 import WalletDropdown from './_components/Dropdowns/WalletDropdown';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   user: UserData;
@@ -25,8 +26,8 @@ export default function Authorized({ user }: Props): JSX.Element {
     <div className={css.authorizedWrapper}>
       <div className={css.leftItems}>
         <div
-          className={`${css.message} ${
-            isActive(`/${locale}/messenger`) ? css.active : ''
+          className={`${cn(css.message, 'bg-1-text-black-80')} ${
+            isActive(`/${locale}/messenger`) ? 'bg-1-gradient' : ''
           }`}
         >
           <Link href={`/${locale}/messenger`}>
@@ -34,23 +35,17 @@ export default function Authorized({ user }: Props): JSX.Element {
           </Link>
         </div>
         <div
-          className={`${css.favorite} ${
-            isActive(`/${locale}/favorites`) ? css.active : ''
+          className={`${cn(css.favorite, 'bg-1-text-black-80')} ${
+            isActive(`/${locale}/favorites`) ? 'bg-1-gradient' : ''
           }`}
         >
           <Link href={`/${locale}/favorites`}>
             <Heart width={22} height={22} />
           </Link>
         </div>
-        <div className={css.wallet}> 
-          <WalletDropdown  balance={user.balance}/>
-          </div>
-        {/* <div className={css.wallet}>
-          <Wallet width={22} height={20} />
-          <p>
-            {user.balance} <span>ETH</span>
-          </p>
-        </div> */}
+        <div className={css.wallet}>
+          <WalletDropdown balance={user.balance} />
+        </div>
       </div>
       <ProfileDropdown emoji={user.emoji} />
     </div>

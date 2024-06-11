@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 
 import { useSignUpMutation } from '@/shared/redux/features/authApi';
 import { useRouter } from 'next/navigation';
+import { cn } from '@/shared/lib/utils';
 
 type FieldErrors = {
   [key: string]: any | undefined;
@@ -191,14 +192,14 @@ export default function SignUpForm(): JSX.Element {
         />
         <Button
           onClick={() => setIsErrorsShown(true)}
-          className={css.styleButton}
+          className={'bg-1-gradient'}
           variant={'default'}
         >
           {t('buttonSignUp.text')}{' '}
         </Button>
         <div className={css.linkSignIn}>
-          <h1>{t('linkSignIn.text')}</h1>
-          <Link className={css.link} href={`/${locale}/signin`}>
+          <h1 className='text-1-text-white-100'>{t('linkSignIn.text')}</h1>
+          <Link className={cn(css.link, 'bg-1-gradient')} href={`/${locale}/signin`}>
             {t('linkSignIn.button')}
           </Link>
         </div>

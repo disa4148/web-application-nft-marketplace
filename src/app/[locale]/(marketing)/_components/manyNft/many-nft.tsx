@@ -33,13 +33,13 @@ export default function ManyNft(): JSX.Element {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.backgroundImage}></div> 
+      <div className={css.backgroundImage}></div>
       <Carousel className="w-full " orientation="horizontal">
         <div className={css.carouselTitle}>
           <Title title={t('title')} />
           <div className={css.carousel}>
-            <CarouselPrevious className="w-[40px] h-[40px] bg-[#2d2d2d]" />
-            <CarouselNext className="w-[40px] h-[40px] bg-[#2d2d2d]" />
+            <CarouselPrevious className="w-[40px] h-[40px] bg-[#2d2d2d] text-1-text-white-100" />
+            <CarouselNext className="w-[40px] h-[40px] bg-[#2d2d2d] text-1-text-white-100" />
           </div>
         </div>
         <CarouselContent className="-ml-0 space-x-6">

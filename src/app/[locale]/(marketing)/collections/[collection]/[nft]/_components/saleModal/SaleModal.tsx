@@ -106,7 +106,7 @@ export default function SaleModal({
       <DialogContent className={cn(css.dialogContent)}>
         <DialogHeader>
           <DialogTitle className={css.title}>
-            <h1>{t('title')}</h1>
+            <h1 className="text-1-text-white-100">{t('title')}</h1>
           </DialogTitle>
         </DialogHeader>
         {isLoadingRates ? (
@@ -122,7 +122,7 @@ export default function SaleModal({
                 value={rubPrice}
                 onChange={handleRubChange}
               />
-              <p>~</p>
+              <p className="text-1-text-white-100">~</p>
               <Input
                 type="number"
                 placeholder={t('placeholders.inETH')}
@@ -130,7 +130,10 @@ export default function SaleModal({
                 onChange={handleEthChange}
               />
             </div>
-            <Button onClick={handleSaleNft} className={css.btn}>
+            <Button
+              onClick={handleSaleNft}
+              className={cn(css.btn, 'bg-1-gradient text-1-text-white-100')}
+            >
               {isLoading ? <LoadingSpinner /> : t('btn')}
             </Button>
           </div>

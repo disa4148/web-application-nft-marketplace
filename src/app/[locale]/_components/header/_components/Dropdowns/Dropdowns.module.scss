@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-100-w);
     border-radius: 100%;
     padding: 6px;
     cursor: pointer;
@@ -23,18 +22,13 @@
     font-weight: 400;
     padding: 0;
     line-height: 16px;
-    color: var(--text-60-b);
     text-decoration: underline;
     max-height: 32px;
-    &:hover {
-      color: var(--text-70-b);
-    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-80-b);
     position: absolute;
     top: 100%;
     left: 50%;
@@ -66,12 +60,12 @@
         align-items: center;
         justify-content: center;
         padding: 6px;
-        background-color: var(--bg-100-w);
         border-radius: 100%;
       }
       .exitBtn {
         padding: 0;
-        color: var(--text-colored);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     }
   }

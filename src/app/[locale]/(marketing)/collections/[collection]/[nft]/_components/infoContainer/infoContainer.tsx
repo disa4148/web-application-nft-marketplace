@@ -3,10 +3,7 @@ import css from './infoContainer.module.scss';
 import { useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
-import {
-  useAddFavoriteMutation,
-  useDeleteFavoriteMutation,
-} from '@/shared/redux/features/favoriteApi';
+import { useAddFavoriteMutation, useDeleteFavoriteMutation } from '@/shared/redux/features/favoriteApi';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 type Props = {
@@ -53,7 +50,7 @@ export default function InfoContainer({
     <div className={css.infoContainer}>
       <div className={css.topItems}>
         <div className={css.gradientText}>
-          <p>{status}</p>
+          <p className='bg-1-gradient before:bg-1-gradient'>{status}</p>
         </div>
         {isMine ? ('') : loading ? (
           <LoadingSpinner />
@@ -67,8 +64,8 @@ export default function InfoContainer({
         )}
       </div>
       <div className={css.title}>
-        <h1>{title}</h1>
-        <h4>{description}</h4>
+        <h1 className='text-1-text-white-100'>{title}</h1>
+        <h4 className='text-1-text-white-100'>{description}</h4>
       </div>
     </div>
   );

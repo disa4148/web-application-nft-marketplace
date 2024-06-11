@@ -1,4 +1,5 @@
 import css from './signUp.module.scss';
+import { cn } from '@/shared/lib/utils';
 
 import Page from '@/shared/containers/page';
 import SignImage from '@/shared/ui/signImage/SignImage';
@@ -18,10 +19,10 @@ export default function SignUp(): JSX.Element {
   return (
     <Page padding>
       <div className={css.wrapper}>
-        <div className={css.signUp}>
+        <div className={cn(css.signUp, 'bg-1-bg-black-100')}>
           <div>
-            <p>{t('header.title')}</p>
-            <p>{t('header.description')}</p>
+            <p className='text-1-text-white-100'>{t('header.title')}</p>
+            <p className='text-1-text-white-100'>{t('header.description')}</p>
           </div>
           <SignInForm />
         </div>

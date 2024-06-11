@@ -1,24 +1,16 @@
 'use client';
 import css from './ModalNFtPurchase.module.scss';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/shared/ui/dialog';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/ui/dialog';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/ui/button';
 import dynamic from 'next/dynamic';
 import SkeletonNftCard from './_components/skeletons/skeletonNftCard';
-import SkeletonNftStats from './_components/skeletons/skeletonNftStats';
 
 import { useBuyNftMutation } from '@/shared/redux/features/nftApi';
 import { toast } from 'sonner';
-import { useCallback } from 'react';
 import ModalNftStats from './_components/ModalNftStats';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   nftId: string;
@@ -71,13 +63,13 @@ export default function ModalNFtPurchase({
       <DialogContent className={css.dialogContent}>
         <DialogHeader>
           <DialogTitle className={css.title}>
-            <h1>{t('title')}</h1>
+            <h1 className='text-1-text-white-100'>{t('title')}</h1>
           </DialogTitle>
         </DialogHeader>
         <ModalNftCard image={image} title={title} description={description} />
         <ModalNftStats price={price} networkCommission={0.2} />
         <DialogFooter className={css.footer}>
-          <Button onClick={handleBuyNft} className={css.button}>
+          <Button onClick={handleBuyNft} className={cn(css.button, 'bg-1-gradient')}>
             {isLoading ? <LoadingSpinner /> : t('button')}
           </Button>
         </DialogFooter>

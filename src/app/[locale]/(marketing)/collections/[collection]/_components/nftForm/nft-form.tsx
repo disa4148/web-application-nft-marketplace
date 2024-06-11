@@ -81,8 +81,8 @@ export default function NftForm({
         </div>
       ) : (
         <div className={css.notFound}>
-          <h1>{t('notFound')}</h1>
-          <h2>{t('more')}</h2>
+          <h1 className='text-1-text-white-100'>{t('notFound')}</h1>
+          <h2 className='text-1-text-black-60'>{t('more')}</h2>
         </div>
       )}
     </div>

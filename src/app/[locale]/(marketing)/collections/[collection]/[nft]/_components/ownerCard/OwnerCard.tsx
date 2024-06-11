@@ -41,9 +41,9 @@ export default function OwnerCard({
       ) : null}
 
       <div>
-        <h6>{title}</h6>
+        <h6 className='text-1-text-black-60'>{title}</h6>
         <div>
-          <h5>{content}</h5>
+          <h5 className='text-1-text-white-100'>{content}</h5>
           {verified && (
             <Image
               alt="Verified"

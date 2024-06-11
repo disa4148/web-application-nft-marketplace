@@ -1,6 +1,7 @@
 import css from './myNft.module.scss';
+import { cn } from '@/shared/lib/utils';
 import Image from 'next/image';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 
 type Props = {
@@ -18,10 +19,9 @@ export default function MyCollections({
   collectionId,
   nftId
 }: Props): JSX.Element {
-  const t = useTranslations('catalogNft.card');
   const locale = useLocale();
   return (
-    <div className={css.wrapper}>
+    <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
       <Link href={`/${locale}/collections/${collectionId}/${nftId}`}>
         <Image
           src={`${image}`}
@@ -33,11 +33,11 @@ export default function MyCollections({
       <div className={css.fullBlock}>
         <div className={css.namePrice}>
           <div>
-            <h3 className={css.nameNft}>{name}</h3>
+            <h3 className={cn(css.nameNft, 'text-1-text-white-100')}>{name}</h3>
           </div>
           <div className={css.priceBlock}>
-            <h4>{price}</h4>
-            <span>ETH</span>
+            <h4 className='text-1-text-white-100'>{price}</h4>
+            <span className='text-1-text-white-100'>ETH</span>
           </div>
         </div>
       </div>

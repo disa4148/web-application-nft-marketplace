@@ -18,7 +18,7 @@ const config = {
       },
     },
     colors: {
-      light: {
+      1: {
         text: {
           white: { 100: '#ffffff' },
           black: {
@@ -26,9 +26,12 @@ const config = {
             90: '#0c0c0c',
             80: '#2d2d2d',
             70: '#9e9e9e',
+            60: '#777777',
+            50: '#636363',
           },
-          green: { 100: '#4BB34B'},
-          red: { 100: '#B62222'}
+          green: { 100: '#4bb34b' },
+          red: { 100: '#b62222' },
+          colored: { 100: '#5763d0' },
         },
         bg: {
           white: { 100: '#ffffff' },
@@ -37,12 +40,19 @@ const config = {
             90: '#0c0c0c',
             80: '#2d2d2d',
             70: '#9e9e9e',
-            50: '#636363'
+            50: '#636363',
           },
+          active_b: {100: '#161616'},
+          blue: { 100: '#389ef2'},
+          purple: { 100: '#725bda'}
         },
       },
     },
     extend: {
+      backgroundImage: {
+        '1-gradient': 'linear-gradient(152.48deg, rgb(137, 198, 255) -36.244%, rgb(54, 51, 208) 71.781%)',
+        'dark-gradient': 'linear-gradient(152.48deg, rgb(54, 51, 208) -36.244%, rgb(137, 198, 255) 71.781%)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

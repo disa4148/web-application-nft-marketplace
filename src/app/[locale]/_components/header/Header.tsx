@@ -13,7 +13,7 @@ import BurgerDropdown from './_components/Dropdowns/BurgerDropdown';
 
 const HeaderLayout = dynamic(() => import('./HeaderLayout'), {
   ssr: false,
-  loading: () => <LoadingSpinner/>,
+  loading: () => <LoadingSpinner />,
 });
 
 export default function Header(): JSX.Element {

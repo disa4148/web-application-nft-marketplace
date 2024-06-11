@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/ui/button';
 import ModalConclusion from './modalConclusion';
 
-
 type Props = {
   nftId: string;
 };

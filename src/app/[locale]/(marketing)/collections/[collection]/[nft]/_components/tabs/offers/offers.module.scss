@@ -5,7 +5,6 @@
   max-width: 1280px;
   gap: 20px;
   width: 100%;
-  background-color: var(--bg-90-b);
   border-radius: 15px;
   padding: 20px;
   animation: appearance 1s forwards;
@@ -15,7 +14,6 @@
     text-align: left;
   }
   .colorBy {
-    background: var(--bg-main-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

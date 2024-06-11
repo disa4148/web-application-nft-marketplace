@@ -10,7 +10,7 @@ export const favoriteApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    fetchFavorite: builder.query<FavoriteNft[], any>({
+    fetchFavorite: builder.query<any, void>({
       query: () => ({
         url: `api/users/favorite`,
         method: 'GET',

@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import css from './bank.module.scss'; 
 import Image from 'next/image';
+import { cn } from '@/shared/lib/utils';
 
 const banks = [
   { title: 'Bank(Russia)', name: "Интернет-банк оплата", img: '/assets/forTest/Bank.svg', value: 'card' },
@@ -31,15 +32,15 @@ export default function Bank({ selectedBank, setSelectedBank }: Props) {
       {banks.map((bank) => (
         <div
           key={bank.value}
-          className={`${css.bankItem} ${selectedBank === bank.value ? css.selected : ''}`}
+          className={`${cn(css.bankItem, 'bg-1-bg-black-100 hover:bg-1-bg-black-80 transition-all')} ${selectedBank === bank.value ? css.selected : ''}`}
           onClick={() => handleBankClick(bank.value)}
         >
-          <div className={css.bankHeader}>
-            <span className='text-sm'>{bank.title}</span>
+          <div className={cn(css.bankHeader, 'bg-1-gradient')}>
+            <span className='text-sm text-1-text-white-100'>{bank.title}</span>
           </div>
           <div className={css.bankBody}>
             <Image src={bank.img} width={25} height={25} alt='bnk'/>
-            <span className='text-sm'>{bank.name}</span>
+            <span className='text-sm text-1-text-white-100'>{bank.name}</span>
           </div>
         </div>
       ))}

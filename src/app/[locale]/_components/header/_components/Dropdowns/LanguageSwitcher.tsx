@@ -1,5 +1,5 @@
 'use client';
-import css from './Dropdowns.module.scss'
+import css from './Dropdowns.module.scss';
 
 import { Button } from '@/shared/ui/button';
 
@@ -8,9 +8,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import Cookies from 'js-cookie';
+import { cn } from '@/shared/lib/utils';
 
 export default function LanguageSwitcher(): JSX.Element {
-   const t = useTranslations('footer');
+  const t = useTranslations('footer');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -31,7 +32,14 @@ export default function LanguageSwitcher(): JSX.Element {
   };
 
   return (
-    <Button onClick={switchLocale} variant={'ghost'} className={css.switcher}>
+    <Button
+      onClick={switchLocale}
+      variant={'ghost'}
+      className={cn(
+        css.switcher,
+        'text-1-text-black-60 hover:text-1-text-black-70',
+      )}
+    >
       {currentLocale === 'ru'
         ? t('items.language.eng')
         : t('items.language.rus')}

@@ -5,12 +5,9 @@
   width: 100%;
   gap: 10px;
   padding: 10px 10px;
-  background-color: var(--text-100-b);
   border-radius: 20px;
   cursor: pointer;
-  &:hover {
-    background-color: var(--bg-80-b);
-  }
+
   .avatar {
     border-radius: 100%;
     max-width: 52px;
@@ -33,7 +30,6 @@
       font-size: 13px;
       font-weight: 500;
       line-height: 16px;
-      color: #979797;
     }
     h1,
     h2 {
@@ -43,9 +39,6 @@
       text-overflow: ellipsis;
     }
   }
-}
-.active {
-  background-color: var(--bg-80-b);
 }
 
 @media (max-width: 924px) {

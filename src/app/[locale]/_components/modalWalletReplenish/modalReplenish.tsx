@@ -32,7 +32,7 @@ export default function ModalReplenish({ open, setIsOpen, children }: Props) {
       <DialogContent className='max-w-[581px]'>
         <DialogHeader>
           <DialogTitle >
-            <h1>Пополнить</h1>
+            <h1 className='text-1-text-white-100'>Пополнить</h1>
           </DialogTitle>
         </DialogHeader>
         <SelectBank />

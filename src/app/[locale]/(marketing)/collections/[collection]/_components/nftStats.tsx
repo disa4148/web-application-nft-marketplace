@@ -15,19 +15,19 @@ export default function NftStats({ volume, minPrice, owners, bestOffer }: Props)
     <div className={css.fullInfo}>
       <div className={css.volume}>
         <p>{volume} ETH</p>
-        <p>{t('volume')}</p>
+        <p className='text-1-text-black-60'>{t('volume')}</p>
       </div>
       <div className={css.price}>
         <p>{minPrice} ETH</p>
-        <p>{t('minPrice')}</p>
+        <p className='text-1-text-black-60'>{t('minPrice')}</p>
       </div>
       <div className={css.offer}>
         <p>{bestOffer} ETH</p>
-        <p>{t('offer')}</p>
+        <p className='text-1-text-black-60'>{t('offer')}</p>
       </div>
       <div className={css.owners}>
         <p>{owners}</p>
-        <p>{t('owners')}</p>
+        <p className='text-1-text-black-60'>{t('owners')}</p>
       </div>
     </div>
   );

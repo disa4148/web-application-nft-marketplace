@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import css from './searchInputNft.module.scss';
+import { cn } from '@/shared/lib/utils';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -14,7 +15,7 @@ export default function SearchInputNft({ onSearch }: SearchInputNftProps): JSX.E
   useEffect(() => {
     const handler = setTimeout(() => {
       onSearch(searchTerm);
-    }, 300); // Debounce time of 300ms
+    }, 300); 
 
     return () => {
       clearTimeout(handler);
@@ -26,7 +27,7 @@ export default function SearchInputNft({ onSearch }: SearchInputNftProps): JSX.E
   };
 
   return (
-    <div className={css.wrapper}>
+    <div className={cn(css.wrapper, 'bg-1-bg-black-80')}>
       <Image
         src={'/assets/icons/Loupe.svg'}
         width={18}
@@ -38,6 +39,7 @@ export default function SearchInputNft({ onSearch }: SearchInputNftProps): JSX.E
         value={searchTerm}
         placeholder={t('inputPlaceholder')}
         onChange={handleInputChange}
+        className='bg-1-bg-black-80 text-1-text-black-70'
       />
     </div>
   );

@@ -16,7 +16,7 @@ export default function Footer(): JSX.Element {
         <div>
           <div className={css.logotypeContainer}>
             <Logotype style="light" />
-            <p>{t('description')}</p>
+            <p className='text-1-text-black-60'>{t('description')}</p>
           </div>
           <div>
             <Link
@@ -63,29 +63,29 @@ export default function Footer(): JSX.Element {
         <div className={css.rightItems}>
           <div>
             <div>
-              <h1>{t('items.project.title')}</h1>
+              <h1 className='text-1-text-black-60'>{t('items.project.title')}</h1>
             </div>
             <div>
-              <Link href={'/'}>{t('items.project.catalogue')}</Link>
-              <Link href={'/'}>{t('items.project.service')}</Link>
-              <Link href={'/'}>{t('items.project.privacyPolicy')}</Link>
+              <Link className='text-1-text-white-100' href={'/'}>{t('items.project.catalogue')}</Link>
+              <Link className='text-1-text-white-100' href={'/'}>{t('items.project.service')}</Link>
+              <Link className='text-1-text-white-100' href={'/'}>{t('items.project.privacyPolicy')}</Link>
             </div>
           </div>
 
           <div>
             <div>
-              <h1>{t('items.language.title')}</h1>
+              <h1 className='text-1-text-black-60'>{t('items.language.title')}</h1>
             </div>
             <LocaleSwitcher />
           </div>
 
           <div>
             <div>
-              <h1>{t('items.contacts.title')}</h1>
+              <h1 className='text-1-text-black-60'>{t('items.contacts.title')}</h1>
             </div>
             <div>
-              <Link href={'/'}>{t('items.contacts.tg')}</Link>
-              <Link href={'/'}>{t('items.contacts.mail')}</Link>
+              <Link className='text-1-text-white-100' href={'/'}>{t('items.contacts.tg')}</Link>
+              <Link className='text-1-text-white-100' href={'/'}>{t('items.contacts.mail')}</Link>
             </div>
           </div>
         </div>

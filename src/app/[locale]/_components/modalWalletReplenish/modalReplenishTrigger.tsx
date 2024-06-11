@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/ui/button';
 import ModalReplenish from './modalReplenish';
 
-
 type Props = {
   nftId: string;
 };
@@ -20,7 +19,7 @@ export default function ModalReplenishTrigger({
       open={isOpenModal}
       setIsOpen={setIsModal}
     >
-      <Button >{t('listForSaleBtn')}</Button>
+      <Button className='text-1-text-white-100'>{t('listForSaleBtn')}</Button>
     </ModalReplenish>
   );
 }

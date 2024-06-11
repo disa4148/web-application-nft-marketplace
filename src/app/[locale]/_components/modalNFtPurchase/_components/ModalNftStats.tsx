@@ -18,27 +18,31 @@ export default function ModalNftStats({
       <div className={css.stats}>
         <div className={css.statsItem}>
           <div>
-            <h2>{t('price.title')}</h2>
-            <h2>{price} ETH</h2>
+            <h2 className="text-1-text-white-100">{t('price.title')}</h2>
+            <h2 className="text-1-text-white-100">{price} ETH</h2>
           </div>
           <div>
-            <h4>{t('price.description')}</h4>
+            <h4 className="text-1-text-black-60">{t('price.description')}</h4>
           </div>
         </div>
         <div className={css.statsItem}>
           <div>
-            <h2>{t('networkCommission.title')}</h2>
-            <h2>{networkCommission} ETH</h2>
+            <h2 className="text-1-text-white-100">
+              {t('networkCommission.title')}
+            </h2>
+            <h2 className="text-1-text-white-100">{networkCommission} ETH</h2>
           </div>
           <div>
-            <h4>{t('networkCommission.description')}</h4>
+            <h4 className="text-1-text-black-60">
+              {t('networkCommission.description')}
+            </h4>
           </div>
         </div>
       </div>
       <Separator orientation="horizontal" decorative />
       <div className={css.total}>
-        <h2>{t('total')}</h2>
-        <h2>{total} ETH</h2>
+        <h2 className="text-1-text-white-100">{t('total')}</h2>
+        <h2 className="text-1-text-white-100">{total} ETH</h2>
       </div>
     </>
   );

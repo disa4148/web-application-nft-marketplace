@@ -8,22 +8,15 @@
   .bankItem {
     max-width: 154px;
     height: 80px;
-    background-color: #000;
     border-radius: 20px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: background-color 0.3s;
-  }
-  
-  .bankItem:hover {
-    background-color: #333;
   }
   
   .bankHeader {
     text-align: center;
-    background-color: #4a4aff;
     border-radius: 20px 20px 0px 0px;
     width: 100%;
   }

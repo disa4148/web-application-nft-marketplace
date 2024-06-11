@@ -17,11 +17,11 @@ export default function AboutServiceMobile(): JSX.Element {
           height={226}
         />
       </div>
-      <div>
-        <h4>{t('title')}</h4>
-        <h5>{t('description')}</h5>
+      <div className='bg-1-bg-black-90'>
+        <h4 className='text-1-text-white-100'>{t('title')}</h4>
+        <h5 className='text-1-text-white-100'>{t('description')}</h5>
         <Link href={`/${locale}/catalog`}>
-          <Button>{t('btn')}</Button>
+          <Button className='bg-1-gradient'>{t('btn')}</Button>
         </Link>
       </div>
     </div>

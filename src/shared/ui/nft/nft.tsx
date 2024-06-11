@@ -23,7 +23,7 @@ export default function Nft({
   const t = useTranslations('catalogNft.card');
   const formatPrice = useFormatNumber(price);
   return (
-    <div  className={css.wrapper}>
+    <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
       <Link href={href}>
         <Image
           className={cn(css.img, 'max-w-[236px] h-[236px]')}
@@ -36,19 +36,19 @@ export default function Nft({
       <div className={css.fullBlock}>
         <div className={css.namePrice}>
           <div>
-            <h3 className={css.nameNft}>{name}</h3>
+            <h3 className={cn(css.nameNft, 'text-1-text-white-100')}>{name}</h3>
           </div>
           <div className={css.priceBlock}>
-            <h4>{formatPrice}</h4>
-            <span>ETH</span>
+            <h4 className="text-1-text-white-100">{formatPrice}</h4>
+            <span className="text-1-text-white-100">ETH</span>
           </div>
         </div>
         <div className={css.lastSale}>
-          <span>{t('lastSale')}</span>
-          <h4>{formatPrice}</h4>
-          <span>ETH</span>
+          <span className="text-1-text-white-100">{t('lastSale')}</span>
+          <h4 className="text-1-text-white-100">{formatPrice}</h4>
+          <span className="text-1-text-white-100">ETH</span>
         </div>
-        <Link href={href} className={css.lastSaleButton}>
+        <Link href={href} className={cn(css.lastSaleButton, 'bg-1-gradient')}>
           <button
             onClick={() => console.log('Button clicked')}
             className={css.buyButton}

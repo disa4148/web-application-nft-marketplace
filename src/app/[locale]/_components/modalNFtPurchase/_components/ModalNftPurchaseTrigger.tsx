@@ -32,7 +32,7 @@ export default function ModalTrigger({
       description={description}
       price={price}
     >
-      <Button>{t('buyBtn')}</Button>
+      <Button className='bg-1-gradient text-1-text-white-100'>{t('buyBtn')}</Button>
     </ModalNFtPurchase>
   );
 }

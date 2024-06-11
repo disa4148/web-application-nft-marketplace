@@ -16,7 +16,6 @@ type Props = {
   emoji: string;
 }
 
-
 export default function ProfileDropdown({emoji}: Props): JSX.Element {
   const t = useTranslations('header.dropdown.profileMenu');
   const logout = useLogout();
@@ -57,20 +56,20 @@ export default function ProfileDropdown({emoji}: Props): JSX.Element {
         </Avatar>
       </div>
       {isOpen && (
-        <div className={cn(css.content)}>
+        <div className={cn(css.content, 'bg-1-text-black-80')}>
           <div className={css.item}>
-            <div className={css.icon}>
+            <div className={cn(css.icon, 'bg-1-bg-white-100')}>
               <Grid3X3 width={20} height={20} className="invert" />
             </div>
-            <Link href={`/${locale}/myCollections`}>
+            <Link className='text-1-text-white-100' href={`/${locale}/myCollections`}>
               {t('myCollection.title')}
             </Link>
           </div>
           <div onClick={logout} className={css.item}>
-            <div className={css.icon}>
+            <div className={cn(css.icon, 'bg-1-bg-white-100')}>
               <LogOut color="#5763D0" width={20} height={20} />
             </div>
-            <Button className={css.exitBtn} variant="ghost">
+            <Button className={cn(css.exitBtn, 'hover:opacity-70 bg-1-gradient')} variant="ghost">
               {t('exit.title')}
             </Button>
           </div>

@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 
 import LanguageSwitcher from './LanguageSwitcher';
 import Link from 'next/link';
+import { cn } from '@/shared/lib/utils';
 
 import { Globe, Headset, Menu, X, Heart } from 'lucide-react';
 
@@ -41,7 +42,7 @@ export default function BurgerDropdown(): JSX.Element {
 
   return (
     <div className={css.dropdown} ref={dropdownRef}>
-      <div className={css.trigger} onClick={toggleMenu}>
+      <div className={cn(css.trigger, 'bg-1-bg-white-100')} onClick={toggleMenu}>
         {isOpen ? (
           <X width={26} height={26} className="invert" />
         ) : (
@@ -49,29 +50,29 @@ export default function BurgerDropdown(): JSX.Element {
         )}
       </div>
       {isOpen && (
-        <div className={css.content}>
+        <div className={cn(css.content, 'bg-1-text-black-80')}>
           <div className={css.favorites}>
             <div className={css.item}>
               <div className={css.icon}>
                 <Heart width={20} height={20} className="invert" />
               </div>
-              <Link href={`/${locale}/favorites`}>
+              <Link className='text-1-text-white-100' href={`/${locale}/favorites`}>
                 {t('favorites.title')}
               </Link>
             </div>
           </div>
           <div className={css.item}>
-            <div className={css.icon}>
+            <div className={cn(css.icon, 'bg-1-bg-white-100')}>
               <Headset width={20} height={20} className="invert" />
             </div>
-            <Link href={'/'}>{t('support.title')}</Link>
+            <Link className='text-1-text-white-100' href={'/'}>{t('support.title')}</Link>
           </div>
           <div className={css.languageSwitcher}>
             <div className={css.item}>
-              <div className={css.icon}>
+              <div className={cn(css.icon, "bg-1-bg-white-100")}>
                 <Globe width={20} height={20} className="invert" />
               </div>
-              <p>{t('language.title')}</p>
+              <p className='text-1-text-white-100'>{t('language.title')}</p>
             </div>
             <LanguageSwitcher />
           </div>

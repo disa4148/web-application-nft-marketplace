@@ -4,6 +4,7 @@ import Bank from "@/shared/ui/bank/bank";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { useCreateReplenishmentMutation } from '@/shared/redux/payment/replenishment'; 
+import { cn } from '@/shared/lib/utils';
 
 export default function SelectBank() {
   const [selectedBank, setSelectedBank] = useState('');
@@ -48,7 +49,7 @@ export default function SelectBank() {
           placeholder="Введите сумму" 
           type="number" 
         />
-        <Button className={css.button} onClick={handleSubmit} disabled={isLoading}>
+        <Button className={cn(css.button, 'bg-1-gradient')} onClick={handleSubmit} disabled={isLoading}>
           {isLoading ? "Отправка..." : "Пополнить"}
         </Button>
       </div>

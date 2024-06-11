@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--bg-80-b);
   border-radius: 10px;
   padding: 5px;
 
@@ -17,11 +16,6 @@
       line-height: 22px;
     }
   }
-}
-
-.active {
-  background-color: var(--bg-active-b);
-  animation: appearance 2s forwards;
 }
 
 .skeletonPc {

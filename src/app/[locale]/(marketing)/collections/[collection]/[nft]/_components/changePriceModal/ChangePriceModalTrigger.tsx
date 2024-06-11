@@ -1,5 +1,6 @@
 'use client';
 import css from './changePriceModal.module.scss';
+import { cn } from '@/shared/lib/utils';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -24,7 +25,7 @@ export default function ChangePriceModalTrigger({
       setIsOpen={setIsModal}
       price={price}
     >
-      <Button className={css.listForSaleBtn}>{t('changePriceBtn')}</Button>
+      <Button className={cn(css.listForSaleBtn, 'bg-1-gradient text-1-text-white-100')}>{t('changePriceBtn')}</Button>
     </ChangePriceModal>
   );
 }

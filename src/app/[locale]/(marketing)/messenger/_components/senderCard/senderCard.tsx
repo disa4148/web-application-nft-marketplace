@@ -26,23 +26,20 @@ export default function SenderCard({
   return (
     <Link
       href={`/${locale}/messenger/${idChat}`}
-      className={`${css.wrapper} ${isActive ? css.active : ''}`}
+      className={`${css.wrapper} ${
+        isActive
+          ? 'bg-1-bg-black-80 transition-all'
+          : 'bg-1-bg-black-100 hover:bg-1-text-black-80 transition-all'
+      }`}
       onClick={onClick}
     >
-      {/* <Image
-        src={`/assets/forTest/${avatar}`}
-        width={52}
-        height={52}
-        alt="Avatar"
-        className={css.avatar}
-      /> */}
-      <div className='w-[52px] h-[52px] flex justify-center items-center rounded-[9999px]'>
+      <div className="w-[52px] h-[52px] flex justify-center items-center rounded-[9999px]">
         <p style={{ fontSize: '30px' }}>{emoji}</p>
       </div>
 
       <div className={css.senderInfo}>
-        <h1>{name}</h1>
-        <h2>{lastMessage}</h2>
+        <h1 className='text-1-text-white-100'>{name}</h1>
+        <h2 className='text-1-text-black-60'>{lastMessage}</h2>
       </div>
     </Link>
   );

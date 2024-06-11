@@ -1,4 +1,5 @@
 import css from './newsNft.module.scss';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   title: string;
@@ -8,9 +9,9 @@ type Props = {
 const NewsNft = ({ title, description }: Props): JSX.Element => {
 
   return (
-    <div className={css.wrapper}>
-      <p>{title}</p>
-      <p>{description}</p>
+    <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
+      <p className='text-1-text-white-100'>{title}</p>
+      <p className='text-1-text-white-100'>{description}</p>
     </div>
   );
 };

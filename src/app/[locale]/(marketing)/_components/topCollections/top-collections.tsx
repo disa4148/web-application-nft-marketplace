@@ -87,17 +87,14 @@ export default function TopCollections(): JSX.Element {
 
   const handleSortDateClick = (selectedItem: string): void => {
     setSelectedDateSort(selectedItem);
-    console.log('selectedDateSort:', selectedItem);
   };
 
   const handleSelect = (option: Option) => {
     setSort(option.value);
-    console.log('Selected option:', option);
   };
 
   const handleMobileSelect = (option: Option) => {
     setSort(option.value);
-    console.log('Selected option:', option);
   };
 
   const handleLoadMore = () => {
@@ -145,9 +142,9 @@ export default function TopCollections(): JSX.Element {
     </div>
   ) : (
     <div className={css.message}>
-      <p>{t('unauthenticated.title')}</p>
+      <p className='text-1-text-white-100'>{t('unauthenticated.title')}</p>
       <Link href={`/${locale}/signin`}>
-        <Button className={css.coloredBtn} variant={'default'}>
+        <Button className={'bg-1-gradient'} variant={'default'}>
           {t('unauthenticated.btn')}
         </Button>
       </Link>

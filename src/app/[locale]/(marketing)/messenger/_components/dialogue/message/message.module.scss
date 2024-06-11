@@ -5,20 +5,12 @@
   width: 100%;
   align-items: flex-start;
   gap: 20px;
-  .myMessageBlock {
-    width: 100%;
-    border-radius: 5px;
-    overflow-wrap: break-word;
-    padding: 10px;
-    background-color: #725bda;
-  }
 
-  .otherMessageBlock {
+  .message {
     width: 100%;
     border-radius: 5px;
     overflow-wrap: break-word;
     padding: 10px;
-    background-color: var(--bg-80-b);
   }
 
   h2 {

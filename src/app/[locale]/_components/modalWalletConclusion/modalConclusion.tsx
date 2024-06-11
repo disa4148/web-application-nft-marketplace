@@ -31,8 +31,8 @@ export default function ModalConclusion({ open, setIsOpen, children }: Props) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className='max-w-[581px]'>
         <DialogHeader>
-          <DialogTitle >
-            <h1>Вывести</h1>
+          <DialogTitle>
+            <h1 className='text-1-text-white-100'>Вывести</h1>
           </DialogTitle>
         </DialogHeader>
         <SelectBank />

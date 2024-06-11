@@ -5,6 +5,7 @@ import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { useQueryConclusionMutation } from '@/shared/redux/payment/replenishment';
 import { toast } from 'sonner';
+import { cn } from '@/shared/lib/utils';
 
 export default function SelectBank() {
   const [selectedBank, setSelectedBank] = useState('card');
@@ -65,7 +66,7 @@ export default function SelectBank() {
           type="number"
         />
         <Button
-          className={css.button}
+          className={cn(css.button, 'bg-1-gradient')}
           onClick={handleSubmit}
           disabled={isLoading}
         >

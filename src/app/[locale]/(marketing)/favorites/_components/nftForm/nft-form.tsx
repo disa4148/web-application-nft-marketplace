@@ -61,9 +61,9 @@ export default function NftForm(): JSX.Element {
         ))
       ) : (
         <div className={cn(css.empty, "absolute w-[100%] grid place-items-center")}>
-          <h1>{t('empty')}</h1>
+          <h1 className='text-1-text-white-100'>{t('empty')}</h1>
           <Link href={`/${locale}`}>
-            <Button className={css.coloredBtn} variant={'default'}>
+            <Button className={cn(css.coloredBtn, 'bg-1-gradient')} variant={'default'}>
               {t('button')}
             </Button>
           </Link>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
 import Link from 'next/link';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   id: string;
@@ -25,14 +26,17 @@ export default function MiniNft({
   const formatTotalPrice = useFormatNumber(totalPrice);
   const formatLowestPrice = useFormatNumber(lowestPrice);
   return (
-    <Link href={`/${locale}/collections/${id}`} className={css.wrapper}>
-      <div className={css.image}>
+    <Link
+      href={`/${locale}/collections/${id}`}
+      className={cn(css.wrapper, 'bg-1-bg-black-90')}
+    >
+      <div className={cn(css.image, 'bg-1-bg-black-100')}>
         <Image src={`${image}`} alt="NFT" width={65} height={60} />
       </div>
-      <div className={css.content}>
+      <div className={cn(css.content, 'text-1-text-white-100')}>
         <div className={css.info}>
           <div className={css.name}>
-            <h3>{name}</h3>
+            <h3 className="text-1-text-white-100">{name}</h3>
             <Image
               src={'/assets/icons/verified.svg'}
               alt="Verified"
@@ -41,12 +45,12 @@ export default function MiniNft({
             />
           </div>
           <div className={css.price}>
-            <h4 className='text-light-text-black-70'>{t('price')}</h4>
-            <h4 className='text-light-text-black-70'>{formatTotalPrice} ETH</h4>
+            <h4 className="text-1-text-black-70">{t('price')}</h4>
+            <h4 className="text-1-text-black-70">{formatTotalPrice} ETH</h4>
           </div>
         </div>
         <div className={css.priceInfo}>
-          <h4>{formatLowestPrice} ETH</h4>
+          <h4 className="text-1-text-white-100">{formatLowestPrice} ETH</h4>
         </div>
       </div>
     </Link>
