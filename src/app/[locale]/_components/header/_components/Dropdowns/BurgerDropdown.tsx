@@ -53,7 +53,7 @@ export default function BurgerDropdown(): JSX.Element {
         <div className={cn(css.content, 'bg-1-text-black-80')}>
           <div className={css.favorites}>
             <div className={css.item}>
-              <div className={css.icon}>
+              <div className={cn(css.icon, 'bg-1-text-white-100')}>
                 <Heart width={20} height={20} className="invert" />
               </div>
               <Link className='text-1-text-white-100' href={`/${locale}/favorites`}>
