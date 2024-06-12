@@ -8,50 +8,38 @@ import { getAccessToken } from '@/shared/lib/cookie';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
+import { useGetFavoritesQuery } from '@/shared/redux/features/favoriteApi';
 
 export default function NftForm(): JSX.Element {
   const t = useTranslations('favorite');
   const locale = useLocale();
-  const [nfts, setNfts] = useState<NftData[]>([]);
-  const [isLoadingS, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { data, isError, refetch } = useGetFavoritesQuery();
 
-  const accessToken = getAccessToken();
   useEffect(() => {
-    fetch('https://nft.levpidoor.ru/api/users/favorite', {
-      headers: {
-        'Content-Type': `application/json`,
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((dataS) => {
-        setIsLoading(false);
-        setNfts(dataS as unknown as NftData[]);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        setIsLoading(false);
-      });
-  }, []);
-
+    if (data) {
+      setIsLoading(false);
+      refetch()
+    }
+    if (isError) {
+      setError(new Error('Failed to fetch collections'));
+      setIsLoading(false);
+    }
+  }, [data, isError]);
   return (
     <div className={css.cards}>
-      {isLoadingS ? (
+      {isLoading ? (
         <div className="absolute w-[100%] grid place-items-center">
           <LoadingSpinner />
         </div>
-      ) : nfts.length > 0 ? (
-        nfts.map((item: any, index: any) => (
+      ) : data.length > 0 ? (
+        data.map((item: any, index: any) => (
           <FavoritesNft
+            refetchNftData={refetch}
             id={item._id}
             collectionId={item.collectionId}
-            nfts={nfts}
-            setNfts={setNfts}
+            nfts={data}
             key={index}
             name={item.name}
             price={item.price}
@@ -60,10 +48,15 @@ export default function NftForm(): JSX.Element {
           />
         ))
       ) : (
-        <div className={cn(css.empty, "absolute w-[100%] grid place-items-center")}>
-          <h1 className='text-1-text-white-100'>{t('empty')}</h1>
+        <div
+          className={cn(css.empty, 'absolute w-[100%] grid place-items-center')}
+        >
+          <h1 className="text-1-text-white-100">{t('empty')}</h1>
           <Link href={`/${locale}`}>
-            <Button className={cn(css.coloredBtn, 'bg-1-gradient')} variant={'default'}>
+            <Button
+              className={cn(css.coloredBtn, 'bg-1-gradient')}
+              variant={'default'}
+            >
               {t('button')}
             </Button>
           </Link>

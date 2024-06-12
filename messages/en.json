@@ -245,7 +245,12 @@
 
     "card": {
       "lastSale": "Last sale: ",
-      "buy": "Buy"
+      "buy": "Buy",
+      "messages": {
+        "loading": "NFT removal...",
+        "success": "NFT has been successfully deleted from favorites",
+        "error": "There's been an error.."
+      }
     },
 
     "modal": {
