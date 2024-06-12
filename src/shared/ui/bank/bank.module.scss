@@ -13,8 +13,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box; // Добавлено свойство box-sizing
-  border: 1px solid transparent; // Добавлен прозрачный бордер
+  box-sizing: border-box;
+  border: 1px solid transparent; 
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -44,5 +44,5 @@
 }
 
 .selected {
-  border: 1px solid #4a4aff; // Обновлено свойство border
+  border: 1px solid #4a4aff;
 }
