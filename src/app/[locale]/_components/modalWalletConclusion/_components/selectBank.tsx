@@ -49,7 +49,6 @@ export default function SelectBank() {
       return;
     }
 
-    console.log(selectedBank);
 
     const data = {
       amount: amountNumber,
@@ -61,7 +60,6 @@ export default function SelectBank() {
       await queryConclusion(data).unwrap();
       setAmount('');
       setCardNumber('');
-      console.log(data);
       setIsWithdrawalImpossible(true);
     } catch (e: any) {
       if (e.data && e.data.message) {

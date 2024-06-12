@@ -72,7 +72,6 @@ export default function SignInForm(): JSX.Element {
       password: data.password,
       remember: data.remember,
     };
-    console.log('Payload:', payload);
     try {
       const response = (await auth(payload).unwrap()) as ResponseData;
       toast.success(t('messages.success'));
@@ -80,12 +79,10 @@ export default function SignInForm(): JSX.Element {
       dispatch(setAuthInfo({user: response.user, isSignedIn:true}))
       form.reset();
       router.push(`/`);
-      console.log(response.tokens.accessToken);
     } catch (e: any) {
       if (e.data && e.data.message) {
         toast.error(e.data.message);
       }
-      console.log(e);
     } finally {
       toast.dismiss();
     }

@@ -50,7 +50,6 @@ export default function Nft({
         </div>
         <Link href={href} className={cn(css.lastSaleButton, 'bg-1-gradient')}>
           <button
-            onClick={() => console.log('Button clicked')}
             className={css.buyButton}
           >
             {t('buy')}

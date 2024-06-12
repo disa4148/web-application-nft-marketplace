@@ -82,9 +82,6 @@ export default function Bank({ selectedBank, setSelectedBank }: Props) {
     },
   ];
 
-  useEffect(() => {
-    console.log('Банк:', selectedBank);
-  }, [selectedBank]);
 
   return (
     <div className={css.bankSelector}>

@@ -24,7 +24,6 @@ export default function Examination({ changeTab, selectedBank }: Props) {
 
   const { data } = useQueryPaymentIdQuery({ paymentId: '4j32h432h4u434' });
 
-  console.log(data);
 
   const AAA = {
     amount: 0,

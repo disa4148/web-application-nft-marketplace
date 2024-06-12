@@ -52,9 +52,7 @@ export default function SelectBank({
     try {
       await createReplenishment(data).unwrap();
       toast.success('Успешно отправлено');
-      console.log(data);
     } catch (err) {
-      console.log('Ошибка:', err);
       toast.error(t('modalReplenish.toastMessage.errorSent'));
     }
   };

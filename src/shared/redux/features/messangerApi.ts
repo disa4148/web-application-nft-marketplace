@@ -8,7 +8,7 @@ interface ChatMessage {
   __v: number;
 }
 export type MessageTag = {
-  type: 'Messages'; // Используйте строковый литерал здесь
+  type: 'Messages';
   id: string;
 };
 export const messangerApi = apiSlice.injectEndpoints({
@@ -18,12 +18,15 @@ export const messangerApi = apiSlice.injectEndpoints({
         url: `api/chat`,
         method: 'GET',
       }),
+      providesTags: ['Chats'], 
     }),
     getMessages: builder.query<any, { chatid: string }>({
       query: ({ chatid }) => ({
         url: `api/message/${chatid}`,
         method: 'GET',
       }),
+      providesTags: (result, error, arg) => [{ type: 'Messages', id: arg.chatid }],
+
     }),
     sendMessage: builder.mutation<ChatMessage,{ ownerId: string; text: string }>({
       query: (data) => ({
@@ -34,6 +37,10 @@ export const messangerApi = apiSlice.injectEndpoints({
         },
         method: 'POST',
       }),
+      invalidatesTags: (result, error, arg) => [
+        { type: 'Messages', id: arg.ownerId }, // Обновляем кеш сообщений для этого чата
+        'Chats' // Обновляем список чатов
+      ],
     }),
   }),
 });

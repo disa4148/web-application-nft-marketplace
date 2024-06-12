@@ -15,8 +15,8 @@ import { Mutex } from 'async-mutex';
 
 interface RefreshResultData {
   tokens: {
-  accessToken: string,
-  refreshToken:string  
+    accessToken: string;
+    refreshToken: string;
   };
 }
 
@@ -24,6 +24,7 @@ const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://nft.levpidoor.ru/',
+
   prepareHeaders: (headers) => {
     const token = getAccessToken();
     if (token) {
@@ -38,7 +39,6 @@ const baseQueryWithReauth: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  console.log('BaseQuery args:', args); // Add this for debugging
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
 
@@ -53,11 +53,14 @@ const baseQueryWithReauth: BaseQueryFn<
           return result;
         }
 
-        console.log('Refreshing token with refreshToken:', refreshToken); // Add this for debugging
         const refreshResult = await baseQuery(
-          { url: 'api/auth/refresh', method: 'GET', headers: {
-            'refresh-token': `Bearer ${refreshToken}`
-          } },
+          {
+            url: 'api/auth/refresh',
+            method: 'GET',
+            headers: {
+              'refresh-token': `Bearer ${refreshToken}`,
+            },
+          },
           api,
           extraOptions,
         );
@@ -84,6 +87,8 @@ const baseQueryWithReauth: BaseQueryFn<
 };
 
 export const apiSlice = createApi({
+  tagTypes: ['Chats', 'Messages'], // Указываем типы тегов
+
   baseQuery: baseQueryWithReauth,
   endpoints: () => ({}),
 });

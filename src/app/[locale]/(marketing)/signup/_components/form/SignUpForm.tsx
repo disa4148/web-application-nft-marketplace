@@ -95,7 +95,6 @@ export default function SignUpForm(): JSX.Element {
       if (e.data && e.data.message) {
         toast.error(e.data.message);
       }
-      console.log(e);
     } finally {
       toast.dismiss();
     }

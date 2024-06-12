@@ -59,7 +59,6 @@ export default function TopCollections(): JSX.Element {
     if (data) {
       setTotal(data.total);
       setIsLoading(false);
-      console.log('Fetched data:', data);
     }
     if (isError) {
       setError(new Error('Failed to fetch collections'));
