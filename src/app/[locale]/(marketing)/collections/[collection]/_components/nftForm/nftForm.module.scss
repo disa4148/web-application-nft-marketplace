@@ -6,6 +6,7 @@
   row-gap: 15px;
   column-gap: 20px;
   max-width: 1280px;
+  min-height: 727px;
 }
 
 .notFound {
@@ -14,7 +15,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 15px;
-  height: 400px;
+  height: 727px;
   animation: appearance 1s ease-in-out;
   h1,
   h2 {
