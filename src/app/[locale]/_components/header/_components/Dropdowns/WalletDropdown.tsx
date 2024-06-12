@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default function WalletDropdown({ balance }: Props): JSX.Element {
-  const t = useTranslations('header.dropdown.profileMenu');
+  const t = useTranslations('header.dropdown.walletMenu');
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalReplenish, setIsModalReplenish] = useState<boolean>(false);
@@ -64,7 +64,7 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
                 height={24}
               />
             </div>
-            <span className='text-1-text-white-100 cursor-pointer'>Пополнить</span>
+            <span className='text-1-text-white-100 cursor-pointer'>{t("replenish")}</span>
           </div>
           <div className={css.conclusion} onClick={() => setIsModalConclusion(true)}>
             <div className={cn(css.backImg, 'bg-1-bg-white-100')}>
@@ -75,7 +75,7 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
                 height={20}
               />
             </div>
-            <span className='text-1-text-white-100 cursor-pointer'>Вывести</span>
+            <span className='text-1-text-white-100 cursor-pointer'>{t("withdraw")}</span>
           </div>
         </div>
       )}

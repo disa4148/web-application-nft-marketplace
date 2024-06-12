@@ -1,9 +1,9 @@
 import { Button } from '@/shared/ui/button';
 import css from './examination.module.scss';
-import { Input } from '@/shared/ui/input';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useQueryPaymentIdQuery } from '@/shared/redux/payment/replenishment';
+import { useTranslations } from 'next-intl';
 
 interface BankDetails {
   value: string;
@@ -18,6 +18,9 @@ interface Props {
 }
 
 export default function Examination({ changeTab, selectedBank }: Props) {
+
+  const t = useTranslations("header.dropdown.walletMenu.modalReplenish.checkReplenish")
+
   const { data } = useQueryPaymentIdQuery({ paymentId: '4j32h432h4u434' });
 
   console.log(data);
@@ -46,7 +49,7 @@ export default function Examination({ changeTab, selectedBank }: Props) {
   const handleClick = () => {
     setPaymentStatus({
       status: AAA.status,
-      message: AAA.status ? 'Средства зачислены!' : 'Средства еще не зачислены!',
+      message: AAA.status ? t("successfulRep") : t("failedRep"),
     });
   };
 
@@ -68,7 +71,7 @@ export default function Examination({ changeTab, selectedBank }: Props) {
 
   return (
     <div className={css.page}>
-      <h1>Пополнить</h1>
+      <h1>{t("replenish")}</h1>
       <div className={css.wrapper}>
         <div className={css.bank}>
           <Image
@@ -84,33 +87,33 @@ export default function Examination({ changeTab, selectedBank }: Props) {
         </div>
         <div className={css.form}>
           <div className={css.inputForm}>
-            <p>К оплате</p>
+            <p>{t("toPay")}</p>
             <div className={css.infoBlock}>{AAA.details.summ_real}</div>
           </div>
           {isCardType && (
             <>
               <div className={css.inputForm}>
-                <p>Банк для СБП</p>
+                <p>{t("bankSBP")}</p>
                 <div className={css.infoBlock}>{AAA.details.fio_sbp}</div>
               </div>
               <div className={css.inputForm}>
-                <p>Номер карты</p>
+                <p>{t("cardNumber")}</p>
                 <div className={css.infoBlock}>{AAA.details.card}</div>
               </div>
               <div className={css.inputForm}>
-                <p>Номер телефона</p>
+                <p>{t("phoneNumber")}</p>
                 <div className={css.infoBlock}>{AAA.details.number}</div>
               </div>
             </>
           )}
           {!isCardType && (
             <div className={css.inputForm}>
-              <p>Номер счета</p>
+              <p>{t("accountNumber")}</p>
               <div className={css.infoBlock}>{AAA.details.card}</div>
             </div>
           )}
           <Button className={css.button} onClick={handleClick}>
-            Проверить платеж
+            {t("button")}
           </Button>
           {paymentStatus.status !== null && (
             <div

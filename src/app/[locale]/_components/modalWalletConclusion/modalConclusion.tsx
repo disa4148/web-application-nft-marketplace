@@ -30,11 +30,6 @@ export default function ModalConclusion({ open, setIsOpen, children }: Props) {
     <Dialog modal={true} open={open} onOpenChange={setIsOpen} >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className='max-w-[581px]'>
-        <DialogHeader>
-          <DialogTitle>
-            <h1 className='text-1-text-white-100'>Вывести</h1>
-          </DialogTitle>
-        </DialogHeader>
         <SelectBank />
           {/* Компонент с кнопками и полями */}
       </DialogContent>

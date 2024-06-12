@@ -1,39 +1,53 @@
-.wrapper {
-  display: flex;
-  gap: 10px;
-
-  .sending {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-
-    .input {
-      max-width: 186px;
-      border: 1px solid white;
-    }
-
-    .button {
-      width: 100%;
-      max-width: 186px;
-    }
+.page {
+  h1 {
+    font-size: 24px;
   }
-}
-
-@media (max-width: 585px) {
   .wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    padding-top: 25px;
+    display: flex;
+    gap: 10px;
 
     .sending {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 190px;
+
       .input {
-        max-width: 324px;
+        max-width: 186px;
+        border: 1px solid white;
       }
 
       .button {
         width: 100%;
-        max-width: 324px;
+        max-width: 186px;
+      }
+
+      .errorMessage {
+        font-size: 14px;
+        color: red;
+        font-weight: 500;
+      }
+    }
+  }
+}
+@media (max-width: 585px) {
+  .page {
+    .wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+
+      .sending {
+        .input {
+          max-width: 324px;
+        }
+
+        .button {
+          width: 100%;
+          max-width: 324px;
+        }
       }
     }
   }

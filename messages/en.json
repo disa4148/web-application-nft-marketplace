@@ -25,6 +25,35 @@
         "exit": {
           "title": "Exit Profile"
         }
+      },
+      "walletMenu": {
+        "replenish": "Replenish",
+        "modalReplenish": {
+          "replenish": "Replenish",
+          "enterAmount": "Enter amount",
+          "replenishButton": "Replenish",
+          "loadingButton": "Sending...",
+          "checkReplenish": {
+            "replenish": "Replenish",
+            "toPay": "To pay",
+            "bankSBP": "Bank for SBP",
+            "cardNumber": "Card number",
+            "phoneNumber": "Phone number",
+            "accountNumber": "Account number",
+            "button": "Check payment",
+            "successfulRep": "Funds have been credited!",
+            "failedRep": "Funds have not been credited yet!"
+          }
+        },
+        "withdraw": "Withdraw",
+        "modalWithdraw": {
+          "withdraw": "Withdraw",
+          "enterAmount": "Enter amount",
+          "accountNumber": "Account number",
+          "withdrawButton": "Withdraw",
+          "loadingButton": "Withdrawal...",
+          "failedWith": "There's been an error. Please contact to support!"
+        }
       }
     },
     "messages": {

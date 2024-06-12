@@ -5,6 +5,8 @@ import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { useCreateReplenishmentMutation } from '@/shared/redux/payment/replenishment';
 import { cn } from '@/shared/lib/utils';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
 interface Props {
   changeTab: React.Dispatch<React.SetStateAction<string>>;
@@ -17,6 +19,9 @@ export default function SelectBank({
   setSelectedBank,
   selectedBank,
 }: Props) {
+
+const t = useTranslations("header.dropdown.walletMenu")
+
   const [amount, setAmount] = useState('');
 
   const [createReplenishment, { isLoading }] = useCreateReplenishmentMutation();
@@ -43,20 +48,22 @@ export default function SelectBank({
       type: selectedBank.value,
     };
 
-    changeTab('examination');
+   
 
     try {
       await createReplenishment(data).unwrap();
-      console.log('Успешно отправлено');
+      toast.success('Успешно отправлено');
       console.log(data);
+      changeTab('examination');
     } catch (err) {
-      console.error('Ошибка при отправке:', err);
+      console.log("Ошибка:", err)
+      toast.error('Ошибка при отправке');
     }
   };
 
   return (
     <div className={css.page}>
-      <h1>Пополнить</h1>
+      <h1>{t("replenish")}</h1>
       <div className={css.wrapper}>
         <Bank selectedBank={selectedBank} setSelectedBank={setSelectedBank} />
         <div className={css.sending}>
@@ -64,7 +71,7 @@ export default function SelectBank({
             className={css.input}
             value={amount}
             onChange={handleAmountChange}
-            placeholder="Введите сумму"
+            placeholder={t("modalReplenish.enterAmount")}
             type="number"
           />
           <Button
@@ -72,7 +79,7 @@ export default function SelectBank({
             onClick={handleSubmit}
             disabled={isLoading}
           >
-            {isLoading ? 'Отправка...' : 'Пополнить'}
+            {isLoading ? t("modalReplenish.loadingButton") : t("modalReplenish.replenishButton")}
           </Button>
         </div>
       </div>

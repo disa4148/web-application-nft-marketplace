@@ -25,6 +25,35 @@
         "exit": {
           "title": "Выйти из профиля"
         }
+      },
+      "walletMenu": {
+        "replenish": "Пополнить",
+        "modalReplenish": {
+          "replenish": "Пополнить",
+          "enterAmount": "Введите сумму",
+          "replenishButton": "Пополнить",
+          "loadingButton": "Отправка...",
+          "checkReplenish": {
+            "replenish": "Пополнить",
+            "toPay": "К оплате",
+            "bankSBP": "Банк для СБП",
+            "cardNumber": "Номер карты",
+            "phoneNumber": "Номер телефона",
+            "accountNumber": "Номер счета",
+            "button": "Проверить платеж",
+            "successfulRep": "Средства зачислены!",
+            "failedRep": "Средства еще не зачислены!"
+          }
+        },
+        "withdraw": "Вывести",
+        "modalWithdraw": {
+          "withdraw": "Вывести",
+          "enterAmount": "Введите сумму",
+          "accountNumber": "Номер счета",
+          "withdrawButton": "Вывести",
+          "loadingButton": "Вывод...",
+          "failedWith": "Произошла ошибка. Пожалуйста, обратитесь в службу поддержки!"
+        }
       }
     },
     "messages": {
