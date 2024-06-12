@@ -41,4 +41,5 @@ export interface NftResponse  {
   pricehistory: PriceHistory[];
   offers: Offer[];
   isFavorite: boolean;
+  on_sale: boolean;
 }

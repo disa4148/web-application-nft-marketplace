@@ -18,6 +18,8 @@ type Props = {
   nftId: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
+  onDeregisterSuccess: () => void; 
+  refetchNftData: () => void; 
   children: React.ReactNode;
 };
 
@@ -26,6 +28,8 @@ export default function DeregisterModal({
   setIsOpen,
   children,
   nftId,
+  onDeregisterSuccess,
+  refetchNftData, 
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.modals.deregister');
   const [deregister, { isLoading }] = useDeregisterNftMutation();
@@ -35,6 +39,8 @@ export default function DeregisterModal({
     try {
       await deregister({ nftId }).unwrap();
       toast.success(t('messages.success'));
+      onDeregisterSuccess();
+      refetchNftData(); 
       setIsOpen(false);
     } catch (e: any) {
       if (e.data && e.data.message) {
@@ -55,7 +61,7 @@ export default function DeregisterModal({
           </DialogTitle>
         </DialogHeader>
         <div className={css.content}>
-          <Button className={css.coloredBtn} onClick={() => setIsOpen(false)}>
+          <Button className={cn(css.coloredBtn, 'bg-1-gradient')} onClick={() => setIsOpen(false)}>
             {t('no')}
           </Button>
           <Button onClick={handleDeregisterNft} className={css.removeBtn}>

@@ -1,10 +1,10 @@
-'use client';
+'use client'
 import css from './nft.module.scss';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useGetNftQuery } from '@/shared/redux/features/nftApi';
-
+import { useSelector } from 'react-redux'; 
+import { RootState } from '@/shared/redux/store';
 import Page from '@/shared/containers/page';
 import Image from 'next/image';
 
@@ -24,18 +24,14 @@ interface Tab {
 }
 
 export default function NftCard({ params }: { params: { nft: string } }) {
-  /**
-   * @dev Only for development!
-   * Later, server data is needed
-   */
-  const isMine = false;
-  const onSale = true;
-
   const t = useTranslations('nftCard');
 
-  const { data: nftData, isSuccess } = useGetNftQuery({ nftId: params.nft });
+  const { data: nftData, isSuccess, refetch } = useGetNftQuery({ nftId: params.nft });
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [isMine, setIsMine] = useState<boolean>(false);
+  const [onSale, setOnSale] = useState<boolean>(false);
 
   const changeTab = (index: number) => {
     setActiveTab(index);
@@ -68,6 +64,25 @@ export default function NftCard({ params }: { params: { nft: string } }) {
     loading: () => <SkeletonOwner />,
   });
 
+  useEffect(() => {
+    if (isSuccess && nftData && user) {
+      setIsMine(nftData.owner.name === user.login);
+      setOnSale(nftData.on_sale);
+    }
+  }, [isSuccess, nftData, user]);
+
+  const handleDeregisterSuccess = () => {
+    setOnSale(false);
+  };
+
+  const handleSaleSuccess = () => {
+    setOnSale(true);
+  }
+
+  const refetchNftData = () => {
+    refetch();
+  };
+
   if (isSuccess && nftData) {
     return (
       <Page padding>
@@ -98,6 +113,9 @@ export default function NftCard({ params }: { params: { nft: string } }) {
                 modalDescription={nftData.description}
                 modalImage={nftData.image_url}
                 price={nftData.price}
+                onSaleSuccess={handleSaleSuccess}
+                onDeregisterSuccess={handleDeregisterSuccess}
+                refetchNftData={refetchNftData}
               />
               <div className={css.tabsContainer}>
                 <div className={css.tabs}>
@@ -148,4 +166,5 @@ export default function NftCard({ params }: { params: { nft: string } }) {
       </Page>
     );
   }
+  return null;
 }

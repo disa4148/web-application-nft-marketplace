@@ -106,3 +106,16 @@
     }
   }
 }
+
+
+@media (max-width: 380px) {
+  .dialogContent {
+    .stats {
+      .statsItem {
+        h2 {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

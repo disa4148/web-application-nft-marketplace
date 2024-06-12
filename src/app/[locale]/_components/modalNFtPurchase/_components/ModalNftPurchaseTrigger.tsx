@@ -11,6 +11,7 @@ type Props = {
   title: string;
   description: string;
   price: number;
+  refetchNftData: () => void;
 };
 
 export default function ModalTrigger({
@@ -19,11 +20,13 @@ export default function ModalTrigger({
   description,
   price,
   nftId,
+  refetchNftData,
 }: Props): JSX.Element {
   const [isOpenModal, setIsModal] = useState<boolean>(false);
   const t = useTranslations('nftCard.priceBlock');
   return (
     <ModalNFtPurchase
+      refetchNftData={refetchNftData}
       nftId={nftId}
       open={isOpenModal}
       setIsOpen={setIsModal}
@@ -32,7 +35,9 @@ export default function ModalTrigger({
       description={description}
       price={price}
     >
-      <Button className='bg-1-gradient text-1-text-white-100'>{t('buyBtn')}</Button>
+      <Button className="bg-1-gradient text-1-text-white-100">
+        {t('buyBtn')}
+      </Button>
     </ModalNFtPurchase>
   );
 }
