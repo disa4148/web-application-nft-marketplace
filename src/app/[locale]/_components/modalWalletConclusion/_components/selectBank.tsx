@@ -7,17 +7,19 @@ import { useQueryConclusionMutation } from '@/shared/redux/payment/replenishment
 import { toast } from 'sonner';
 import { cn } from '@/shared/lib/utils';
 import { useTranslations } from 'next-intl';
-import { nullable } from 'zod';
-
-const initialBank = {
-  value: 'card',
-  name: 'Интернет-банк\nОплата',
-  nameExamUp: 'Интернет-банк',
-  nameExamDw: 'Оплата(Russia)',
-};
 
 export default function SelectBank() {
   const t = useTranslations('header.dropdown.walletMenu.modalWithdraw');
+  const b = useTranslations(
+    'header.dropdown.walletMenu.modalReplenish.bankName',
+  );
+
+  const initialBank = {
+    value: 'card',
+    name: b('nameBank'),
+    nameExamUp: b('nameExamUp'),
+    nameExamDw: `${b('nameExamDw')}(Russia)`,
+  };
 
   const [selectedBank, setSelectedBank] = useState<BankDetails | null>(
     initialBank,
@@ -32,7 +34,7 @@ export default function SelectBank() {
     setAmount(e.target.value);
 
     if (e.target.value === '0') {
-      toast.error(t("amountError"));
+      toast.error(t('amountError'));
     }
   };
 

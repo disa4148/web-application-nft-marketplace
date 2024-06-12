@@ -1,38 +1,48 @@
 .bankSelector {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    max-width: 326px;
-  }
-  
-  .bankItem {
-    max-width: 154px;
-    height: 80px;
-    border-radius: 20px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .bankHeader {
-    text-align: center;
-    border-radius: 20px 20px 0px 0px;
-    width: 100%;
-  }
-  
-  .bankBody {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-  }
-  
-  .selected {
-    border-bottom: 1px solid #4a4aff;
-    border-left: 1px solid #4a4aff;
-    border-right: 1px solid #4a4aff;
-  }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 326px;
+}
 
-  
+.bankItem {
+  max-width: 154px;
+  height: 80px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box; // Добавлено свойство box-sizing
+  border: 1px solid transparent; // Добавлен прозрачный бордер
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.bankHeader {
+  text-align: center;
+  border-radius: 20px 20px 0px 0px;
+  width: 100%;
+
+  .text {
+    font-size: 14px;
+  }
+}
+
+.bankBody {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+
+  .text {
+    font-size: 14px;
+  }
+}
+
+.selected {
+  border: 1px solid #4a4aff; // Обновлено свойство border
+}

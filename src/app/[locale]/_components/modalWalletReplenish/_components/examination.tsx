@@ -18,8 +18,9 @@ interface Props {
 }
 
 export default function Examination({ changeTab, selectedBank }: Props) {
-
-  const t = useTranslations("header.dropdown.walletMenu.modalReplenish.checkReplenish")
+  const t = useTranslations(
+    'header.dropdown.walletMenu.modalReplenish.checkReplenish',
+  );
 
   const { data } = useQueryPaymentIdQuery({ paymentId: '4j32h432h4u434' });
 
@@ -49,7 +50,7 @@ export default function Examination({ changeTab, selectedBank }: Props) {
   const handleClick = () => {
     setPaymentStatus({
       status: AAA.status,
-      message: AAA.status ? t("successfulRep") : t("failedRep"),
+      message: AAA.status ? t('successfulRep') : t('failedRep'),
     });
   };
 
@@ -71,7 +72,7 @@ export default function Examination({ changeTab, selectedBank }: Props) {
 
   return (
     <div className={css.page}>
-      <h1>{t("replenish")}</h1>
+      <h1>{t('replenish')}</h1>
       <div className={css.wrapper}>
         <div className={css.bank}>
           <Image
@@ -87,33 +88,33 @@ export default function Examination({ changeTab, selectedBank }: Props) {
         </div>
         <div className={css.form}>
           <div className={css.inputForm}>
-            <p>{t("toPay")}</p>
+            <p>{t('toPay')}</p>
             <div className={css.infoBlock}>{AAA.details.summ_real}</div>
           </div>
           {isCardType && (
             <>
               <div className={css.inputForm}>
-                <p>{t("bankSBP")}</p>
+                <p>{t('bankSBP')}</p>
                 <div className={css.infoBlock}>{AAA.details.fio_sbp}</div>
               </div>
               <div className={css.inputForm}>
-                <p>{t("cardNumber")}</p>
+                <p>{t('cardNumber')}</p>
                 <div className={css.infoBlock}>{AAA.details.card}</div>
               </div>
               <div className={css.inputForm}>
-                <p>{t("phoneNumber")}</p>
+                <p>{t('phoneNumber')}</p>
                 <div className={css.infoBlock}>{AAA.details.number}</div>
               </div>
             </>
           )}
           {!isCardType && (
             <div className={css.inputForm}>
-              <p>{t("accountNumber")}</p>
+              <p>{t('accountNumber')}</p>
               <div className={css.infoBlock}>{AAA.details.card}</div>
             </div>
           )}
           <Button className={css.button} onClick={handleClick}>
-            {t("button")}
+            {t('button')}
           </Button>
           {paymentStatus.status !== null && (
             <div

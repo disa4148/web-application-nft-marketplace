@@ -24,7 +24,7 @@
     gap: 10px;
     padding: 10px;
     transform: translateX(-82%);
-    width: 240px;
+    width: 150px;
     border-radius: 8px;
     margin-top: 10px;
 
@@ -37,6 +37,11 @@
         border-radius: 9999px;
         padding: 5px;
       }
+
+      .text {
+        font-size: 14px;
+        font-weight: 500;
+      }
     }
 
     .conclusion {
@@ -47,6 +52,11 @@
       .backImg {
         border-radius: 9999px;
         padding: 5px;
+      }
+
+      .text {
+        font-size: 14px;
+        font-weight: 500;
       }
     }
   }

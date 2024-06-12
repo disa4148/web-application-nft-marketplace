@@ -33,6 +33,17 @@
           "enterAmount": "Enter amount",
           "replenishButton": "Replenish",
           "loadingButton": "Sending...",
+
+          "bankName": {
+            "nameBank": "Internet Bank\nPayment",
+            "nameExamUp": "Internet Bank",
+            "nameExamDw": "Payment"
+          },
+
+          "toastMessage": {
+            "errorSent": "There was an error when refilling the..."
+          },
+
           "checkReplenish": {
             "replenish": "Replenish",
             "toPay": "To pay",

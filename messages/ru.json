@@ -33,6 +33,17 @@
           "enterAmount": "Введите сумму",
           "replenishButton": "Пополнить",
           "loadingButton": "Отправка...",
+
+          "bankName": {
+            "nameBank": "Интернет-банк\nОплата",
+            "nameExamUp": "Интернет-банк",
+            "nameExamDw": "Оплата"
+          },
+
+          "toastMessage": {
+            "errorSent": "Произошла ошибка при пополнении..."
+          },
+
           "checkReplenish": {
             "replenish": "Пополнить",
             "toPay": "К оплате",

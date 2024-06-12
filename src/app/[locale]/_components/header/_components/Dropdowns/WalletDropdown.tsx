@@ -64,7 +64,7 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
                 height={24}
               />
             </div>
-            <span className='text-1-text-white-100 cursor-pointer'>{t("replenish")}</span>
+            <span className={cn(css.text, 'text-1-text-white-100 cursor-pointer')}>{t("replenish")}</span>
           </div>
           <div className={css.conclusion} onClick={() => setIsModalConclusion(true)}>
             <div className={cn(css.backImg, 'bg-1-bg-white-100')}>
@@ -75,7 +75,7 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
                 height={20}
               />
             </div>
-            <span className='text-1-text-white-100 cursor-pointer'>{t("withdraw")}</span>
+            <span className={cn(css.text, 'text-1-text-white-100 cursor-pointer')}>{t("withdraw")}</span>
           </div>
         </div>
       )}

@@ -19,8 +19,7 @@ export default function SelectBank({
   setSelectedBank,
   selectedBank,
 }: Props) {
-
-const t = useTranslations("header.dropdown.walletMenu")
+  const t = useTranslations('header.dropdown.walletMenu');
 
   const [amount, setAmount] = useState('');
 
@@ -32,6 +31,8 @@ const t = useTranslations("header.dropdown.walletMenu")
 
   const handleSubmit = async () => {
     const amountNumber = parseFloat(amount);
+
+    changeTab('examination');
 
     if (isNaN(amountNumber)) {
       console.error('Сумма должна быть числом');
@@ -48,22 +49,19 @@ const t = useTranslations("header.dropdown.walletMenu")
       type: selectedBank.value,
     };
 
-   
-
     try {
       await createReplenishment(data).unwrap();
       toast.success('Успешно отправлено');
       console.log(data);
-      changeTab('examination');
     } catch (err) {
-      console.log("Ошибка:", err)
-      toast.error('Ошибка при отправке');
+      console.log('Ошибка:', err);
+      toast.error(t('modalReplenish.toastMessage.errorSent'));
     }
   };
 
   return (
     <div className={css.page}>
-      <h1>{t("replenish")}</h1>
+      <h1>{t('replenish')}</h1>
       <div className={css.wrapper}>
         <Bank selectedBank={selectedBank} setSelectedBank={setSelectedBank} />
         <div className={css.sending}>
@@ -71,7 +69,7 @@ const t = useTranslations("header.dropdown.walletMenu")
             className={css.input}
             value={amount}
             onChange={handleAmountChange}
-            placeholder={t("modalReplenish.enterAmount")}
+            placeholder={t('modalReplenish.enterAmount')}
             type="number"
           />
           <Button
@@ -79,7 +77,9 @@ const t = useTranslations("header.dropdown.walletMenu")
             onClick={handleSubmit}
             disabled={isLoading}
           >
-            {isLoading ? t("modalReplenish.loadingButton") : t("modalReplenish.replenishButton")}
+            {isLoading
+              ? t('modalReplenish.loadingButton')
+              : t('modalReplenish.replenishButton')}
           </Button>
         </div>
       </div>
