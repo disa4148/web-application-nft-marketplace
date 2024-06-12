@@ -1,10 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import css from './page.module.scss';
-<<<<<<< Updated upstream
 import { cn } from '@/shared/lib/utils';
-=======
->>>>>>> Stashed changes
 import { Input } from '@/shared/ui/input';
 import Message from '../_components/dialogue/message/message';
 import { useTranslations } from 'next-intl';
