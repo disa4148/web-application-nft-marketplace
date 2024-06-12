@@ -15,6 +15,7 @@ import { cn } from '@/shared/lib/utils';
 type Props = {
   nftId: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  refetchNftData: () => void; 
   open: boolean;
   children: React.ReactNode;
   image: string;
@@ -32,6 +33,7 @@ export default function ModalNFtPurchase({
   image,
   price,
   nftId,
+  refetchNftData
 }: Props): JSX.Element {
   const t = useTranslations('catalogNft.modal');
 
@@ -47,6 +49,7 @@ export default function ModalNFtPurchase({
     try {
       await buyNft({ nftId }).unwrap();
       toast.success(t('messages.success'));
+      refetchNftData();
       setIsOpen(false)
     } catch (e: any) {
       if (e.data && e.data.message) {

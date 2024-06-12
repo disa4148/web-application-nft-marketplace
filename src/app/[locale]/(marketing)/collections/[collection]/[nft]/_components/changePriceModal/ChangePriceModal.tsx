@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 type Props = {
   nftId: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  refetchNftData: () => void;
   open: boolean;
   children: React.ReactNode;
   price: number;
@@ -30,7 +31,8 @@ export default function ChangePriceModal({
   setIsOpen,
   children,
   nftId,
-  price
+  price,
+  refetchNftData
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.modals.changePrice');
   const [rubPrice, setRubPrice] = useState<string>('');
@@ -70,6 +72,7 @@ export default function ChangePriceModal({
     try {
       await changePrice({ nftId, price: ethPriceNumber }).unwrap();
       toast.success(t('messages.success'));
+      refetchNftData();
       setIsOpen(false);
     } catch (e: any) {
       if (e.data && e.data.message) {
@@ -133,7 +136,7 @@ export default function ChangePriceModal({
                 onChange={handleEthChange}
               />
             </div>
-            <Button onClick={handleChangePrice} className={css.btn}>
+            <Button onClick={handleChangePrice} className={cn(css.btn, 'bg-1-gradient')}>
               {isLoading ? <LoadingSpinner /> : t('btn')}
             </Button>
           </div>

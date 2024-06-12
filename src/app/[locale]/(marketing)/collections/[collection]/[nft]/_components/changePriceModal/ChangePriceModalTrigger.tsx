@@ -10,22 +10,32 @@ import ChangePriceModal from './ChangePriceModal';
 type Props = {
   nftId: string;
   price: number;
+  refetchNftData: () => void;
 };
 
 export default function ChangePriceModalTrigger({
   nftId,
-  price
+  price,
+  refetchNftData,
 }: Props): JSX.Element {
   const [isOpenModal, setIsModal] = useState<boolean>(false);
   const t = useTranslations('nftCard.priceBlock');
   return (
     <ChangePriceModal
+      refetchNftData={refetchNftData}
       nftId={nftId}
       open={isOpenModal}
       setIsOpen={setIsModal}
       price={price}
     >
-      <Button className={cn(css.listForSaleBtn, 'bg-1-gradient text-1-text-white-100')}>{t('changePriceBtn')}</Button>
+      <Button
+        className={cn(
+          css.listForSaleBtn,
+          'bg-1-gradient text-1-text-white-100',
+        )}
+      >
+        {t('changePriceBtn')}
+      </Button>
     </ChangePriceModal>
   );
 }

@@ -30,7 +30,7 @@
       }
     }
     .btn {
-        width: 100%;
+      width: 100%;
     }
   }
   h1 {
@@ -41,5 +41,31 @@
   h2 {
     font-size: 18px;
     font-weight: 500;
+  }
+}
+
+@media (max-width: 440px) {
+  .dialogContent {
+    .content {
+      .inputs {
+        input {
+          font-size: 14px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .dialogContent {
+    .content {
+      .inputs {
+        input {
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
