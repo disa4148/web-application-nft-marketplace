@@ -19,6 +19,9 @@ type Props = {
   modalImage: string;
   isMine: boolean;
   onSale: boolean;
+  onDeregisterSuccess: () => void;
+  onSaleSuccess: () => void;
+  refetchNftData: () => void;
 };
 
 export default function PriceContainer({
@@ -28,7 +31,10 @@ export default function PriceContainer({
   price,
   nftId,
   isMine,
-  onSale
+  onSale,
+  onSaleSuccess,
+  onDeregisterSuccess,
+  refetchNftData,
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.priceBlock');
 
@@ -64,15 +70,15 @@ export default function PriceContainer({
   return (
     <div className={cn(css.priceContainer, 'bg-1-bg-black-90')}>
       <div>
-        <h5 className='text-1-text-black-60'>{t('title')}</h5>
+        <h5 className="text-1-text-black-60">{t('title')}</h5>
         <div className={css.price}>
-          <h2 className='text-1-text-white-100'>{price} ETH</h2>
+          <h2 className="text-1-text-white-100">{price} ETH</h2>
           {priceInUsd !== null && priceInRub !== null ? (
-            <h5 className='text-1-text-black-60'>
+            <h5 className="text-1-text-black-60">
               {priceInUsd.toFixed(2)} $ ({priceInRub.toFixed(0)} ₽)
             </h5>
           ) : (
-            <h5 className='text-1-text-black-60'>Loading...</h5>
+            <h5 className="text-1-text-black-60">Loading...</h5>
           )}
         </div>
       </div>
@@ -80,23 +86,41 @@ export default function PriceContainer({
         {isMine ? (
           onSale ? (
             <>
-            <ChangePriceModalTrigger price={price} nftId={nftId}/>
-            <DeregisterModalTrigger nftId={nftId}/>
+              <ChangePriceModalTrigger
+                refetchNftData={refetchNftData}
+                price={price}
+                nftId={nftId}
+              />
+              <DeregisterModalTrigger
+                nftId={nftId}
+                onDeregisterSuccess={onDeregisterSuccess}
+                refetchNftData={refetchNftData}
+              />
             </>
           ) : (
-            <SaleModalTrigger nftId={nftId}/>
+            <SaleModalTrigger
+              refetchNftData={refetchNftData}
+              onSaleSuccess={onSaleSuccess}
+              nftId={nftId}
+            />
           )
         ) : (
           onSale && (
             <>
               <ModalTrigger
+                refetchNftData={refetchNftData}
                 nftId={nftId}
                 image={modalImage}
                 title={modalTitle}
                 description={modalDescription}
                 price={price}
               />
-              <Button className={cn(css.offerBtn, 'text-1-text-white-100 bg-1-gradient')}>
+              <Button
+                className={cn(
+                  css.offerBtn,
+                  'text-1-text-white-100 bg-1-gradient',
+                )}
+              >
                 <Image
                   src={'/assets/icons/label.svg'}
                   alt=""

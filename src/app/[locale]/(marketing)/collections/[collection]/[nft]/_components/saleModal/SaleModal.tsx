@@ -20,6 +20,8 @@ import { useEffect, useState } from 'react';
 type Props = {
   nftId: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSaleSuccess: () => void; 
+  refetchNftData: () => void; 
   open: boolean;
   children: React.ReactNode;
 };
@@ -29,6 +31,8 @@ export default function SaleModal({
   setIsOpen,
   children,
   nftId,
+  onSaleSuccess,
+  refetchNftData
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.modals.sale');
   const [rubPrice, setRubPrice] = useState<string>('');
@@ -68,6 +72,8 @@ export default function SaleModal({
     try {
       await saleNft({ nftId, price: ethPriceNumber }).unwrap();
       toast.success(t('messages.success'));
+      onSaleSuccess();
+      refetchNftData();
       setIsOpen(false);
     } catch (e: any) {
       if (e.data && e.data.message) {

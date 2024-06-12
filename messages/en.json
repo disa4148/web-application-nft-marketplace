@@ -25,6 +25,36 @@
         "exit": {
           "title": "Exit Profile"
         }
+      },
+      "walletMenu": {
+        "replenish": "Replenish",
+        "modalReplenish": {
+          "replenish": "Replenish",
+          "enterAmount": "Enter amount",
+          "replenishButton": "Replenish",
+          "loadingButton": "Sending...",
+          "checkReplenish": {
+            "replenish": "Replenish",
+            "toPay": "To pay",
+            "bankSBP": "Bank for SBP",
+            "cardNumber": "Card number",
+            "phoneNumber": "Phone number",
+            "accountNumber": "Account number",
+            "button": "Check payment",
+            "successfulRep": "Funds have been credited!",
+            "failedRep": "Funds have not been credited yet!"
+          }
+        },
+        "withdraw": "Withdraw",
+        "modalWithdraw": {
+          "withdraw": "Withdraw",
+          "enterAmount": "Enter amount",
+          "accountNumber": "Account number",
+          "withdrawButton": "Withdraw",
+          "loadingButton": "Withdrawal...",
+          "failedWith": "There's been an error. Please contact to support!",
+          "amountError": "The withdrawal amount cannot be 0"
+        }
       }
     },
     "messages": {
@@ -86,24 +116,24 @@
           "description": "NFT marketplace operating on The Open Network blockchain. To start using the site, simply log in with your wallet - and that's it. Buy and sell NFTs, upload collections and NFTs to the blockchain, or just admire the creativity of artists and meet members of our community. Too many new unfamiliar words? We have collected answers to all questions about blockchain and NFTs in our FAQ."
         },
         "ton": {
-          "title": "💎 What is TON?",
-          "description": "The Open Network - a next-generation web3 blockchain ecosystem created to make life easier. If you're an NFT artist or collector, TON is the perfect tool for you, thanks to its high performance and low transaction fees. And TON is also eco-friendly. TON was conceived and developed by the Durov brothers, the creators of the Telegram messenger. The project is managed and developed by the TON Foundation. This is an independent community of crypto enthusiasts from all over the world. TON has its own currency - Toncoin ($TON)."
+          "title": "💎 What is Ethereum (ETH)?",
+          "description": "Ethereum (ETH) is a decentralized blockchain platform created to simplify interaction with digital assets and smart contracts. If you are an NFT artist or collector, Ethereum is the perfect tool due to its reliable infrastructure and active community. Ethereum is also transitioning to a more energy-efficient mechanism, Proof of Stake (PoS). Ethereum was developed by Vitalik Buterin and a team of programmers. The project is governed by the Ethereum Foundation, an independent organization supporting the network's development. The ecosystem uses its own cryptocurrency, Ether (ETH)."
         },
         "nft": {
-          "title": "🎇 What is NFT?",
-          "description": "NFT (Non-fungible token) - is a non-interchangeable token, a digital contract, a 'marker' indicating who owns the digital work and its creator. There are many ways to apply this technology in practice. For example, artists create digital art and sell it. This is similar to buying stickers or virtual gifts online. Sometimes authors endow their creativity with additional practical value. Some NFTs act as tickets to exclusive clubs, some can be some resource or skin in a game, others act as a document proving the right to ownership of something in the real world."
+          "title": "🎇 What is NFT (Non-fungible token)?",
+          "description": "NFT (Non-fungible token) is a unique token, a digital contract, a 'marker' indicating who owns a digital work and its creator. There are many practical applications for this technology. For example, artists create digital art and sell it. This is similar to buying stickers or virtual gifts online. Sometimes, authors give their creations additional practical value. Some NFTs act as tickets to exclusive clubs, some can be a resource or skin in a game, while others serve as documents proving ownership of something in the real world."
         },
         "wallet": {
           "title": "👛 What is a crypto wallet?",
-          "description": "Like in real life, a crypto wallet plays the role of a kind of familiar wallet to us: you can store your TON and NFTs in it, and also use it for operations - receiving or sending TON. In addition, wallets are used as a way to interact with projects on the blockchain. For example, to log in to Getgems, mint, buy and sell NFTs, you need to have a wallet. Don't worry, we don't have access to your coins, they are safe. There are many different wallets for TON. We recommend using Tonkeeper or Tonhub."
+          "description": "Like in real life, a crypto wallet serves as a kind of familiar wallet: you can store your TON and NFTs in it, and also use it for operations - receiving or sending TON. In addition, wallets are used as a way to interact with projects on the blockchain. For example, to authenticate in Getgems, to mint, buy, and sell NFTs, you need to have a wallet. Don't worry, we don't have access to your coins, they are safe. There are many different wallets for TON. We recommend using Tonkeeper or Tonhub."
         },
         "howBuy": {
           "title": "💸 How to buy $TON?",
-          "description": "You can buy $TON coins using a bank card within the Tonkeeper wallet using the services of Mercuryo and NeoCrypto. All purchasing methods are collected on the official website ton.org."
+          "description": "You can buy $TON coins using a bank card within the Tonkeeper wallet using the services Mercuryo and NeoCrypto. All purchase methods are collected on the official website ton.org."
         },
         "questions": {
           "title": "👀 Have questions?",
-          "description": "You can contact us for support, which is located in the chat on our website."
+          "description": "You can contact us in support, which is located in the chat on our website."
         }
       }
     },
@@ -216,7 +246,12 @@
 
     "card": {
       "lastSale": "Last sale: ",
-      "buy": "Buy"
+      "buy": "Buy",
+      "messages": {
+        "loading": "NFT removal...",
+        "success": "NFT has been successfully deleted from favorites",
+        "error": "There's been an error.."
+      }
     },
 
     "modal": {

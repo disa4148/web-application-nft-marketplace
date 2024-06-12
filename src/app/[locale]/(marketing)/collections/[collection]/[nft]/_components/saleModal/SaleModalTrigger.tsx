@@ -9,13 +9,15 @@ import { cn } from '@/shared/lib/utils';
 
 type Props = {
   nftId: string;
+  onSaleSuccess: () => void; 
+  refetchNftData: () => void; 
 };
 
-export default function SaleModalTrigger({ nftId }: Props): JSX.Element {
+export default function SaleModalTrigger({ nftId, onSaleSuccess, refetchNftData }: Props): JSX.Element {
   const [isOpenModal, setIsModal] = useState<boolean>(false);
   const t = useTranslations('nftCard.priceBlock');
   return (
-    <SaleModal nftId={nftId} open={isOpenModal} setIsOpen={setIsModal}>
+    <SaleModal onSaleSuccess={onSaleSuccess} refetchNftData={refetchNftData} nftId={nftId} open={isOpenModal} setIsOpen={setIsModal}>
       <Button
         className={cn(
           css.listForSaleBtn,

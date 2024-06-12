@@ -32,10 +32,45 @@
 }
 
 .removeBtn {
-    width: 100%;
-    background: linear-gradient(
-      90deg,
-      rgb(106, 106, 106) 31.037%,
-      rgb(78, 78, 78) 80.824%
-    );
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgb(106, 106, 106) 31.037%,
+    rgb(78, 78, 78) 80.824%
+  );
+}
+
+@media (max-width: 480px) {
+  .dialogContent {
+    gap: 15px;
+    padding: 40px 30px;
+    .title {
+      h1 {
+        font-size: 20px;
+      }
+    }
+    .content {
+      button {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
   }
+}
+
+@media (max-width: 380px) {
+  .dialogContent {
+    .title {
+      h1 {
+        font-size: 18px;
+      }
+    }
+    .content {
+      gap: 15px;
+      button {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+  }
+}

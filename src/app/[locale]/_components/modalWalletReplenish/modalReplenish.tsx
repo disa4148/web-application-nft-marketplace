@@ -16,9 +16,16 @@ type Props = {
   children?: React.ReactNode;
 };
 
+const initialBank = {
+  value: 'card',
+  name: "Интернет-банк\nОплата",
+  nameExamUp: "Интернет-банк",
+  nameExamDw: "Оплата(Russia)"
+};
+
 export default function ModalReplenish({ open, setIsOpen, children }: Props) {
   const [activeTab, setActiveTab] = useState<string>('main');
-  const [selectedBank, setSelectedBank] = useState<BankDetails | null>(null);
+  const [selectedBank, setSelectedBank] = useState<BankDetails | null>(initialBank);
 
   interface ITabComponents {
     [key: string]: React.ReactNode;
@@ -32,7 +39,7 @@ export default function ModalReplenish({ open, setIsOpen, children }: Props) {
   return (
     <Dialog modal={true} open={open} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={activeTab === 'main' ? 'max-w-[583px]' : ''}>
+      <DialogContent className={activeTab === 'main' ? 'max-w-[583px]' : 'max-w-[383px]'}>
         {tabComponents[activeTab]}
       </DialogContent>
     </Dialog>

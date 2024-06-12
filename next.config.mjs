@@ -8,6 +8,111 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: '6n3znii4yykbuwdrsbidxdbixfz33qkbgcrwvu5odbf6bfkt3cpq.arweave.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.mooncat.community',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'yogapetz.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'kongz.herokuapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nfts.visitsugartown.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'xhrmxmga3iha3mubdohhr6xmanqodjvuzywq3ngcmj2pajdh335q.arweave.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.imaginaryones.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nft.mavia.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.defimons.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'metadata.spacenation.online',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'arweave.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.veefriends.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.niftygateway.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hang.mypinata.cloud',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ether-cards.mypinata.cloud',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd4f81xqnh94on.cloudfront.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bafybeigovxznt2u4kshpx5lnjwkbjidfaotmlodgvl7iphluwwtpruexmm.ipfs.nftstorage.link',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bafybeia57d32aouacygnxce3enrp5fohcxutxtznuuuwpchkdc5pyrinby.ipfs.nftstorage.link',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'grow-api.memeland.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.seadn.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'media.levpidoor.ru',
         pathname: '/**',
       },
