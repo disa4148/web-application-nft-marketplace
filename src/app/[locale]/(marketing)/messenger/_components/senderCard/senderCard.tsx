@@ -5,7 +5,7 @@ import { useLocale } from 'next-intl';
 
 type Props = {
   avatar?: string;
-  name: string;
+  name?: string;
   lastMessage: string;
   idChat: string;
   isActive?: boolean;

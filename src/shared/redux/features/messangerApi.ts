@@ -7,6 +7,10 @@ interface ChatMessage {
   read: boolean;
   __v: number;
 }
+export type MessageTag = {
+  type: 'Messages'; // Используйте строковый литерал здесь
+  id: string;
+};
 export const messangerApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getChats: builder.query<any, void>({
@@ -21,7 +25,7 @@ export const messangerApi = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
-    sendMessage: builder.mutation<ChatMessage, { ownerId: string; text: string }>({
+    sendMessage: builder.mutation<ChatMessage,{ ownerId: string; text: string }>({
       query: (data) => ({
         url: `api/message`,
         body: {
