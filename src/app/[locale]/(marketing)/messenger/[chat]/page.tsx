@@ -40,14 +40,13 @@ export default function Chat({
   const [inputValue, setInputValue] = useState<string>('');
 
   const user = useSelector((state: RootState) => state.auth.user);
-  
+
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const chatData:any = await getMessages(params.chat);
-        setOwner(chatData.owner)
+        const chatData: any = await getMessages(params.chat);
+        setOwner(chatData.owner);
         setMessages(chatData.messages);
-        
       } catch (error) {
         console.error('Error fetching messages:', error);
       } finally {
@@ -56,17 +55,10 @@ export default function Chat({
     };
 
     fetchMessages();
-    socket.on('connect', () => {
-      console.log('Connected to Socket.IO server');
-    });
-
-    socket.on('disconnect', () => {
-      console.log('Disconnected from Socket.IO server');
-    });
+   
 
     socket.on('message.created', (message: ChatMessage) => {
-      console.log('All messages: ', messages);
-      console.log('Received new message:', message);
+    
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
@@ -76,8 +68,6 @@ export default function Chat({
       socket.off('message.created');
     };
   }, [params.chat, messages]);
-
-  
 
   const handleSendMessage = async () => {
     if (inputValue.trim() !== '') {
