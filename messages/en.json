@@ -138,10 +138,10 @@
         },
         "wallet": {
           "title": "👛 What is a crypto wallet?",
-          "description": "Like in real life, a crypto wallet serves as a kind of familiar wallet: you can store your TON and NFTs in it, and also use it for operations - receiving or sending TON. In addition, wallets are used as a way to interact with projects on the blockchain. For example, to authenticate in Getgems, to mint, buy, and sell NFTs, you need to have a wallet. Don't worry, we don't have access to your coins, they are safe. There are many different wallets for TON. We recommend using Tonkeeper or Tonhub."
+          "description": "Like in real life, a crypto wallet serves as a kind of familiar wallet: you can store your ETH and NFTs in it, and also use it for operations - receiving or sending ETH. In addition, wallets are used as a way to interact with projects on the blockchain. For example, to authenticate in Getgems, to mint, buy, and sell NFTs, you need to have a wallet. Don't worry, we don't have access to your coins, they are safe. There are many different wallets for ETH. We recommend using Metamask."
         },
         "howBuy": {
-          "title": "💸 How to buy $TON?",
+          "title": "💸 How to buy $ETH?",
           "description": "You can buy Ethereum coins ($ETH) with a bank card inside MetaMask wallet using Wyre and Transak services. All purchase methods are collected on the official Ethereum website."
         },
         "questions": {
