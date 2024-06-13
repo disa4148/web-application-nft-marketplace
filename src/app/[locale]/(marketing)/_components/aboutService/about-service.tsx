@@ -15,7 +15,7 @@ export default function AboutService(): JSX.Element {
           <h3 className='text-1-text-white-100'>
             {t('description')}
           </h3>
-          <Link href={`/${locale}/catalog`}>
+          <Link href={`/${locale}`}>
             <Button className='bg-1-gradient'>{t('btn')}</Button>
           </Link>
         </div>
