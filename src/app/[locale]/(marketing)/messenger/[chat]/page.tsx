@@ -35,14 +35,19 @@ export default function Chat({
   const t = useTranslations('messenger.chat');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [inputValue, setInputValue] = useState<string>('');
-  const user = useSelector((state: RootState) => state.auth.user);
+  const [owner, setOwner] = useState<any>();
 
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const user = useSelector((state: RootState) => state.auth.user);
+  
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const chatData = await getMessages(params.chat);
-        setMessages(chatData);
+        const chatData:any = await getMessages(params.chat);
+        setOwner(chatData.owner)
+        setMessages(chatData.messages);
+        
       } catch (error) {
         console.error('Error fetching messages:', error);
       } finally {
@@ -72,12 +77,7 @@ export default function Chat({
     };
   }, [params.chat, messages]);
 
-  const owner = {
-    _id: '66442a08ef9dd53a7a4ff180',
-    name: 'hahayes',
-    emoji: '👮‍♂️',
-    __v: 0,
-  };
+  
 
   const handleSendMessage = async () => {
     if (inputValue.trim() !== '') {
@@ -89,7 +89,6 @@ export default function Chat({
       }
     }
   };
-
   return (
     <div className={cn(css.wrapper, 'bg-1-bg-black-100')}>
       <div className={css.messages}>
@@ -102,6 +101,7 @@ export default function Chat({
             <Message
               key={message._id}
               isMine={user?._id === message.from}
+              ownerEmoji={owner.emoji}
               text={message.text}
               id={message._id}
             />
