@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import css from './selectBank.module.scss';
 import Bank, { BankDetails } from '@/shared/ui/bank/bank';
 import { Button } from '@/shared/ui/button';
@@ -12,46 +12,53 @@ interface Props {
   changeTab: React.Dispatch<React.SetStateAction<string>>;
   selectedBank: BankDetails | null;
   setSelectedBank: React.Dispatch<React.SetStateAction<BankDetails | null>>;
+  setId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function SelectBank({
   changeTab,
   setSelectedBank,
   selectedBank,
+  setId
 }: Props) {
   const t = useTranslations('header.dropdown.walletMenu');
 
-  const [amount, setAmount] = useState('');
-
   const [createReplenishment, { isLoading }] = useCreateReplenishmentMutation();
 
-  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
+  const [amount, setAmount] = useState('');
+
+  const inputValue = (e: any) => {
+    const inputValue = e.target.value;
+    const onlyNumbers = inputValue.replace(/[^0-9]/g, '');
+    if (onlyNumbers === '' || onlyNumbers.startsWith('0')) {
+      setAmount('');
+    } else {
+      setAmount(onlyNumbers);
+    }
   };
 
   const handleSubmit = async () => {
-    const amountNumber = parseFloat(amount);
-
-    changeTab('examination');
-
-    if (isNaN(amountNumber)) {
-      console.error('Сумма должна быть числом');
+    if (!selectedBank) {
       return;
     }
 
-    if (!selectedBank) {
-      console.error('Банк не выбран');
+    const amountValue = parseInt(amount, 10);
+
+    if (amountValue < 1000) {
+      toast.error(t('modalReplenish.toastMessage.errorValue'));
       return;
     }
 
     const data = {
-      amount: amountNumber,
+      amount: amount,
       type: selectedBank.value,
     };
 
     try {
-      await createReplenishment(data).unwrap();
-      toast.success('Успешно отправлено');
+     const id = await createReplenishment(data).unwrap();
+     setId(id._id)
+      toast.success(t('modalReplenish.toastMessage.succesRep'));
+      changeTab('examination');
     } catch (err) {
       toast.error(t('modalReplenish.toastMessage.errorSent'));
     }
@@ -66,9 +73,8 @@ export default function SelectBank({
           <Input
             className={css.input}
             value={amount}
-            onChange={handleAmountChange}
             placeholder={t('modalReplenish.enterAmount')}
-            type="number"
+            onChange={inputValue}
           />
           <Button
             className={cn(css.button, 'bg-1-gradient')}

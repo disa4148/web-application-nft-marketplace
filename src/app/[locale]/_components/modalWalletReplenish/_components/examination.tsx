@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { useQueryPaymentIdQuery } from '@/shared/redux/payment/replenishment';
 import { useTranslations } from 'next-intl';
+import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 interface BankDetails {
   value: string;
@@ -15,41 +16,25 @@ interface BankDetails {
 interface Props {
   changeTab: React.Dispatch<React.SetStateAction<string>>;
   selectedBank: BankDetails | null;
+  id: string;
 }
 
-export default function Examination({ changeTab, selectedBank }: Props) {
+export default function Examination({ changeTab, selectedBank, id }: Props) {
   const t = useTranslations(
     'header.dropdown.walletMenu.modalReplenish.checkReplenish',
   );
 
-  const { data } = useQueryPaymentIdQuery({ paymentId: '4j32h432h4u434' });
-
-
-  const AAA = {
-    amount: 0,
-    type: 'card',
-    details: {
-      bank_name: 'Sberbank',
-      card: '8394358383535',
-      fio_card: 'Vasya',
-      fio_sbp: 'Vasya',
-      id: 'uh3u5h34ih54i3h5i3h44h',
-      number: 83298394272,
-      summ_pay: 34240,
-      summ_real: 34240,
-    },
-    status: true,
-  };
+  const { data, isLoading } = useQueryPaymentIdQuery({ paymentId: id });
 
   const [paymentStatus, setPaymentStatus] = useState<{
-    status: boolean;
+    status: boolean | undefined;
     message: string;
   }>({ status: false, message: '' });
 
   const handleClick = () => {
     setPaymentStatus({
-      status: AAA.status,
-      message: AAA.status ? t('successfulRep') : t('failedRep'),
+      status: data?.status,
+      message: data?.status ? t('successfulRep') : t('failedRep'),
     });
   };
 
@@ -88,28 +73,30 @@ export default function Examination({ changeTab, selectedBank }: Props) {
         <div className={css.form}>
           <div className={css.inputForm}>
             <p>{t('toPay')}</p>
-            <div className={css.infoBlock}>{AAA.details.summ_real}</div>
+            <div className={css.infoBlock}>
+              {isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.summ_real}
+            </div>
           </div>
           {isCardType && (
             <>
               <div className={css.inputForm}>
                 <p>{t('bankSBP')}</p>
-                <div className={css.infoBlock}>{AAA.details.fio_sbp}</div>
+                <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.fio_sbp}</div>
               </div>
               <div className={css.inputForm}>
                 <p>{t('cardNumber')}</p>
-                <div className={css.infoBlock}>{AAA.details.card}</div>
+                <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.card}</div>
               </div>
               <div className={css.inputForm}>
                 <p>{t('phoneNumber')}</p>
-                <div className={css.infoBlock}>{AAA.details.number}</div>
+                <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.number}</div>
               </div>
             </>
           )}
           {!isCardType && (
             <div className={css.inputForm}>
               <p>{t('accountNumber')}</p>
-              <div className={css.infoBlock}>{AAA.details.card}</div>
+              <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.card}</div>
             </div>
           )}
           <Button className={css.button} onClick={handleClick}>

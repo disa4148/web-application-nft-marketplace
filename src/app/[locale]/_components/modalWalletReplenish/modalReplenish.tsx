@@ -25,6 +25,7 @@ export default function ModalReplenish({ open, setIsOpen, children }: Props) {
     nameExamDw: `${b('nameExamDw')}(Russia)`,
   };
 
+  const [id, setId] = useState<string>('')
   const [activeTab, setActiveTab] = useState<string>('main');
   const [selectedBank, setSelectedBank] = useState<BankDetails | null>(
     initialBank,
@@ -46,10 +47,11 @@ export default function ModalReplenish({ open, setIsOpen, children }: Props) {
         selectedBank={selectedBank}
         setSelectedBank={setSelectedBank}
         changeTab={setActiveTab}
+        setId={setId}
       />
     ),
     examination: (
-      <Examination selectedBank={selectedBank} changeTab={setActiveTab} />
+      <Examination selectedBank={selectedBank} changeTab={setActiveTab} id={id}/>
     ),
   };
 
