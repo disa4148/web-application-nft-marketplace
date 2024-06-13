@@ -18,17 +18,21 @@ export const messangerApi = apiSlice.injectEndpoints({
         url: `api/chat`,
         method: 'GET',
       }),
-      providesTags: ['Chats'], 
+      providesTags: ['Chats'],
     }),
     getMessages: builder.query<any, { chatid: string }>({
       query: ({ chatid }) => ({
         url: `api/message/${chatid}`,
         method: 'GET',
       }),
-      providesTags: (result, error, arg) => [{ type: 'Messages', id: arg.chatid }],
-
+      providesTags: (result, error, arg) => [
+        { type: 'Messages', id: arg.chatid },
+      ],
     }),
-    sendMessage: builder.mutation<ChatMessage,{ ownerId: string; text: string }>({
+    sendMessage: builder.mutation<
+      ChatMessage,
+      { ownerId: string; text: string }
+    >({
       query: (data) => ({
         url: `api/message`,
         body: {
@@ -38,8 +42,8 @@ export const messangerApi = apiSlice.injectEndpoints({
         method: 'POST',
       }),
       invalidatesTags: (result, error, arg) => [
-        { type: 'Messages', id: arg.ownerId }, // Обновляем кеш сообщений для этого чата
-        'Chats' // Обновляем список чатов
+        { type: 'Messages', id: arg.ownerId },
+        'Chats',
       ],
     }),
   }),

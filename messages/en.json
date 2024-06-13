@@ -55,7 +55,9 @@
             "accountNumber": "Account number",
             "button": "Check payment",
             "successfulRep": "Funds have been credited!",
-            "failedRep": "Funds have not been credited yet!"
+            "failedRep": "Funds have not been credited yet!",
+            "copySuccess": "Number copied!",
+            "buttonCopy": "copy"
           }
         },
         "withdraw": "Withdraw",
@@ -67,6 +69,19 @@
           "loadingButton": "Withdrawal...",
           "failedWith": "There's been an error. Please contact to support!",
           "amountError": "The withdrawal amount cannot be 0"
+        },
+        "promocode": {
+          "title": "Promocodes",
+          "modalPromocode": {
+            "title": "Activate promo code",
+            "placeholder": "Promo code...",
+            "btn": "Active",
+            "messages": {
+              "loading": "Promo code activation...",
+              "success": "Promo code successfully activated!",
+              "error": "There's been an error..."
+            }
+          }
         }
       }
     },
@@ -311,7 +326,8 @@
         "by": "By",
         "hour": "hour",
         "hours": "hours",
-        "hourss": "hours"
+        "hourss": "hours",
+        "offer": "No offers"
       },
       "historyPrice": {
         "title": "Price History",

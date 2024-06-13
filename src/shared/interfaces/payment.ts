@@ -13,7 +13,7 @@ export interface PaymentResponse {
     fio_card: string;
     fio_sbp: string;
     id: string;
-    number: number;
+    number: string;
     summ_pay: number;
     summ_real: number;
   };

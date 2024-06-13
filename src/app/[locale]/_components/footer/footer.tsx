@@ -16,22 +16,9 @@ export default function Footer(): JSX.Element {
         <div>
           <div className={css.logotypeContainer}>
             <Logotype style="light" />
-            <p className='text-1-text-black-60'>{t('description')}</p>
+            <p className="text-1-text-black-60">{t('description')}</p>
           </div>
           <div>
-            <Link
-              href={'https://www.youtube.com/watch?v=0qhRyAV8sL4'}
-              passHref
-              target="_blank"
-            >
-              <Image
-                className={css.hoverImg} 
-                src={'/assets/icons/socials/youTube.svg'}
-                alt="YouTube"
-                width={26}
-                height={18}
-              />
-            </Link>
             <Link
               href={'https://web.telegram.org/a/#1234060895'}
               passHref
@@ -45,47 +32,50 @@ export default function Footer(): JSX.Element {
                 height={18}
               />
             </Link>
-            <Link
-              href={'https://vk.com/public25014038'}
-              passHref
-              target="_blank"
-            >
-              <Image
-                className={css.hoverImg}
-                src={'/assets/icons/socials/vk.svg'}
-                alt="VK"
-                width={27}
-                height={15}
-              />
-            </Link>
           </div>
         </div>
         <div className={css.rightItems}>
           <div>
             <div>
-              <h1 className='text-1-text-black-60'>{t('items.project.title')}</h1>
+              <h1 className="text-1-text-black-60">
+                {t('items.project.title')}
+              </h1>
             </div>
             <div>
-              <Link className='text-1-text-white-100' href={'/'}>{t('items.project.catalogue')}</Link>
-              <Link className='text-1-text-white-100' href={'/'}>{t('items.project.service')}</Link>
-              <Link className='text-1-text-white-100' href={'/'}>{t('items.project.privacyPolicy')}</Link>
+              <Link className="text-1-text-white-100" href={'/'}>
+                {t('items.project.catalogue')}
+              </Link>
+              <Link className="text-1-text-white-100" href={'/'}>
+                {t('items.project.service')}
+              </Link>
+              <Link className="text-1-text-white-100" href={'/'}>
+                {t('items.project.privacyPolicy')}
+              </Link>
             </div>
           </div>
 
           <div>
             <div>
-              <h1 className='text-1-text-black-60'>{t('items.language.title')}</h1>
+              <h1 className="text-1-text-black-60">
+                {t('items.language.title')}
+              </h1>
             </div>
             <LocaleSwitcher />
           </div>
 
           <div>
             <div>
-              <h1 className='text-1-text-black-60'>{t('items.contacts.title')}</h1>
+              <h1 className="text-1-text-black-60">
+                {t('items.contacts.title')}
+              </h1>
             </div>
             <div>
-              <Link className='text-1-text-white-100' href={'/'}>{t('items.contacts.tg')}</Link>
-              <Link className='text-1-text-white-100' href={'/'}>{t('items.contacts.mail')}</Link>
+              <Link className="text-1-text-white-100" href={'/'}>
+                {t('items.contacts.tg')}
+              </Link>
+              <Link className="text-1-text-white-100" href={'/'}>
+                {t('items.contacts.mail')}
+              </Link>
             </div>
           </div>
         </div>

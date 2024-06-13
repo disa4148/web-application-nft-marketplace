@@ -32,14 +32,6 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
 
     fetchChats();
 
-    socket.on('connect', () => {
-      console.log('Connected to Socket.IO server');
-    });
-
-    socket.on('disconnect', () => {
-      console.log('Disconnected from Socket.IO server');
-    });
-
     socket.on('message.created', (message: any) => {
       updateLastMessage(message);
     });
@@ -67,9 +59,7 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     <Page padding>
       <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
         <div className={css.chats}>
-          <Support
-            idChat="support"
-          />
+          <Support idChat="support" />
           {isLoading ? (
             <div className="h-full w-full flex justify-center items-center">
               <LoadingSpinner />

@@ -5,6 +5,9 @@ import React, { useState } from 'react';
 import { useQueryPaymentIdQuery } from '@/shared/redux/payment/replenishment';
 import { useTranslations } from 'next-intl';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
+import { toast } from 'sonner';
+import { addBalance } from '@/shared/redux/slices/authSlice';
+import { useDispatch } from 'react-redux';
 
 interface BankDetails {
   value: string;
@@ -20,11 +23,14 @@ interface Props {
 }
 
 export default function Examination({ changeTab, selectedBank, id }: Props) {
+  const dispatch = useDispatch();
   const t = useTranslations(
     'header.dropdown.walletMenu.modalReplenish.checkReplenish',
   );
 
-  const { data, isLoading } = useQueryPaymentIdQuery({ paymentId: id });
+  const { data, isLoading, refetch } = useQueryPaymentIdQuery({
+    paymentId: id,
+  });
 
   const [paymentStatus, setPaymentStatus] = useState<{
     status: boolean | undefined;
@@ -32,10 +38,19 @@ export default function Examination({ changeTab, selectedBank, id }: Props) {
   }>({ status: false, message: '' });
 
   const handleClick = () => {
+    refetch();
     setPaymentStatus({
       status: data?.status,
       message: data?.status ? t('successfulRep') : t('failedRep'),
     });
+    if (data?.status) {
+      dispatch(addBalance(data.details.summ_real));
+    }
+  };
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success(t('copySuccess'));
   };
 
   const bankImages: any = {
@@ -74,29 +89,81 @@ export default function Examination({ changeTab, selectedBank, id }: Props) {
           <div className={css.inputForm}>
             <p>{t('toPay')}</p>
             <div className={css.infoBlock}>
-              {isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.summ_real}
+              {isLoading ? (
+                <div className="w-full flex items-center justify-center">
+                  <LoadingSpinner />
+                </div>
+              ) : isCardType ? (
+                data?.details.summ_real
+              ) : (
+                data?.details.summ_pay
+              )}
             </div>
           </div>
           {isCardType && (
             <>
               <div className={css.inputForm}>
                 <p>{t('bankSBP')}</p>
-                <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.fio_sbp}</div>
+                <div className={css.infoBlock}>
+                  {isLoading ? (
+                    <div className="w-full flex items-center justify-center">
+                      <LoadingSpinner />
+                    </div>
+                  ) : (
+                    data?.details.fio_sbp
+                  )}
+                </div>
               </div>
               <div className={css.inputForm}>
                 <p>{t('cardNumber')}</p>
-                <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.card}</div>
+                <div className={css.infoBlock}>
+                  {isLoading ? (
+                    <div className="w-full flex items-center justify-center">
+                      <LoadingSpinner />
+                    </div>
+                  ) : (
+                    data?.details.card
+                  )}
+                </div>
               </div>
               <div className={css.inputForm}>
                 <p>{t('phoneNumber')}</p>
-                <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.number}</div>
+                <div className={css.infoBlock}>
+                  {isLoading ? (
+                    <div className="w-full flex items-center justify-center">
+                      <LoadingSpinner />
+                    </div>
+                  ) : (
+                    data?.details.number
+                  )}
+                </div>
               </div>
             </>
           )}
           {!isCardType && (
             <div className={css.inputForm}>
               <p>{t('accountNumber')}</p>
-              <div className={css.infoBlock}>{isLoading ? <div className='w-full flex items-center justify-center'><LoadingSpinner /></div> : data?.details.card}</div>
+              <div className={css.infoBlock}>
+                {isLoading ? (
+                  <div className="w-full flex items-center justify-center">
+                    <LoadingSpinner />
+                  </div>
+                ) : (
+                  <>
+                    <span className={css.truncatedText}>
+                      {data?.details.number}
+                    </span>
+                    <button
+                      className={css.copyButton}
+                      onClick={() =>
+                        handleCopy(data?.details.number as unknown as string)
+                      }
+                    >
+                      {t('buttonCopy')}
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           )}
           <Button className={css.button} onClick={handleClick}>

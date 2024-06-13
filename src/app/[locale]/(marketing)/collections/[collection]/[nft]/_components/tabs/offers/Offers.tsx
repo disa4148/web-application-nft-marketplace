@@ -73,7 +73,6 @@ export default function Offers({ offers }: any): JSX.Element {
     ];
   };
 
-  console.log(offersPrice);
   return (
     <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
       <div>
@@ -81,39 +80,45 @@ export default function Offers({ offers }: any): JSX.Element {
       </div>
       <Separator orientation="horizontal" decorative />
       <div className={css.scroll}>
-        <div className={css.gridContainer}>
-          <div className={css.textInfo}>
-            <h5 className="text-1-text-white-100">{t('price')}</h5>
-            <h5 className="text-1-text-white-100">{t('inRub')}</h5>
-            <h5 className="text-1-text-white-100">{t('inUsd')}</h5>
-            <h5 className="text-1-text-white-100">{t('expirationDate')}</h5>
-            <h5 className="text-1-text-white-100">{t('by')}</h5>
-          </div>
-          {offersPrice.map((items: any, index: any) => (
-            <div className={css.textData} key={index}>
-              <h4 className="text-1-text-white-100">
-                {items.price.toFixed(10)}
-              </h4>
-
-              <h4 className="text-1-text-white-100">
-                {convertPriceToRub(items.price) !== null
-                  ? `${convertPriceToRub(items.price)}`
-                  : 'Loading...'}
-              </h4>
-              <h4 className="text-1-text-white-100">
-                {convertPriceToRub(items.price) !== null
-                  ? `${convertPriceToUsd(items.price)}`
-                  : 'Loading...'}
-              </h4>
-              <h4 className="text-1-text-white-100">
-                {dateConvert(items.expires)}
-              </h4>
-              <h4 className={cn(css.colorBy, 'bg-1-gradient')}>
-                {items.owner.name}
-              </h4>
+        {offersPrice.length > 0 ? (
+          <div className={css.gridContainer}>
+            <div className={css.textInfo}>
+              <h5 className="text-1-text-white-100">{t('price')}</h5>
+              <h5 className="text-1-text-white-100">{t('inRub')}</h5>
+              <h5 className="text-1-text-white-100">{t('inUsd')}</h5>
+              <h5 className="text-1-text-white-100">{t('expirationDate')}</h5>
+              <h5 className="text-1-text-white-100">{t('by')}</h5>
             </div>
-          ))}
-        </div>
+
+            {offersPrice.map((item: any, index: number) => (
+              <div className={css.textData} key={index}>
+                <h4 className="text-1-text-white-100">
+                  {item.price.toFixed(10)}
+                </h4>
+                <h4 className="text-1-text-white-100">
+                  {convertPriceToRub(item.price) !== null
+                    ? `${convertPriceToRub(item.price)}`
+                    : 'Loading...'}
+                </h4>
+                <h4 className="text-1-text-white-100">
+                  {convertPriceToUsd(item.price) !== null
+                    ? `${convertPriceToUsd(item.price)}`
+                    : 'Loading...'}
+                </h4>
+                <h4 className="text-1-text-white-100">
+                  {dateConvert(item.expires)}
+                </h4>
+                <h4 className={cn(css.colorBy, 'bg-1-gradient')}>
+                  {item.owner.name}
+                </h4>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex items-center justify-center w-full p-4">
+            <p>{t('offer')}</p>
+          </div>
+        )}
       </div>
     </div>
   );

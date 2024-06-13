@@ -10,14 +10,14 @@ export const nftApi = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
-    buyNft: builder.mutation<void, { nftId: string }>({
+    buyNft: builder.mutation<any, { nftId: string }>({
       query: (data) => ({
         url: `api/marketplace/buy/${data.nftId}`,
         method: 'POST',
         body: data,
       }),
     }),
-    saleNft: builder.mutation<void, { nftId: string; price: number }>({
+    saleNft: builder.mutation<any, { nftId: string; price: number }>({
       query: (data) => ({
         url: `api/marketplace/sale`,
         method: 'POST',

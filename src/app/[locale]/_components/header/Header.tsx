@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 
 import { useTranslations } from 'next-intl';
 
-// import Logotype from '@/shared/ui/logotype';
 import ServerLogotype from '@/shared/ui/serverLogotype';
 import SearchInput from '@/shared/ui/searchInput/search-input';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';

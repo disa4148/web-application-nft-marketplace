@@ -1,0 +1,30 @@
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 448px !important;
+  width: 100%;
+  gap: 30px;
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 33px;
+  }
+}
+
+@media (max-width: 440px) {
+    .dialogContent {
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 380px) {
+    .dialogContent {
+      h1 {
+        font-size: 20px;
+      }
+    }
+  }

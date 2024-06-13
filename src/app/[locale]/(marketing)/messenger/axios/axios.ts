@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { getAccessToken, setToken, removeToken, getRefreshToken } from '@/shared/lib/cookie';
+import {
+  getAccessToken,
+  setToken,
+  removeToken,
+  getRefreshToken,
+} from '@/shared/lib/cookie';
 
 const axiosInstance = axios.create({
   baseURL: 'https://nft.levpidoor.ru/api',
@@ -13,19 +18,19 @@ const refreshTokenRequest = async () => {
     }
     // Я СРАТЬ
     const response = await axios.post(
-      'https://nft.levpidoor.ru/api/auth/refresh', // Замените на ваш endpoint обновления токена
+      'https://nft.levpidoor.ru/api/auth/refresh',
       null,
       {
         headers: {
-          'refresh-token': `Bearer ${refreshToken}`, 
+          'refresh-token': `Bearer ${refreshToken}`,
         },
-      }
+      },
     );
 
-    return response.data.tokens; // Верните новые токены из ответа
+    return response.data.tokens;
   } catch (error) {
     console.error('Refresh token request failed:', error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -75,14 +80,14 @@ axiosInstance.interceptors.response.use(
 
       try {
         const tokens = await refreshTokenRequest();
-        setToken(tokens.accessToken, tokens.refreshToken); // Обновите токены в хранилище
+        setToken(tokens.accessToken, tokens.refreshToken);
         originalRequest.headers.Authorization = `Bearer ${tokens.accessToken}`;
-        processQueue(null, tokens.accessToken); 
+        processQueue(null, tokens.accessToken);
         return axiosInstance(originalRequest);
       } catch (err) {
         processQueue(err, null);
         removeToken();
-        window.location.href = '/signin'; // Или другая логика выхода
+        window.location.href = '/signin';
         return Promise.reject(err);
       } finally {
         isRefreshing = false;
@@ -90,7 +95,7 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export const getChats = async () => {

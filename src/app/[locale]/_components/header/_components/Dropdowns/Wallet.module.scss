@@ -62,11 +62,15 @@
   }
 }
 
-@media screen and (max-width: 864px) {
+@media (max-width: 864px) {
   .dropdown {
-    .content {
-      .favorites {
-        display: block;
+    .wallet {
+      max-width: 40px;
+      padding: 10px;
+      max-height: 40px;
+      height: auto;
+      .balance {
+        display: none !important;
       }
     }
   }

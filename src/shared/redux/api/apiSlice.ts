@@ -12,14 +12,14 @@ import {
 } from '@reduxjs/toolkit/query';
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
-
+import store from '../store';
+import { logout } from '../slices/authSlice';
 interface RefreshResultData {
   tokens: {
     accessToken: string;
     refreshToken: string;
   };
 }
-
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
@@ -49,6 +49,8 @@ const baseQueryWithReauth: BaseQueryFn<
         const refreshToken = getRefreshToken();
         if (!refreshToken) {
           console.error('No refresh token found');
+          store.dispatch(logout());
+
           removeToken();
           return result;
         }
@@ -68,9 +70,11 @@ const baseQueryWithReauth: BaseQueryFn<
           const data: RefreshResultData =
             refreshResult.data as RefreshResultData;
 
-          setToken(data.tokens.accessToken, data.tokens.refreshToken); // Ensure both tokens are set correctly
+          setToken(data.tokens.accessToken, data.tokens.refreshToken);
           result = await baseQuery(args, api, extraOptions);
         } else {
+          store.dispatch(logout());
+
           console.error('ERROR REFRESH TOKEN');
           removeToken();
         }
@@ -87,7 +91,7 @@ const baseQueryWithReauth: BaseQueryFn<
 };
 
 export const apiSlice = createApi({
-  tagTypes: ['Chats', 'Messages'], // Указываем типы тегов
+  tagTypes: ['Chats', 'Messages'],
 
   baseQuery: baseQueryWithReauth,
   endpoints: () => ({}),

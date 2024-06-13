@@ -48,6 +48,24 @@
           border-radius: 15px;
           height: 35px;
         }
+
+        .truncatedText {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 150px; 
+          display: inline-block;
+          vertical-align: bottom;
+        }
+
+        .copyButton {
+          margin-left: 10px;
+          cursor: pointer;
+          background: none;
+          border: none;
+          color: #C9C9C9;
+          padding: 0;
+        }
       }
 
       .button {

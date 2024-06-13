@@ -22,7 +22,7 @@
       display: flex;
       align-items: center;
       gap: 20px;
-  
+
       img {
         cursor: pointer;
       }
@@ -41,7 +41,7 @@
     .wallet {
       gap: 10px;
       display: flex;
-      
+
       p {
         display: flex;
         align-items: center;
@@ -54,7 +54,8 @@
         line-height: 19px;
       }
     }
-    .message, .favorite {
+    .message,
+    .favorite {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -66,7 +67,8 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .message:hover, .favorite:hover {
+    .message:hover,
+    .favorite:hover {
       opacity: 0.7;
     }
   }
@@ -119,7 +121,9 @@
         width: 100%;
       }
       .rightItems {
-        .searchInput, .btnLink, .coloredBtnLink {
+        .searchInput,
+        .btnLink,
+        .coloredBtnLink {
           display: none;
         }
       }
@@ -128,7 +132,7 @@
   .authorizedWrapper {
     gap: 10px;
     .leftItems {
-      .favorite, .wallet {
+      .favorite {
         display: none;
       }
       .message {
@@ -144,5 +148,30 @@
 @media screen and (max-width: 440px) {
   .wrapper {
     padding: 0 20px;
+    .header {
+      .leftItems {
+        a {
+          max-width: 140px;
+        }
+      }
+    }
+  }
+  .authorizedWrapper {
+    gap: 5px;
+    .leftItems {
+      gap: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .wrapper {
+    .header {
+      .leftItems {
+        a {
+          max-width: 120px;
+        }
+      }
+    }
   }
 }

@@ -19,7 +19,6 @@ export const setToken = (accessToken: string, refreshToken: string) => {
       path: '/',
       secure: true,
       sameSite: 'none',
-      // httpOnly: true,
     });
   }
 };
@@ -36,7 +35,6 @@ export const removeToken = () => {
     path: '/',
     secure: true,
     sameSite: 'none',
-    httpOnly: true,
   });
 };
 
