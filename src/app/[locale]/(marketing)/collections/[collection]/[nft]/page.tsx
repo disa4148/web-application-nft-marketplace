@@ -29,6 +29,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
   const { data: nftData, isSuccess, refetch } = useGetNftQuery({ nftId: params.nft });
   const user = useSelector((state: RootState) => state.auth.user);
 
+
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isMine, setIsMine] = useState<boolean>(false);
   const [onSale, setOnSale] = useState<boolean>(false);
@@ -43,7 +44,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
   });
 
   const tabs: Tab[] = [
-    { label: t('tabs.offers.title'), content: <Offers /> },
+    { label: t('tabs.offers.title'), content: <Offers offers={nftData?.offers}/> },
     { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
   ];
 

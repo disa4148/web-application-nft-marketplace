@@ -307,7 +307,10 @@
         "price": "Price",
         "inRub": "In Rubles",
         "expirationDate": "Expiration Date",
-        "by": "By"
+        "by": "By",
+        "hour": "hour",
+        "hours": "hours",
+        "hourss": "hours"
       },
       "historyPrice": {
         "title": "Price History",

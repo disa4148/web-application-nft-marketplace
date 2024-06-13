@@ -307,7 +307,10 @@
         "price": "Цена",
         "inRub": "В рублях",
         "expirationDate": "Срок действия",
-        "by": "От кого"
+        "by": "От кого",
+        "hour": "час",
+        "hours": "часа",
+        "hourss": "часов"
       },
       "historyPrice": {
         "title": "История цены",
