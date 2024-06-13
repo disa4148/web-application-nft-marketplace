@@ -53,6 +53,14 @@ export default function Offers({ offers }: any): JSX.Element {
     return null;
   };
 
+  const convertPriceToUsd = (price: number): number | null => {
+    if (exchangeRates) {
+      const priceInUsd = price * exchangeRates.usd;
+      return Number(priceInUsd.toFixed(2));
+    }
+    return null;
+  };
+
   const declineWord = (
     number: number,
     words: [string, string, string],
@@ -77,6 +85,7 @@ export default function Offers({ offers }: any): JSX.Element {
           <div className={css.textInfo}>
             <h5 className="text-1-text-white-100">{t('price')}</h5>
             <h5 className="text-1-text-white-100">{t('inRub')}</h5>
+            <h5 className="text-1-text-white-100">{t('inUsd')}</h5>
             <h5 className="text-1-text-white-100">{t('expirationDate')}</h5>
             <h5 className="text-1-text-white-100">{t('by')}</h5>
           </div>
@@ -89,6 +98,11 @@ export default function Offers({ offers }: any): JSX.Element {
               <h4 className="text-1-text-white-100">
                 {convertPriceToRub(items.price) !== null
                   ? `${convertPriceToRub(items.price)}`
+                  : 'Loading...'}
+              </h4>
+              <h4 className="text-1-text-white-100">
+                {convertPriceToRub(items.price) !== null
+                  ? `${convertPriceToUsd(items.price)}`
                   : 'Loading...'}
               </h4>
               <h4 className="text-1-text-white-100">

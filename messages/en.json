@@ -306,6 +306,7 @@
         "title": "Offers",
         "price": "Price",
         "inRub": "In Rubles",
+        "inUsd": "In Dollars",
         "expirationDate": "Expiration Date",
         "by": "By",
         "hour": "hour",
