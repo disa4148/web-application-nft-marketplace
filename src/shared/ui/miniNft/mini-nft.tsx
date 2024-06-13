@@ -1,4 +1,5 @@
 'use client';
+import React, { useState } from 'react';
 import css from './miniNft.module.scss';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
@@ -25,13 +26,29 @@ export default function MiniNft({
   const locale = useLocale();
   const formatTotalPrice = useFormatNumber(totalPrice);
   const formatLowestPrice = useFormatNumber(lowestPrice);
+  const [hasError, setHasError] = useState(false);
+
+  const handleImageError = () => {
+    setHasError(true);
+  };
+
   return (
     <Link
       href={`/${locale}/collections/${id}`}
       className={cn(css.wrapper, 'bg-1-bg-black-90')}
     >
       <div className={cn(css.image, 'bg-1-bg-black-100')}>
-        <Image src={`${image}`} alt="NFT" width={65} height={60} />
+        {hasError ? (
+          ''
+        ) : (
+          <Image
+            src={`${image}`}
+            alt="NFT"
+            width={65}
+            height={60}
+            onError={handleImageError}
+          />
+        )}
       </div>
       <div className={cn(css.content, 'text-1-text-white-100')}>
         <div className={css.info}>

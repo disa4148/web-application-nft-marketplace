@@ -5,7 +5,7 @@ import Support from './_components/support/Support';
 import Page from '@/shared/containers/page';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import css from './messenger.module.scss';
-import { getChats } from './axios/axios'; // Импорт функции getChats
+import { getChats } from './axios/axios'; 
 import { cn } from '@/shared/lib/utils';
 import { socket } from './axios/sockets';
 
@@ -41,7 +41,6 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     });
 
     socket.on('message.created', (message: any) => {
-      console.log('Received new message:', message);
       updateLastMessage(message);
     });
 
