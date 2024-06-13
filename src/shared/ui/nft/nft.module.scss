@@ -7,7 +7,7 @@
   width: 100%;
   border-radius: 16.4px;
   animation: appearance 1s forwards;
-  
+
   a {
     img {
       border-radius: 15px 15px 0 0;
@@ -29,8 +29,12 @@
   }
 
   .nameNft {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 18px;
     font-weight: 500;
+    max-width: 150px;
   }
 
   .priceBlock {
