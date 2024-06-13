@@ -2,6 +2,7 @@ import Link from 'next/link';
 import css from './senderCard.module.scss';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   avatar?: string;
@@ -33,7 +34,7 @@ export default function SenderCard({
       }`}
       onClick={onClick}
     >
-      <div className="w-[52px] h-[52px] flex justify-center items-center rounded-[9999px]">
+      <div className={cn(css.avatar, "w-[52px] h-[52px] flex justify-center items-center rounded-[9999px]")}>
         <p style={{ fontSize: '30px' }}>{emoji}</p>
       </div>
 

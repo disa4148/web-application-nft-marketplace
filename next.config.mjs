@@ -8,6 +8,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'bafybeihjm4vevmfsdbwtr24l2mhzxnoksffwtc2gxqubdgur7zuaq6oh2a.ipfs.nftstorage.link',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: '6n3znii4yykbuwdrsbidxdbixfz33qkbgcrwvu5odbf6bfkt3cpq.arweave.net',
         pathname: '/**',
       },

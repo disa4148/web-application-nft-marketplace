@@ -26,7 +26,7 @@ export default function Message({
     <div className={css.wrapper}>
       <Avatar>
         <AvatarImage src="" />
-        <AvatarFallback style={{ fontSize: '25px' }}>
+        <AvatarFallback className={css.avatarFallback} style={{ fontSize: '25px' }}>
           {isMine ? user?.emoji : ownerEmoji}
         </AvatarFallback>
       </Avatar>

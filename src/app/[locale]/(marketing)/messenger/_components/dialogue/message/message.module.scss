@@ -26,3 +26,25 @@
     }
   }
 }
+
+@media (max-width: 540px) {
+  .wrapper {
+    max-width: 240px;
+    .message {
+      max-width: 180px;
+    }
+  }
+}
+
+
+@media (max-width: 440px) {
+  .wrapper {
+    gap: 10px;
+    justify-content: flex-end;
+    .avatarFallback {
+      max-width: 35px;
+      max-height: 35px;
+      font-size: 20px !important;
+    }
+  }
+}

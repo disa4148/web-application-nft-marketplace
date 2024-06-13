@@ -49,7 +49,7 @@ const baseQueryWithReauth: BaseQueryFn<
         const refreshToken = getRefreshToken();
         if (!refreshToken) {
           console.error('No refresh token found');
-          store.dispatch(logout());
+          // store.dispatch(logout());
 
           removeToken();
           return result;
@@ -73,7 +73,7 @@ const baseQueryWithReauth: BaseQueryFn<
           setToken(data.tokens.accessToken, data.tokens.refreshToken);
           result = await baseQuery(args, api, extraOptions);
         } else {
-          store.dispatch(logout());
+          // store.dispatch(logout());
 
           console.error('ERROR REFRESH TOKEN');
           removeToken();

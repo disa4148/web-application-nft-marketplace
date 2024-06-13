@@ -56,9 +56,10 @@
 
 @media (max-width: 768px) {
   .wrapper {
-    max-width: 280px;
+    max-width: 70px;
     .senderInfo {
-      max-width: 180px;
+      display: none;
+      // max-width: 180px;
     }
   }
 }
@@ -76,6 +77,16 @@
   }
 }
 
+@media (max-width: 540px) {
+  .wrapper {
+    justify-content: center;
+    .avatarContainer {
+      height: 42px;
+      width: 42px;
+    }
+  }
+}
+
 @media (max-width: 480px) {
   .wrapper {
     .senderInfo {
@@ -84,6 +95,13 @@
         font-size: 14px;
       }
     }
+  }
+}
+
+@media (max-width: 460px) {
+  .wrapper {
+    padding: 5px 5px;
+    justify-content: center;
   }
 }
 

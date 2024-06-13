@@ -16,11 +16,8 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px 20px;
-    overflow-y: hidden;
+    overflow-y: auto;
 
-    &:hover {
-      overflow-y: auto;
-    }
     &::-webkit-scrollbar {
       max-width: 4px;
       max-height: 4px;
@@ -50,8 +47,22 @@
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 1000px) {
   .wrapper {
-      display: none;
+    .messages {
+      padding: 20px 0 0 0;
+    }
   }
 }
+
+@media (max-width: 400px) {
+  .wrapper {
+    padding: 20px 10px;
+  }
+}
+
+// @media (max-width: 680px) {
+//   .wrapper {
+//       display: none;
+//   }
+// }
