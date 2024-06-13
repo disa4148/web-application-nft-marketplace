@@ -1,8 +1,6 @@
 'use client';
 import css from './priceContainer.module.scss';
 
-import { Button } from '@/shared/ui/button';
-import Image from 'next/image';
 import ModalTrigger from '@/app/[locale]/_components/modalNFtPurchase/_components/ModalNftPurchaseTrigger';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
@@ -106,30 +104,14 @@ export default function PriceContainer({
           )
         ) : (
           onSale && (
-            <>
-              <ModalTrigger
-                refetchNftData={refetchNftData}
-                nftId={nftId}
-                image={modalImage}
-                title={modalTitle}
-                description={modalDescription}
-                price={price}
-              />
-              <Button
-                className={cn(
-                  css.offerBtn,
-                  'text-1-text-white-100 bg-1-gradient',
-                )}
-              >
-                <Image
-                  src={'/assets/icons/label.svg'}
-                  alt=""
-                  width={15}
-                  height={15}
-                />
-                {t('offerBtn')}
-              </Button>
-            </>
+            <ModalTrigger
+              refetchNftData={refetchNftData}
+              nftId={nftId}
+              image={modalImage}
+              title={modalTitle}
+              description={modalDescription}
+              price={price}
+            />
           )
         )}
       </div>

@@ -1,12 +1,32 @@
 import css from './Support.module.scss';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/shared/lib/utils';
+import Link from 'next/link';
 
-export default function Support(): JSX.Element {
+type Props = {
+  idChat: string;
+  isActive?: boolean;
+  onClick?: () => void;
+};
+
+export default function Support({
+  isActive,
+  idChat,
+  onClick,
+}: Props): JSX.Element {
   const t = useTranslations('messenger.support');
+  const locale = useLocale();
   return (
-    <div className={cn(css.wrapper, 'bg-1-bg-black-100')}>
+    <Link
+      href={`/${locale}/messenger/${idChat}`}
+      className={`${css.wrapper} ${
+        isActive
+          ? 'bg-1-bg-black-80 transition-all'
+          : 'bg-1-bg-black-100 hover:bg-1-text-black-80 transition-all'
+      }`}
+      onClick={onClick}
+    >
       <div className={cn(css.avatarContainer, 'bg-1-gradient')}>
         <Image
           src={`/assets/icons/headphones.svg`}
@@ -19,6 +39,6 @@ export default function Support(): JSX.Element {
         <h1 className="text-1-text-white-100">{t('name')}</h1>
         <h2 className="text-1-text-black-60">{t('message')}</h2>
       </div>
-    </div>
+    </Link>
   );
 }

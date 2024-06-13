@@ -93,7 +93,7 @@ export default function Chat({
     <div className={cn(css.wrapper, 'bg-1-bg-black-100')}>
       <div className={css.messages}>
         {isLoading ? (
-          <div className='flex items-center	justify-center w-100%'>
+          <div className="flex items-center	justify-center  w-[100%] h-[100%]">
             <LoadingSpinner />
           </div>
         ) : messages.length > 0 ? (
@@ -106,7 +106,9 @@ export default function Chat({
             />
           ))
         ) : (
-          <p>No messages</p>
+          <div className="flex items-center justify-center w-[100%] h-[100%]">
+            <p>{t('empty')}</p>
+          </div>
         )}
       </div>
       <Input

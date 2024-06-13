@@ -364,7 +364,8 @@
     },
     "welcome": "Select a chat to start messaging!",
     "chat": {
-      "inputPlaceholder": "Write a message..."
+      "inputPlaceholder": "Write a message...",
+      "empty": "No messages here yet..."
     }
   }
 }

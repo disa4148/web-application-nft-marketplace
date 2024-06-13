@@ -5,7 +5,7 @@ import Support from './_components/support/Support';
 import Page from '@/shared/containers/page';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import css from './messenger.module.scss';
-import { getChats } from './axios/axios'; 
+import { getChats } from './axios/axios';
 import { cn } from '@/shared/lib/utils';
 import { socket } from './axios/sockets';
 
@@ -54,10 +54,8 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
   const updateLastMessage = (message: any) => {
     setChats((prevChats) =>
       prevChats.map((chat) =>
-        chat._id === message.chatId
-          ? { ...chat, lastMessage: message }
-          : chat
-      )
+        chat._id === message.chatId ? { ...chat, lastMessage: message } : chat,
+      ),
     );
   };
 
@@ -69,7 +67,9 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     <Page padding>
       <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
         <div className={css.chats}>
-          <Support />
+          <Support
+            idChat="support"
+          />
           {isLoading ? (
             <div className="h-full w-full flex justify-center items-center">
               <LoadingSpinner />
