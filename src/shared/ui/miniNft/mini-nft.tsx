@@ -21,7 +21,7 @@ export default function MiniNft({
   totalPrice = 0,
   lowestPrice = 0,
   image,
-}: Props): JSX.Element {
+}: Props) {
   const t = useTranslations('home.topCollections.cards');
   const locale = useLocale();
   const formatTotalPrice = useFormatNumber(totalPrice);
@@ -32,23 +32,23 @@ export default function MiniNft({
     setHasError(true);
   };
 
+  if (hasError) {
+    return null;
+  }
+
   return (
     <Link
       href={`/${locale}/collections/${id}`}
       className={cn(css.wrapper, 'bg-1-bg-black-90')}
     >
       <div className={cn(css.image, 'bg-1-bg-black-100')}>
-        {hasError ? (
-          ''
-        ) : (
-          <Image
-            src={`${image}`}
-            alt="NFT"
-            width={65}
-            height={60}
-            onError={handleImageError}
-          />
-        )}
+        <Image
+          src={`${image}`}
+          alt="NFT"
+          width={65}
+          height={60}
+          onError={handleImageError}
+        />
       </div>
       <div className={cn(css.content, 'text-1-text-white-100')}>
         <div className={css.info}>
