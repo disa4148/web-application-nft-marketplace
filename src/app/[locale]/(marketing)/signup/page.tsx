@@ -8,12 +8,24 @@ import SignUpSkeleton from './_components/skeleton';
 import { useTranslations } from 'next-intl';
 
 import dynamic from 'next/dynamic';
+import { getTranslations } from 'next-intl/server';
 
 const SignInForm = dynamic(() => import('./_components/form/SignUpForm'), {
   ssr: false,
   loading: () => <SignUpSkeleton />
 });
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale } = params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
 
+  return {
+    title: t('signup'),
+  };
+}
 export default function SignUp(): JSX.Element {
   const t = useTranslations('signUp');
   return (

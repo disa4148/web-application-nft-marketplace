@@ -369,5 +369,18 @@
       "inputPlaceholder": "Write a message...",
       "empty": "No messages here yet..."
     }
+  },
+  "metadata": {
+    "main": "Top collections | NFT JET",
+    "messanger": "Chats | NFT JET",
+    "layout": {
+      "title": "NFT JET",
+      "description": "NFT JET is the premier marketplace for digital assets and unique collectibles. Here, creators and collectors alike can trade, sell, and discover one-of-a-kind NFTs. NFT JET offers a seamless, secure, and user-friendly platform for managing your digital portfolio. Join our community to explore a vast universe of digital art, music, virtual real estate, and more, all while enjoying cutting-edge features and unparalleled support.",
+      "keywords": "NFT, marketplace, digital assets, collectibles, blockchain, digital art, crypto art, virtual real estate, decentralized, tokens, cryptocurrency, digital portfolio, NFT trading, NFT marketplace, NFT community, rare collectibles, unique NFTs, blockchain technology, digital ownership, crypto collectibles, NFT auction, NFT gallery, NFT creators, NFT collectors, tokenized assets"
+    },
+    "favorites": "Favorites | NFT JET",
+    "mycollections": "My collection | NFT JET",
+    "signin": "Sign in | NFT JET",
+    "signup": "Sign up | NFT JET"
   }
 }

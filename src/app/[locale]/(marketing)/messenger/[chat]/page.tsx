@@ -10,6 +10,7 @@ import { getMessages, sendMessage } from '../axios/axios';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/shared/redux/store';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
+import { getTranslations } from 'next-intl/server';
 interface Message {
   id: number;
   text: string;

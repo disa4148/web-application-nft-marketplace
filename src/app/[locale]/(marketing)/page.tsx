@@ -10,7 +10,20 @@ import TopCollectionsSkeleton from './_components/topCollections/skeleton';
 
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
+import { getTranslations } from 'next-intl/server';
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const {locale} = params
+  const t = await getTranslations({ locale , namespace: 'metadata'});
+
+  return {
+    title: t('main'),
+  };
+}
 const TopCollections = dynamic(() => import ('./_components/topCollections/top-collections'), {
   ssr: false,
   loading: () => <TopCollectionsSkeleton />
