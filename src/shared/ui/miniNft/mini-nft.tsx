@@ -13,6 +13,7 @@ type Props = {
   name: string;
   totalPrice: number;
   lowestPrice: number;
+  onError: () => void;
 };
 
 export default function MiniNft({
@@ -21,6 +22,7 @@ export default function MiniNft({
   totalPrice = 0,
   lowestPrice = 0,
   image,
+  onError,
 }: Props) {
   const t = useTranslations('home.topCollections.cards');
   const locale = useLocale();
@@ -30,6 +32,7 @@ export default function MiniNft({
 
   const handleImageError = () => {
     setHasError(true);
+    onError();
   };
 
   if (hasError) {

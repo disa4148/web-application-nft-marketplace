@@ -1,20 +1,15 @@
 'use client';
+import React, { useState, useEffect, useCallback } from 'react';
 import css from './topCollections.module.scss';
 import ButtonLoadMore from '@/shared/ui/buttonLoadMore/button-load-more';
-
 import { useTranslations, useLocale } from 'next-intl';
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useGetCollectionsQuery } from '@/shared/redux/features/collectionsApi';
-
 import dynamic from 'next/dynamic';
-
 import SkeletonDropDown from '@/shared/ui/dropdown/skeleton';
 import SkeletonSortingBar from '@/shared/ui/sortingBar/skeleton';
 import SkeletonMiniNft from '@/shared/ui/miniNft/skeleton';
-
 import { toast } from 'sonner';
-
 import { Collection } from '@/shared/interfaces/Collection';
 import { Button } from '@/shared/ui/button';
 import { RootState } from '@/shared/redux/store';
@@ -43,16 +38,15 @@ const MiniNft = dynamic(() => import('@/shared/ui/miniNft/mini-nft'), {
 export default function TopCollections(): JSX.Element {
   const t = useTranslations('home.topCollections');
   const locale = useLocale();
-
   const [total, setTotal] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
-
   const [count, setCount] = useState<number>(12);
   const [offset, setOffset] = useState<number>(0);
   const [sort, setSort] = useState<string>('market_cap');
+  const [errorCount, setErrorCount] = useState<number>(0);
 
-  const { data, isError } = useGetCollectionsQuery({ offset, count, sort });
+  const { data, isError } = useGetCollectionsQuery({ offset, count: count + errorCount, sort });
   const isSignedIn = useSelector((state: RootState) => state.auth.isSignedIn);
 
   useEffect(() => {
@@ -70,8 +64,8 @@ export default function TopCollections(): JSX.Element {
     console.error('Failed to fetch collections:', error);
   }
 
-  const keys: string[] = ['select.marketCap','select.numOwners'];
-  const mobileKeys: string[] = ['mobileSelect.sold','mobileSelect.active','mobileSelect.public'];
+  const keys: string[] = ['select.marketCap', 'select.numOwners'];
+  const mobileKeys: string[] = ['mobileSelect.sold', 'mobileSelect.active', 'mobileSelect.public'];
   const [selectedDateSort, setSelectedDateSort] = useState<string>('1day');
 
   const selectItems: Option[] = keys.map((key) => ({
@@ -104,6 +98,10 @@ export default function TopCollections(): JSX.Element {
     }
   };
 
+  const handleImageError = useCallback(() => {
+    setErrorCount((prevCount) => prevCount + 1);
+  }, []);
+
   return isSignedIn ? (
     <div className={css.wrapper}>
       <div className={css.backgroundImage}></div>
@@ -112,10 +110,7 @@ export default function TopCollections(): JSX.Element {
           <Dropdown options={selectItems} onSelect={handleSelect} />
         </div>
         <div className={css.sortingBar}>
-          <SortingBar
-            activeItem={selectedDateSort}
-            onItemClick={handleSortDateClick}
-          />
+          <SortingBar activeItem={selectedDateSort} onItemClick={handleSortDateClick} />
         </div>
         <div className={css.mobileSelect}>
           <Dropdown options={mobileSelectItems} onSelect={handleMobileSelect} />
@@ -130,6 +125,7 @@ export default function TopCollections(): JSX.Element {
             totalPrice={item.totalNftPrice}
             lowestPrice={item.lowestNftPrice}
             image={item.image_url}
+            onError={handleImageError}
           />
         ))}
       </div>
