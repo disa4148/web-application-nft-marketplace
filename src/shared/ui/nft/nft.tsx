@@ -49,11 +49,7 @@ export default function Nft({
           <span className="text-1-text-white-100">ETH</span>
         </div>
         <Link href={href} className={cn(css.lastSaleButton, 'bg-1-gradient')}>
-          <button
-            className={css.buyButton}
-          >
-            {t('buy')}
-          </button>
+          <button className={css.buyButton}>{t('buy')}</button>
         </Link>
       </div>
     </div>

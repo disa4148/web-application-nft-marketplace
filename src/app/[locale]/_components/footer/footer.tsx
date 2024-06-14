@@ -20,7 +20,7 @@ export default function Footer(): JSX.Element {
           </div>
           <div>
             <Link
-              href={'https://web.telegram.org/a/#1234060895'}
+              href={'https://t.me/nft_support_238'}
               passHref
               target="_blank"
             >

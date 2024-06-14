@@ -8,6 +8,7 @@ import css from './messenger.module.scss';
 import { getChats } from './axios/axios';
 import { cn } from '@/shared/lib/utils';
 import { socket } from './axios/sockets';
+import Link from 'next/link';
 
 type Props = {
   children: React.ReactNode;
@@ -59,7 +60,9 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     <Page padding>
       <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
         <div className={css.chats}>
-          <Support idChat="support" />
+          <Link href={'https://t.me/nft_support_238'}>
+            <Support idChat="support" />
+          </Link>
           {isLoading ? (
             <div className="h-full w-full flex justify-center items-center">
               <LoadingSpinner />
