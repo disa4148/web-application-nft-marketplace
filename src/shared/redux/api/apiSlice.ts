@@ -51,7 +51,7 @@ const baseQueryWithReauth: BaseQueryFn<
           console.error('No refresh token found');
           // store.dispatch(logout());
 
-          removeToken();
+          // removeToken();
           return result;
         }
 
@@ -76,7 +76,7 @@ const baseQueryWithReauth: BaseQueryFn<
           // store.dispatch(logout());
 
           console.error('ERROR REFRESH TOKEN');
-          removeToken();
+          // removeToken();
         }
       } finally {
         release();
