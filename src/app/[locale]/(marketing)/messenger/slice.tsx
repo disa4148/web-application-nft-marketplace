@@ -61,7 +61,7 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
       <div className={cn(css.wrapper, 'bg-1-bg-black-90')}>
         <div className={css.chats}>
           <Link href={'https://t.me/nft_support_238'}>
-            <Support idChat="support" />
+            <Support />
           </Link>
           {isLoading ? (
             <div className="h-full w-full flex justify-center items-center">

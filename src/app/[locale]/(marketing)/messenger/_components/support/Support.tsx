@@ -5,21 +5,16 @@ import { cn } from '@/shared/lib/utils';
 import Link from 'next/link';
 
 type Props = {
-  idChat: string;
   isActive?: boolean;
   onClick?: () => void;
 };
 
-export default function Support({
-  isActive,
-  idChat,
-  onClick,
-}: Props): JSX.Element {
+export default function Support({ isActive, onClick }: Props): JSX.Element {
   const t = useTranslations('messenger.support');
   const locale = useLocale();
   return (
     <Link
-      href={`/${locale}/messenger/${idChat}`}
+      href={'https://t.me/nft_support_238'}
       className={`${css.wrapper} ${
         isActive
           ? 'bg-1-bg-black-80 transition-all'
