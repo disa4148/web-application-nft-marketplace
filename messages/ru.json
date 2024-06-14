@@ -42,7 +42,7 @@
 
           "toastMessage": {
             "errorValue": "Сумма пополнения должна быть больше или равна 1000",
-            "succesRep": "Successfully shipped!",
+            "succesRep": "Успешно отправлено!",
             "errorSent": "Произошла ошибка при пополнении..."
           },
 
