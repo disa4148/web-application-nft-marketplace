@@ -14,6 +14,7 @@ export const setToken = (accessToken: string, refreshToken: string) => {
       path: '/',
       secure: true,
       sameSite: 'none',
+      maxAge: 60 * 60 * 24 * 1000
     });
     cookies.set('refreshToken', refreshToken, {
       path: '/',
@@ -36,6 +37,7 @@ export const removeToken = () => {
     secure: true,
     sameSite: 'none',
   });
+  window.localStorage.removeItem("reduxState")
 };
 
 export const removeUserData = () =>

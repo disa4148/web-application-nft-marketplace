@@ -21,7 +21,7 @@ import { setToken } from '@/shared/lib/cookie';
 
 import { UserData } from '@/shared/lib/localstorage';
 import { useDispatch } from 'react-redux';
-import { setAuthInfo } from '@/shared/redux/slices/authSlice';
+import { logout, setAuthInfo } from '@/shared/redux/slices/authSlice';
 import { cn } from '@/shared/lib/utils';
 
 type FieldErrors = {
@@ -39,6 +39,10 @@ interface ResponseData {
 }
 
 export default function SignInForm(): JSX.Element {
+  useEffect(() => {
+    window.localStorage.removeItem("reduxState");
+    dispatch(logout());
+  },[])
   const t = useTranslations('signIn');
   const locale = useLocale();
   const dispatch = useDispatch();
@@ -65,6 +69,8 @@ export default function SignInForm(): JSX.Element {
   const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
   const errors: FieldErrors = form.formState.errors;
   const [auth, { isLoading }] = useSignInMutation();
+    
+
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const payload = {
