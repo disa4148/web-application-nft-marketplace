@@ -45,7 +45,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
 
   const tabs: Tab[] = [
     { label: t('tabs.offers.title'), content: <Offers offers={nftData?.offers}/> },
-    { label: t('tabs.historyPrice.title'), content: <PriceHistory /> },
+    { label: t('tabs.historyPrice.title'), content: <PriceHistory priceHistory={nftData?.pricehistory}/> },
   ];
 
   const InfoContainer = dynamic(() => import('./_components/infoContainer/infoContainer'), {
