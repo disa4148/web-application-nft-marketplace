@@ -13,24 +13,25 @@ import ModalConclusion from '../../../modalWalletConclusion/modalConclusion';
 import ModalPromocode from '../../../modalPromocode/modalPromocode';
 import { useDispatch } from 'react-redux';
 import { getUser } from '@/app/[locale]/(marketing)/messenger/axios/axios';
-import { setUser } from '@/shared/redux/slices/authSlice';
+import { setBalance } from '@/shared/redux/slices/authSlice';
 
 type Props = {
   balance: number;
 };
 
 export default function WalletDropdown({ balance }: Props): JSX.Element {
-  const [stateBalance, setBalance] = useState(balance);
+  const [stateBalance, setBalances] = useState(balance);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const data = await getUser();
-        dispatch(setUser(data));
-        setBalance(data.balance);
+        console.log(data)
+        dispatch(setBalance(data.balance));
+        setBalances(data.balance);
       } catch (error) {
         console.error('Error fetching user:', error);
-        dispatch(setUser(null));
+        dispatch(setBalance(balance));
       }
     };
 

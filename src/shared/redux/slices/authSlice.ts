@@ -34,13 +34,15 @@ export const authSlice = createSlice({
         state.user.balance -= action.payload;
       }
     },
-    setUser: (state, action: PayloadAction<UserData | null>) => {
-      state.user = action.payload;
+    setBalance: (state, action: PayloadAction<number>) => {
+      if (state.user) {
+        state.user.balance = action.payload;
+      }
     },
   },
 });
 
-export const { setAuthInfo, logout, addBalance, removeBalance, setUser } =
+export const { setAuthInfo, logout, addBalance, removeBalance, setBalance } =
   authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
