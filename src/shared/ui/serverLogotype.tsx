@@ -20,7 +20,7 @@ export default function ServerLogotype(): JSX.Element {
       {data?.logo ? (
         <Image alt="Logotype" src={data.logo} width={157} height={24} />
       ) : (
-        <div>No logo available</div>
+        <div>Logotype</div>
       )}
     </Link>
   );

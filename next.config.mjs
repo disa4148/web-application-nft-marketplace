@@ -8,6 +8,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'metadata.degods.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'bafybeihjm4vevmfsdbwtr24l2mhzxnoksffwtc2gxqubdgur7zuaq6oh2a.ipfs.nftstorage.link',
         pathname: '/**',
       },
@@ -124,6 +129,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'media.levpidoor.ru',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.nft-jet.com',
         pathname: '/**',
       },
       {

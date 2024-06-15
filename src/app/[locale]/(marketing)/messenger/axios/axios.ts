@@ -127,5 +127,13 @@ export const sendMessage = async (ownerId: string, text: string) => {
     throw error;
   }
 };
-
+export const getUser = async () => {
+  try {
+    const response = await axiosInstance.get('/users/me');
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при отправке сообщения:', error);
+    throw error;
+  }
+};
 export default axiosInstance;

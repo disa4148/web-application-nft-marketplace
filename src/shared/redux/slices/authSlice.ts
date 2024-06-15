@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { UserData } from "@/shared/lib/localstorage";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import { UserData } from '@/shared/lib/localstorage';
 
 export interface AuthState {
   user: UserData | null;
@@ -13,7 +13,7 @@ const initialState: AuthState = {
 };
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     setAuthInfo: (state, action: PayloadAction<AuthState>) => {
@@ -34,10 +34,14 @@ export const authSlice = createSlice({
         state.user.balance -= action.payload;
       }
     },
+    setUser: (state, action: PayloadAction<UserData | null>) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setAuthInfo, logout, addBalance, removeBalance } = authSlice.actions;
+export const { setAuthInfo, logout, addBalance, removeBalance, setUser } =
+  authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 

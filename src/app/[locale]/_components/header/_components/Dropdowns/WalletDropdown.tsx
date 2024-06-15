@@ -11,12 +11,34 @@ import Image from 'next/image';
 import ModalReplenish from '../../../modalWalletReplenish/modalReplenish';
 import ModalConclusion from '../../../modalWalletConclusion/modalConclusion';
 import ModalPromocode from '../../../modalPromocode/modalPromocode';
+import { useDispatch } from 'react-redux';
+import { getUser } from '@/app/[locale]/(marketing)/messenger/axios/axios';
+import { setUser } from '@/shared/redux/slices/authSlice';
 
 type Props = {
   balance: number;
 };
 
 export default function WalletDropdown({ balance }: Props): JSX.Element {
+  const [stateBalance, setBalance] = useState(balance);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await getUser();
+        dispatch(setUser(data));
+        setBalance(data.balance);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+        dispatch(setUser(null));
+      }
+    };
+
+    fetchUser();
+    const intervalId = setInterval(fetchUser, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
   const t = useTranslations('header.dropdown.walletMenu');
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -51,7 +73,7 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
       <div className={cn(css.wallet, 'bg-1-bg-black-80')} onClick={toggleMenu}>
         <Wallet width={22} height={20} />
         <p className={css.balance}>
-          <span className="text-1-text-white-100">{balance} ETH</span>
+          <span className="text-1-text-white-100">{stateBalance} ETH</span>
         </p>
       </div>
       {isOpen && (
