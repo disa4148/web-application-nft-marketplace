@@ -2,7 +2,7 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
 const locales = ['en', 'ru'];
-const publicPages = ['/', '/signin', '/signup'];
+const publicPages = ['/', '/signin', '/signup', '/messenger', '/favorites'];
 
 const intlMiddleware = createIntlMiddleware({
   locales,
