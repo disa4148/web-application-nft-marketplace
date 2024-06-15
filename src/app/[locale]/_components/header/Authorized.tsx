@@ -12,7 +12,6 @@ import { UserData } from '@/shared/lib/localstorage';
 import WalletDropdown from './_components/Dropdowns/WalletDropdown';
 import { cn } from '@/shared/lib/utils';
 import { useDispatch } from 'react-redux';
-import { setUser } from '@/shared/redux/slices/authSlice';
 
 type Props = {
   user: UserData;
