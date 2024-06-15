@@ -16,6 +16,8 @@ export const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
         style={{
           backgroundColor: '#5b63ffe7',
           padding: '10px',
+          width: '100%',
+          maxWidth: '200px',
           borderRadius: '10px',
           boxShadow: '1px 2px 10px -2px #7873ffb1',
         }}
@@ -26,6 +28,8 @@ export const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
             style={{
               borderStyle: 'solid 1px',
               fontSize: '13px',
+              width: 'max-content',
+              maxWidth: '200px',
               fontWeight: '600',
               fontFamily: 'sans-serif',
               color: '#fff',

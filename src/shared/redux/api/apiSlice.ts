@@ -23,7 +23,7 @@ interface RefreshResultData {
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://nft.levpidoor.ru/',
+  baseUrl: 'https://nft-jet.com/',
 
   prepareHeaders: (headers) => {
     const token = getAccessToken();

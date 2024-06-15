@@ -7,7 +7,7 @@ import {
 } from '@/shared/lib/cookie';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://nft.levpidoor.ru/api',
+  baseURL: 'https://nft-jet.com/api/',
 });
 
 const refreshTokenRequest = async () => {
@@ -18,7 +18,7 @@ const refreshTokenRequest = async () => {
     }
     // Я СРАТЬ
     const response = await axios.post(
-      'https://nft.levpidoor.ru/api/auth/refresh',
+      'https://nft-jet.com/api/auth/refresh',
       null,
       {
         headers: {

@@ -118,6 +118,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'nft-jet.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'media.levpidoor.ru',
         pathname: '/**',
       },
