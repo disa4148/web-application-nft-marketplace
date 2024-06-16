@@ -1,10 +1,11 @@
 import { io } from 'socket.io-client';
 import { getAccessToken } from './shared/lib/cookie';
 
-const URL = 'https://wsnft.xyz/';
-const token = getAccessToken()
+const URL = 'ws://socket.nft-jet.com';
+const token = getAccessToken();
 export const socket = io(URL, {
-    auth: {
-        token
-      }
+  auth: {
+    token: `Bearer ${token}`,
+  },
+  transports: ['websocket'],
 });

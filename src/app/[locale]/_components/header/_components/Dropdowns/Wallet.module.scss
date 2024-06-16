@@ -59,11 +59,25 @@
         font-weight: 500;
       }
     }
+
+    .balanceMobile {
+      display: none;
+      align-items: center;
+      gap: 10px;
+
+      .text {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
   }
 }
 
 @media (max-width: 864px) {
   .dropdown {
+    .balanceMobile {
+      display: flex !important;
+    }
     .wallet {
       max-width: 40px;
       padding: 10px;

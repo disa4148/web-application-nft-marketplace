@@ -7,11 +7,11 @@ import ProfileDropdown from './_components/Dropdowns/ProfileDropdown';
 import { Heart, MessageCircleMore } from 'lucide-react';
 
 import { useLocale } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { UserData } from '@/shared/lib/localstorage';
 import WalletDropdown from './_components/Dropdowns/WalletDropdown';
 import { cn } from '@/shared/lib/utils';
-import { useDispatch } from 'react-redux';
+
 
 type Props = {
   user: UserData;
@@ -20,7 +20,7 @@ type Props = {
 export default function Authorized({ user }: Props): JSX.Element {
   const locale = useLocale();
   const pathname = usePathname();
-
+  
   const isActive = (path: string) => pathname.startsWith(path);
 
   return (

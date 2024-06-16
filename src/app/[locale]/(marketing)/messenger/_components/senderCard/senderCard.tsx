@@ -40,7 +40,7 @@ export default function SenderCard({
 
       <div className={css.senderInfo}>
         <h1 className='text-1-text-white-100'>{name}</h1>
-        <h2 className='text-1-text-black-60'>{lastMessage}</h2>
+        {/* <h2 className='text-1-text-black-60'>{lastMessage}</h2> */}
       </div>
     </Link>
   );

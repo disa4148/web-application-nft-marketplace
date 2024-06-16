@@ -10,6 +10,15 @@ import { cn } from '@/shared/lib/utils';
 import { socket } from './axios/sockets';
 import Link from 'next/link';
 
+interface ChatMessage {
+  _id: string;
+  from: string;
+  chatId: string;
+  text: string;
+  read: boolean;
+  __v: number;
+}
+
 type Props = {
   children: React.ReactNode;
 };
@@ -33,10 +42,21 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
 
     fetchChats();
 
-    socket.on('message.created', (message: any) => {
-      updateLastMessage(message);
+    // return () => {
+    //   socket.off('connect');
+    //   socket.off('disconnect');
+    //   socket.off('message.created');
+    // };
+  }, []);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to Socket.IO server');
     });
 
+    socket.on('message.created', (message) => {
+      console.log('New message received:', message);
+    });
     return () => {
       socket.off('connect');
       socket.off('disconnect');
@@ -45,6 +65,7 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
   }, []);
 
   const updateLastMessage = (message: any) => {
+    console.log('ласт:', message);
     setChats((prevChats) =>
       prevChats.map((chat) =>
         chat._id === message.chatId ? { ...chat, lastMessage: message } : chat,

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { useTranslations } from 'next-intl';
+import ServerLogotype from '@/shared/ui/serverLogotype';
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('footer');
@@ -15,7 +16,7 @@ export default function Footer(): JSX.Element {
       <div className={css.footer}>
         <div>
           <div className={css.logotypeContainer}>
-            <Logotype style="light" />
+            <ServerLogotype/>
             <p className="text-1-text-black-60">{t('description')}</p>
           </div>
           <div>

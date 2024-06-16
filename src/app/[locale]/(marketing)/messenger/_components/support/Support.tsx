@@ -32,7 +32,7 @@ export default function Support({ isActive, onClick }: Props): JSX.Element {
       </div>
       <div className={css.senderInfo}>
         <h1 className="text-1-text-white-100">{t('name')}</h1>
-        <h2 className="text-1-text-black-60">{t('message')}</h2>
+        {/* <h2 className="text-1-text-black-60">{t('message')}</h2> */}
       </div>
     </Link>
   );

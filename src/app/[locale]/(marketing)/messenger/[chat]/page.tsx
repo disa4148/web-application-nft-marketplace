@@ -53,13 +53,13 @@ export default function Chat({
         setIsLoading(false);
       }
     };
-
     fetchMessages();
-   
-
     socket.on('message.created', (message: ChatMessage) => {
-    
       setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected');
     });
 
     return () => {
@@ -67,7 +67,7 @@ export default function Chat({
       socket.off('disconnect');
       socket.off('message.created');
     };
-  }, [params.chat, messages]);
+  }, [params.chat]);
 
   const handleSendMessage = async () => {
     if (inputValue.trim() !== '') {

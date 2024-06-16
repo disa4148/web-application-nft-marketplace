@@ -127,7 +127,6 @@ export default function ChangePriceModal({
                 value={rubPrice}
                 onChange={handleRubChange}
                 onKeyPress={(event) => {
-                  // Allow only numbers and comma
                   const allowedKeys = [
                     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
                   ];
@@ -142,7 +141,6 @@ export default function ChangePriceModal({
                 value={ethPrice}
                 onChange={handleEthChange}
                 onKeyPress={(event) => {
-                  // Allow only numbers and comma
                   const allowedKeys = [
                     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
                   ];

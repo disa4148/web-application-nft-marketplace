@@ -7,6 +7,7 @@ import { cn } from '@/shared/lib/utils';
 
 import { Gift, Wallet } from 'lucide-react';
 import Image from 'next/image';
+import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
 
 import ModalReplenish from '../../../modalWalletReplenish/modalReplenish';
 import ModalConclusion from '../../../modalWalletConclusion/modalConclusion';
@@ -14,6 +15,8 @@ import ModalPromocode from '../../../modalPromocode/modalPromocode';
 import { useDispatch } from 'react-redux';
 import { getUser } from '@/app/[locale]/(marketing)/messenger/axios/axios';
 import { setBalance } from '@/shared/redux/slices/authSlice';
+import { socket } from '@/socket';
+import { toast } from 'sonner';
 
 type Props = {
   balance: number;
@@ -26,8 +29,8 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
     const fetchUser = async () => {
       try {
         const data = await getUser();
-        console.log(data)
         dispatch(setBalance(data.balance));
+
         setBalances(data.balance);
       } catch (error) {
         console.error('Error fetching user:', error);
@@ -40,13 +43,14 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
 
     return () => clearInterval(intervalId);
   }, [dispatch]);
+
   const t = useTranslations('header.dropdown.walletMenu');
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalReplenish, setIsModalReplenish] = useState<boolean>(false);
   const [isModalConclusion, setIsModalConclusion] = useState<boolean>(false);
   const [isModalPromocode, setIsModalPromocode] = useState<boolean>(false);
-
+  const formattedBalance = useFormatNumber(stateBalance);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
@@ -62,9 +66,13 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
         setIsOpen(false);
       }
     };
+    socket.on('message.created', () => {
+      toast.message(t('modalReplenish.toastMessage.newMessage'));
+    });
 
     document.addEventListener('click', handleClickOutside);
     return () => {
+      socket.off('message.created');
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
@@ -126,6 +134,14 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
               className={cn(css.text, 'text-1-text-white-100 cursor-pointer')}
             >
               {t('promocode.title')}
+            </span>
+          </div>
+
+          <div className={css.balanceMobile}>
+            <span
+              className={cn(css.text, 'text-1-text-white-100 cursor-pointer')}
+            >
+              {formattedBalance} ETH
             </span>
           </div>
         </div>

@@ -43,7 +43,8 @@
           "toastMessage": {
             "errorValue": "The replenishment amount must be greater than or equal to 1000",
             "succesRep": "Successfully shipped!",
-            "errorSent": "There was an error when refilling the..."
+            "errorSent": "There was an error when refilling the...",
+            "newMessage": "You have a new message!"
           },
 
           "checkReplenish": {
