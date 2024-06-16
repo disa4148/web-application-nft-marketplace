@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './page.module.scss';
 import Page from '@/shared/containers/page';
 import { useTranslations } from 'next-intl';
@@ -49,7 +49,7 @@ export default function CatalogNft({
   const [count, setCount] = useState<number>(10);
   const [sort, setSort] = useState<string>('market_cap');
 
-  const { data } = useGetCollectionQuery({
+  const { data, refetch } = useGetCollectionQuery({
     collectionId: params.collection,
     count: count,
     offset: 1,
@@ -74,6 +74,9 @@ export default function CatalogNft({
 
   const formatDateCreate = useFormatDate(collection?.createdAt);
   const total = data?.total;
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <Page>
