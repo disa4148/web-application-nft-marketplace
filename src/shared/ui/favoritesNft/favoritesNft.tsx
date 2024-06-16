@@ -94,11 +94,6 @@ export default function FavoritesNft({
             <span className="text-1-text-white-100">ETH</span>
           </div>
         </div>
-        <div className={css.lastSale}>
-          <span className="text-1-text-white-100">{t('lastSale')}</span>
-          <h4 className="text-1-text-white-100">{total}</h4>
-          <span className="text-1-text-white-100">ETH</span>
-        </div>
       </Link>
     </div>
   );

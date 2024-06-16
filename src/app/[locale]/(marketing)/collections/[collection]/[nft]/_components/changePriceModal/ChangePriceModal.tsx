@@ -123,17 +123,33 @@ export default function ChangePriceModal({
             <h2>{t('currentPrice')} {price} ETH</h2>
             <div className={css.inputs}>
               <Input
-                type="number"
                 placeholder={t('placeholders.inRub')}
                 value={rubPrice}
                 onChange={handleRubChange}
+                onKeyPress={(event) => {
+                  // Allow only numbers and comma
+                  const allowedKeys = [
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
+                  ];
+                  if (!allowedKeys.includes(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
               />
               <p>~</p>
               <Input
-                type="number"
                 placeholder={t('placeholders.inETH')}
                 value={ethPrice}
                 onChange={handleEthChange}
+                onKeyPress={(event) => {
+                  // Allow only numbers and comma
+                  const allowedKeys = [
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
+                  ];
+                  if (!allowedKeys.includes(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
               />
             </div>
             <Button onClick={handleChangePrice} className={cn(css.btn, 'bg-1-gradient')}>

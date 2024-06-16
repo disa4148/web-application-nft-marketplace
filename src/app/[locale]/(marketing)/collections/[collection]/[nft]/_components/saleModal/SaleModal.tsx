@@ -123,14 +123,30 @@ export default function SaleModal({
           <div className={css.content}>
             <div className={css.inputs}>
               <Input
-                type="number"
+                 onKeyPress={(event) => {
+                  // Allow only numbers and comma
+                  const allowedKeys = [
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
+                  ];
+                  if (!allowedKeys.includes(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
                 placeholder={t('placeholders.inRub')}
                 value={rubPrice}
                 onChange={handleRubChange}
               />
               <p className="text-1-text-white-100">~</p>
               <Input
-                type="number"
+                 onKeyPress={(event) => {
+                  // Allow only numbers and comma
+                  const allowedKeys = [
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
+                  ];
+                  if (!allowedKeys.includes(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
                 placeholder={t('placeholders.inETH')}
                 value={ethPrice}
                 onChange={handleEthChange}

@@ -68,7 +68,8 @@
           "withdrawButton": "Withdraw",
           "loadingButton": "Withdrawal...",
           "failedWith": "There's been an error. Please contact to support!",
-          "amountError": "The withdrawal amount cannot be 0"
+          "amountError": "The withdrawal amount cannot be 0",
+          "onlyNumber": "Enter the number"
         },
         "promocode": {
           "title": "Promocodes",

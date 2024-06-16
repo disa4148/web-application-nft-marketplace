@@ -69,6 +69,7 @@ export default function NftCard({ params }: { params: { nft: string } }) {
     if (isSuccess && nftData && user) {
       setIsMine(nftData.owner.name === user.login);
       setOnSale(nftData.on_sale);
+      refetch();
     }
   }, [isSuccess, nftData, user]);
 

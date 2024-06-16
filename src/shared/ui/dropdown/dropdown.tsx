@@ -43,15 +43,22 @@ export default function Dropdown({ options, onSelect }: DropdownProps) {
             isOpen ? css.active : ''
           }`}
         >
-          {options.map((option) => (
-            <div
-              key={option.value}
-              className={cn(css.dropdownItem, 'hover:bg-1-bg-black-80 text-1-text-white-100')}
-              onClick={() => handleSelectOption(option)}
-            >
-              {option.label}
-            </div>
-          ))}
+          {options.map((option, index) => {
+            const isLast = index === options.length - 1;
+            return (
+              <div
+                key={option.value}
+                className={cn(
+                  css.dropdownItem,
+                  'hover:bg-1-bg-black-80 text-1-text-white-100',
+                  { [css.lastItem]: isLast }
+                )}
+                onClick={() => handleSelectOption(option)}
+              >
+                {option.label}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div>

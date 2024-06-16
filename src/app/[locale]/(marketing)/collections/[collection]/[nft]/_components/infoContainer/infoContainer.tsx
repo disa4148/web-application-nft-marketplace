@@ -1,5 +1,4 @@
 import css from './infoContainer.module.scss';
-
 import { useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
@@ -26,21 +25,27 @@ export default function InfoContainer({
   const t = useTranslations('nftCard.infoBlock');
 
   const [favorite, setFavorite] = useState(isFavorite);
-  const [addFavorite] = useAddFavoriteMutation();
-  const [deleteFavorite] = useDeleteFavoriteMutation();
-  const [loading, setLoading] = useState(false);
+  const [addFavorite, { isLoading: isAdding }] = useAddFavoriteMutation();
+  const [deleteFavorite, { isLoading: isDeleting }] = useDeleteFavoriteMutation();
+  const loading = isAdding || isDeleting;
 
   const handleFavoriteClick = async () => {
     if (favorite) {
-      setLoading(true);
-      setFavorite(false);
-      await deleteFavorite({ nftId });
-      setLoading(false);
+      try {
+        setFavorite(false);
+        await deleteFavorite({ nftId }).unwrap();
+      } catch (error) {
+        setFavorite(true);
+        console.error('Error deleting favorite:', error);
+      }
     } else {
-      setLoading(true);
-      setFavorite(true);
-      await addFavorite({ nftId });
-      setLoading(false);
+      try {
+        setFavorite(true);
+        await addFavorite({ nftId }).unwrap();
+      } catch (error) {
+        setFavorite(false);
+        console.error('Error adding favorite:', error);
+      }
     }
   };
 
@@ -52,12 +57,13 @@ export default function InfoContainer({
         <div className={css.gradientText}>
           <p className='bg-1-gradient before:bg-1-gradient'>{status}</p>
         </div>
-        {isMine ? ('') : loading ? (
+        {isMine ? null : loading ? (
           <LoadingSpinner />
         ) : (
           <Heart
             onClick={handleFavoriteClick}
-            color={favorite ? 'red' : 'white'}
+            color={favorite ? '#4592f7' : 'white'}
+            fill={favorite ? '#4592f7' : ''}
             width={22}
             height={22}
           />

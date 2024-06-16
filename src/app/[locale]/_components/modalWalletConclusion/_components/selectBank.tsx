@@ -46,9 +46,16 @@ export default function SelectBank() {
     const amountNumber = parseFloat(amount);
 
     if (isNaN(amountNumber)) {
+      toast.error(t('onlyNumber'));
       return;
     }
 
+    const cardNumberNumber = parseFloat(cardNumber);
+
+    if (isNaN(cardNumberNumber)) {
+      toast.error(t('onlyNumber'));
+      return;
+    }
 
     const data = {
       amount: amountNumber,
@@ -77,13 +84,48 @@ export default function SelectBank() {
         <Bank selectedBank={selectedBank} setSelectedBank={setSelectedBank} />
         <div className={css.sending}>
           <Input
+            onKeyPress={(event) => {
+              const allowedKeys = [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                ',',
+              ];
+              if (!allowedKeys.includes(event.key)) {
+                event.preventDefault();
+              }
+            }}
             className={css.input}
             value={amount}
             onChange={handleAmountChange}
             placeholder={t('enterAmount')}
-            type="number"
           />
           <Input
+            onKeyPress={(event) => {
+              const allowedKeys = [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                ',',
+              ];
+              if (!allowedKeys.includes(event.key)) {
+                event.preventDefault();
+              }
+            }}
             onChange={handleCardChange}
             className={css.input}
             value={cardNumber}

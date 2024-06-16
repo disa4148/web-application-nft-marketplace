@@ -39,6 +39,11 @@
   }
 }
 
+.lastItem {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
 .dropdown.active {
   border-radius: 10px 10px 0 0;
 }
