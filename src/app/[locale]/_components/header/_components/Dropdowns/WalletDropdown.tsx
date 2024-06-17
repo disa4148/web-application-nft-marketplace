@@ -1,7 +1,7 @@
 'use client';
 import css from './Wallet.module.scss';
 import { useState, useEffect, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { cn } from '@/shared/lib/utils';
 
@@ -12,18 +12,21 @@ import { useFormatNumber } from '@/shared/lib/hooks/useFormatNumber';
 import ModalReplenish from '../../../modalWalletReplenish/modalReplenish';
 import ModalConclusion from '../../../modalWalletConclusion/modalConclusion';
 import ModalPromocode from '../../../modalPromocode/modalPromocode';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '@/app/[locale]/(marketing)/messenger/axios/axios';
 import { setBalance } from '@/shared/redux/slices/authSlice';
-import { socket } from '@/socket';
 import { toast } from 'sonner';
 
+import { useSocket } from '@/shared/containers/socketProvider';
+import { usePathname } from 'next/navigation';
+import { RootState } from '@/shared/redux/store';
 type Props = {
   balance: number;
 };
 
 export default function WalletDropdown({ balance }: Props): JSX.Element {
   const [stateBalance, setBalances] = useState(balance);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchUser = async () => {
@@ -45,14 +48,18 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
   }, [dispatch]);
 
   const t = useTranslations('header.dropdown.walletMenu');
-
+  const path = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalReplenish, setIsModalReplenish] = useState<boolean>(false);
   const [isModalConclusion, setIsModalConclusion] = useState<boolean>(false);
   const [isModalPromocode, setIsModalPromocode] = useState<boolean>(false);
+  const [message, setMessage] = useState<any>(null);
+  const locale = useLocale();
+  const user = useSelector((state: RootState) => state.auth.user);
+  const { socket } = useSocket();
   const formattedBalance = useFormatNumber(stateBalance);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
+  console.log(path);
   const toggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -66,16 +73,35 @@ export default function WalletDropdown({ balance }: Props): JSX.Element {
         setIsOpen(false);
       }
     };
-    socket.on('message.created', () => {
-      toast.message(t('modalReplenish.toastMessage.newMessage'));
-    });
 
     document.addEventListener('click', handleClickOutside);
     return () => {
-      socket.off('message.created');
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('message.created', (message) => {
+        // console.log("my path: ", `/${locale}/messenger/${message.chatId}`);
+        // console.log("web path: ", path);
+        // if (path === `/${locale}/messenger/${message.chatId}`) {
+        //   console.log("1");
+        //   // return;
+        // } else {
+        if (user?._id !== message.from) {
+          setMessage(message);
+          toast.message(t('modalReplenish.toastMessage.newMessage'));
+          console.log('сообщ', message);
+        }
+        // }
+      });
+
+      return () => {
+        socket.off('message.created');
+      };
+    }
+  }, [socket]);
 
   return (
     <div className={css.dropdown} ref={dropdownRef}>

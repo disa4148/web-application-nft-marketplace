@@ -7,7 +7,6 @@ import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import css from './messenger.module.scss';
 import { getChats } from './axios/axios';
 import { cn } from '@/shared/lib/utils';
-import { socket } from './axios/sockets';
 import Link from 'next/link';
 
 interface ChatMessage {
@@ -41,27 +40,6 @@ export default function MessengerSlice({ children }: Props): JSX.Element {
     };
 
     fetchChats();
-
-    // return () => {
-    //   socket.off('connect');
-    //   socket.off('disconnect');
-    //   socket.off('message.created');
-    // };
-  }, []);
-
-  useEffect(() => {
-    socket.on('connect', () => {
-      console.log('Connected to Socket.IO server');
-    });
-
-    socket.on('message.created', (message) => {
-      console.log('New message received:', message);
-    });
-    return () => {
-      socket.off('connect');
-      socket.off('disconnect');
-      socket.off('message.created');
-    };
   }, []);
 
   const updateLastMessage = (message: any) => {

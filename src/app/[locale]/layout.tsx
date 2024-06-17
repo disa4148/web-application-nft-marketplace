@@ -6,6 +6,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import Footer from './_components/footer/footer';
 import Header from './_components/header/Header';
 import { getTranslations } from 'next-intl/server';
+import { SocketProvider } from '@/shared/containers/socketProvider';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 
@@ -46,18 +47,20 @@ export default function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={noto_Sans.className}>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <SocketProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              {children}
+              <Footer />
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </SocketProvider>
       </body>
     </html>
   );
