@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 335px;
+  width: 100%;
+  gap: 15px;
+  padding: 8px 25px;
+  border-radius: 15px;
+  font-weight: 300;
+
+  img {
+    width: auto;
+    height: auto;
+  }
+  .content {
+    .unauthorized {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+}

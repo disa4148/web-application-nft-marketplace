@@ -10,6 +10,7 @@ import SearchInput from '@/shared/ui/searchInput/search-input';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 
 import BurgerDropdown from './_components/Dropdowns/BurgerDropdown';
+import { ComboBox } from '@/shared/ui/comboBox/combo-box';
 
 const HeaderLayout = dynamic(() => import('./HeaderLayout'), {
   ssr: false,
@@ -26,7 +27,7 @@ export default function Header(): JSX.Element {
         </div>
         <div className={css.rightItems}>
           <div className={css.searchInput}>
-            <SearchInput placeholder={t('inputPlaceholder')} />
+            <ComboBox />
           </div>
           <HeaderLayout />
           <BurgerDropdown />

@@ -5,6 +5,9 @@
     "IdentificationButton": "Login and registration",
     "signUpBtn": "Sign Up",
     "signInBtn": "Sign In",
+    "searchPlaceholder": "Collection search",
+    "notFound": "Collection not found",
+    "unauthorized": "You must be logged in to search the collection!",
 
     "dropdown": {
       "burgerMenu": {

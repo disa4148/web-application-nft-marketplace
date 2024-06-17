@@ -5,6 +5,9 @@
     "IdentificationButton": "Вход и регистрация",
     "signUpBtn": "Регистрация",
     "signInBtn": "Авторизация",
+    "searchPlaceholder": "Поиск коллекции",
+    "notFound": "Коллекция не найдена",
+    "unauthorized": "Для поиска по коллекциям необходимо авторизоваться!",
 
     "dropdown": {
       "burgerMenu": {
