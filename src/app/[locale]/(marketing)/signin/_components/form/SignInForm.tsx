@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useSignInMutation } from '@/shared/redux/features/authApi';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { setToken } from '@/shared/lib/cookie';
 
 import { UserData } from '@/shared/lib/localstorage';
@@ -29,9 +29,9 @@ type FieldErrors = {
 };
 
 type Tokens = {
-  accessToken: string,
-  refreshToken: string
-}
+  accessToken: string;
+  refreshToken: string;
+};
 
 interface ResponseData {
   tokens: Tokens;
@@ -40,9 +40,9 @@ interface ResponseData {
 
 export default function SignInForm(): JSX.Element {
   useEffect(() => {
-    window.localStorage.removeItem("reduxState");
+    window.localStorage.removeItem('reduxState');
     dispatch(logout());
-  },[])
+  }, []);
   const t = useTranslations('signIn');
   const locale = useLocale();
   const dispatch = useDispatch();
@@ -69,8 +69,6 @@ export default function SignInForm(): JSX.Element {
   const [isErrorsShown, setIsErrorsShown] = useState<boolean>(false);
   const errors: FieldErrors = form.formState.errors;
   const [auth, { isLoading }] = useSignInMutation();
-    
-
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const payload = {
@@ -82,7 +80,7 @@ export default function SignInForm(): JSX.Element {
       const response = (await auth(payload).unwrap()) as ResponseData;
       toast.success(t('messages.success'));
       setToken(response.tokens.accessToken, response.tokens.refreshToken);
-      dispatch(setAuthInfo({user: response.user, isSignedIn:true}))
+      dispatch(setAuthInfo({ user: response.user, isSignedIn: true }));
       form.reset();
       router.push(`/`);
     } catch (e: any) {
@@ -119,7 +117,11 @@ export default function SignInForm(): JSX.Element {
             return (
               <FormItem>
                 <FormControl>
-                  <Input placeholder={t('input.login')} {...field} onKeyDown={handleKeyPress} />
+                  <Input
+                    placeholder={t('input.login')}
+                    {...field}
+                    onKeyDown={handleKeyPress}
+                  />
                 </FormControl>
               </FormItem>
             );
@@ -176,8 +178,11 @@ export default function SignInForm(): JSX.Element {
           {t('buttonSignIn.text')}{' '}
         </Button>
         <div className={css.linkSignUp}>
-          <h1 className='text-1-text-white-100'>{t('linkSignUp.text')}</h1>
-          <Link className={cn(css.link, 'bg-1-gradient')} href={`/${locale}/signup`}>
+          <h1 className="text-1-text-white-100">{t('linkSignUp.text')}</h1>
+          <Link
+            className={cn(css.link, 'bg-1-gradient')}
+            href={`/${locale}/signup`}
+          >
             {t('linkSignUp.button')}
           </Link>
         </div>

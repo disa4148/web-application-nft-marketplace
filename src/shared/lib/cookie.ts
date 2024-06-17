@@ -25,6 +25,18 @@ export const setToken = (accessToken: string, refreshToken: string) => {
 
 export const getAccessToken = () => cookies.get('accessToken');
 
+export const getPromo = () => cookies.get('promo');
+
+export const setPromo = (promo: string | null) => {
+  if (promo) {
+    return cookies.set('promo', promo, {
+      sameSite: 'none',
+      path: '/',
+      secure: true
+    });
+  }
+};
+
 export const getRefreshToken = (): string | null => {
   return cookies.get('refreshToken') || null;
 };
@@ -36,7 +48,7 @@ export const removeToken = () => {
     secure: true,
     sameSite: 'none',
   });
-  window.localStorage.removeItem("reduxState")
+  window.localStorage.removeItem('reduxState');
 };
 
 export const removeUserData = () =>

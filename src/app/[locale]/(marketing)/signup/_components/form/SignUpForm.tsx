@@ -16,8 +16,9 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import { useSignUpMutation } from '@/shared/redux/features/authApi';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/shared/lib/utils';
+import { getPromo } from '@/shared/lib/cookie';
 
 type FieldErrors = {
   [key: string]: any | undefined;
@@ -61,6 +62,8 @@ export default function SignUpForm(): JSX.Element {
       path: ['confirmation'],
     });
 
+  const ref = getPromo();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,7 +71,7 @@ export default function SignUpForm(): JSX.Element {
       email: '',
       password: '',
       confirmation: '',
-      promocode: '',
+      promocode: ref ? ref : '',
     },
   });
 
@@ -83,13 +86,13 @@ export default function SignUpForm(): JSX.Element {
       login: data.login,
       email: data.email,
       password: data.password,
-      promocode: data.promocode,
+      promocode: ref ? ref : data.promocode,
     };
     toast.loading(t('messages.loading'));
     try {
       const response = await register(payload).unwrap();
       toast.success(t('messages.success'));
-      form.reset()
+      form.reset();
       router.push('/');
     } catch (e: any) {
       if (e.data && e.data.message) {
@@ -126,7 +129,11 @@ export default function SignUpForm(): JSX.Element {
           render={({ field }) => {
             return (
               <FormControl>
-                <Input placeholder={t('input.login')} {...field} onKeyDown={handleKeyPress} />
+                <Input
+                  placeholder={t('input.login')}
+                  {...field}
+                  onKeyDown={handleKeyPress}
+                />
               </FormControl>
             );
           }}
@@ -137,7 +144,12 @@ export default function SignUpForm(): JSX.Element {
           render={({ field }) => {
             return (
               <FormControl>
-                <Input type="email" placeholder={t('input.mail')} {...field} onKeyDown={handleKeyPress} />
+                <Input
+                  type="email"
+                  placeholder={t('input.mail')}
+                  {...field}
+                  onKeyDown={handleKeyPress}
+                />
               </FormControl>
             );
           }}
@@ -184,7 +196,12 @@ export default function SignUpForm(): JSX.Element {
           render={({ field }) => {
             return (
               <FormControl>
-                <Input placeholder={t('input.promocode')} {...field} onKeyDown={handleKeyPress}/>
+                <Input
+                  placeholder={t('input.promocode')}
+                  {...field}
+                  onKeyDown={handleKeyPress}
+                  disabled={ref ? true : false}
+                />
               </FormControl>
             );
           }}
@@ -197,8 +214,11 @@ export default function SignUpForm(): JSX.Element {
           {t('buttonSignUp.text')}{' '}
         </Button>
         <div className={css.linkSignIn}>
-          <h1 className='text-1-text-white-100'>{t('linkSignIn.text')}</h1>
-          <Link className={cn(css.link, 'bg-1-gradient')} href={`/${locale}/signin`}>
+          <h1 className="text-1-text-white-100">{t('linkSignIn.text')}</h1>
+          <Link
+            className={cn(css.link, 'bg-1-gradient')}
+            href={`/${locale}/signin`}
+          >
             {t('linkSignIn.button')}
           </Link>
         </div>
