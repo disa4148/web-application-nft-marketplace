@@ -11,6 +11,7 @@ import ServerLogotype from '@/shared/ui/serverLogotype';
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('footer');
+  const email = "support@nftjet.io"
   return (
     <footer className={css.wrapper}>
       <div className={css.footer}>
@@ -71,11 +72,14 @@ export default function Footer(): JSX.Element {
               </h1>
             </div>
             <div>
-              <Link className="text-1-text-white-100" href={'/'}>
+              <Link className="text-1-text-white-100"   
+                href={'https://t.me/nft_support_238'}
+                passHref
+                target="_blank">
                 {t('items.contacts.tg')}
               </Link>
-              <Link className="text-1-text-white-100" href={'/'}>
-                {t('items.contacts.mail')}
+              <Link href={`mailto:${email}`} className="text-1-text-white-100">
+              {t('items.contacts.mail')}
               </Link>
             </div>
           </div>

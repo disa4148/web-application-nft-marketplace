@@ -14,7 +14,6 @@ export const setToken = (accessToken: string, refreshToken: string) => {
       path: '/',
       secure: true,
       sameSite: 'none',
-      maxAge: 60 * 60 * 24 * 1000
     });
     cookies.set('refreshToken', refreshToken, {
       path: '/',
