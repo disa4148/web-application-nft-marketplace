@@ -73,7 +73,8 @@
           "loadingButton": "Withdrawal...",
           "failedWith": "There's been an error. Please contact to support!",
           "amountError": "The withdrawal amount cannot be 0",
-          "onlyNumber": "Enter the number"
+          "onlyNumber": "Enter the number",
+          "errorMoney": "Insufficient funds"
         },
         "promocode": {
           "title": "Promocodes",

@@ -64,15 +64,20 @@ export default function SelectBank() {
     };
 
     try {
-      await queryConclusion(data).unwrap();
-      setAmount('');
-      setCardNumber('');
-      setIsWithdrawalImpossible(true);
-    } catch (e: any) {
-      if (e.data && e.data.message) {
+      const response = await queryConclusion(data);
+      const { status, message } = response.data;
+
+      if (status === false) {
         setIsWithdrawalImpossible(true);
+      } else {
+        toast.success(message);
         setAmount('');
         setCardNumber('');
+        setIsWithdrawalImpossible(false);
+      }
+    } catch (e: any) {
+      if (!e.response) {
+        toast.error(t('errorMoney'));
       }
     }
   };
