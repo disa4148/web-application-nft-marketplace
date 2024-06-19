@@ -101,7 +101,7 @@ export default function SelectBank() {
                 '7',
                 '8',
                 '9',
-                ',',
+                '.',
               ];
               if (!allowedKeys.includes(event.key)) {
                 event.preventDefault();
@@ -125,7 +125,7 @@ export default function SelectBank() {
                 '7',
                 '8',
                 '9',
-                ',',
+                '.',
               ];
               if (!allowedKeys.includes(event.key)) {
                 event.preventDefault();
