@@ -1,4 +1,3 @@
-'use client';
 import css from './priceContainer.module.scss';
 
 import ModalTrigger from '@/app/[locale]/_components/modalNFtPurchase/_components/ModalNftPurchaseTrigger';
@@ -8,6 +7,7 @@ import SaleModalTrigger from '../saleModal/SaleModalTrigger';
 import ChangePriceModalTrigger from '../changePriceModal/ChangePriceModalTrigger';
 import DeregisterModalTrigger from '../../deregisterModal/DeregisterModalTrigger';
 import { cn } from '@/shared/lib/utils';
+import { useExchangeRate } from '@/shared/containers/exchangeRateContext';
 
 type Props = {
   nftId: string;
@@ -35,35 +35,23 @@ export default function PriceContainer({
   refetchNftData,
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.priceBlock');
-
-  const [priceInUsd, setPriceInUsd] = useState<number | null>(null);
   const [priceInRub, setPriceInRub] = useState<number | null>(null);
+  const [priceInUsd, setPriceInUsd] = useState<number | null>(null);
+  const { ethToRubRate, ethToUsdRate, isLoadingRates } = useExchangeRate();
 
   useEffect(() => {
-    async function fetchExchangeRates() {
-      try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,rub',
-        );
-        const data = await response.json();
-
-        const rates = data['ethereum'];
-
-        const usdToEthRate = rates.usd;
-        const usdToRubRate = rates.rub;
-
-        const calculatedPriceInUsd = price * usdToEthRate;
-        const calculatedPriceInRub = price * usdToRubRate;
-
-        setPriceInUsd(calculatedPriceInUsd);
-        setPriceInRub(calculatedPriceInRub);
-      } catch (error) {
-        console.error('Error fetching exchange rates:', error);
-      }
+    if (ethToRubRate !== null) {
+      const calculatedPriceInRub = price * ethToRubRate;
+      setPriceInRub(calculatedPriceInRub);
     }
+  }, [ethToRubRate, price]);
 
-    fetchExchangeRates();
-  }, [price]);
+  useEffect(() => {
+    if (ethToUsdRate !== null) {
+      const calculatedPriceInUsd = price * ethToUsdRate;
+      setPriceInUsd(calculatedPriceInUsd);
+    }
+  }, [ethToUsdRate, price]);
 
   return (
     <div className={cn(css.priceContainer, 'bg-1-bg-black-90')}>

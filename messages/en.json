@@ -356,7 +356,8 @@
         "messages": {
           "invalidPrice": "The NFT price entered is incorrect",
           "loading": "Listing the NFT for sale..",
-          "success": "You have successfully listed the NFT for sale!"
+          "success": "You have successfully listed the NFT for sale!",
+          "curseLoading": "Getting the current ETH exchange rate..."
         }
       },
       "changePrice": {
@@ -369,7 +370,8 @@
         "messages": {
           "invalidPrice": "The NFT price entered is incorrect",
           "loading": "Changing NFT price..",
-          "success": "You have successfully changed the NFT price!"
+          "success": "You have successfully changed the NFT price!",
+          "curseLoading": "Getting the current ETH exchange rate..."
         },
         "btn": "Change Price"
       },

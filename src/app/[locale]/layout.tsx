@@ -7,6 +7,7 @@ import Footer from './_components/footer/footer';
 import Header from './_components/header/Header';
 import { getTranslations } from 'next-intl/server';
 import { SocketProvider } from '@/shared/containers/socketProvider';
+import { ExchangeRateProvider } from '@/shared/containers/exchangeRateContext';
 
 const noto_Sans = Noto_Sans({ subsets: ['latin'] });
 
@@ -55,9 +56,11 @@ export default function LocaleLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Header />
-              {children}
-              <Footer />
+              <ExchangeRateProvider>
+                <Header />
+                {children}
+                <Footer />
+              </ExchangeRateProvider>
             </ThemeProvider>
           </NextIntlClientProvider>
         </SocketProvider>

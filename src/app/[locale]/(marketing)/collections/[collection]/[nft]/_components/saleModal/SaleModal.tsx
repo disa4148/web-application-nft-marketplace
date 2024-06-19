@@ -15,7 +15,8 @@ import { toast } from 'sonner';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import { cn } from '@/shared/lib/utils';
 import { Input } from '@/shared/ui/input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useExchangeRate } from '@/shared/containers/exchangeRateContext';
 
 type Props = {
   nftId: string;
@@ -37,30 +38,9 @@ export default function SaleModal({
   const t = useTranslations('nftCard.modals.sale');
   const [rubPrice, setRubPrice] = useState<string>('');
   const [ethPrice, setEthPrice] = useState<string>('');
-  const [ethToRubRate, setEthToRubRate] = useState<number>(0);
-  const [isLoadingRates, setIsLoadingRates] = useState<boolean>(true);
+  const { ethToRubRate, isLoadingRates } = useExchangeRate();
 
   const [saleNft, { isLoading }] = useSaleNftMutation();
-
-  useEffect(() => {
-    async function fetchExchangeRates() {
-      setIsLoadingRates(true);
-      try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=rub',
-        );
-        const data = await response.json();
-        const rate = data['ethereum']['rub'];
-        setEthToRubRate(rate);
-      } catch (error) {
-        console.error('Error fetching exchange rates:', error);
-      } finally {
-        setIsLoadingRates(false);
-      }
-    }
-
-    fetchExchangeRates();
-  }, []);
 
   const handleSaleNft = async () => {
     const ethPriceNumber = parseFloat(ethPrice);
@@ -87,7 +67,7 @@ export default function SaleModal({
   const handleRubChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rubValue = event.target.value;
     setRubPrice(rubValue);
-    if (rubValue) {
+    if (rubValue && ethToRubRate !== null) {
       const ethValue = (parseFloat(rubValue) / ethToRubRate).toFixed(6);
       setEthPrice(ethValue);
     } else {
@@ -98,7 +78,7 @@ export default function SaleModal({
   const handleEthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const ethValue = event.target.value;
     setEthPrice(ethValue);
-    if (ethValue) {
+    if (ethValue && ethToRubRate !== null) {
       const rubValue = (parseFloat(ethValue) * ethToRubRate).toFixed(2);
       setRubPrice(rubValue);
     } else {
@@ -115,10 +95,11 @@ export default function SaleModal({
             <h1 className="text-1-text-white-100">{t('title')}</h1>
           </DialogTitle>
         </DialogHeader>
-        {isLoadingRates ? (
+        {isLoadingRates || ethToRubRate === null ? (
           <div className={css.spinner}>
-            <LoadingSpinner />
-          </div>
+           <p>{t('messages.curseLoading')}</p>
+           <LoadingSpinner />
+         </div>
         ) : (
           <div className={css.content}>
             <div className={css.inputs}>

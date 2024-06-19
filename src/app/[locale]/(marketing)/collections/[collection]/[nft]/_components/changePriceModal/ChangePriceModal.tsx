@@ -15,7 +15,8 @@ import { toast } from 'sonner';
 import { LoadingSpinner } from '@/shared/ui/loading-spinner';
 import { cn } from '@/shared/lib/utils';
 import { Input } from '@/shared/ui/input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useExchangeRate } from '@/shared/containers/exchangeRateContext';
 
 type Props = {
   nftId: string;
@@ -37,30 +38,9 @@ export default function ChangePriceModal({
   const t = useTranslations('nftCard.modals.changePrice');
   const [rubPrice, setRubPrice] = useState<string>('');
   const [ethPrice, setEthPrice] = useState<string>('');
-  const [ethToRubRate, setEthToRubRate] = useState<number>(0);
-  const [isLoadingRates, setIsLoadingRates] = useState<boolean>(true);
+  const { ethToRubRate, isLoadingRates } = useExchangeRate();
 
   const [changePrice, { isLoading }] = useChangeNftPriceMutation();
-
-  useEffect(() => {
-    async function fetchExchangeRates() {
-      setIsLoadingRates(true);
-      try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=rub',
-        );
-        const data = await response.json();
-        const rate = data['ethereum']['rub'];
-        setEthToRubRate(rate);
-      } catch (error) {
-        console.error('Error fetching exchange rates:', error);
-      } finally {
-        setIsLoadingRates(false);
-      }
-    }
-
-    fetchExchangeRates();
-  }, []);
 
   const handleChangePrice = async () => {
     const ethPriceNumber = parseFloat(ethPrice);
@@ -86,7 +66,7 @@ export default function ChangePriceModal({
   const handleRubChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rubValue = event.target.value;
     setRubPrice(rubValue);
-    if (rubValue) {
+    if (rubValue && ethToRubRate !== null) {
       const ethValue = (parseFloat(rubValue) / ethToRubRate).toFixed(6);
       setEthPrice(ethValue);
     } else {
@@ -97,7 +77,7 @@ export default function ChangePriceModal({
   const handleEthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const ethValue = event.target.value;
     setEthPrice(ethValue);
-    if (ethValue) {
+    if (ethValue && ethToRubRate !== null) {
       const rubValue = (parseFloat(ethValue) * ethToRubRate).toFixed(2);
       setRubPrice(rubValue);
     } else {
@@ -114,8 +94,9 @@ export default function ChangePriceModal({
             <h1>{t('title')}</h1>
           </DialogTitle>
         </DialogHeader>
-        {isLoadingRates ? (
+        {isLoadingRates || ethToRubRate === null ? (
           <div className={css.spinner}>
+            <p>{t('messages.curseLoading')}</p>
             <LoadingSpinner />
           </div>
         ) : (
@@ -123,12 +104,13 @@ export default function ChangePriceModal({
             <h2>{t('currentPrice')} {price} ETH</h2>
             <div className={css.inputs}>
               <Input
-                placeholder={t('placeholders.inRub')}
+                placeholder={ethToRubRate === null ? "Загрузка курса ETH.." : t('placeholders.inRub')}
                 value={rubPrice}
                 onChange={handleRubChange}
+                disabled={ethToRubRate === null}
                 onKeyPress={(event) => {
                   const allowedKeys = [
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
                   ];
                   if (!allowedKeys.includes(event.key)) {
                     event.preventDefault();
@@ -137,12 +119,13 @@ export default function ChangePriceModal({
               />
               <p>~</p>
               <Input
-                placeholder={t('placeholders.inETH')}
+                placeholder={ethToRubRate === null ? "Загрузка курса ETH.." : t('placeholders.inETH')}
                 value={ethPrice}
                 onChange={handleEthChange}
+                disabled={ethToRubRate === null}
                 onKeyPress={(event) => {
                   const allowedKeys = [
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',',
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
                   ];
                   if (!allowedKeys.includes(event.key)) {
                     event.preventDefault();

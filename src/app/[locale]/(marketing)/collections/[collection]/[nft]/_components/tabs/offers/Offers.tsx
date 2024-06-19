@@ -1,37 +1,35 @@
+'use client'
 import css from './offers.module.scss';
 import { cn } from '@/shared/lib/utils';
 import { Separator } from '@/shared/ui/separator';
-import { offerItems } from './offersItems';
-
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useExchangeRate } from '@/shared/containers/exchangeRateContext';
 
 export default function Offers({ offers }: any): JSX.Element {
+  const { ethToRubRate, ethToUsdRate, isLoadingRates, fetchExchangeRates } = useExchangeRate();
   const t = useTranslations('nftCard.tabs.offers');
   const offersPrice = offers;
 
-  const [exchangeRates, setExchangeRates] = useState<{
-    usd: number;
-    rub: number;
-  } | null>(null);
-
   useEffect(() => {
-    async function fetchExchangeRates() {
-      try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,rub',
-        );
-        const data = await response.json();
-
-        const rates = data['ethereum'];
-        setExchangeRates(rates);
-      } catch (error) {
-        console.error('Error fetching exchange rates:', error);
-      }
-    }
-
     fetchExchangeRates();
-  }, []);
+  }, [fetchExchangeRates]);
+
+  const convertPriceToRub = (price: number): number | null => {
+    if (ethToRubRate !== null) {
+      const priceInRub = price * ethToRubRate;
+      return Math.round(priceInRub);
+    }
+    return null;
+  };
+
+  const convertPriceToUsd = (price: number): number | null => {
+    if (ethToUsdRate !== null) {
+      const priceInUsd = price * ethToUsdRate;
+      return Number(priceInUsd.toFixed(2));
+    }
+    return null;
+  };
 
   const dateConvert = (expires: string) => {
     const date = new Date(expires);
@@ -45,26 +43,7 @@ export default function Offers({ offers }: any): JSX.Element {
     ])}`;
   };
 
-  const convertPriceToRub = (price: number): number | null => {
-    if (exchangeRates) {
-      const priceInRub = price * exchangeRates.rub;
-      return Math.round(priceInRub);
-    }
-    return null;
-  };
-
-  const convertPriceToUsd = (price: number): number | null => {
-    if (exchangeRates) {
-      const priceInUsd = price * exchangeRates.usd;
-      return Number(priceInUsd.toFixed(2));
-    }
-    return null;
-  };
-
-  const declineWord = (
-    number: number,
-    words: [string, string, string],
-  ): string => {
+  const declineWord = (number: number, words: [string, string, string]): string => {
     let cases = [2, 0, 1, 1, 1, 2];
     return words[
       number % 100 > 4 && number % 100 < 20
@@ -98,12 +77,16 @@ export default function Offers({ offers }: any): JSX.Element {
                 <h4 className="text-1-text-white-100">
                   {convertPriceToRub(item.price) !== null
                     ? `${convertPriceToRub(item.price)}`
-                    : 'Loading...'}
+                    : isLoadingRates
+                    ? 'Loading...'
+                    : 'Error'}
                 </h4>
                 <h4 className="text-1-text-white-100">
                   {convertPriceToUsd(item.price) !== null
                     ? `${convertPriceToUsd(item.price)}`
-                    : 'Loading...'}
+                    : isLoadingRates
+                    ? 'Loading...'
+                    : 'Error'}
                 </h4>
                 <h4 className="text-1-text-white-100">
                   {dateConvert(item.expires)}
