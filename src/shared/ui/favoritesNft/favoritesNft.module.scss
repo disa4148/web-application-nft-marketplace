@@ -11,8 +11,11 @@
 
   div {
     position: relative;
-    .imgNft {
-      border-radius: 15px;
+    a {
+      img {
+        border-radius: 15px 15px 0 0;
+        cursor: pointer;
+      }
     }
     .heartBlock {
       max-width: 33px;
@@ -39,8 +42,12 @@
   }
 
   .nameNft {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 18px;
     font-weight: 500;
+    max-width: 150px;
   }
 
   .priceBlock {
@@ -75,9 +82,18 @@
   .wrapper {
     max-width: 200px;
     height: 100%;
+    height: 300px;
+
+    .img {
+      max-width: 200px;
+      max-height: 200px;
+    }
 
     .fullBlock {
       gap: 13px;
+    }
+    .namePrice {
+      padding: 0px 12px 0px 13px;
     }
     .lastSale {
       padding-bottom: 10px;
@@ -98,6 +114,12 @@
     gap: 10px;
     max-width: 160px;
     height: 100%;
+    height: 230px;
+
+    .img {
+      max-width: 160px;
+      max-height: 160px;
+    }
 
     .fullBlock {
       gap: 12px;
@@ -105,6 +127,7 @@
 
     .namePrice {
       gap: 3px;
+      padding: 0px 12px 0px 16px;
     }
 
     .nameNft {
@@ -140,6 +163,7 @@
     gap: 10px;
     max-width: 160px;
     height: 100%;
+    height: 220px;
 
     .fullBlock {
       .namePrice {

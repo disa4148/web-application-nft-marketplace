@@ -47,13 +47,13 @@ export default function FavoritesNft({
   const [deleteFavorite] = useDeleteFavoriteMutation();
 
   const removeNft = async (id: string) => {
-    toast.loading(t('messages.loading'))
+    toast.loading(t('messages.loading'));
     try {
       const deleteS = await deleteFavorite({ nftId: id }).unwrap();
       toast.success(t('messages.success'));
       refetchNftData();
     } catch {
-      toast.error(t('messages.error'))
+      toast.error(t('messages.error'));
     } finally {
       toast.dismiss();
     }
@@ -64,7 +64,7 @@ export default function FavoritesNft({
       <div>
         <Link href={`/${locale}/collections/${collectionId}/${id}`}>
           <Image
-            className={css.imgNft}
+            className={cn(css.img, 'max-w-[236px] h-[236px]')}
             src={imageCatalog}
             alt="NFT"
             width={237}
