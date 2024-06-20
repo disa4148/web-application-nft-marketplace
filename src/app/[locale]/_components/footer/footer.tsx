@@ -6,18 +6,19 @@ import LocaleSwitcher from '@/shared/ui/locale-switcher';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import ServerLogotype from '@/shared/ui/serverLogotype';
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('footer');
-  const email = "support@nftjet.io"
+  const locale = useLocale();
+  const email = 'support@nftjet.io';
   return (
     <footer className={css.wrapper}>
       <div className={css.footer}>
         <div>
           <div className={css.logotypeContainer}>
-            <ServerLogotype/>
+            <ServerLogotype />
             <p className="text-1-text-black-60">{t('description')}</p>
           </div>
           <div>
@@ -44,13 +45,13 @@ export default function Footer(): JSX.Element {
               </h1>
             </div>
             <div>
-              <Link className="text-1-text-white-100" href={'/'}>
+              <Link className="text-1-text-white-100" href={`/${locale}`}>
                 {t('items.project.catalogue')}
               </Link>
-              <Link className="text-1-text-white-100" href={'/'}>
+              <Link className="text-1-text-white-100" href={`/${locale}`}>
                 {t('items.project.service')}
               </Link>
-              <Link className="text-1-text-white-100" href={'/'}>
+              <Link className="text-1-text-white-100" href={`/${locale}`}>
                 {t('items.project.privacyPolicy')}
               </Link>
             </div>
@@ -72,14 +73,16 @@ export default function Footer(): JSX.Element {
               </h1>
             </div>
             <div>
-              <Link className="text-1-text-white-100"   
+              <Link
+                className="text-1-text-white-100"
                 href={'https://t.me/nft_support_238'}
                 passHref
-                target="_blank">
+                target="_blank"
+              >
                 {t('items.contacts.tg')}
               </Link>
               <Link href={`mailto:${email}`} className="text-1-text-white-100">
-              {t('items.contacts.mail')}
+                {t('items.contacts.mail')}
               </Link>
             </div>
           </div>

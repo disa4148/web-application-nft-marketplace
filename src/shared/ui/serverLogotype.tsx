@@ -3,8 +3,10 @@ import Image from 'next/image';
 import { useGetMirrorsQuery } from '../redux/features/mirrorApi';
 import Link from 'next/link';
 import { LoadingSpinner } from './loading-spinner';
+import { useLocale } from 'next-intl';
 
 export default function ServerLogotype(): JSX.Element {
+  const locale = useLocale();
   const { data, isLoading, error } = useGetMirrorsQuery();
 
   if (isLoading) {
@@ -16,7 +18,7 @@ export default function ServerLogotype(): JSX.Element {
   }
 
   return (
-    <Link href={'/'}>
+    <Link href={`/${locale}`}>
       {data?.logo ? (
         <Image alt="Logotype" src={data.logo} width={157} height={24} />
       ) : (
