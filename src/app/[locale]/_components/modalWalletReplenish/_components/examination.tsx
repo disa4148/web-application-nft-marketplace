@@ -110,7 +110,7 @@ export default function Examination({ changeTab, selectedBank, id }: Props) {
                       <LoadingSpinner />
                     </div>
                   ) : (
-                    data?.details.fio_sbp
+                    data?.details.bank_name
                   )}
                 </div>
               </div>

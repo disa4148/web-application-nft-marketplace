@@ -21,8 +21,8 @@ import { useExchangeRate } from '@/shared/containers/exchangeRateContext';
 type Props = {
   nftId: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onSaleSuccess: () => void; 
-  refetchNftData: () => void; 
+  onSaleSuccess: () => void;
+  refetchNftData: () => void;
   open: boolean;
   children: React.ReactNode;
 };
@@ -33,7 +33,7 @@ export default function SaleModal({
   children,
   nftId,
   onSaleSuccess,
-  refetchNftData
+  refetchNftData,
 }: Props): JSX.Element {
   const t = useTranslations('nftCard.modals.sale');
   const [rubPrice, setRubPrice] = useState<string>('');
@@ -97,17 +97,27 @@ export default function SaleModal({
         </DialogHeader>
         {isLoadingRates || ethToRubRate === null ? (
           <div className={css.spinner}>
-           <p>{t('messages.curseLoading')}</p>
-           <LoadingSpinner />
-         </div>
+            <p>{t('messages.curseLoading')}</p>
+            <LoadingSpinner />
+          </div>
         ) : (
           <div className={css.content}>
             <div className={css.inputs}>
               <Input
-                 onKeyPress={(event) => {
+                onKeyPress={(event) => {
                   // Allow only numbers and comma
                   const allowedKeys = [
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
+                    '0',
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5',
+                    '6',
+                    '7',
+                    '8',
+                    '9',
+                    '.',
                   ];
                   if (!allowedKeys.includes(event.key)) {
                     event.preventDefault();
@@ -119,10 +129,20 @@ export default function SaleModal({
               />
               <p className="text-1-text-white-100">~</p>
               <Input
-                 onKeyPress={(event) => {
+                onKeyPress={(event) => {
                   // Allow only numbers and comma
                   const allowedKeys = [
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
+                    '0',
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5',
+                    '6',
+                    '7',
+                    '8',
+                    '9',
+                    '.',
                   ];
                   if (!allowedKeys.includes(event.key)) {
                     event.preventDefault();
